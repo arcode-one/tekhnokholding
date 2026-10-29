@@ -20,7 +20,7 @@
 
   // ---------- Preloader ----------
 
-  const MIN_DURATION = 3900; // обводки → жёлтая заливка → серая заливка → куб и надпись → пауза
+  const MIN_DURATION = 3400; // обводки → жёлтая заливка → белый куб и надпись → короткая пауза
   const LOCKUP_OUT = 450;
   const CURTAIN_UP = 950;
 
@@ -36,6 +36,7 @@
   function finishLoading() {
     root.classList.add('is-loaded');
     root.classList.remove('is-locked');
+    document.dispatchEvent(new Event('site:scroll-lock-change'));
   }
 
   async function runPreloader() {
@@ -62,10 +63,47 @@
   // ---------- Скролл: разворот букв и сворачивание шапки в бургер ----------
 
   let scrolled = false;
+  let wordmarkHidden = false;
+  let previousScrollY = window.scrollY;
+  let travel = 0;
+  let direction = 0;
+  const hero = wordmark.closest('.hero');
+  let heroBottom = 0;
+  let heroHeight = 0;
 
-  // Классы меняются только при пересечении порога, поэтому обработчик дешёвый и не требует requestAnimationFrame
+  function measureHero() {
+    heroHeight = hero.offsetHeight;
+    heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+  }
+  measureHero();
+  new ResizeObserver(measureHero).observe(hero);
+
+  function updateWordmark(y) {
+    const delta = y - previousScrollY;
+    previousScrollY = y;
+    if (Math.abs(delta) < 0.1) return;
+    const nextDirection = Math.sign(delta);
+    if (nextDirection !== direction) travel = 0;
+    direction = nextDirection;
+    travel += Math.abs(delta);
+
+    // Вниз даём сначала немного пройти по хиро. Вверх раскрываем буквы,
+    // когда нижняя часть хиро уже заняла четверть экрана, а не только у верха.
+    const hideAfter = Math.max(90, heroHeight * 0.12);
+    const returningToHero = heroBottom - y >= window.innerHeight * 0.25;
+    if (!wordmarkHidden && direction > 0 && y > hideAfter && travel > 70) {
+      wordmarkHidden = true;
+    } else if (wordmarkHidden && ((direction < 0 && travel > 16 && returningToHero) || y <= 10)) {
+      wordmarkHidden = false;
+    }
+    wordmark.classList.toggle('is-flipped', wordmarkHidden);
+  }
+
+  // Буквы и шапка имеют независимые пороги. Ориентируемся на реальный
+  // сглаженный скролл, а не на первый импульс колёсика.
   function updateScrollState() {
     if (!root.classList.contains('is-loaded')) return;
+    updateWordmark(window.scrollY);
 
     // Открытая плашка закрывается, как только страницу прокрутили, даже если её открыли кликом
     if (dock.classList.contains('is-open') && Math.abs(window.scrollY - dockOpenedAt) > 30) {
@@ -75,7 +113,6 @@
     const isScrolled = window.scrollY > 10;
     if (isScrolled === scrolled) return;
     scrolled = isScrolled;
-    wordmark.classList.toggle('is-flipped', scrolled);
     root.classList.toggle('is-scrolled', scrolled);
     if (!scrolled) setDock(false);
   }
@@ -138,6 +175,7 @@
       btn.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
     });
     root.classList.toggle('is-locked', open);
+    document.dispatchEvent(new Event('site:scroll-lock-change'));
   }
 
   burger.addEventListener('click', () => setMenu(menu.hidden));

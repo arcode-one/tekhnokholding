@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Технохолдинг · варианты акцентов</title>
+  <link rel="stylesheet" href="picker.css">
+  <style>
+    html, body, #stage { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #414141; }
+    #stage iframe { display: block; width: 100%; height: 100%; border: 0; }
+  </style>
+</head>
+<body>
+  <main id="stage"></main>
+  <nav class="proto-picker" data-position="top" aria-label="Prototype variants">
+    <span class="proto-picker-highlight" aria-hidden="true"></span>
+    <button class="proto-picker-item" data-active aria-current="true">Цифры</button>
+    <button class="proto-picker-item">Пара</button>
+    <button class="proto-picker-item">Плашка</button>
+    <button class="proto-picker-item">Было</button>
+    <span class="proto-picker-divider" aria-hidden="true"></span>
+    <button class="proto-picker-item proto-picker-replay" aria-label="Replay animation (R)">↻</button>
+  </nav>
+  <script>
+    const variants = [
+      () => '<iframe src="preview.html?v=1" title="Цифры: крупная типографика"></iframe>',
+      () => '<iframe src="preview.html?v=2" title="Пара: два достижения рядом"></iframe>',
+      () => '<iframe src="preview.html?v=3" title="Плашка: контрастный блок стажа"></iframe>',
+      () => '<iframe src="original.html" title="Исходная версия"></iframe>',
+    ];
+    const requested = Number(new URLSearchParams(location.search).get('v'));
+    if (!Number.isInteger(requested) || requested < 1 || requested > variants.length) {
+      const initial = new URL(location);
+      initial.searchParams.set('v', '1');
+      history.replaceState(null, '', initial);
+    }
+    // Горячие клавиши доступны и после взаимодействия с вложенной страницей.
+    window.addEventListener('message', (event) => {
+      if (event.origin !== location.origin || event.source !== document.querySelector('iframe')?.contentWindow) return;
+      if (event.data?.type === 'prototype-key') {
+        document.dispatchEvent(new KeyboardEvent('keydown', { key: event.data.key }));
+      }
+    });
+  </script>
+  <script src="picker.js"></script>
+</body>
+</html>

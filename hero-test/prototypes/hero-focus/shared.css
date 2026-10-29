@@ -1,0 +1,84 @@
+/* Изолированные направления: этот файл не подключается на основном сайте. */
+.hero__content {
+  width: min(650px, calc(100% - 2 * var(--pad)));
+  right: auto;
+  top: 51%;
+  gap: 26px;
+}
+.hero__shade {
+  background:
+    linear-gradient(90deg, rgba(12, 18, 24, .82), rgba(12, 18, 24, .64) 36%, transparent 72%),
+    linear-gradient(180deg, rgba(20, 25, 30, .30), rgba(20, 25, 30, .08) 40%, rgba(20, 25, 30, .44));
+}
+.hero__num { font-size: clamp(128px, 12vw, 176px); font-weight: 500; letter-spacing: -.04em; }
+.hero__sub { font-size: clamp(24px, 2.2vw, 32px); line-height: 1.17; font-weight: 400; }
+.hero__row { flex-wrap: wrap; }
+.focus-experience { margin: 0; display: flex; align-items: center; gap: 18px; }
+.focus-experience strong { font-size: 84px; line-height: .95; font-weight: 500; letter-spacing: -.04em; color: var(--logo-yellow); }
+.focus-experience > span { font-size: 21px; line-height: 1.15; font-weight: 400; }
+
+/* Цифры: вертикальная иерархия, цифра стажа отдельно от кнопок. */
+[data-variant="1"] .focus-experience { padding-left: 5px; }
+
+/* Пара: два равных достижения в одном горизонтальном ряду. */
+[data-variant="2"] .hero__content { width: min(700px, calc(100% - 2 * var(--pad))); gap: 36px; }
+.focus-pair { display: grid; grid-template-columns: 1.15fr 1fr; gap: 36px; }
+[data-variant="2"] .hero__title { flex-direction: column; align-items: flex-start; gap: 24px; }
+[data-variant="2"] .hero__num,
+[data-variant="2"] .focus-experience strong { font-size: clamp(116px, 10.4vw, 150px); line-height: .9; }
+[data-variant="2"] .hero__sub { font-size: 23px; }
+[data-variant="2"] .focus-experience {
+  flex-direction: column; align-items: flex-start; justify-content: space-between;
+  border-left: 1px solid rgba(242, 242, 240, .35); padding-left: 36px; gap: 24px;
+}
+[data-variant="2"] .focus-experience > span { font-size: 23px; }
+
+/* Плашка: отдельный контрастный объект для стажа. */
+[data-variant="3"] .hero__content {
+  width: min(740px, calc(100% - 2 * var(--pad)));
+  display: grid; grid-template-columns: minmax(0, 1fr) 190px; align-items: center; gap: 30px;
+}
+[data-variant="3"] .hero__title { gap: 22px; }
+[data-variant="3"] .hero__num { font-size: 132px; }
+[data-variant="3"] .hero__sub { font-size: 25px; }
+[data-variant="3"] .focus-experience {
+  min-height: 190px; padding: 28px 24px; background: #202326;
+  flex-direction: column; align-items: flex-start; justify-content: center; gap: 12px;
+}
+[data-variant="3"] .focus-experience strong { font-size: 94px; }
+[data-variant="3"] .focus-experience > span { font-size: 18px; }
+[data-variant="3"] .hero__row { grid-column: 1 / -1; }
+
+@media (max-width: 767px) {
+  .hero__content,
+  [data-variant="2"] .hero__content,
+  [data-variant="3"] .hero__content {
+    top: auto; bottom: calc(64px + (100vw - 32px) * .282);
+    width: calc(100% - 32px); gap: 22px; transform: none;
+  }
+  .hero__shade {
+    background: linear-gradient(180deg, rgba(12, 18, 24, .22), rgba(12, 18, 24, .12) 20%, rgba(12, 18, 24, .78) 65%, rgba(12, 18, 24, .54));
+  }
+  .hero__title { gap: 18px; }
+  .hero__num { font-size: 112px; }
+  .hero__sub { font-size: 22px; }
+  .focus-experience strong { font-size: 76px; }
+  .focus-experience > span { font-size: 19px; }
+  .hero__row { flex-wrap: nowrap; }
+  .hero__row .pill { padding: 0 10px; font-size: 14px; }
+  .focus-pair { grid-template-columns: 1.1fr 1fr; gap: 18px; }
+  [data-variant="2"] .hero__num,
+  [data-variant="2"] .focus-experience strong { font-size: 88px; }
+  [data-variant="2"] .hero__title { gap: 18px; }
+  [data-variant="2"] .hero__sub,
+  [data-variant="2"] .focus-experience > span { font-size: 18px; }
+  [data-variant="2"] .focus-experience { padding-left: 18px; gap: 18px; }
+  [data-variant="3"] .hero__content { display: flex; }
+  [data-variant="3"] .hero__num { font-size: 112px; }
+  [data-variant="3"] .hero__sub { font-size: 22px; }
+  [data-variant="3"] .focus-experience {
+    min-height: 0; width: 100%; padding: 16px 22px;
+    flex-direction: row; justify-content: flex-start; align-items: center; gap: 22px;
+  }
+  [data-variant="3"] .focus-experience strong { font-size: 66px; }
+}

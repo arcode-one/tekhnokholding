@@ -66,7 +66,7 @@ img, svg { display: block; }
   --pl-fill: 600ms;
   --pl-gray-at: calc(var(--pl-fill-at) + var(--pl-fill) + 100ms);
   --pl-gray: 450ms;
-  --pl-cube-at: calc(var(--pl-gray-at) + var(--pl-gray) + 80ms);
+  --pl-cube-at: var(--pl-gray-at);
   --pl-wordmark-at: calc(var(--pl-cube-at) + 300ms);
   position: relative;
   height: var(--h);
@@ -113,7 +113,7 @@ img, svg { display: block; }
 /* Одна жёлтая форма: маска раскрывает обводку и заливку, сохраняя края неподвижными. */
 .preloader__arch { fill: var(--logo-yellow); }
 
-/* Обводки → жёлтая заливка → серая заливка → куб и надпись. */
+/* Обводки → жёлтая заливка → фон внутри знака → куб и надпись. */
 .preloader__hex-fill,
 .preloader__arch-fill,
 .preloader__cube {
@@ -124,7 +124,7 @@ img, svg { display: block; }
 .preloader__arch-fill { fill: #fff; }
 
 .preloader__hex-fill {
-  fill: var(--logo-dark);
+  fill: var(--preloader-bg);
   animation-duration: var(--pl-gray);
   animation-delay: var(--pl-gray-at);
 }
@@ -188,7 +188,7 @@ html.is-scrolled .header {
 .nav {
   display: flex;
   gap: 32px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
 }
 
@@ -219,8 +219,8 @@ html.is-scrolled .header {
   gap: 2px;
 }
 
-.header__phone { font-size: 17px; font-weight: 600; white-space: nowrap; }
-.header__mail { font-size: 14px; color: var(--light); }
+.header__phone { font-size: 19px; font-weight: 600; white-space: nowrap; }
+.header__mail { font-size: 16px; color: var(--light); }
 
 .header__messengers { display: flex; gap: 8px; }
 
@@ -397,7 +397,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
 .dock__nav {
   display: flex;
   gap: 28px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 500;
   white-space: nowrap;
 }
@@ -415,8 +415,8 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   gap: 1px;
 }
 
-.dock__contacts .header__phone { font-size: 16px; }
-.dock__contacts .header__mail { font-size: 13px; }
+.dock__contacts .header__phone { font-size: 18px; }
+.dock__contacts .header__mail { font-size: 15px; }
 
 .dock__icons { display: flex; gap: 8px; }
 
@@ -571,16 +571,21 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
 
 .wordmark {
   position: absolute;
-  left: var(--pad);
   right: var(--pad);
+  width: clamp(340px, 44vw, 780px);
   bottom: 28px;
   z-index: 2;
   container-type: inline-size;
 }
 
-/* Буквы вырезаны из логотипа клиента и вставлены вектором; ширина всей строки ~92% контейнера,
-   остаток распределяется между буквами, чтобы слово вставало ровно от поля до поля */
+/* Две строки векторного названия, как в логотипе клиента. */
 .wordmark__inner {
+  display: flex;
+  flex-direction: column;
+  gap: .2cqi;
+}
+
+.wordmark__row {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
@@ -588,7 +593,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
 
 .wordmark__l svg {
   display: block;
-  height: 7.92cqi;
+  height: 14cqi;
   width: auto;
   fill: var(--light);
   transform: rotateY(0deg);
@@ -670,7 +675,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
 
   .hero__content {
     top: auto;
-    bottom: calc(60px + (100vw - 32px) * .0792);
+    bottom: calc(64px + (100vw - 32px) * .282);
     transform: none;
     gap: 20px;
   }
@@ -705,7 +710,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   .dock { --burger: 48px; }
   .dock__burger svg { width: 22px; height: 22px; }
 
-  .wordmark { bottom: 20px; }
+  .wordmark { left: var(--pad); width: auto; bottom: 20px; }
 
   .test-block { padding: 80px var(--pad); }
 }
