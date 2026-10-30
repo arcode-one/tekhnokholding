@@ -71,6 +71,10 @@ img, svg { display: block; }
   position: relative;
   height: var(--h);
   aspect-ratio: 1292 / 430;
+  /* Пока надписи нет, по центру экрана стоит сам знак (его центр 244.5 из 1292).
+     Вместе с раскрытием надписи блок съезжает влево и встаёт по центру целиком. */
+  translate: calc((646 - 244.5) / 1292 * 100%) 0;
+  animation: pl-center 800ms calc(var(--pl-wordmark-at) - 100ms) cubic-bezier(.65, 0, .35, 1) forwards;
   transition: opacity .45s cubic-bezier(.5, 0, .75, 0), transform .45s cubic-bezier(.5, 0, .75, 0);
 }
 
@@ -148,6 +152,7 @@ img, svg { display: block; }
 @keyframes pl-draw { to { stroke-dashoffset: 0; } }
 @keyframes pl-fill { to { clip-path: inset(0 0 0 0); } }
 @keyframes pl-reveal { to { clip-path: inset(0 0 0 calc(489 / 1292 * 100%)); } }
+@keyframes pl-center { to { translate: 0 0; } }
 
 /* ---------- Header ---------- */
 

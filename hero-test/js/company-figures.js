@@ -58,7 +58,7 @@
   });
   const title = section.querySelector('.company-figures__title');
   const groups = [
-    { outer: title, parts: [title.firstElementChild], range: 12 },
+    ...(title ? [{ outer: title, parts: [title.firstElementChild], range: 12 }] : []),
     ...Array.from(section.querySelectorAll('.company-figures__item'), (outer, index) => ({
       outer,
       parts: Array.from(outer.querySelectorAll('dt > span, dd > span')),
