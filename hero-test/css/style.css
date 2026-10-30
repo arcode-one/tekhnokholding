@@ -1101,7 +1101,7 @@ html.is-scrolled .dock.is-open { pointer-events: auto; }
 .company-figures__item--clients { right: 1%; top: 70%; align-items: flex-end; }
 .company-figures__item--clients dt { padding-right: 24px; }
 .company-figures__item--cities { left: 32.3%; top: 82%; align-items: flex-end; }
-.company-figures__item dt { font-size: 20px; line-height: 1.35; font-weight: 400; }
+.company-figures__item dt { font-size: 40px; line-height: 1.15; letter-spacing: -.02em; font-weight: 400; }
 .company-figures__item dd {
   order: -1;
   margin: 0;
@@ -1210,7 +1210,7 @@ html.is-scrolled .dock.is-open { pointer-events: auto; }
   .company-figures__item { gap: 8px; }
   .company-figures__grid { aspect-ratio: 1808 / 1150; }
   .company-figures__item--clients { top: 74%; }
-  .company-figures__item dt { font-size: 16px; }
+  .company-figures__item dt { font-size: 32px; }
 
   /* На планшете и телефоне бургер после скролла открывает полноэкранное меню */
   .dock__clip { display: none; }
@@ -1296,7 +1296,7 @@ html.is-scrolled .dock.is-open { pointer-events: auto; }
   .company-figures__photo--office { grid-column: 1; grid-row: 3; width: 90%; max-width: 140px; margin-top: 0; }
   .company-figures__item dd { font-size: clamp(44px, 14vw, 96px); }
   .company-figures__item--area dd { font-size: clamp(48px, 12.5vw, 92px); }
-  .company-figures__item dt { font-size: 16px; }
+  .company-figures__item dt { font-size: 24px; }
 
   .pill {
     height: 50px;
