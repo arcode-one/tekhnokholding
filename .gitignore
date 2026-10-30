@@ -2,6 +2,13 @@
 .claude/
 .impeccable/
 
+# Локальные исходники референса для разбора, не часть сайта
+/references/october-group/
+
+# Временные материалы переноса макета в Figma
+/tmp/figma/
+/hero-test/prototypes/figma-capture/
+
 # Рабочие заметки по проекту
 ПРОЕКТ.md
 

@@ -9,10 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Шрифт грузится без блокировки отрисовки, чтобы превью появлялось сразу -->
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="css/vendor/lenis-1.3.27.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/roof-background.css">
 </head>
 <body>
 
@@ -56,14 +57,14 @@
           <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
         </div>
         <div class="header__messengers">
-          <a class="icon-btn" href="#telegram" aria-label="Написать в Telegram">
+          <a class="icon-btn icon-btn--social" href="#telegram" aria-label="Написать в Telegram">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
           </a>
-          <a class="icon-btn" href="#max" aria-label="Написать в MAX">
+          <a class="icon-btn icon-btn--social" href="#max" aria-label="Написать в MAX">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3.5a8.5 8.5 0 0 1 0 17c-1.5 0-2.9-.38-4.12-1.06L4.2 20.6a.6.6 0 0 1-.76-.74l1.1-3.6A8.5 8.5 0 0 1 12 3.5zm0 4.6a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8z"/></svg>
           </a>
-          <button class="icon-btn header__burger" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+          <button class="icon-btn burger-btn header__burger" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path class="burger__line--hide" d="M4 8h16"/><path class="burger__line--keep" d="M4 16h16"/></svg>
           </button>
         </div>
       </div>
@@ -72,6 +73,7 @@
 
   <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
   <div class="dock">
+    <div class="dock__surface">
     <span class="dock__bg" aria-hidden="true"></span>
     <div class="dock__clip">
     <div class="dock__panel" id="dock-panel">
@@ -90,17 +92,18 @@
         <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
       </div>
       <div class="dock__icons">
-      <a class="icon-btn dock__item" style="--r:1" href="#telegram" aria-label="Написать в Telegram">
+      <a class="icon-btn icon-btn--social dock__item" style="--r:1" href="#telegram" aria-label="Написать в Telegram">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg>
       </a>
-      <a class="icon-btn dock__item" style="--r:0" href="#max" aria-label="Написать в MAX">
+      <a class="icon-btn icon-btn--social dock__item" style="--r:0" href="#max" aria-label="Написать в MAX">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3.5a8.5 8.5 0 0 1 0 17c-1.5 0-2.9-.38-4.12-1.06L4.2 20.6a.6.6 0 0 1-.76-.74l1.1-3.6A8.5 8.5 0 0 1 12 3.5zm0 4.6a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8z"/></svg>
       </a>
       </div>
     </div>
     </div>
-    <button class="dock__burger" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false" aria-controls="dock-panel">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>
+    </div>
+    <button class="dock__burger burger-btn" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false" aria-controls="dock-panel">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path class="burger__line--hide" d="M4 8h16"/><path class="burger__line--keep" d="M4 16h16"/></svg>
     </button>
   </div>
 
@@ -118,27 +121,61 @@
   </div>
 
   <main>
+    <div class="roof-background">
+      <div class="roof-background__media" aria-hidden="true">
+        <div class="roof-background__viewport">
+          <img class="roof-background__image" src="img/hero.jpg" alt="" width="1280" height="720" fetchpriority="high">
+        </div>
+      </div>
     <section class="hero" aria-labelledby="hero-title">
-      <!-- Видеофон: когда будет ролик, раскомментировать video (картинку оставить как poster) и удалить img -->
-      <!--
-      <video class="hero__video" autoplay muted loop playsinline preload="auto" poster="img/hero-roof.webp">
-        <source src="video/hero.webm" type="video/webm">
-        <source src="video/hero.mp4" type="video/mp4">
-      </video>
-      -->
-      <img class="hero__video" src="img/hero-roof.webp" alt="" width="1672" height="941" fetchpriority="high">
-      <div class="hero__shade" aria-hidden="true"></div>
 
-      <div class="hero__content">
-        <h1 class="hero__title" id="hero-title">
-          <span class="hero__num">№1</span>
-          <span class="hero__sub">по плоским<br>кровлям<br>на Урале</span>
-        </h1>
+      <div class="hero__content hero__content--gold">
+        <div class="hero-gold">
+          <span class="hero-gold__ring" aria-hidden="true" data-hero-split="ring">
+            <svg viewBox="0 0 720 360" preserveAspectRatio="none" focusable="false">
+              <defs>
+                <linearGradient id="hero-arc-light" x1="0" y1="0" x2="0" y2="1">
+                  <stop stop-color="#ffdc88" stop-opacity="0"/>
+                  <stop offset=".25" stop-color="#ffdc88" stop-opacity=".2"/>
+                  <stop offset=".6" stop-color="#ffe5a6" stop-opacity=".7"/>
+                  <stop offset=".82" stop-color="#ffd074" stop-opacity=".9"/>
+                  <stop offset="1" stop-color="#ffdc88" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <path d="M110 10 C-12 82 -12 258 82 336 M610 10 C732 82 732 258 638 336"/>
+            </svg>
+          </span>
+          <h1 class="hero-gold__side" id="hero-title" data-hero-split="left">
+            <span class="hero-gold__figure hero-gold__figure--one">
+              <span class="hero-gold__sign">№</span>
+              <span class="hero-gold__num hero-gold__num--one" role="img" aria-label="1">
+                <svg viewBox="0 0 90 194" aria-hidden="true" focusable="false">
+                  <defs><linearGradient id="hero-gold-metal" x1="0" y1="0" x2=".65" y2="1"><stop stop-color="#fff2bd"/><stop offset=".26" stop-color="#f8d782"/><stop offset=".59" stop-color="#efb952"/><stop offset=".88" stop-color="#d89d3b"/><stop offset="1" stop-color="#ffdc88"/></linearGradient></defs>
+                  <path d="M4 35 56 7 84 0V192H44V51L4 73Z"/>
+                </svg>
+              </span>
+              <span class="hero-gold__flare hero-gold__flare--one" aria-hidden="true"></span>
+            </span>
+            <span class="hero-gold__caption">по плоским<br>кровлям<br>на Урале</span>
+          </h1>
+          <span class="hero-gold__divider" aria-hidden="true" data-hero-split="divider"><span class="hero-gold__divider-glow"></span></span>
+          <p class="hero-gold__side hero-gold__side--right" data-hero-split="right">
+            <span class="hero-gold__figure hero-gold__figure--twenty">
+              <span class="hero-gold__num hero-gold__num--twenty" role="img" aria-label="20">
+                <svg viewBox="0 0 244 164" aria-hidden="true" focusable="false">
+                  <defs><path id="hero-zero-spark-track" d="M182 160C146 160 126 133 126 82C126 31 146 3 182 3C218 3 238 31 238 82C238 133 218 160 182 160Z"/></defs>
+                  <path d="M8 42C12 17 31 3 60 3C91 3 111 20 111 46C111 68 98 82 78 99L39 133H113V159H7V136L64 85C79 72 85 61 85 48C85 34 75 27 60 27C46 27 36 35 33 49Z"/>
+                  <path fill-rule="evenodd" d="M182 3C218 3 238 31 238 82C238 133 218 160 182 160C146 160 126 133 126 82C126 31 146 3 182 3ZM182 29C163 29 153 47 153 82C153 117 163 134 182 134C201 134 211 117 211 82C211 47 201 29 182 29Z"/>
+                </svg>
+              </span>
+              <span class="hero-gold__flare hero-gold__flare--twenty" aria-hidden="true"></span>
+            </span>
+            <span class="hero-gold__caption">лет<br>на рынке</span>
+          </p>
+        </div>
         <div class="hero__row">
-          <a class="pill" href="#mission">Миссия компании</a>
-          <a class="pill" href="#quality">Служба качества</a>
-          <span class="hero__sep" aria-hidden="true"></span>
-          <p class="hero__years">20 лет на рынке</p>
+          <a class="pill pill--calypso" href="#mission" data-hero-split="button-left"><span class="pill__label"><span class="pill__label-main">Миссия компании</span><span class="pill__label-copy" aria-hidden="true">Миссия компании</span></span></a>
+          <a class="pill pill--calypso" href="#quality" data-hero-split="button-right"><span class="pill__label"><span class="pill__label-main">Служба качества</span><span class="pill__label-copy" aria-hidden="true">Служба качества</span></span></a>
         </div>
       </div>
 
@@ -146,7 +183,7 @@
         <svg width="0" height="0" aria-hidden="true">
           <defs>
             <filter id="wordmark-weight" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-              <feMorphology in="SourceGraphic" operator="erode" radius="2.5"/>
+              <feMorphology in="SourceGraphic" operator="erode" radius="4"/>
             </filter>
           </defs>
         </svg>
@@ -157,12 +194,44 @@
       </div>
     </section>
 
-    <!-- Тестовый второй блок, чтобы проверить скролл -->
-    <section class="test-block" id="objects" aria-label="Тестовый блок"></section>
+    <section class="company-figures" id="objects" aria-labelledby="figures-title">
+      <h2 class="company-figures__title" id="figures-title"><span>В цифрах</span></h2>
+      <div class="company-figures__grid">
+        <dl class="company-figures__item company-figures__item--area">
+          <dt><span>м² кровель</span></dt>
+          <dd data-figures-reveal="200"><span class="company-figures__value">1 500 000<span class="company-figures__accent">+</span></span></dd>
+        </dl>
+        <dl class="company-figures__item company-figures__item--projects">
+          <dt><span>объектов</span></dt>
+          <dd data-figures-reveal="60"><span class="company-figures__value">1000<span class="company-figures__accent">+</span></span></dd>
+        </dl>
+        <figure class="company-figures__photo company-figures__photo--roof" data-figures-image>
+          <div class="company-figures__photo-inner">
+            <img src="img/figures-roof-v2.webp" alt="Крупный промышленный комплекс со светлой плоской кровлей, вид сверху" width="1448" height="1086" loading="lazy" decoding="async">
+          </div>
+        </figure>
+        <figure class="company-figures__photo company-figures__photo--office" data-figures-image>
+          <div class="company-figures__photo-inner">
+            <img src="img/figures-office-v2.webp" alt="Угол современного коммерческого здания со стеклянным фасадом" width="1122" height="1402" loading="lazy" decoding="async">
+          </div>
+        </figure>
+        <dl class="company-figures__item company-figures__item--clients">
+          <dt><span>постоянных<br>клиентов</span></dt>
+          <dd data-figures-reveal="60"><span class="company-figures__value">90<span class="company-figures__unit">%</span></span></dd>
+        </dl>
+        <dl class="company-figures__item company-figures__item--cities">
+          <dt><span>городов</span></dt>
+          <dd data-figures-reveal="120"><span class="company-figures__value">48</span></dd>
+        </dl>
+      </div>
+    </section>
+    </div>
   </main>
 
   <script src="js/vendor/lenis-1.3.27.min.js"></script>
   <script src="js/smooth-scroll.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/hero-parallax.js"></script>
+  <script src="js/company-figures.js"></script>
 </body>
 </html>

@@ -63,6 +63,7 @@
   // ---------- Скролл: разворот букв и сворачивание шапки в бургер ----------
 
   let scrolled = false;
+  let headerHideAfter = 10;
   let wordmarkHidden = false;
   let previousScrollY = window.scrollY;
   let travel = 0;
@@ -105,12 +106,28 @@
     if (!root.classList.contains('is-loaded')) return;
     updateWordmark(window.scrollY);
 
-    // Открытая плашка закрывается, как только страницу прокрутили, даже если её открыли кликом
-    if (dock.classList.contains('is-open') && Math.abs(window.scrollY - dockOpenedAt) > 30) {
+    // Инерция скролла не должна перебивать наведение или работу с клавиатуры.
+    // Вне меню сохраняем прежнее закрытие при прокрутке после открытия кликом.
+    const dockEngaged = (canHover.matches && dock.matches(':hover')) || dock.querySelector(':focus-visible');
+    if (dock.classList.contains('is-open') && !dockEngaged && Math.abs(window.scrollY - dockOpenedAt) > 30) {
       setDock(false);
     }
 
-    const isScrolled = window.scrollY > 10;
+    const y = window.scrollY;
+    let isScrolled = scrolled;
+    if (scrolled) {
+      // Не ждём последних пикселей затухающего скролла. Небольшой ход вверх
+      // отличает возвращение от дрожания колеса в начале движения вниз.
+      if (y <= 10 || (y <= 70 && direction < 0 && travel > 12)) {
+        isScrolled = false;
+        headerHideAfter = y + 48;
+      }
+    } else {
+      // После появления нужен новый заметный жест вниз, чтобы снова скрыть
+      // шапку. Это исключает мигание около порога её возвращения.
+      headerHideAfter = Math.min(headerHideAfter, y + 48);
+      isScrolled = y > headerHideAfter;
+    }
     if (isScrolled === scrolled) return;
     scrolled = isScrolled;
     root.classList.toggle('is-scrolled', scrolled);

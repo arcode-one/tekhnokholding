@@ -1,0 +1,64 @@
+/* Фон хиро с медленным сдвигом фотографии при скролле. */
+.roof-background {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  background: #333b43;
+}
+
+/* Фото только под хиро: слой высотой ровно с первый экран и уезжает вместе с ним,
+   второй блок фото больше не показывает */
+.roof-background__media {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 100vh;
+  height: 100svh;
+  min-height: 640px;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* Закрепляется только окно фотографии. Текст остаётся в потоке секции. */
+.roof-background__viewport {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+.roof-background__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Фото в натуральном кадре, без увеличения: ровно на высоту первого экрана */
+.roof-background__image {
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.roof-background > .hero,
+.roof-background > .test-block {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .roof-background__image { will-change: transform; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roof-background__viewport {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .roof-background__media { min-height: 600px; }
+  .roof-background__image { object-position: 52% 50%; }
+}
