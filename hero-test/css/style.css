@@ -322,30 +322,48 @@ html.is-scrolled .dock {
   transition: translate .65s var(--ease-out) .3s;
 }
 
-/* Сам док прозрачен для курсора: наведение ловят только бургер и уже открытая плашка */
-html.is-scrolled .dock__burger { pointer-events: auto; }
+/* Закрытый док прозрачен для курсора: наведение ловит только бургер.
+   Открытый держит наведение по всей ширине, даже пока плашка ещё выезжает,
+   иначе быстрый курсор обгоняет край и плашка схлопывается на полпути. */
+html.is-scrolled .dock__burger,
+html.is-scrolled .dock.is-open { pointer-events: auto; }
 
-/* Единственная маска раскрывает одновременно фон и содержимое.
-   При прерывании или развороте hover у них всегда одна граница. */
+/* Раскрытие только на transform, как HeaderMain у October: анимация идёт
+   в композиторе и не ждёт основной поток (Lenis, параллакс, отсчёт цифр).
+   Неподвижная пилюля обрезает правый край, плашка выезжает справа налево,
+   а дорожка внутри сдвигается обратно, поэтому содержимое стоит на месте. */
 .dock__surface {
   position: absolute;
   inset: 0;
+  overflow: hidden;
+  border-radius: 999px;
   pointer-events: none;
-  clip-path: inset(0 0 0 calc(100% - var(--dock-height)) round 999px);
-  transition: clip-path .5s cubic-bezier(.5, 0, .3, 1) .15s;
 }
 
-.dock.is-open .dock__surface {
-  clip-path: inset(0 round 999px);
-  transition: clip-path .9s cubic-bezier(.65, 0, .25, 1);
-}
-
-.dock__bg {
+.dock__bg,
+.dock__track {
   position: absolute;
   inset: 0;
-  border: 0;
+  will-change: transform;
+  transition: transform .5s cubic-bezier(.76, 0, .24, 1);
+}
+
+/* Содержимое обрезается краем самой подложки, а не неподвижной пилюлей:
+   иначе текст виден раньше фона при открытии и дольше фона при закрытии. */
+.dock__bg {
+  overflow: hidden;
   border-radius: 999px;
   background: rgba(36, 38, 41, .96);
+  transform: translate3d(calc(100% - var(--dock-height)), 0, 0);
+}
+
+.dock__track { transform: translate3d(calc(var(--dock-height) - 100%), 0, 0); }
+
+.dock.is-open .dock__bg,
+.dock.is-open .dock__track {
+  transform: translate3d(0, 0, 0);
+  transition-duration: .75s;
+  transition-timing-function: cubic-bezier(.22, 1, .36, 1);
 }
 
 .dock__burger {
@@ -421,7 +439,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   justify-content: flex-end;
   gap: 32px;
   visibility: hidden;
-  transition: visibility 0s .65s;
+  transition: visibility 0s .5s;
 }
 
 .dock.is-open .dock__panel {
@@ -994,8 +1012,9 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   translate: 0 35%;
   z-index: 2;
   container-type: inline-size;
-  /* Высота букв прежняя, межбуквенный шаг уменьшен для плотной надписи. */
-  --wm-h: 6.4cqi;
+  /* Слово ровно во всю ширину контейнера: сумма ширин 12 букв (1370.1)
+     и 11 промежутков по 8 единиц при высоте буквы 118 в координатах SVG. */
+  --wm-h: calc(100cqi * 118 / 1458.1);
   --wm-gap: calc(var(--wm-h) * 8 / 118);
 }
 
@@ -1190,7 +1209,8 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
 
   /* На планшете и телефоне бургер после скролла открывает полноэкранное меню */
   .dock__clip { display: none; }
-  .dock.is-open .dock__surface { clip-path: inset(0 0 0 calc(100% - var(--dock-height)) round 999px); }
+  .dock.is-open .dock__bg { transform: translate3d(calc(100% - var(--dock-height)), 0, 0); }
+  .dock.is-open .dock__track { transform: translate3d(calc(var(--dock-height) - 100%), 0, 0); }
 }
 
 /* ---------- Mobile ---------- */
@@ -1285,7 +1305,7 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   .dock__burger { margin-right: 0; }
   .dock__burger svg { width: 22px; height: 22px; }
 
-  .wordmark { --wm-h: 6.6cqi; bottom: calc(var(--hero-edge-gap) + 12px); }
+  .wordmark { bottom: calc(var(--hero-edge-gap) + 12px); }
 
   .test-block { padding: 80px var(--pad); }
 }
@@ -1329,8 +1349,10 @@ html.is-scrolled .dock__burger { pointer-events: auto; }
   .wordmark__l svg,
   .dock,
   .dock__panel,
-  .dock__surface,
-  .dock.is-open .dock__surface,
+  .dock__bg,
+  .dock__track,
+  .dock.is-open .dock__bg,
+  .dock.is-open .dock__track,
   .header,
   html.is-scrolled .header,
   html.is-scrolled .dock,

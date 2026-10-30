@@ -159,7 +159,7 @@
     // Открытой оставляем только при навигации с клавиатуры; после клика мышью фокус на бургере не держит плашку
     if (!dockMode() || dock.querySelector(':focus-visible')) return;
     // Небольшая задержка, чтобы панель не схлопывалась, если курсор чуть промахнулся
-    closeTimer = setTimeout(() => setDock(false), 280);
+    closeTimer = setTimeout(() => setDock(false), 200);
   });
 
   dock.addEventListener('focusin', () => {

@@ -74,7 +74,8 @@
   <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
   <div class="dock">
     <div class="dock__surface">
-    <span class="dock__bg" aria-hidden="true"></span>
+    <div class="dock__bg">
+    <div class="dock__track">
     <div class="dock__clip">
     <div class="dock__panel" id="dock-panel">
       <a class="dock__logo dock__item" style="--r:8" href="/" aria-label="Технохолдинг, на главную">
@@ -99,6 +100,8 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 3.5a8.5 8.5 0 0 1 0 17c-1.5 0-2.9-.38-4.12-1.06L4.2 20.6a.6.6 0 0 1-.76-.74l1.1-3.6A8.5 8.5 0 0 1 12 3.5zm0 4.6a3.9 3.9 0 1 0 0 7.8 3.9 3.9 0 0 0 0-7.8z"/></svg>
       </a>
       </div>
+    </div>
+    </div>
     </div>
     </div>
     </div>
@@ -183,7 +186,7 @@
         <svg width="0" height="0" aria-hidden="true">
           <defs>
             <filter id="wordmark-weight" x="-5%" y="-5%" width="110%" height="110%" color-interpolation-filters="sRGB">
-              <feMorphology in="SourceGraphic" operator="erode" radius="4"/>
+              <feMorphology in="SourceGraphic" operator="erode" radius="2.5"/>
             </filter>
           </defs>
         </svg>
