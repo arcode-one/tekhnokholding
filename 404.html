@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Страница не найдена | Технохолдинг</title>
+    <script>
+      // GitHub Pages сохраняет запрошенный URL при показе 404.html.
+      // Старые закладки hero-test ведут на соответствующие страницы нового сайта.
+      const siteRoot = location.hostname === 'arcode-one.github.io' ? '/tekhnokholding/' : '/';
+      const oldRoot = siteRoot + 'hero-test';
+      const oldPage = location.pathname === oldRoot
+        ? ''
+        : location.pathname.startsWith(oldRoot + '/')
+          ? location.pathname.slice(oldRoot.length + 1)
+          : null;
+      const destination = oldPage === '' ? 'index.html' : oldPage;
+      const pages = ['index.html', 'mission.html', 'objects.html', 'quality.html',
+        'team.html', 'corporate-life.html', 'privacy.html'];
+      if (destination !== null && (pages.includes(destination)
+        || /^objects\/(?:obj-\d{2}|thld-[a-f0-9]{12})\.html$/.test(destination))) {
+        location.replace(siteRoot + destination + location.search + location.hash);
+      }
+    </script>
+    <style>
+      html { color-scheme: dark; background: #2a2c2f; color: #fff; }
+      body { margin: 0; font: 18px/1.5 system-ui, sans-serif; }
+      main { box-sizing: border-box; min-height: 100svh; display: grid; align-content: center; padding: clamp(24px, 8vw, 120px); }
+      h1 { margin: 0 0 24px; font-size: clamp(32px, 6vw, 72px); line-height: 1.1; }
+      p { margin: 0 0 32px; }
+      a { justify-self: start; padding: 14px 24px; border: 1px solid #fec72a; border-radius: 32px; color: #fec72a; text-decoration: none; }
+      a:hover, a:focus-visible { background: #fec72a; color: #2a2c2f; }
+      a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Страница не найдена</h1>
+      <p>Проверь адрес или перейди на главную.</p>
+      <a id="home-link" href="/tekhnokholding/index.html">На главную</a>
+    </main>
+    <script>
+      document.getElementById('home-link').href = siteRoot + 'index.html';
+    </script>
+  </body>
+</html>

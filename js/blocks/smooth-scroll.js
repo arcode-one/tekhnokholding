@@ -6,7 +6,7 @@ export default function init() {
   const nativeArea = '[data-lenis-prevent],[data-ui~=menu],select';
   let scroller = null;
 
-  // Частое колесо не накапливает несколько экранов; обратный жест сразу
+  // Запас инерции ограничен половиной экрана; обратный жест сразу
   // меняет направление. Карта, горизонтальные ленты и меню работают сами.
   function limitWheel(data) {
     const { event, deltaX, deltaY } = data;
@@ -24,10 +24,11 @@ export default function init() {
 
     const current = scroller.animatedScroll;
     const target = scroller.targetScroll;
+    const maxPendingScroll = innerHeight * 0.5;
     const reversing = (target - current) * deltaY < 0;
     const next = Math.max(
-      current - innerHeight,
-      Math.min(current + innerHeight, (reversing ? current : target) + deltaY),
+      current - maxPendingScroll,
+      Math.min(current + maxPendingScroll, (reversing ? current : target) + deltaY),
     );
     data.deltaY = next - target;
     if (Math.abs(data.deltaY) < 0.01) {
@@ -55,6 +56,7 @@ export default function init() {
     scroller = new Lenis({
       autoRaf: true,
       smoothWheel: true,
+      wheelMultiplier: 0.4,
       // Заметная плавная инерция с конечной длительностью вместо длинного хвоста lerp.
       duration: 1.2,
       lerp: 0,
