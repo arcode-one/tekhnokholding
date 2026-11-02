@@ -15,9 +15,11 @@
 
 .projects-section {
   --projects-surface: var(--color-slate-alt);
-  --projects-paper: #f2f2f0;
-  --projects-secondary: #e0e5ec;
-  --projects-ink: var(--projects-paper);
+  --projects-paper: var(--graphite);
+  --projects-secondary: var(--light);
+  --projects-ink: var(--color-white);
+  --project-accent: var(--logo-yellow);
+  --projects-gap: 16px;
   --projects-year: #ffffffb8;
   --projects-year-active: var(--color-white);
   --projects-line: #ffffff38;
@@ -34,13 +36,20 @@
 }
 
 .projects-section:not(.projects-section--catalog) {
-  --projects-surface: var(--color-gray-light);
-  --projects-paper: var(--color-white);
-  --projects-ink: var(--color-ink);
-  --projects-secondary: #52636c;
-  --projects-year: #52636c;
-  --projects-year-active: var(--color-ink);
-  --projects-line: #34454e33;
+  --projects-columns: 5;
+  --project-card-width: calc(
+    (100cqw - (var(--projects-columns) - 1) * var(--projects-gap)) / var(--projects-columns)
+  );
+}
+
+.projects-section:not(.projects-section--catalog) .projects-body {
+  --years-col: clamp(128px, 10vw, 196px);
+
+  padding-right: var(--pad);
+}
+
+.projects-section:not(.projects-section--catalog) .projects-rail {
+  container-type: inline-size;
 }
 
 .projects-section:not(.projects-section--catalog) .projects-heading h2 {

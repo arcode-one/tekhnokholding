@@ -1,8 +1,8 @@
 .projects-group {
   display: flex;
   width: max-content;
-  gap: 28px;
-  padding-right: 28px;
+  gap: var(--projects-gap, 28px);
+  padding-right: var(--projects-gap, 28px);
 }
 
 .projects-group + .projects-group {

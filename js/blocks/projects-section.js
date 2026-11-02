@@ -127,7 +127,7 @@ export default function init(section) {
       !reduce.matches &&
       filtered.length > 1 &&
       rail.clientWidth > 0 &&
-      group.getBoundingClientRect().width > rail.clientWidth + 1
+      group.getBoundingClientRect().width >= rail.clientWidth - 1
     ) {
       // Копируем только первые карточки на ширину окна, а не весь каталог.
       loopGroup = group.cloneNode(false);
@@ -275,7 +275,8 @@ export default function init(section) {
   function nudge(direction) {
     speed = 0;
     manualUntil = performance.now() + 3500;
-    const distance = (filtered[0]?.getBoundingClientRect().width || 350) + 28;
+    const gap = parseFloat(getComputedStyle(group).columnGap) || 0;
+    const distance = (filtered[0]?.getBoundingClientRect().width || 350) + gap;
     rail.scrollBy({ left: direction * distance, behavior: reduce.matches ? 'auto' : 'smooth' });
     wake();
   }

@@ -1,14 +1,17 @@
 .project-card {
-  --photo-share: 0.78;
+  --project-photo-height: clamp(240px, 20vw, 380px);
 
   position: relative;
-  display: block;
-  flex: 0 0 clamp(320px, 26vw, 460px);
-  width: clamp(320px, 26vw, 460px);
-  height: var(--card-height);
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 var(--project-card-width, clamp(320px, 26vw, 460px));
+  width: var(--project-card-width, clamp(320px, 26vw, 460px));
+  height: auto;
   overflow: hidden;
+  border: 1px solid #ffffff2b;
+  border-radius: 4px;
   background: var(--projects-paper);
-  color: var(--color-ink);
+  color: var(--color-white);
 }
 
 .project-card[hidden] {
@@ -17,7 +20,8 @@
 
 .project-card__photo {
   position: relative;
-  height: calc(var(--photo-share) * 100%);
+  flex: none;
+  height: var(--project-photo-height);
   overflow: hidden;
 }
 
@@ -31,11 +35,12 @@
 
 .project-card__year {
   position: absolute;
-  left: 24px;
-  top: 22px;
-  padding: 7px 10px;
-  background: #243340b3;
-  color: var(--color-white);
+  left: 16px;
+  top: 16px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  background: var(--graphite);
+  color: var(--logo-yellow);
   font-size: 11px;
   line-height: 1.4;
   font-weight: 600;
@@ -45,20 +50,18 @@
 
 .project-card__info {
   position: relative;
-  min-height: calc(var(--card-height) * (1 - var(--photo-share)));
-  padding: 22px 28px 26px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 16px;
   background: var(--projects-paper);
-  transition: transform 0.4s var(--ease-out);
 }
 
 .project-card :is(h2, h3) {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
-  overflow: hidden;
+  min-height: 5.12em;
   margin: 0;
-  font-size: clamp(19px, 1.3vw, 24px);
-  font-weight: 400;
+  font-size: clamp(16px, 1.05vw, 20px);
+  font-weight: 600;
   line-height: 1.28;
   letter-spacing: -0.025em;
   overflow-wrap: anywhere;
@@ -66,8 +69,9 @@
 
 .project-card__details {
   display: grid;
-  gap: var(--space-4);
-  margin: 14px 0 0;
+  gap: 12px;
+  margin: auto 0 0;
+  padding-top: 16px;
 }
 
 .project-card__details div {
@@ -80,19 +84,19 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #52636c;
+  color: #cbd1da;
   margin-bottom: 4px;
 }
 
 .project-card__details dd {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1.4;
 }
 
 .project-card__area dd {
   font-family: var(--projects-display);
-  font-size: clamp(28px, 2vw, 36px);
+  font-size: 28px;
   line-height: 1.05;
   font-weight: 400;
   letter-spacing: -0.01em;
@@ -103,10 +107,12 @@
 .project-card__material,
 .project-card__city,
 .project-card__area {
-  padding-top: 16px;
-  border-top: 1px solid #34454e26;
-  clip-path: inset(0 0 100%);
-  transition: clip-path 0.4s var(--ease-out);
+  padding-top: 12px;
+  border-top: 1px solid #ffffff2b;
+}
+
+.project-card__material {
+  min-height: 88px;
 }
 
 .project-card__city dt {
@@ -128,45 +134,22 @@
   flex: none;
   width: 18px;
   height: 18px;
-  color: #52636c;
+  color: var(--logo-yellow);
 }
 
-.project-card:focus-visible .project-card__info {
-  transform: translateY(calc(var(--card-height) * (1 - var(--photo-share)) - 100%));
-}
-
-.project-card:focus-visible :is(.project-card__material, .project-card__city, .project-card__area) {
-  clip-path: inset(0);
-}
-
-.project-card:focus-visible h3 {
-  -webkit-line-clamp: 4;
+.project-card:focus-visible {
+  outline: 2px solid var(--logo-yellow);
+  outline-offset: -2px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .project-card:hover .project-card__photo img {
     transform: translateY(-12px) scale(1.04);
   }
-
-  .project-card:hover .project-card__info {
-    transform: translateY(calc(var(--card-height) * (1 - var(--photo-share)) - 100%));
-  }
-
-  .project-card:hover :is(.project-card__material, .project-card__city, .project-card__area) {
-    clip-path: inset(0);
-  }
-
-  .project-card:hover h3 {
-    -webkit-line-clamp: 4;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .project-card__info,
-  .project-card__photo img,
-  .project-card__material,
-  .project-card__city,
-  .project-card__area {
+  .project-card__photo img {
     transition: none;
   }
 }

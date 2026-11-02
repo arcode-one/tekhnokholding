@@ -5,7 +5,6 @@
 
 .projects-body {
   --years-col: 196px;
-  --card-height: clamp(510px, 40vw, 650px);
 
   display: grid;
   grid-template-columns: var(--years-col) minmax(0, 1fr);
