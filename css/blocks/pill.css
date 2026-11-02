@@ -80,7 +80,7 @@
 }
 
 .pill__label-main {
-  transform: translate3d(0, 0, 0) scaleY(1);
+  transform: none;
   opacity: 1;
   transition:
     transform 0.3s var(--ease-calypso),
@@ -90,7 +90,7 @@
 .pill__label-copy {
   position: absolute;
   inset: 0;
-  transform: translate3d(0, 130%, 0) scaleY(1.7);
+  transform: translateY(130%) scaleY(1.7);
   opacity: 0;
   transition:
     transform 0.3s var(--ease-calypso),
@@ -126,12 +126,12 @@
   }
 
   .pill--calypso:not(:disabled):hover .pill__label-main {
-    transform: translate3d(0, -130%, 0) scaleY(1.7);
+    transform: translateY(-130%) scaleY(1.7);
     opacity: 0;
   }
 
   .pill--calypso:not(:disabled):hover .pill__label-copy {
-    transform: translate3d(0, 0, 0) scaleY(1);
+    transform: none;
     opacity: 1;
     transition-delay: 0.2s;
   }

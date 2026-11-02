@@ -11,6 +11,9 @@ export default function init(section) {
   const itemTemplate = section.querySelector('[data-map-list-template]');
   const backButton = section.querySelector('[data-map-card-back]');
   const pitchButton = section.querySelector('[data-map-pitch]');
+  const perspectivePitch = 58;
+  const cameraPitch = () =>
+    pitchButton.getAttribute('aria-pressed') === 'true' ? perspectivePitch : 0;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const mouse = matchMedia('(hover: hover) and (pointer: fine)');
   const compact = matchMedia('(max-width: 1099px)');
@@ -35,6 +38,7 @@ export default function init(section) {
   let opener = null;
   let cardOpener = null;
   let hoverTimer = 0;
+  let gestureHintTimer = 0;
   section.dataset.mapState = 'waiting';
 
   const preload = () => {
@@ -132,7 +136,7 @@ export default function init(section) {
       map.flyTo({
         center: record.coordinates,
         zoom: { address: 15.5, street: 13, area: 13, city: 11, region: 7 }[record.precision] || 11,
-        pitch: 0,
+        pitch: cameraPitch(),
         bearing: 0,
         padding: compact.matches
           ? { left: 30, right: 30, top: 40, bottom: Math.min(view.clientHeight * 0.5, 300) }
@@ -140,7 +144,6 @@ export default function init(section) {
         retainPadding: false,
         duration: reduced.matches ? 0 : 600,
       });
-      pitchButton.setAttribute('aria-pressed', 'false');
     }
   }
 
@@ -282,13 +285,12 @@ export default function init(section) {
 
   function fit(items) {
     if (!map) return;
-    pitchButton.setAttribute('aria-pressed', 'false');
     const bounds = boundsFor(items);
     if (!bounds) return;
     map.fitBounds(bounds, {
       padding: citySelect.value === defaultCity ? overviewPadding : 70,
       maxZoom: citySelect.value === defaultCity ? overviewZoom() : 12,
-      pitch: 0,
+      pitch: cameraPitch(),
       bearing: 0,
       duration: reduced.matches ? 0 : 600,
     });
@@ -336,7 +338,7 @@ export default function init(section) {
     pitchButton.setAttribute('aria-pressed', String(active));
     if (map.getLayer('thld-buildings-3d'))
       map.setLayoutProperty('thld-buildings-3d', 'visibility', active ? 'visible' : 'none');
-    map.easeTo({ pitch: active ? 58 : 0, bearing: 0, duration: reduced.matches ? 0 : 500 });
+    map.easeTo({ pitch: cameraPitch(), bearing: 0, duration: reduced.matches ? 0 : 500 });
   });
   section.querySelector('[data-map-fit]').addEventListener('click', () => {
     citySelect.value = '';
@@ -388,9 +390,13 @@ export default function init(section) {
         zoom: overviewZoom(),
         ...(initialBounds && {
           bounds: initialBounds,
-          fitBoundsOptions: { padding: overviewPadding, maxZoom: overviewZoom() },
+          fitBoundsOptions: {
+            padding: overviewPadding,
+            maxZoom: overviewZoom(),
+            pitch: cameraPitch(),
+          },
         }),
-        pitch: 0,
+        pitch: cameraPitch(),
         bearing: 0,
         antialias: true,
         attributionControl: true,
@@ -400,8 +406,8 @@ export default function init(section) {
         locale: {
           'AttributionControl.ToggleAttribution': 'Источники карты',
           'NavigationControl.ResetBearing': 'Ориентировать на север',
-          'CooperativeGesturesHandler.WindowsHelpText': 'Ctrl + колесо для изменения масштаба карты',
-          'CooperativeGesturesHandler.MacHelpText': '⌘ + колесо для изменения масштаба карты',
+          'CooperativeGesturesHandler.WindowsHelpText': 'Масштаб карты: Ctrl + колесо',
+          'CooperativeGesturesHandler.MacHelpText': 'Масштаб карты: ⌘ + колесо',
           'CooperativeGesturesHandler.MobileHelpText': 'Перемещайте карту двумя пальцами',
         },
       });
@@ -410,6 +416,13 @@ export default function init(section) {
         'bottom-right',
       );
       map.on('movestart', () => clearTimeout(hoverTimer));
+      map.on('cooperativegestureprevented', () => {
+        clearTimeout(gestureHintTimer);
+        view.classList.add('company-map__canvas--gesture-hint');
+        gestureHintTimer = setTimeout(() => {
+          view.classList.remove('company-map__canvas--gesture-hint');
+        }, 2000);
+      });
       map.on('moveend', renderMarkers);
       map.on('click', () => closePanels());
       map.on('error', (event) => {
@@ -458,7 +471,9 @@ export default function init(section) {
             'source-layer': 'building',
             type: 'fill-extrusion',
             minzoom: 14,
-            layout: { visibility: 'none' },
+            layout: {
+              visibility: pitchButton.getAttribute('aria-pressed') === 'true' ? 'visible' : 'none',
+            },
             filter: ['!=', ['get', 'hide_3d'], true],
             paint: {
               'fill-extrusion-color': '#b9b5a9',

@@ -29,13 +29,11 @@
 }
 
 .projects-body__arrow--previous {
-  justify-self: start;
-  margin-left: -24px;
+  justify-self: center;
 }
 
 .projects-body__arrow--next {
-  justify-self: end;
-  margin-right: -12px;
+  justify-self: center;
 }
 
 .projects-body__arrow svg {

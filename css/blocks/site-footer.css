@@ -1,11 +1,12 @@
 .site-footer h2 {
   margin: 0;
+  color: var(--light);
   font-family: var(--font-body);
   font-size: clamp(24px, 1.9vw, 34px);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-transform: none;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
 }
 
 .site-footer {
@@ -258,9 +259,5 @@
 
   .site-footer__visual img {
     transform: none !important;
-  }
-
-  .site-footer__layout {
-    top: 0 !important;
   }
 }

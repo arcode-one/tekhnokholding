@@ -1,10 +1,22 @@
+:root {
+  --breadcrumbs-offset: 24px;
+}
+
 .breadcrumbs {
+  --breadcrumbs-hover: #805915;
+
   margin: 0 var(--pad);
-  color: inherit;
+  color: var(--color-ink);
   font:
     500 13px/1.6 var(--font-body);
   letter-spacing: 0;
   text-transform: none;
+}
+
+.breadcrumbs--inverse {
+  --breadcrumbs-hover: var(--logo-yellow);
+
+  color: var(--color-white);
 }
 
 .breadcrumbs ol {
@@ -30,10 +42,8 @@
   align-items: center;
   min-height: 44px;
   color: inherit;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 5px;
-  transition: text-decoration-color 0.2s ease;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .breadcrumbs [aria-current='page'] {
@@ -46,12 +56,19 @@
 }
 
 .breadcrumbs a:focus-visible {
+  color: var(--breadcrumbs-hover);
   outline: 2px solid currentcolor;
   outline-offset: 4px;
 }
 
 @media (hover: hover) and (pointer: fine) {
   .breadcrumbs a:hover {
-    text-decoration-color: currentcolor;
+    color: var(--breadcrumbs-hover);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .breadcrumbs a {
+    transition: none;
   }
 }

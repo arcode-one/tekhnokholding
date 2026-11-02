@@ -9,60 +9,54 @@ export default function init(story) {
     ),
   ];
   const clamp = (v) => Math.max(0, Math.min(1, v));
-  // Однократные анимации хранят прогресс только в текущем документе.
-  const cornerProgress = corners.map(() => 0);
-  const frameProgress = frames.map(() => 0);
-  let bridgeProgress = 0;
+  // Layout coordinates exclude animated transforms, so motion has no feedback loop.
+  function metric(el) {
+    let top = 0;
+    for (let node = el; node; node = node.offsetParent) top += node.offsetTop;
+    return { top, height: el.offsetHeight };
+  }
   const reveals = createMissionReveals(story, reduced, mobile);
+  let geometry;
   let frame = 0;
+  function measure() {
+    geometry = {
+      frames: frames.map(metric),
+      corners: corners.map((el) => ({
+        top: metric(el.parentElement).top,
+        height: el.offsetHeight,
+      })),
+      bridgeTop: bridge ? metric(bridge.parentElement).top : undefined,
+    };
+    reveals.measure();
+  }
   function render() {
     frame = 0;
-    reveals.render(scrollY, innerHeight);
+    const y = scrollY;
+    const vh = innerHeight;
+    reveals.render(y, vh);
     if (reduced.matches) {
-      cornerProgress.fill(1);
-      frameProgress.fill(1);
-      bridgeProgress = 1;
       [...corners, bridge, ...frames.map((el) => el.querySelector('img'))]
         .filter(Boolean)
         .forEach((el) => (el.style.transform = ''));
       return;
     }
-    const positions = frames.map((el) => el.getBoundingClientRect());
-    const cornerPositions = corners.map((el) => ({
-      top: el.parentElement.getBoundingClientRect().top,
-      height: el.offsetHeight,
-    }));
-    const bridgeTop = bridge?.parentElement.getBoundingClientRect().top;
     corners.forEach((el, i) => {
-      // Та же линейная зависимость от прохода границы через экран, что company-figures.js.
-      const p = Math.max(
-        cornerProgress[i],
-        clamp((innerHeight - cornerPositions[i].top) / innerHeight),
-      );
-      cornerProgress[i] = p;
-      let lift = cornerPositions[i].height * p;
-      if (i === 0) {
-        // При возврате наверх угол не должен оставаться поверх первого экрана.
-        lift = Math.min(lift, Math.max(0, innerHeight - cornerPositions[i].top));
-      }
+      const corner = geometry.corners[i];
+      const p = clamp((vh - (corner.top - y)) / vh);
+      const lift = corner.height * p;
       el.style.transform = `translate3d(0,${-lift}px,0)${i === 1 ? ' scaleX(' + (0.5 + p * 0.5) + ')' : ''}`;
     });
     frames.forEach((el, i) => {
-      const rect = positions[i];
-      const next = rect.bottom <= 0
-        ? 1
-        : clamp((1 - (rect.top + rect.height / 2 - innerHeight / 2) / innerHeight) / 2);
-      frameProgress[i] = Math.max(frameProgress[i], next);
-      const p = 1 - frameProgress[i] * 2;
+      const rect = geometry.frames[i];
+      const p = clamp((vh - (rect.top - y)) / (vh + rect.height));
+      // The photograph lags behind its frame; the 14% overscan covers both ends.
+      const offset = (p * 2 - 1) * rect.height * (mobile.matches ? 0.06 : 0.1);
       el.querySelector('img').style.transform =
-        `translate3d(0,${(p * rect.height * (mobile.matches ? 0.06 : 0.1)).toFixed(2)}px,0)`;
+        `translate3d(0,${offset.toFixed(2)}px,0)`;
     });
-    if (bridgeTop !== undefined) {
-      bridgeProgress = Math.max(
-        bridgeProgress,
-        clamp((innerHeight - bridgeTop) / innerHeight),
-      );
-      bridge.style.transform = `translate3d(0,${(bridgeProgress - 0.5) * (mobile.matches ? 24 : 64)}px,0)`;
+    if (geometry.bridgeTop !== undefined) {
+      const p = clamp((vh - (geometry.bridgeTop - y)) / vh);
+      bridge.style.transform = `translate3d(0,${(p - 0.5) * (mobile.matches ? 24 : 64)}px,0)`;
     }
   }
 
@@ -91,16 +85,6 @@ export default function init(story) {
     const detail = root.querySelector('[data-ui~=mission-purpose__detail]');
     let detailProgress = 0;
     let detailMetric;
-    // offsetTop не учитывает transform. Это исключает обратную связь при входе элементов.
-    function metric(el) {
-      let top = 0,
-        node = el;
-      while (node) {
-        top += node.offsetTop;
-        node = node.offsetParent;
-      }
-      return { top, height: el.offsetHeight };
-    }
     function measure() {
       entries.forEach((e) => {
         e.metrics = metric(e.frame);
@@ -137,8 +121,13 @@ export default function init(story) {
       wasReduced = false;
       const shift = mobile.matches ? 16 : 36;
       entries.forEach((e) => {
+        const current = progress(e.metrics, y, vh);
+        // Position follows scroll in both directions, even after the mask is open.
+        e.visual.style.transform = e.kind === 'result' && current < 1
+          ? `translate3d(0,${-(1 - current) * shift}px,0)`
+          : '';
         if (e.progress === 1) return;
-        const p = Math.max(e.progress, progress(e.metrics, y, vh)),
+        const p = Math.max(e.progress, current),
           r = 1 - p;
         e.progress = p;
         if (p === 1) {
@@ -146,14 +135,12 @@ export default function init(story) {
           return;
         }
         // При возврате к блоку фото остаётся открытым до достигнутой позиции.
-        e.visual.style.transform = '';
         switch (e.kind) {
           case 'expertise':
             e.frame.style.clipPath = inset(r * 49, 0, r * 49, 0);
             break;
           case 'result':
             e.frame.style.clipPath = inset(r * 100, 0, 0, 0);
-            e.visual.style.transform = r ? 'translate3d(0,' + -r * shift + 'px,0)' : '';
             break;
           case 'initiative': {
             // Четыре уступа напоминают конструктивный разрез, в финале край ровный.
@@ -225,21 +212,25 @@ export default function init(story) {
   addEventListener(
     'resize',
     () => {
-      reveals.measure();
+      measure();
       schedule();
     },
     { passive: true },
   );
   addEventListener('pageshow', schedule);
   reduced.addEventListener('change', schedule);
-  mobile.addEventListener('change', schedule);
+  mobile.addEventListener('change', () => {
+    measure();
+    schedule();
+  });
   document.fonts?.ready.then(() => {
-    reveals.measure();
+    measure();
     schedule();
   });
   new ResizeObserver(() => {
-    reveals.measure();
+    measure();
     schedule();
   }).observe(story);
+  measure();
   render();
 }

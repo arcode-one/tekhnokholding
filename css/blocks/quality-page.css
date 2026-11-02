@@ -1,0 +1,219 @@
+.quality-page {
+  --quality-gold: #946823;
+  --quality-paper: var(--color-white);
+  --quality-ink: var(--color-ink);
+  --quality-secondary: #52616b;
+  color: var(--quality-ink);
+  background: var(--quality-paper);
+}
+
+.object-page.quality-page-body > main {
+  padding-top: 0;
+}
+
+.object-page.quality-page-body .header {
+  color: var(--color-white);
+}
+
+.object-page.quality-page-body .header__divider {
+  background: #fff4;
+}
+
+.quality-hero > .breadcrumbs {
+  position: absolute;
+  z-index: 2;
+  top: calc(var(--header-h) + var(--breadcrumbs-offset));
+  left: var(--pad);
+  right: var(--pad);
+  margin: 0;
+}
+
+.quality-hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  height: 100svh;
+  min-height: 640px;
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+.quality-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.quality-hero__media picture,
+.quality-hero__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.quality-hero__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, #14212955, transparent 28%, #14212930),
+    linear-gradient(90deg, #142129d9, #14212975 42%, transparent 75%);
+}
+
+.quality-hero__copy {
+  position: relative;
+  z-index: 1;
+  width: 56%;
+  max-width: 1060px;
+  padding: calc(var(--header-h) + 48px) 0 80px var(--pad);
+}
+
+.quality-hero h1 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(36px, 4vw, 72px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.quality-hero h1 span {
+  display: block;
+  color: #a3aaa7;
+}
+
+.quality-hero__lead {
+  max-width: 37ch;
+  margin: 22px 0 0;
+  font-size: clamp(18px, 1.4vw, 25px);
+  font-weight: 500;
+  line-height: 1.45;
+  letter-spacing: -0.025em;
+}
+
+.quality-hero__description {
+  max-width: 56ch;
+  margin: 26px 0 0;
+  color: var(--color-white);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.quality-hero__promise {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin: 34px 0 0;
+  color: var(--logo-yellow);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.65;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.quality-hero__promise::before {
+  content: '';
+  flex: 0 0 44px;
+  height: 1px;
+  background: currentcolor;
+}
+
+.quality-hero__metric {
+  position: absolute;
+  z-index: 1;
+  bottom: 40px;
+  right: var(--pad);
+  padding: 14px 18px;
+  border-left: 2px solid var(--logo-yellow);
+  background: #14212980;
+}
+
+.quality-hero__metric strong {
+  display: block;
+  font-size: 36px;
+  font-weight: 750;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.quality-hero__metric span {
+  display: block;
+  margin-top: 8px;
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.6;
+  text-transform: uppercase;
+}
+
+.quality-page h2 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  scroll-margin-top: 100px;
+}
+
+.quality-heading__muted {
+  display: block;
+  color: var(--color-slate);
+}
+
+.quality-gallery {
+  padding: 72px var(--pad);
+  background: var(--color-white);
+}
+
+.quality-gallery h2 {
+  margin-bottom: 30px;
+}
+
+.quality-gallery .company-story__photo-grid {
+  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-rows: repeat(2, clamp(180px, 17vw, 300px));
+  gap: 12px;
+  align-items: stretch;
+}
+
+.quality-gallery .company-story__photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+}
+
+.quality-gallery .company-story__photo--wide {
+  grid-column: 1;
+  grid-row: 1 / 3;
+}
+
+.quality-gallery .company-story__photo button,
+.quality-gallery .company-story__photo [data-story-photo] {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.quality-gallery .company-story__photo figcaption {
+  position: absolute;
+  inset: auto 0 0;
+  margin: 0;
+  padding: 40px 18px 18px;
+  background: linear-gradient(transparent, #142129d9);
+  color: #fff;
+  font-size: 12px;
+  line-height: 1.5;
+  pointer-events: none;
+}
+
+.quality-gallery .company-story__photo--wide figcaption {
+  font-size: 15px;
+}
+

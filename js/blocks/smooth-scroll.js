@@ -1,5 +1,13 @@
 import Lenis from '../vendor/lenis-1.3.27.js';
 
+// Keep the document on physical pixels, including Windows display scaling.
+class PixelAlignedLenis extends Lenis {
+  setScroll(value) {
+    const ratio = window.devicePixelRatio || 1;
+    super.setScroll(Math.round(value * ratio) / ratio);
+  }
+}
+
 export default function init() {
   const root = document.documentElement;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -53,12 +61,13 @@ export default function init() {
     scroller = null;
     if (reducedMotion.matches) return;
 
-    scroller = new Lenis({
+    scroller = new PixelAlignedLenis({
       autoRaf: true,
       smoothWheel: true,
       wheelMultiplier: 0.4,
-      // Заметная плавная инерция с конечной длительностью вместо длинного хвоста lerp.
+      // Cubic easing keeps the smooth motion without the exponential crawl at the end.
       duration: 1.2,
+      easing: (progress) => 1 - (1 - progress) ** 3,
       lerp: 0,
       syncTouch: false,
       anchors: true,

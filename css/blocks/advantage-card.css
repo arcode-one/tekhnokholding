@@ -17,6 +17,10 @@
   transition: background-color 0.2s ease, color 0.2s ease;
 }
 
+.advantage-card--static {
+  cursor: default;
+}
+
 .advantage-card__photo {
   display: block;
   aspect-ratio: 4/3;
@@ -63,22 +67,22 @@
   transition: transform 0.2s var(--ease-out);
 }
 
-.advantage-card:focus-visible {
+.advantage-card:not(.advantage-card--static):focus-visible {
   background: var(--control-hover-bg);
   color: var(--control-hover-ink);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .advantage-card:hover {
+  .advantage-card:not(.advantage-card--static):hover {
     background: var(--control-hover-bg);
     color: var(--control-hover-ink);
   }
 
-  .advantage-card:hover .advantage-card__action svg {
+  .advantage-card:not(.advantage-card--static):hover .advantage-card__action svg {
     transform: translateX(3px);
   }
 
-  .advantage-card:hover .advantage-card__title {
+  .advantage-card:not(.advantage-card--static):hover .advantage-card__title {
     text-decoration: underline;
     text-underline-offset: 4px;
   }

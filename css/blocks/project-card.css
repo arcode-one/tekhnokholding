@@ -7,6 +7,7 @@
   flex: 0 0 var(--project-card-width, clamp(320px, 26vw, 460px));
   width: var(--project-card-width, clamp(320px, 26vw, 460px));
   height: auto;
+  min-height: var(--project-card-height, 0px);
   overflow: hidden;
   border: 1px solid #ffffff2b;
   border-radius: 4px;
@@ -96,18 +97,21 @@
 
 .project-card__area dd {
   font-family: var(--projects-display);
-  font-size: 28px;
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.01em;
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.025em;
   color: var(--project-accent, #2a2c2f);
-  font-variant-numeric: tabular-nums;
+  font-variant-numeric: proportional-nums;
 }
 
 .project-card__material,
 .project-card__city,
 .project-card__area {
   padding-top: 12px;
+}
+
+.project-card__area {
   border-top: 1px solid #ffffff2b;
 }
 

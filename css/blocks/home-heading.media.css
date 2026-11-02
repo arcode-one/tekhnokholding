@@ -1,0 +1,15 @@
+@media (max-width: 1199px) {
+  .home-page :is(.projects-heading, .company-heading, .company-team__intro) .home-heading,
+  .catalog-page .projects-heading .home-heading {
+    font-size: clamp(20px, 5.9vw, 52px);
+  }
+
+  .home-page .company-team__intro {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .home-page .company-team__description {
+    justify-self: start;
+  }
+}

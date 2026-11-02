@@ -1,8 +1,21 @@
 .catalog-page {
-  background: var(--color-slate-alt);
+  background: #10191e;
+}
+
+.catalog-page > main {
+  padding-top: 0;
 }
 
 .catalog-page .projects-section {
+  --projects-surface: #10191e;
+
+  padding-top: calc(var(--header-h) + var(--breadcrumbs-offset));
+  background-image:
+    linear-gradient(#10191e80, #10191e80),
+    url('../../images/backgrounds/objects-blueprint-dark-v1.webp');
+  background-position: center top;
+  background-size: auto, max(1200px, 100%) auto;
+  background-repeat: no-repeat, repeat-y;
   border-radius: 0;
   margin-top: 0;
 }

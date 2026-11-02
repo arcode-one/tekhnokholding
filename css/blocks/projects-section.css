@@ -53,26 +53,49 @@
 .projects-section:not(.projects-section--catalog) .projects-body {
   --years-col: clamp(128px, 10vw, 196px);
 
+  grid-template-columns: var(--years-col) 48px minmax(0, 1fr) 48px;
+  column-gap: 16px;
   padding-right: var(--pad);
 }
 
+.projects-section:not(.projects-section--catalog) .projects-years {
+  grid-column: 1;
+  grid-row: 1;
+}
+
 .projects-section:not(.projects-section--catalog) .projects-rail {
+  grid-column: 3;
   container-type: inline-size;
 }
 
-.projects-section:not(.projects-section--catalog) .projects-heading h2 {
-  max-width: none;
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: clamp(24px, 1.9vw, 34px);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-transform: none;
+.projects-section:not(.projects-section--catalog) .projects-body__arrow--previous {
+  grid-column: 2;
+}
+
+.projects-section:not(.projects-section--catalog) .projects-body__arrow--next {
+  grid-column: 4;
+}
+
+.projects-section:not(.projects-section--catalog) .projects-empty {
+  grid-column: 2 / -1;
 }
 
 .projects-section [hidden] {
   display: none !important;
+}
+
+/* Measure all original cards before filtering so the section keeps one height. */
+.projects-section[data-measuring-cards] [data-projects-group] {
+  align-items: start;
+}
+
+.projects-section[data-measuring-cards] [data-projects-group] > .project-card {
+  display: flex !important;
+  min-height: 0;
+}
+
+.projects-section.projects-section--catalog {
+  padding-top: var(--breadcrumbs-offset);
 }
 
 .projects-section--catalog .projects-rail {
@@ -80,9 +103,12 @@
   cursor: auto;
 }
 
-.projects-section--catalog .projects-years {
-  position: sticky;
-  top: calc(var(--header-h, 88px) + 24px);
+@media (min-width: 768px) {
+  .projects-section--catalog .projects-years {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+    height: min(760px, calc(100svh - var(--header-h) - 48px));
+  }
 }
 
 .projects-section--catalog .projects-track {

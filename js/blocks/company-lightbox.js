@@ -30,9 +30,13 @@ export default function init(dialog) {
     image.src = button.dataset.companyImage;
     image.alt = button.dataset.imageTitle;
     title.textContent = button.dataset.imageTitle;
-    original.href = button.dataset.imageOriginal || button.dataset.companyImage;
+    if (original) original.href = button.dataset.imageOriginal || button.dataset.companyImage;
     if (gallery) gallery.hidden = true;
     if (view) view.hidden = false;
+    view?.classList.toggle(
+      'company-lightbox__image--rotated',
+      button.dataset.imageRotation === '90',
+    );
     if (bottom) bottom.hidden = false;
     if (back) back.hidden = !academy;
     if (steps) {

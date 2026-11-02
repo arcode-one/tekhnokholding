@@ -16,6 +16,7 @@ enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal
 enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 enhance('[data-ui~="mission-story"]', 'mission', () => import('./blocks/mission.js'));
+enhance('[data-privacy-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
 enhance(
   '[data-ui~="object-page--motion"]',
   'object-motion',

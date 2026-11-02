@@ -36,10 +36,14 @@
 
 .company-lightbox[open] {
   display: flex;
-  flex-direction: column;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .company-lightbox {
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(12px);
   width: min(1100px, 94vw);
   height: 94svh;
   max-width: none;
@@ -79,6 +83,21 @@
   height: auto;
 }
 
+.company-lightbox__image--rotated {
+  position: relative;
+  container-type: size;
+}
+
+.company-lightbox__image--rotated img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100cqh;
+  height: 100cqw;
+  max-width: none;
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
 .company-lightbox__bottom {
   flex: 0 0 auto;
   display: flex;
@@ -96,6 +115,7 @@
 
 .company-lightbox__steps {
   display: flex;
+  margin-left: auto;
   align-items: center;
   gap: 14px;
 }
@@ -153,24 +173,17 @@
   object-fit: contain;
 }
 
-.company-lightbox__gallery span {
-  display: block;
-  padding-top: 16px;
-  font-size: 13px;
-  line-height: 1.5;
-}
-
 .company-lightbox [hidden] {
   display: none;
 }
 
-.company-lightbox button:not(.icon-btn):not(:disabled):focus-visible {
+.company-lightbox button:not(.icon-btn):not([data-company-image]):not(:disabled):focus-visible {
   background: var(--control-hover-bg);
   color: var(--control-hover-ink);
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .company-lightbox button:not(.icon-btn):not(:disabled):hover {
+  .company-lightbox button:not(.icon-btn):not([data-company-image]):not(:disabled):hover {
     background: var(--control-hover-bg);
     color: var(--control-hover-ink);
   }

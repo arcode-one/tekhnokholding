@@ -12,6 +12,7 @@
   border-radius: 50%;
   background: linear-gradient(to bottom, var(--icon-btn-bg) 50%, var(--control-hover-bg) 50%) 0 0 / 100%
     200% no-repeat;
+  background-origin: border-box;
   color: var(--light);
   display: flex;
   align-items: center;

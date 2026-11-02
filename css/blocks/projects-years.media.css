@@ -29,17 +29,17 @@
 
   .projects-years__list button {
     position: absolute;
-    left: 50%;
+    left: 0;
     right: auto;
-    width: max-content;
+    width: 100%;
     min-width: 100%;
     padding-inline: 12px;
     justify-content: center;
     white-space: nowrap;
-    top: calc(50% - var(--year-row) / 2);
-    transform: translate(-50%, calc(var(--d, 0) * var(--year-row)));
+    top: calc(50% - var(--year-row) / 2 + var(--d, 0) * var(--year-row));
+    transform: none;
     transition:
-      transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+      top 0.45s cubic-bezier(0.22, 1, 0.36, 1),
       color 0.2s ease,
       background-color 0.2s ease,
       font-size 0.25s var(--ease-out),
@@ -57,6 +57,85 @@
   .projects-years__list button.projects-years__year--far {
     visibility: hidden;
     opacity: 0;
+  }
+
+  .projects-section .projects-years {
+    width: max-content;
+    min-width: 112px;
+  }
+
+  .projects-section .projects-years__title {
+    position: relative;
+    align-self: flex-start;
+    padding-bottom: 18px;
+    border-bottom: 0;
+    color: #a3aaa7;
+    font-size: 14px;
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+
+  .projects-section .projects-years__title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 44px;
+    height: 2px;
+    background: var(--logo-yellow);
+  }
+
+  .projects-section .projects-years__step {
+    --icon-btn-bg: #36393c;
+    border: 1px solid #ffffff40;
+  }
+
+  .projects-section .projects-years__step[data-years-step='-1'] {
+    top: var(--year-button-top-offset, 0px);
+  }
+
+  .projects-section .projects-years__step[data-years-step='1'] {
+    top: calc(-1 * var(--year-button-bottom-offset, 0px));
+  }
+
+  .projects-section .projects-years__list {
+    --year-row: 48px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .projects-section .projects-years__list::before {
+    content: '';
+    position: absolute;
+    top: calc(50% + var(--year-line-start, 0px));
+    height: var(--year-line-height, 0px);
+    left: 4px;
+    width: 1px;
+    background: var(--projects-line);
+  }
+
+  .projects-section .projects-years__list button {
+    left: 0;
+    padding-inline: 0;
+    gap: 16px;
+    justify-content: flex-start;
+    font-size: 24px;
+    font-weight: 500;
+  }
+
+  .projects-section .projects-years__list button::before {
+    display: block;
+    width: 9px;
+    height: 9px;
+  }
+
+  .projects-section .projects-years__list button[aria-pressed='true'] {
+    font-weight: 700;
+  }
+
+  .projects-section .projects-years__list button[data-project-year='none'] {
+    font-size: 18px;
   }
 }
 
@@ -113,5 +192,11 @@
 
   .projects-years__list button[aria-pressed='true'] {
     font-size: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-years__list button {
+    transition: none;
   }
 }

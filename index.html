@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180" />
     <title>Технохолдинг — плоские кровли на Урале</title>
     <meta name="theme-color" content="#414141" />
     <link
@@ -21,7 +24,7 @@
     />
     <link rel="stylesheet" href="css/index.css" />
   </head>
-  <body id="top">
+  <body class="home-page" id="top">
     <!-- Превью: показывается при каждой загрузке и обновлении страницы -->
     <div class="preloader" role="status" aria-label="Загрузка сайта" data-ui="preloader">
       <div class="preloader__lockup" data-ui="preloader__lockup">
@@ -86,7 +89,7 @@
 
         <div class="header__right">
           <nav class="nav" aria-label="Основное меню">
-            <a href="#services">Услуги</a>
+            <a href="services.html">Услуги</a>
             <a href="#objects">Объекты</a>
             <a href="#contacts">Контакты</a>
             <a href="#account">Личный кабинет</a>
@@ -148,7 +151,7 @@
                   />
                 </a>
                 <nav class="dock__nav" aria-label="Меню">
-                  <a class="dock__item" style="--r: 7" href="#services">Услуги</a>
+                  <a class="dock__item" style="--r: 7" href="services.html">Услуги</a>
                   <a class="dock__item" style="--r: 6" href="#objects">Объекты</a>
                   <a class="dock__item" style="--r: 5" href="#contacts">Контакты</a>
                   <a class="dock__item" style="--r: 4" href="#account">Личный кабинет</a>
@@ -212,7 +215,7 @@
       aria-label="Меню сайта"
     >
       <nav class="menu__nav" aria-label="Мобильное меню">
-        <a href="#services">Услуги</a>
+        <a href="services.html">Услуги</a>
         <a href="#objects">Объекты</a>
         <a href="#contacts">Контакты</a>
         <a href="#account">Личный кабинет</a>
@@ -493,7 +496,9 @@
       >
         <div class="projects-surface" data-ui="projects-surface">
           <div class="projects-heading">
-            <div class="projects-heading__title"><h2 id="projects-title">Результат говорит за нас</h2></div>
+            <div class="projects-heading__title">
+              <h2 class="home-heading" id="projects-title">Результат <span class="home-heading__muted">говорит за нас</span></h2>
+            </div>
             <div class="projects-types" role="group" aria-label="Тип объекта">
               <button
                 type="button"
@@ -7690,7 +7695,7 @@
         data-map-style="css/vendor/maplibre-gl-5.24.0.css"
       >
         <div class="company-heading">
-          <h2 id="company-map-title">Наш опыт на карте</h2>
+          <h2 class="home-heading" id="company-map-title">Наш опыт <span class="home-heading__muted">на карте</span></h2>
         </div>
         <div class="company-map__filters">
           <label
@@ -7906,7 +7911,7 @@
             ><button
               type="button"
               data-map-pitch=""
-              aria-pressed="false"
+              aria-pressed="true"
               aria-label="Объёмные здания"
             >
               3D</button
@@ -8040,7 +8045,7 @@
         aria-labelledby="advantages-title"
       >
         <div class="company-heading">
-          <h2 id="advantages-title">Есть основания нам доверять</h2>
+          <h2 class="home-heading" id="advantages-title">Есть основания <span class="home-heading__muted">нам доверять</span></h2>
         </div>
         <div class="advantages-layout">
           <div class="advantages-layout__side advantages-layout__side--left">
@@ -8280,6 +8285,7 @@
               class="advantage-card company-reveal"
               type="button"
               data-company-image="images/company/proofs/proof-10-tn-award.webp"
+              data-image-rotation="90"
               data-image-title="Грамота «Стабильное качество» ТЕХНОНИКОЛЬ"
               aria-haspopup="dialog"
               data-company-reveal=""
@@ -8315,15 +8321,7 @@
                   >
                     <use href="icons/sprite.svg#files"></use></svg></span
               ></span></button
-            ><button
-              class="advantage-card company-reveal"
-              type="button"
-              data-company-image="images/company/proofs/proof-roof-rating-5.webp"
-              data-image-title="Рейтинг 5.0 на ROOF.RU"
-              aria-haspopup="dialog"
-              data-company-reveal=""
-              data-image-original="images/company/proofs/proof-roof-rating-5.jpg"
-            >
+            ><div class="advantage-card advantage-card--static company-reveal" data-company-reveal="">
               <span class="advantage-card__photo" data-story-photo=""
                 ><img
                   src="images/company/proofs/preview-roof-rating-rerender-v2.webp"
@@ -8340,21 +8338,7 @@
                   sizes="(max-width: 767px) 100vw, 100vw" /></span
               ><span class="advantage-card__copy"
                 ><span class="advantage-card__title">Рейтинг 5.0 на ROOF.RU</span
-                ><span class="advantage-card__action"
-                  >Открыть подтверждение<svg
-                    class="projects-sign projects-sign--catalog"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                    focusable="false"
-                    stroke-linecap="round"
-                  >
-                    <use href="icons/sprite.svg#files"></use></svg></span
-              ></span></button
-            ><a
+                ></span></div><a
               class="advantage-card company-reveal"
               href="docs/vypiska-sro.pdf"
               target="_blank"
@@ -8426,8 +8410,9 @@
       <section class="company-team company-section" id="team" aria-labelledby="company-team-title">
         <div class="company-team__intro">
           <div>
-            <h2 id="company-team-title">Люди, на которых можно положиться</h2>
+            <h2 class="home-heading" id="company-team-title">Люди, на которых <span class="home-heading__muted">можно положиться</span></h2>
           </div>
+          <p class="company-team__description">Инженеры, монтажники, руководители проектов.<br />Одна команда. Общая ответственность.</p>
         </div>
         <div class="company-team__features">
           <figure
@@ -8679,7 +8664,7 @@
         data-company-carousel=""
       >
         <div class="company-heading">
-          <h2 id="recommendations-title">О нашей работе — словами заказчиков</h2>
+          <h2 class="home-heading" id="recommendations-title">О нашей работе <span class="home-heading__muted">словами заказчиков</span></h2>
         </div>
         <div class="company-recommendations__slider">
           <div
@@ -9852,7 +9837,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Кочнев Дмитрий Сергеевич</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-march-2026.webp"
@@ -9866,7 +9851,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/bagaudinov-sergey-vladimirovich.webp"
@@ -9880,7 +9865,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Багаудинов Сергей Владимирович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/gayazova-natalya-sergeevna.webp"
@@ -9894,7 +9879,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Гаязова Наталья Сергеевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/kalugina-ekaterina-vitalevna.webp"
@@ -9908,7 +9893,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Калугина Екатерина Витальевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/khudyakova-natalya-borisovna.webp"
@@ -9922,7 +9907,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Худякова Наталья Борисовна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/rusakov-maksim-sergeevich.webp"
@@ -9936,7 +9921,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Русаков Максим Сергеевич</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/saulin-evgeniy-viktorovich.webp"
@@ -9950,7 +9935,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Саулин Евгений Викторович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/klepinin.webp"
@@ -9964,7 +9949,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Клепинин Павел Петрович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-1282399.webp"
@@ -9978,7 +9963,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/zaripova-mariya.webp"
@@ -9992,7 +9977,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Зарипова Мария Михайловна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-1289784.webp"
@@ -10006,7 +9991,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/cherepanova-liliya.webp"
@@ -10020,7 +10005,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Лилия Черепанова</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/davydova-yuliya.webp"
@@ -10034,7 +10019,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Давыдова Юлия</span>
+            />
           </button>
         </div>
         <div class="company-lightbox__image" data-lightbox-view="">
@@ -10136,7 +10121,7 @@
             <a class="site-footer__privacy" href="privacy.html">Политика конфиденциальности</a>
           </div>
           <div class="site-footer__right">
-            <h2 id="site-footer-title">Контакты</h2>
+            <h2 id="site-footer-title">У каждого проекта<br />есть точка старта.<br />Давайте обсудим ваш.</h2>
             <div class="site-footer__contacts">
               <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
                 <h3 id="footer-general-title">Общие контакты</h3>

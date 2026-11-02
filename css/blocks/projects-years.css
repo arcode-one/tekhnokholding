@@ -110,14 +110,24 @@
 }
 
 .projects-years__list button:focus-visible {
-  background: var(--control-hover-bg);
-  color: var(--control-hover-ink);
+  background: none;
+  color: var(--projects-year-active);
+  opacity: 1;
+}
+
+.projects-years__list button:focus-visible::before {
+  border-color: var(--logo-yellow);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .projects-years__list button:hover {
-    background: var(--control-hover-bg);
-    color: var(--control-hover-ink);
+    background: none;
+    color: var(--projects-year-active);
+    opacity: 1;
+  }
+
+  .projects-years__list button:hover::before {
+    border-color: var(--logo-yellow);
   }
 }
 

@@ -3,6 +3,8 @@ export default function init(footer) {
   const image = footer.querySelector('.site-footer__visual img');
   const layout = footer.querySelector('.site-footer__layout');
   if (!image || !layout) return;
+  // Contacts scroll with the document. Only the photograph has parallax.
+  layout.style.removeProperty('top');
   const desktop = matchMedia('(min-width:768px)');
   let visible = false;
   let frame = 0;
@@ -11,7 +13,6 @@ export default function init(footer) {
     frame = 0;
     if (!desktop.matches || reduced.matches) {
       image.style.transform = '';
-      layout.style.top = '';
       return;
     }
     const rect = footer.getBoundingClientRect();
@@ -19,14 +20,7 @@ export default function init(footer) {
     const imageHeight = image.offsetHeight;
     const distance = imageHeight * 0.5;
     const offset = Math.round((1 - progress) * distance);
-    // Прежняя сцена -50% и вложенный контент +25% давали разные скорости
-    // фото и контактов. Воспроизводим их итоговые позиции без transform текста.
-    // Целые пиксели и relative top сохраняют обычную отрисовку шрифта.
-    const contentOffset = Math.round(
-      (1 - progress) * (layout.offsetHeight * 0.25 - imageHeight * 0.5),
-    );
     image.style.transform = `translateY(${-offset}px)`;
-    layout.style.top = `${contentOffset}px`;
   }
   function schedule() {
     if (visible && !frame) frame = requestAnimationFrame(render);

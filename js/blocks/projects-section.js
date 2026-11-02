@@ -35,6 +35,22 @@ export default function init(section) {
   let pointer = null,
     moved = false,
     manualUntil = 0;
+  let cardSizeKey = '';
+
+  function syncCardHeights(force = false) {
+    if (!rail.clientWidth) return;
+    const key = `${rail.clientWidth}:${window.innerWidth}`;
+    if (!force && key === cardSizeKey) return;
+    cardSizeKey = key;
+    // Hidden years participate only in this synchronous measurement, never in paint.
+    section.setAttribute('data-measuring-cards', '');
+    try {
+      const height = Math.ceil(Math.max(0, ...cards.map((card) => card.getBoundingClientRect().height)));
+      section.style.setProperty('--project-card-height', `${height}px`);
+    } finally {
+      section.removeAttribute('data-measuring-cards');
+    }
+  }
 
   function wantsMotion() {
     return (
@@ -201,6 +217,7 @@ export default function init(section) {
     }),
   );
   function setYear(button, scroll = true) {
+    if (scroll) manualUntil = performance.now() + 3000;
     selectedYear = button.dataset.projectYear;
     years.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
     layoutYears();
@@ -220,6 +237,11 @@ export default function init(section) {
   function layoutYears() {
     const n = years.length,
       active = activeYear();
+    const rowHeight = yearList ? parseFloat(getComputedStyle(yearList).getPropertyValue('--year-row')) || 48 : 48;
+    const radius = drumMode.matches && yearList
+      ? Math.max(1, Math.floor((yearList.clientHeight / rowHeight - 1) / 2))
+      : 3;
+    const visibleOffsets = [];
     years.forEach((button, i) => {
       let d = (((i - active) % n) + n) % n;
       if (d > n / 2) d -= n;
@@ -227,11 +249,21 @@ export default function init(section) {
       button.classList.toggle('projects-years__year--jump', Math.abs(d - previous) > 3);
       button.dataset.d = d;
       button.style.setProperty('--d', d);
-      // Выбранный и соседние чёткие, ещё по два с каждой стороны размыты, остальные скрыты
-      button.style.setProperty('--fade', ['0', '0', '.6', '1'][Math.min(Math.abs(d), 3)]);
-      button.classList.toggle('projects-years__year--far', drumMode.matches && Math.abs(d) > 3);
-      button.tabIndex = drumMode.matches && Math.abs(d) > 3 ? -1 : 0;
+      // Шаг постоянный: высокая шкала показывает больше лет, не растягивает интервалы.
+      button.style.setProperty('--fade', String(Math.min(1, Math.max(0, Math.abs(d) - 1) / Math.max(1, radius - 1))));
+      button.classList.toggle('projects-years__year--far', drumMode.matches && Math.abs(d) > radius);
+      button.tabIndex = drumMode.matches && Math.abs(d) > radius ? -1 : 0;
+      if (Math.abs(d) <= radius) visibleOffsets.push(d);
     });
+    if (drumMode.matches && yearList && visibleOffsets.length) {
+      const first = Math.min(...visibleOffsets) * rowHeight;
+      const last = Math.max(...visibleOffsets) * rowHeight;
+      yearList.style.setProperty('--year-line-start', `${first}px`);
+      yearList.style.setProperty('--year-line-height', `${last - first}px`);
+      const halfHeight = yearList.clientHeight / 2;
+      section.style.setProperty('--year-button-top-offset', `${Math.max(0, halfHeight + first - 12)}px`);
+      section.style.setProperty('--year-button-bottom-offset', `${Math.max(0, halfHeight - last - 12)}px`);
+    }
   }
   function syncYearScroll() {
     if (!yearList) return;
@@ -260,7 +292,10 @@ export default function init(section) {
     },
     { passive: false },
   );
-  if (yearList) new ResizeObserver(() => requestAnimationFrame(syncYearScroll)).observe(section);
+  if (yearList) new ResizeObserver(() => requestAnimationFrame(() => {
+    layoutYears();
+    syncYearScroll();
+  })).observe(yearList);
   window.addEventListener('load', syncYearScroll);
   syncYearScroll();
   yearSteps.forEach((step) =>
@@ -370,9 +405,14 @@ export default function init(section) {
       }
     });
     new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
+      const inView = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+      if (inView && !visible) {
+        speed = 0;
+        manualUntil = Math.max(manualUntil, performance.now() + 3000);
+      }
+      visible = inView;
       wake();
-    }).observe(rail);
+    }, { threshold: [0, 0.15] }).observe(rail);
     document.addEventListener('visibilitychange', () => {
       lastTime = 0;
       wake();
@@ -384,9 +424,13 @@ export default function init(section) {
     wake();
   });
   new ResizeObserver(() => {
+    syncCardHeights();
+    layoutYears();
     syncLoop();
     wake();
   }).observe(rail);
+  syncCardHeights();
+  document.fonts.ready.then(() => syncCardHeights(true));
   if (years[0]) setYear(years[0], false);
   else applyFilters();
 }

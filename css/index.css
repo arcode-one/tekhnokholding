@@ -116,6 +116,8 @@
 @import url('./blocks/advantage-metric.media.css');
 @import url('./blocks/quality-stages.css');
 @import url('./blocks/quality-stages.media.css');
+@import url('./blocks/quality-page.css');
+@import url('./blocks/quality-page.media.css');
 @import url('./blocks/company-event.css');
 @import url('./blocks/company-event.media.css');
 @import url('./blocks/object-opening.css');
@@ -127,3 +129,5 @@
 @import url('./blocks/mission.css');
 @import url('./blocks/mission.media.css');
 @import url('./blocks/company-reveal.css');
+@import url('./blocks/home-heading.css');
+@import url('./blocks/home-heading.media.css');

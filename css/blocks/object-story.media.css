@@ -1,6 +1,6 @@
 @media (max-width: 767px) {
   .object-story {
-    padding-top: 32px;
+    padding-top: var(--breadcrumbs-offset);
   }
 }
 

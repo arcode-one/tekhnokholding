@@ -49,6 +49,7 @@
       "action": "image",
       "href": null,
       "certificate": "images/company/proofs/proof-10-tn-award.webp",
+      "certificateRotation": 90,
       "certificateTitle": "Грамота «Стабильное качество» ТЕХНОНИКОЛЬ"
     },
     {
@@ -56,10 +57,10 @@
       "title": "Рейтинг 5.0 на ROOF.RU",
       "photo": "images/company/proofs/preview-roof-rating-rerender-v2.webp",
       "alt": "Рейтинг 5.0 компании ТехноХолдинг на ROOF.RU",
-      "action": "image",
+      "action": "none",
       "href": null,
-      "certificate": "images/company/proofs/proof-roof-rating-5.webp",
-      "certificateTitle": "Рейтинг 5.0 на ROOF.RU"
+      "certificate": "",
+      "certificateTitle": null
     },
     {
       "id": "sro",
@@ -389,6 +390,11 @@
         "caption": "Контроль узлов и примыканий",
         "preview": "images/company/preview/quality-junction-check.webp"
       }
-    ]
+    ],
+    "controlPercent": "100%",
+    "controlCaption": "Контроль качества на всех этапах",
+    "motto": "Качество сегодня — надёжные объекты завтра",
+    "approach": "Наш подход",
+    "approachTitle": "Как мы контролируем качество"
   }
 }

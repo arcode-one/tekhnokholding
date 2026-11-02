@@ -1,5 +1,5 @@
 .object-opening {
-  padding-block: 40px 36px;
+  padding-block: var(--breadcrumbs-offset) 36px;
 }
 
 .object-opening .object-intro {

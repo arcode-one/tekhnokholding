@@ -36,8 +36,10 @@
   position: absolute;
   left: var(--pad);
   width: min(720px, calc(100% - 2 * var(--pad)));
-  top: 51%;
-  transform: translateY(-50%);
+  top: 0;
+  bottom: -2%;
+  height: max-content;
+  margin-block: auto;
   display: flex;
   flex-direction: column;
   gap: 26px;
@@ -115,7 +117,8 @@
 
 .hero__content--leadership {
   width: calc(100% - 2 * var(--pad));
-  top: 48%;
+  top: 0;
+  bottom: 4%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
@@ -203,7 +206,8 @@
   left: var(--pad);
   right: var(--pad);
   width: auto;
-  top: 46%;
+  top: 0;
+  bottom: 8%;
   align-items: center;
   gap: clamp(24px, 3vh, 32px);
 

@@ -22,6 +22,15 @@
   margin: 0 var(--pad) 64px;
 }
 
+.company-team__description {
+  justify-self: end;
+  max-width: 48ch;
+  margin: 0;
+  color: var(--color-slate);
+  font-size: 16px;
+  line-height: 1.65;
+}
+
 .company-team__features {
   display: grid;
   grid-template-columns: 1.6fr 1fr;

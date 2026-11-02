@@ -1,16 +1,14 @@
 .privacy-page {
   min-height: calc(80svh - var(--header-h));
-  padding: 32px var(--pad) 120px;
+  padding: var(--breadcrumbs-offset) var(--pad) 120px;
 }
 
-.privacy-page > .breadcrumbs,
 .privacy-page__content {
-  max-width: 1560px;
-  margin-inline: auto;
+  width: 100%;
 }
 
 .privacy-page > .breadcrumbs {
-  margin-block: 0;
+  margin: 0;
 }
 
 .privacy-page__content {
@@ -20,10 +18,16 @@
 .privacy-page h1 {
   margin: 0;
   font-family: var(--font-body);
-  font-size: clamp(40px, 4.4vw, 76px);
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.035em;
+  font-size: clamp(20px, 4.4vw, 80px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+.privacy-page__title-muted {
+  display: block;
+  color: var(--color-slate);
 }
 
 .privacy-page__text {
@@ -87,6 +91,10 @@
   outline-offset: 3px;
 }
 
+.privacy-page__nav a[aria-current='location'] {
+  font-weight: 700;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .privacy-page__nav a:hover {
     text-decoration-color: currentcolor;
@@ -101,10 +109,10 @@
 
 .privacy-page__text h2 {
   margin: 0 0 24px;
-  font-size: clamp(26px, 1.8vw, 32px);
+  font-size: 32px;
   font-weight: 500;
   line-height: 1.35;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   scroll-margin-top: calc(var(--header-h) + 32px);
 }
 

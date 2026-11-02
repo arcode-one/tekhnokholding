@@ -24,15 +24,11 @@
 
 @media (max-width: 767px) {
   .privacy-page {
-    padding-block: 20px 64px;
+    padding-block: var(--breadcrumbs-offset) 64px;
   }
 
   .privacy-page__content {
     margin-top: 32px;
-  }
-
-  .privacy-page h1 {
-    font-size: clamp(27px, 7.2vw, 44px);
   }
 
   .privacy-page__body {
@@ -53,6 +49,12 @@
 
   .privacy-page__text h2 {
     margin-bottom: 20px;
-    font-size: 21px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 359px) {
+  .privacy-page h1 {
+    font-size: 18px;
   }
 }

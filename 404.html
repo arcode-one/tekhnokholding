@@ -9,6 +9,16 @@
       // GitHub Pages сохраняет запрошенный URL при показе 404.html.
       // Старые закладки hero-test ведут на соответствующие страницы нового сайта.
       const siteRoot = location.hostname === 'arcode-one.github.io' ? '/tekhnokholding/' : '/';
+      for (const attributes of [
+        { rel: 'icon', type: 'image/x-icon', href: 'icons/favicon.ico', sizes: '16x16 32x32 48x48' },
+        { rel: 'icon', type: 'image/svg+xml', href: 'icons/favicon.svg', sizes: 'any' },
+        { rel: 'apple-touch-icon', href: 'icons/apple-touch-icon.png', sizes: '180x180' },
+      ]) {
+        const icon = document.createElement('link');
+        for (const [name, value] of Object.entries(attributes))
+          icon.setAttribute(name, name === 'href' ? siteRoot + value : value);
+        document.head.append(icon);
+      }
       // Абсолютный путь нужен и для неизвестных вложенных адресов GitHub Pages.
       const fontStyles = document.createElement('link');
       fontStyles.rel = 'stylesheet';

@@ -21,11 +21,4 @@
     grid-row: 2;
   }
 
-  .projects-body__arrow--previous {
-    margin-left: 8px;
-  }
-
-  .projects-body__arrow--next {
-    margin-right: 8px;
-  }
 }

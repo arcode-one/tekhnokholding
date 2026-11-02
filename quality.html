@@ -3,13 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180" />
     <title>Собственная служба качества | Технохолдинг</title>
     <meta
       name="description"
       content="Собственная служба качества. Контроль качества и забота о клиенте на каждом этапе кровельных работ."
     />
     <meta name="theme-color" content="#34454e" />
-    <meta property="og:image" content="images/company/quality/quality-hero-team-higgsfield.webp" />
+    <meta property="og:image" content="images/company/quality/quality-hero-roof-inspection.webp" />
     <link
       rel="preload"
       href="fonts/montserrat/montserrat-latin-wght-normal.woff2"
@@ -26,12 +29,12 @@
     />
     <link rel="stylesheet" href="css/index.css" />
   </head>
-  <body id="top" class="object-page">
+  <body id="top" class="object-page quality-page-body">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
-            src="icons/logo-dark-compact.svg"
+            src="icons/logo-light-compact.svg"
             alt="Технохолдинг"
             width="1292"
             height="430"
@@ -41,7 +44,7 @@
 
         <div class="header__right">
           <nav class="nav" aria-label="Основное меню">
-            <a href="index.html#services">Услуги</a>
+            <a href="services.html">Услуги</a>
             <a href="index.html#objects">Объекты</a>
             <a href="index.html#contacts">Контакты</a>
             <a href="index.html#account">Личный кабинет</a>
@@ -107,7 +110,7 @@
                   />
                 </a>
                 <nav class="dock__nav" aria-label="Меню">
-                  <a class="dock__item" style="--r: 7" href="index.html#services">Услуги</a>
+                  <a class="dock__item" style="--r: 7" href="services.html">Услуги</a>
                   <a class="dock__item" style="--r: 6" href="index.html#objects">Объекты</a>
                   <a class="dock__item" style="--r: 5" href="index.html#contacts">Контакты</a>
                   <a class="dock__item" style="--r: 4" href="index.html#account">Личный кабинет</a>
@@ -171,7 +174,7 @@
       aria-label="Меню сайта"
     >
       <nav class="menu__nav" aria-label="Мобильное меню">
-        <a href="index.html#services">Услуги</a>
+        <a href="services.html">Услуги</a>
         <a href="index.html#objects">Объекты</a>
         <a href="index.html#contacts">Контакты</a>
         <a href="index.html#account">Личный кабинет</a>
@@ -183,85 +186,87 @@
     </div>
 
     <main>
-      <article class="company-story company-story--quality">
-        <header class="company-story__intro">
-          <nav class="breadcrumbs" aria-label="Хлебные крошки" data-ui="breadcrumbs">
+      <article class="quality-page">
+        <header class="quality-hero" aria-labelledby="quality-title">
+          <nav class="breadcrumbs breadcrumbs--inverse" aria-label="Хлебные крошки" data-ui="breadcrumbs">
             <ol>
               <li><a href="index.html">Главная</a></li>
-              <li>
-                <span class="breadcrumbs__separator" aria-hidden="true">/</span
-                ><span aria-current="page">Собственная служба качества</span>
-              </li>
+              <li><span class="breadcrumbs__separator" aria-hidden="true">/</span><span aria-current="page">Собственная служба качества</span></li>
             </ol>
           </nav>
-          <div>
-            <h1>Собственная<br />служба качества</h1>
-            <p>Контроль качества и забота о клиенте на каждом этапе кровельных работ.</p>
+          <figure class="quality-hero__media">
+            <picture>
+              <source media="(max-width: 767px), (max-width: 1100px) and (orientation: portrait)" srcset="images/company/quality/quality-hero-roof-inspection.webp" width="1920" height="819" />
+              <img src="images/company/quality/quality-hero-roof-inspection.webp"
+                srcset="images/company/quality/quality-hero-roof-inspection-960w.webp 960w, images/company/quality/quality-hero-roof-inspection.webp 1920w" sizes="100vw"
+                alt="Сотрудники службы качества осматривают шов мембранной кровли"
+                fetchpriority="high" decoding="async" width="1920" height="819" />
+            </picture>
+          </figure>
+          <div class="quality-hero__copy">
+            <h1 id="quality-title">Собственная <span>служба качества</span></h1>
+            <p class="quality-hero__lead">Контроль качества и забота о клиенте на каждом этапе кровельных работ.</p>
+            <p class="quality-hero__description">Независимая служба качества ТехноХОЛДИНГ контролирует все этапы — от входного контроля материалов до итоговой приёмки. Проверяем соответствие проекту и технологии, фиксируем каждый этап, контролируем устранение замечаний и держим клиента в курсе.</p>
+            <p class="quality-hero__promise"><span>Качество сегодня —<br />надёжные объекты завтра</span></p>
+          </div>
+          <div class="quality-hero__metric">
+            <strong>100%</strong>
+            <span>Контроль качества<br />на всех этапах</span>
           </div>
         </header>
-        <figure class="company-story__hero company-reveal" data-company-reveal="">
-          <span data-story-photo=""
-            ><img
-              src="images/company/preview/quality-hero-team-higgsfield.webp"
-              alt="Сотрудники службы качества проверяют мембранную кровлю на фоне российских новостроек"
-              fetchpriority="high"
-              decoding="async"
-              width="1800"
-              height="766"
-          /></span>
-        </figure>
-        <div class="company-story__text">
-          <p>
-            Независимая служба качества ТехноХОЛДИНГ контролирует все этапы — от входного контроля
-            материалов до итоговой приёмки. Проверяем соответствие проекту и технологии, фиксируем
-            каждый этап, контролируем устранение замечаний и держим клиента в курсе.
-          </p>
-          <p>
-            Результат — прозрачный процесс, предсказуемое качество и уверенность в надёжности
-            объекта.
-          </p>
-          <p>
-            Наша цель — обеспечить качество, которое не требует компромиссов и исправлений после
-            сдачи.
-          </p>
-        </div>
         <section class="quality-stages" aria-labelledby="quality-stages-title">
-          <h2 id="quality-stages-title">Как мы<br />контролируем<br />качество</h2>
-          <div>
-            <details open="">
-              <summary>Входной контроль материалов<span aria-hidden="true"></span></summary>
-              <p>
-                Проверяем маркировку, комплектность, состояние и соответствие материалов проектной
-                документации. Фиксируем результаты входного осмотра до начала работ.
-              </p>
-            </details>
-            <details>
-              <summary>В процессе<span aria-hidden="true"></span></summary>
-              <p>
-                Контролируем соблюдение технологии монтажа, качество узлов, примыканий и сварных
-                соединений. Выявляем замечания и контролируем их устранение.
-              </p>
-            </details>
-            <details>
-              <summary>Итоговая приёмка<span aria-hidden="true"></span></summary>
-              <p>
-                Проводим комплексный финальный осмотр, повторно проверяем ключевые участки и
-                подтверждаем готовность объекта к сдаче.
-              </p>
-            </details>
-            <details>
-              <summary>
-                Обратная связь и сопровождение клиента<span aria-hidden="true"></span>
-              </summary>
-              <p>
-                Оперативно информируем о ходе контроля, фиксируем результаты и предоставляем
-                понятную отчётность. Сопровождаем клиента до полного завершения работ.
-              </p>
-            </details>
+          <header class="quality-stages__heading">
+            <h2 id="quality-stages-title">Как мы контролируем <span class="quality-heading__muted">качество</span></h2>
+          </header>
+          <div class="quality-stages__intro">
+            <p>Результат — прозрачный процесс, предсказуемое качество и уверенность в надёжности объекта.</p>
+            <p><strong>Наша цель — обеспечить качество, которое не требует компромиссов и исправлений после сдачи.</strong></p>
           </div>
+          <ol class="quality-stages__grid">
+              <li>
+                <details class="quality-stage" name="quality-control" open>
+                  <summary class="quality-stage__head">
+                    <span class="quality-stage__number" aria-hidden="true">01</span>
+                    <span class="quality-stage__title">Входной контроль материалов</span>
+                    <span class="quality-stage__toggle" aria-hidden="true"></span>
+                  </summary>
+                  <p>Проверяем маркировку, комплектность, состояние и соответствие материалов проектной документации. Фиксируем результаты входного осмотра до начала работ.</p>
+                </details>
+              </li>
+              <li>
+                <details class="quality-stage" name="quality-control">
+                  <summary class="quality-stage__head">
+                    <span class="quality-stage__number" aria-hidden="true">02</span>
+                    <span class="quality-stage__title">В процессе</span>
+                    <span class="quality-stage__toggle" aria-hidden="true"></span>
+                  </summary>
+                  <p>Контролируем соблюдение технологии монтажа, качество узлов, примыканий и сварных соединений. Выявляем замечания и контролируем их устранение.</p>
+                </details>
+              </li>
+              <li>
+                <details class="quality-stage" name="quality-control">
+                  <summary class="quality-stage__head">
+                    <span class="quality-stage__number" aria-hidden="true">03</span>
+                    <span class="quality-stage__title">Итоговая приёмка</span>
+                    <span class="quality-stage__toggle" aria-hidden="true"></span>
+                  </summary>
+                  <p>Проводим комплексный финальный осмотр, повторно проверяем ключевые участки и подтверждаем готовность объекта к сдаче.</p>
+                </details>
+              </li>
+              <li>
+                <details class="quality-stage" name="quality-control">
+                  <summary class="quality-stage__head">
+                    <span class="quality-stage__number" aria-hidden="true">04</span>
+                    <span class="quality-stage__title">Обратная связь и сопровождение клиента</span>
+                    <span class="quality-stage__toggle" aria-hidden="true"></span>
+                  </summary>
+                  <p>Оперативно информируем о ходе контроля, фиксируем результаты и предоставляем понятную отчётность. Сопровождаем клиента до полного завершения работ.</p>
+                </details>
+              </li>
+          </ol>
         </section>
-        <section class="company-story__gallery" aria-labelledby="quality-gallery-title">
-          <h2 id="quality-gallery-title">Работа на объектах</h2>
+        <section class="quality-gallery" aria-labelledby="quality-gallery-title">
+          <h2 id="quality-gallery-title">Работа <span class="quality-heading__muted">на объектах</span></h2>
           <div class="company-story__photo-grid">
             <figure
               class="company-story__photo company-story__photo--wide company-reveal"
@@ -290,7 +295,7 @@
                       images/company/preview/quality-seam-check-1600w.webp 1600w,
                       images/company/preview/quality-seam-check.webp       1800w
                     "
-                    sizes="(max-width: 767px) 100vw, 100vw"
+                    sizes="(max-width: 767px) 100vw, 50vw"
                 /></span>
               </button>
               <figcaption>Проверка качества сварного шва</figcaption>
@@ -319,7 +324,7 @@
                       images/company/preview/quality-tablet-review-1600w.webp 1600w,
                       images/company/preview/quality-tablet-review.webp       1800w
                     "
-                    sizes="(max-width: 767px) 100vw, 100vw"
+                    sizes="(max-width: 767px) 50vw, 25vw"
                 /></span>
               </button>
               <figcaption>Сверка с проектом</figcaption>
@@ -348,7 +353,7 @@
                       images/company/preview/quality-photo-report-1600w.webp 1600w,
                       images/company/preview/quality-photo-report.webp       1800w
                     "
-                    sizes="(max-width: 767px) 100vw, 100vw"
+                    sizes="(max-width: 767px) 50vw, 25vw"
                 /></span>
               </button>
               <figcaption>Фотофиксация результатов</figcaption>
@@ -377,7 +382,7 @@
                       images/company/preview/quality-team-inspection-1600w.webp 1600w,
                       images/company/preview/quality-team-inspection.webp       1800w
                     "
-                    sizes="(max-width: 767px) 100vw, 100vw"
+                    sizes="(max-width: 767px) 50vw, 25vw"
                 /></span>
               </button>
               <figcaption>Совместный осмотр узла</figcaption>
@@ -406,28 +411,13 @@
                       images/company/preview/quality-junction-check-1600w.webp 1600w,
                       images/company/preview/quality-junction-check.webp       1800w
                     "
-                    sizes="(max-width: 767px) 100vw, 100vw"
+                    sizes="(max-width: 767px) 50vw, 25vw"
                 /></span>
               </button>
               <figcaption>Контроль узлов и примыканий</figcaption>
             </figure>
           </div>
         </section>
-        <a class="company-story__next" href="#contacts"
-          ><span>Обсудить ваш объект</span
-          ><svg
-            class="projects-sign projects-sign--next"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linejoin="round"
-            aria-hidden="true"
-            focusable="false"
-            stroke-linecap="round"
-          >
-            <use href="icons/sprite.svg#chevron-right"></use></svg
-        ></a>
       </article>
       <dialog
         class="company-lightbox"
@@ -469,7 +459,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Кочнев Дмитрий Сергеевич</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-march-2026.webp"
@@ -483,7 +473,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/bagaudinov-sergey-vladimirovich.webp"
@@ -497,7 +487,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Багаудинов Сергей Владимирович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/gayazova-natalya-sergeevna.webp"
@@ -511,7 +501,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Гаязова Наталья Сергеевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/kalugina-ekaterina-vitalevna.webp"
@@ -525,7 +515,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Калугина Екатерина Витальевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/khudyakova-natalya-borisovna.webp"
@@ -539,7 +529,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Худякова Наталья Борисовна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/rusakov-maksim-sergeevich.webp"
@@ -553,7 +543,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Русаков Максим Сергеевич</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/saulin-evgeniy-viktorovich.webp"
@@ -567,7 +557,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Саулин Евгений Викторович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/klepinin.webp"
@@ -581,7 +571,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Клепинин Павел Петрович</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-1282399.webp"
@@ -595,7 +585,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/zaripova-mariya.webp"
@@ -609,7 +599,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Зарипова Мария Михайловна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/shmidt-1289784.webp"
@@ -623,7 +613,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Шмидт Светлана Юрьевна</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/cherepanova-liliya.webp"
@@ -637,7 +627,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Лилия Черепанова</span></button
+            /></button
           ><button
             type="button"
             data-company-image="images/company/academy/davydova-yuliya.webp"
@@ -651,7 +641,7 @@
               loading="lazy"
               width="453"
               height="640"
-            /><span>Давыдова Юлия</span>
+            />
           </button>
         </div>
         <div class="company-lightbox__image" data-lightbox-view="">
@@ -665,9 +655,6 @@
           />
         </div>
         <div class="company-lightbox__bottom" data-lightbox-bottom="">
-          <a target="_blank" rel="noopener" data-lightbox-original="" href="objects.html"
-            >Открыть оригинал</a
-          >
           <div class="company-lightbox__steps" data-lightbox-steps="" hidden="">
             <button class="icon-btn" type="button" data-lightbox-step="-1" aria-label="Предыдущее изображение">
               <svg
@@ -751,7 +738,7 @@
             <a class="site-footer__privacy" href="privacy.html">Политика конфиденциальности</a>
           </div>
           <div class="site-footer__right">
-            <h2 id="site-footer-title">Контакты</h2>
+            <h2 id="site-footer-title">У каждого проекта<br />есть точка старта.<br />Давайте обсудим ваш.</h2>
             <div class="site-footer__contacts">
               <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
                 <h3 id="footer-general-title">Общие контакты</h3>
