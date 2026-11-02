@@ -23,7 +23,7 @@
   --projects-year: #ffffffb8;
   --projects-year-active: var(--color-white);
   --projects-line: #ffffff38;
-  --projects-display: 'Oswald', 'Manrope', sans-serif;
+  --projects-display: var(--font-display);
 
   position: relative;
   z-index: 3;
@@ -36,10 +36,18 @@
 }
 
 .projects-section:not(.projects-section--catalog) {
+  --projects-surface: #10191e;
   --projects-columns: 5;
   --project-card-width: calc(
     (100cqw - (var(--projects-columns) - 1) * var(--projects-gap)) / var(--projects-columns)
   );
+
+  background-image:
+    linear-gradient(180deg, #10191ecc, #10191eb3 45%, #10191ec7),
+    url('../../images/backgrounds/projects-blueprint-dark-v2.webp');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .projects-section:not(.projects-section--catalog) .projects-body {
@@ -55,7 +63,7 @@
 .projects-section:not(.projects-section--catalog) .projects-heading h2 {
   max-width: none;
   margin: 0;
-  font-family: Manrope, sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(24px, 1.9vw, 34px);
   line-height: 1.2;
   font-weight: 500;

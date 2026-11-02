@@ -12,3 +12,36 @@
   padding-left: var(--pad);
   position: relative;
 }
+
+.projects-body > .projects-rail {
+  grid-column: 2;
+  grid-row: 1;
+}
+
+.projects-body__arrow {
+  --icon-btn-bg: var(--graphite);
+
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  z-index: 1;
+  border: 1px solid #ffffff55;
+}
+
+.projects-body__arrow--previous {
+  justify-self: start;
+  margin-left: -24px;
+}
+
+.projects-body__arrow--next {
+  justify-self: end;
+  margin-right: -12px;
+}
+
+.projects-body__arrow svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.5;
+}

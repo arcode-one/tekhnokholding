@@ -29,9 +29,9 @@
   --layer-header: 50;
   --layer-preloader: 100;
   --layer-scrollbar: 10000;
-  --font-body: manrope, system-ui, sans-serif;
-  --font-display: oswald, manrope, sans-serif;
-  --font-numbers: montserrat, manrope, system-ui, sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --font-display: var(--font-body);
+  --font-numbers: var(--font-body);
 }
 
 @media (max-width: 767px) {

@@ -9,6 +9,20 @@
       // GitHub Pages сохраняет запрошенный URL при показе 404.html.
       // Старые закладки hero-test ведут на соответствующие страницы нового сайта.
       const siteRoot = location.hostname === 'arcode-one.github.io' ? '/tekhnokholding/' : '/';
+      // Абсолютный путь нужен и для неизвестных вложенных адресов GitHub Pages.
+      const fontStyles = document.createElement('link');
+      fontStyles.rel = 'stylesheet';
+      fontStyles.href = siteRoot + 'css/base/fonts.css';
+      document.head.append(fontStyles);
+      for (const subset of ['cyrillic', 'latin']) {
+        const fontPreload = document.createElement('link');
+        fontPreload.rel = 'preload';
+        fontPreload.as = 'font';
+        fontPreload.type = 'font/woff2';
+        fontPreload.crossOrigin = '';
+        fontPreload.href = siteRoot + 'fonts/montserrat/montserrat-' + subset + '-wght-normal.woff2';
+        document.head.append(fontPreload);
+      }
       const oldRoot = siteRoot + 'hero-test';
       const oldPage = location.pathname === oldRoot
         ? ''
@@ -25,7 +39,7 @@
     </script>
     <style>
       html { color-scheme: dark; background: #2a2c2f; color: #fff; }
-      body { margin: 0; font: 18px/1.5 system-ui, sans-serif; }
+      body { margin: 0; font: 18px/1.5 'Montserrat', sans-serif; }
       main { box-sizing: border-box; min-height: 100svh; display: grid; align-content: center; padding: clamp(24px, 8vw, 120px); }
       h1 { margin: 0 0 24px; font-size: clamp(32px, 6vw, 72px); line-height: 1.1; }
       p { margin: 0 0 32px; }

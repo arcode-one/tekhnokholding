@@ -10,8 +10,7 @@
   background: none;
   color: inherit;
   font:
-    600 11px Manrope,
-    sans-serif;
+    600 11px var(--font-body);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;

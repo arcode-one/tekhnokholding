@@ -6,11 +6,26 @@
 
 @media (max-width: 767px) {
   .projects-body {
-    display: block;
+    grid-template-columns: minmax(0, 1fr);
     padding-left: 0;
   }
 
   .projects-body > .projects-empty {
+    grid-column: 1;
     margin: 48px var(--pad);
+  }
+
+  .projects-body > .projects-rail,
+  .projects-body__arrow {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .projects-body__arrow--previous {
+    margin-left: 8px;
+  }
+
+  .projects-body__arrow--next {
+    margin-right: 8px;
   }
 }

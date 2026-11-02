@@ -1,6 +1,6 @@
 .site-footer h2 {
   margin: 0;
-  font-family: Manrope, sans-serif;
+  font-family: var(--font-body);
   font-size: clamp(24px, 1.9vw, 34px);
   line-height: 1.2;
   font-weight: 500;

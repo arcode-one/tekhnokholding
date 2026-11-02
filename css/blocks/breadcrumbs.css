@@ -2,8 +2,7 @@
   margin: 0 var(--pad);
   color: inherit;
   font:
-    500 13px/1.6 Manrope,
-    sans-serif;
+    500 13px/1.6 var(--font-body);
   letter-spacing: 0;
   text-transform: none;
 }

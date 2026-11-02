@@ -37,6 +37,10 @@
   font-size: clamp(56px, 7.5vw, 136px);
 }
 
+.company-story--corporate h1 {
+  font-size: clamp(40px, 5vw, 96px);
+}
+
 .company-story__intro p {
   max-width: 42ch;
   margin: 0;

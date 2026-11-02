@@ -60,6 +60,10 @@
   height: 100%;
 }
 
+.company-map__canvas.maplibregl-map {
+  font-family: var(--font-body);
+}
+
 .company-map__tools {
   position: absolute;
   z-index: 2;

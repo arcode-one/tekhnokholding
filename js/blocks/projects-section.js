@@ -35,8 +35,6 @@ export default function init(section) {
   let pointer = null,
     moved = false,
     manualUntil = 0;
-  // Колесо над карточками копит импульс, лента плавно его отрабатывает
-  let wheelImpulse = 0;
 
   function wantsMotion() {
     return (
@@ -58,14 +56,11 @@ export default function init(section) {
     lastTime = now;
     const target = wantsMotion() ? 32 : 0;
     speed += (target - speed) * (1 - Math.exp(-dt / 0.12));
-    const wheelStep = wheelImpulse * (1 - Math.exp(-dt / 0.09));
-    wheelImpulse -= wheelStep;
-    if (Math.abs(wheelImpulse) < 0.5) wheelImpulse = 0;
     // После последней карточки видна копия начала. Возврат к оригиналам незаметен.
     // scrollLeft округляется браузером, поэтому дробную позицию храним отдельно.
-    if (Math.abs(speed) > 0.05 || wheelStep) {
+    if (Math.abs(speed) > 0.05) {
       if (Math.abs(rail.scrollLeft - lastWrittenScroll) > 1) autoPosition = rail.scrollLeft;
-      autoPosition += speed * dt + wheelStep;
+      autoPosition += speed * dt;
       if (target && autoPosition >= loopDistance) autoPosition %= loopDistance;
       autoPosition = Math.max(0, Math.min(rail.scrollWidth - rail.clientWidth, autoPosition));
       rail.scrollLeft = autoPosition;
@@ -74,7 +69,7 @@ export default function init(section) {
     if (
       visible &&
       !document.hidden &&
-      (target || wheelImpulse || Math.abs(speed) > 0.05 || performance.now() < manualUntil)
+      (target || Math.abs(speed) > 0.05 || performance.now() < manualUntil)
     )
       frame = requestAnimationFrame(tick);
     else lastTime = 0;
@@ -91,6 +86,18 @@ export default function init(section) {
         ? 'Запустить ленту'
         : 'Остановить ленту';
     pause.setAttribute('aria-pressed', String(userPaused || pause.disabled));
+  }
+  function updateArrows() {
+    const room = rail.scrollWidth - rail.clientWidth;
+    const scrollable = !rail.hidden && filtered.length > 1 && room > 1;
+    if (prev) {
+      prev.hidden = !scrollable;
+      prev.disabled = !scrollable || (!loopDistance && rail.scrollLeft <= 1);
+    }
+    if (next) {
+      next.hidden = !scrollable;
+      next.disabled = !scrollable || (!loopDistance && rail.scrollLeft >= room - 1);
+    }
   }
   // Фото дальних карточек ставятся, когда до них остаётся около трёх экранов ленты
   const photoObserver =
@@ -129,21 +136,22 @@ export default function init(section) {
       rail.clientWidth > 0 &&
       group.getBoundingClientRect().width >= rail.clientWidth - 1
     ) {
-      // Копируем только первые карточки на ширину окна, а не весь каталог.
+      // Копируем начало на ширину окна и ещё один шаг для перехода стрелкой через стык.
       loopGroup = group.cloneNode(false);
       loopGroup.removeAttribute('data-projects-group');
       loopGroup.setAttribute('data-projects-loop', '');
       loopGroup.setAttribute('aria-hidden', 'true');
       const gap = parseFloat(getComputedStyle(group).columnGap) || 0;
+      const step = filtered[0].getBoundingClientRect().width + gap;
       let width = 0;
-      for (const card of filtered) {
+      for (let i = 0; width < rail.clientWidth + step && i <= filtered.length; i++) {
+        const card = filtered[i % filtered.length];
         const copy = card.cloneNode(true);
         copy.tabIndex = -1;
         copy.removeAttribute('id');
         copy.querySelectorAll('[id]').forEach((element) => element.removeAttribute('id'));
         loopGroup.append(copy);
         width += card.getBoundingClientRect().width + gap;
-        if (width >= rail.clientWidth) break;
       }
       group.after(loopGroup);
       loopDistance =
@@ -155,10 +163,10 @@ export default function init(section) {
     autoPosition = rail.scrollLeft;
     lastWrittenScroll = rail.scrollLeft;
     updatePause();
+    updateArrows();
   }
   function applyFilters() {
     speed = 0;
-    wheelImpulse = 0;
     filtered = cards.filter((card) => {
       const start = Number(card.dataset.yearStart),
         end = Number(card.dataset.yearEnd) || start;
@@ -183,8 +191,6 @@ export default function init(section) {
     autoPosition = 0;
     lastWrittenScroll = 0;
     syncLoop();
-    if (prev) prev.disabled = filtered.length < 2;
-    if (next) next.disabled = filtered.length < 2;
     wake();
   }
   types.forEach((button) =>
@@ -277,6 +283,12 @@ export default function init(section) {
     manualUntil = performance.now() + 3500;
     const gap = parseFloat(getComputedStyle(group).columnGap) || 0;
     const distance = (filtered[0]?.getBoundingClientRect().width || 350) + gap;
+    // На стыке копии и оригинала продолжаем листать в обе стороны.
+    if (loopDistance) {
+      if (direction < 0 && rail.scrollLeft < distance) rail.scrollLeft += loopDistance;
+      else if (direction > 0 && rail.scrollLeft >= loopDistance - 1)
+        rail.scrollLeft -= loopDistance;
+    }
     rail.scrollBy({ left: direction * distance, behavior: reduce.matches ? 'auto' : 'smooth' });
     wake();
   }
@@ -301,34 +313,12 @@ export default function init(section) {
       focused = rail.contains(e.relatedTarget);
       wake();
     });
-    // Мышь над карточками: колесо крутит ленту, а не страницу (Lenis пропускает событие по data-lenis-prevent)
-    const syncWheelMode = () => rail.toggleAttribute('data-lenis-prevent', hover.matches);
-    syncWheelMode();
-    hover.addEventListener('change', syncWheelMode);
-    rail.addEventListener(
-      'wheel',
-      (e) => {
-        const unit = e.deltaMode === 1 ? 40 : e.deltaMode === 2 ? rail.clientWidth : 1;
-        const delta = (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY) * unit;
-        if (!delta) return;
-        // У края ленты колесо отдаём странице
-        const room = rail.scrollWidth - rail.clientWidth;
-        const stuck = room < 2 || (delta < 0 ? rail.scrollLeft <= 1 : rail.scrollLeft >= room - 1);
-        if (!hover.matches || stuck) {
-          manualUntil = performance.now() + 3000;
-          wake();
-          return;
-        }
-        e.preventDefault();
-        wheelImpulse = Math.max(-1600, Math.min(1600, wheelImpulse + delta));
-        manualUntil = performance.now() + 2500;
-        wake();
-      },
-      { passive: false },
-    );
+    // Вертикальное колесо проходит к странице и её плавной прокрутке.
+    // Лентой управляют стрелки, перетаскивание и нативный горизонтальный свайп.
+    rail.addEventListener('scroll', updateArrows, { passive: true });
     rail.addEventListener('dragstart', (e) => e.preventDefault());
     rail.addEventListener('pointerdown', (e) => {
-      if (e.button !== 0) return;
+      if (e.button !== 0 || pointer) return;
       pointer = {
         id: e.pointerId,
         x: e.clientX,
@@ -340,7 +330,7 @@ export default function init(section) {
       wake();
     });
     rail.addEventListener('pointermove', (e) => {
-      if (!pointer || !pointer.mouse) return;
+      if (!pointer || !pointer.mouse || pointer.id !== e.pointerId) return;
       const dx = e.clientX - pointer.x;
       if (Math.abs(dx) > 6) {
         moved = true;
@@ -352,7 +342,9 @@ export default function init(section) {
         rail.scrollLeft = pointer.left - dx;
       }
     });
-    function release() {
+    function release(e) {
+      if (!pointer || pointer.id !== e.pointerId) return;
+      if (rail.hasPointerCapture(pointer.id)) rail.releasePointerCapture(pointer.id);
       pointer = null;
       rail.classList.remove('projects-rail--dragging');
       manualUntil = performance.now() + 2000;

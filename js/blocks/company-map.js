@@ -395,16 +395,15 @@ export default function init(section) {
         antialias: true,
         attributionControl: true,
         scrollZoom: true,
-        cooperativeGestures: !mouse.matches,
+        // Колесо без модификатора прокручивает страницу, Ctrl/⌘ меняет масштаб карты.
+        cooperativeGestures: true,
         locale: {
           'AttributionControl.ToggleAttribution': 'Источники карты',
           'NavigationControl.ResetBearing': 'Ориентировать на север',
-          'CooperativeGesturesHandler.TouchPanBlocker': 'Перемещайте карту двумя пальцами',
+          'CooperativeGesturesHandler.WindowsHelpText': 'Ctrl + колесо для изменения масштаба карты',
+          'CooperativeGesturesHandler.MacHelpText': '⌘ + колесо для изменения масштаба карты',
+          'CooperativeGesturesHandler.MobileHelpText': 'Перемещайте карту двумя пальцами',
         },
-      });
-      mouse.addEventListener('change', () => {
-        if (mouse.matches) map.cooperativeGestures.disable();
-        else map.cooperativeGestures.enable();
       });
       map.addControl(
         new maplibregl.NavigationControl({ showZoom: false, visualizePitch: true }),

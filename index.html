@@ -7,14 +7,14 @@
     <meta name="theme-color" content="#414141" />
     <link
       rel="preload"
-      href="fonts/oswald/Oswald-Variable.woff2"
+      href="fonts/montserrat/montserrat-latin-wght-normal.woff2"
       as="font"
       type="font/woff2"
       crossorigin=""
     />
     <link
       rel="preload"
-      href="fonts/manrope/manrope-cyrillic-wght-normal.woff2"
+      href="fonts/montserrat/montserrat-cyrillic-wght-normal.woff2"
       as="font"
       type="font/woff2"
       crossorigin=""
@@ -666,6 +666,7 @@
             </div>
             <div
               class="projects-rail"
+              id="projects-rail"
               data-projects-rail=""
               role="region"
               aria-label="Объекты компании"
@@ -7649,6 +7650,26 @@
                 </div>
               </div>
             </div>
+            <button
+              class="icon-btn projects-body__arrow projects-body__arrow--previous"
+              type="button"
+              data-projects-prev=""
+              aria-label="Предыдущие объекты"
+              aria-controls="projects-rail"
+              hidden=""
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="icons/sprite.svg#chevron-left"></use></svg>
+            </button>
+            <button
+              class="icon-btn projects-body__arrow projects-body__arrow--next"
+              type="button"
+              data-projects-next=""
+              aria-label="Следующие объекты"
+              aria-controls="projects-rail"
+              hidden=""
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="icons/sprite.svg#chevron-right"></use></svg>
+            </button>
             <p class="projects-empty" data-projects-empty="" hidden="">
               В этой выборке объектов нет.
               <button type="button" data-projects-reset="">Сбросить фильтры</button>
@@ -7876,7 +7897,6 @@
           <div
             class="company-map__canvas"
             data-map-view=""
-            data-lenis-prevent=""
             aria-label="Интерактивная карта объектов Технохолдинга"
             role="region"
           ></div>

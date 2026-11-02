@@ -62,8 +62,7 @@
   background: none;
   color: inherit;
   font:
-    500 11px Manrope,
-    sans-serif;
+    500 11px var(--font-body);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   cursor: pointer;
