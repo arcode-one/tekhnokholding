@@ -1,0 +1,15 @@
+.projects-body > .projects-empty {
+  grid-column: 2;
+  margin: 80px 0;
+}
+
+.projects-body {
+  --years-col: 196px;
+  --card-height: clamp(510px, 40vw, 650px);
+
+  display: grid;
+  grid-template-columns: var(--years-col) minmax(0, 1fr);
+  align-items: start;
+  padding-left: var(--pad);
+  position: relative;
+}

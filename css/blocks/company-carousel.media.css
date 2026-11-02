@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+  .company-carousel__track {
+    gap: var(--space-4);
+  }
+
+  .company-carousel__controls {
+    gap: var(--space-4);
+    margin-top: 24px;
+  }
+}

@@ -1,0 +1,10 @@
+.object-cover {
+  margin: 0 var(--pad);
+  overflow: hidden;
+}
+
+.object-cover img {
+  width: 100%;
+  height: min(72vw, 760px);
+  object-fit: cover;
+}

@@ -1,0 +1,92 @@
+.company-carousel__rail {
+  width: 100%;
+  overflow: auto;
+  scrollbar-width: none;
+  scroll-padding-inline: var(--pad);
+  touch-action: pan-x pan-y pinch-zoom;
+  overscroll-behavior-x: contain;
+  user-select: none;
+  cursor: grab;
+}
+
+.company-carousel__rail img,
+.company-carousel__rail a {
+  -webkit-user-drag: none;
+}
+
+.company-carousel__rail::-webkit-scrollbar {
+  display: none;
+}
+
+.company-carousel__rail.company-carousel__rail--dragging {
+  cursor: grabbing;
+}
+
+.company-carousel__rail--dragging * {
+  cursor: grabbing;
+}
+
+.company-carousel__track {
+  display: flex;
+  gap: 28px;
+  width: max-content;
+  padding-inline: var(--pad);
+}
+
+.company-carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 28px;
+  margin: 36px var(--pad) 0;
+  padding-top: 24px;
+  border-top: 1px solid currentcolor;
+  border-top-color: #34454e33;
+}
+
+.company-carousel__count {
+  margin-right: auto;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.company-carousel__controls button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  padding: 0 10px;
+  margin-inline: -10px;
+  border: 0;
+  border-radius: 24px;
+  background: none;
+  color: inherit;
+  font:
+    500 11px Manrope,
+    sans-serif;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.company-carousel__controls button:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.company-carousel__controls button:not(:disabled):focus-visible {
+  background: var(--control-hover-bg);
+  color: var(--control-hover-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .company-carousel__controls button:not(:disabled):hover {
+    background: var(--control-hover-bg);
+    color: var(--control-hover-ink);
+  }
+
+  .company-carousel__controls button:not(:disabled):hover .projects-sign__fold {
+    transform: translateX(3px);
+  }
+}

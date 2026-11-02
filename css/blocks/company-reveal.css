@@ -1,0 +1,22 @@
+.company-reveal--pending {
+  clip-path: inset(12% 0 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-reveal--pending {
+    clip-path: none;
+    transition: none;
+  }
+}
+
+.company-reveal--visible {
+  clip-path: inset(0);
+  transition: clip-path 0.6s var(--ease-in-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-reveal--visible {
+    clip-path: none;
+    transition: none;
+  }
+}

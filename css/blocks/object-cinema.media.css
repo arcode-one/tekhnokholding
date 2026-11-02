@@ -1,0 +1,34 @@
+@media (max-width: 1100px) {
+  .object-cinema__heading {
+    padding-block: 80px 64px;
+  }
+}
+
+@media (max-width: 767px) {
+  .object-cinema__heading {
+    align-items: flex-start;
+    padding-block: 64px 48px;
+  }
+
+  .object-cinema__heading h2 {
+    font-size: 48px;
+  }
+
+  .object-cinema__heading p {
+    font-size: 12px;
+  }
+
+  .object-cinema__frames {
+    display: block;
+  }
+
+  .object-cinema .object-cinema__frame {
+    margin-bottom: 32px;
+  }
+
+  .object-cinema__bar {
+    flex-wrap: wrap;
+    font-size: 12px;
+    gap: var(--space-4);
+  }
+}

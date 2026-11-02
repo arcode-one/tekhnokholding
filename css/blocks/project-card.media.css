@@ -1,0 +1,48 @@
+@media (max-width: 767px) {
+  .project-card {
+    width: 78vw;
+    flex-basis: 78vw;
+    height: 640px;
+
+    --photo-share: 0.55;
+  }
+
+  .project-card:hover .project-card__info,
+  .project-card:focus-visible .project-card__info {
+    transform: none;
+  }
+
+  .project-card__info {
+    padding: 24px 20px;
+  }
+
+  .project-card :is(h2, h3) {
+    font-size: 20px;
+    -webkit-line-clamp: 3;
+  }
+
+  .project-card__details {
+    margin-top: 12px;
+    gap: 12px;
+  }
+
+  .project-card__material,
+  .project-card__city,
+  .project-card__area {
+    clip-path: none;
+    padding-top: 12px;
+  }
+
+  .project-card__details dt {
+    font-size: 11px;
+  }
+
+  .project-card__details dd {
+    font-size: 14px;
+  }
+
+  .project-card__year {
+    left: 16px;
+    top: 16px;
+  }
+}

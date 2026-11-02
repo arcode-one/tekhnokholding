@@ -1,0 +1,41 @@
+@media (max-width: 1100px) {
+  .company-team__intro {
+    gap: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .company-team__intro h2 {
+    font-size: 24px;
+  }
+
+  .company-team__intro {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: 40px;
+  }
+
+  .company-team__features {
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    margin-bottom: 64px;
+  }
+
+  .company-team__feature--1 {
+    width: 86%;
+    margin: 0 0 0 auto;
+  }
+
+  .company-team__feature-label {
+    font-size: 11px;
+  }
+
+  .company-team__subhead {
+    display: block;
+  }
+
+  .company-team__subhead h3 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+}

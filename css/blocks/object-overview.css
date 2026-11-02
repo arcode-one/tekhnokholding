@@ -1,0 +1,14 @@
+.object-overview {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10%;
+  margin: 120px var(--pad);
+}
+
+.object-overview h2 {
+  margin: 0;
+  font-size: clamp(28px, 2.4vw, 44px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}

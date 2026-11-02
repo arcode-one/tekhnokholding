@@ -1,0 +1,9 @@
+@media (max-width: 767px) {
+  .object-cover {
+    margin-inline: 0;
+  }
+
+  .object-cover img {
+    height: 65vh;
+  }
+}

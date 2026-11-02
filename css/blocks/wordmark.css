@@ -1,0 +1,61 @@
+.wordmark {
+  position: absolute;
+  left: var(--pad);
+  right: var(--pad);
+  bottom: calc(var(--hero-edge-gap) + 24px);
+  translate: 0 35%;
+  z-index: 2;
+  container-type: inline-size;
+
+  /* Слово ровно во всю ширину контейнера: сумма ширин 12 букв (1370.1)
+     и 11 промежутков по 8 единиц при высоте буквы 118 в координатах SVG. */
+  --wm-h: calc(100cqi * 118 / 1458.1);
+  --wm-gap: calc(var(--wm-h) * 8 / 118);
+}
+
+.wordmark__inner {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: var(--wm-gap);
+}
+
+.wordmark__row {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--wm-gap);
+}
+
+.wordmark__l svg {
+  display: block;
+  height: var(--wm-h);
+  width: auto;
+  fill: var(--light);
+  transform: rotateY(0deg);
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+  transition: transform 0.5s linear calc(var(--i) * 100ms);
+}
+
+.wordmark__l g {
+  filter: url('#wordmark-weight');
+}
+
+.wordmark__l {
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.wordmark.wordmark--flipped .wordmark__l svg {
+  transform: rotateY(-91deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wordmark__l svg {
+    transition: none;
+  }
+
+  .wordmark.wordmark--flipped .wordmark__l svg {
+    transform: none;
+  }
+}

@@ -1,0 +1,11 @@
+.projects-total-link {
+  display: block;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-total-link:hover {
+    color: var(--logo-yellow);
+  }
+}

@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+  .object-facts {
+    gap: 28px 20px;
+  }
+
+  .object-facts dd {
+    font-size: 16px;
+    overflow-wrap: anywhere;
+  }
+}

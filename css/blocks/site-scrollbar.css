@@ -1,0 +1,63 @@
+.site-scrollbar {
+  position: fixed;
+  z-index: var(--layer-scrollbar);
+  inset: 0 0 0 auto;
+  width: 35px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-white);
+  cursor: default;
+  user-select: none;
+  touch-action: none;
+}
+
+.site-scrollbar[hidden] {
+  display: none;
+}
+
+html.site--preloading .site-scrollbar {
+  display: none;
+}
+
+.site-scrollbar__thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 24px;
+  background: currentcolor;
+  border-radius: 0;
+  translate: 0 0;
+  scale: 0.333333 1;
+  transform-origin: right center;
+  cursor: grab;
+  will-change: transform;
+  transition:
+    scale 0.2s ease,
+    translate 0.2s ease,
+    border-radius 0.2s ease;
+}
+
+.site-scrollbar:is(:hover, :focus-visible, .site-scrollbar--dragging) .site-scrollbar__thumb {
+  scale: 1 1;
+  translate: -11px 0;
+  border-radius: 50px;
+}
+
+.site-scrollbar:focus-visible {
+  outline: none;
+}
+
+.site-scrollbar:focus-visible .site-scrollbar__thumb {
+  outline: none;
+}
+
+.site-scrollbar.site-scrollbar--dragging .site-scrollbar__thumb {
+  cursor: grabbing;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-scrollbar__thumb {
+    transition: none;
+  }
+}

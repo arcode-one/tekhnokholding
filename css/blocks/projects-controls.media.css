@@ -1,0 +1,8 @@
+@media (max-width: 767px) {
+  .projects-controls {
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+  }
+}

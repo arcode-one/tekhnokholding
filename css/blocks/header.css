@@ -1,0 +1,113 @@
+.header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  opacity: 0;
+  transition:
+    opacity 0.8s 0.2s var(--ease-out),
+    translate 0.35s var(--ease-out);
+}
+
+.site--loaded .header {
+  opacity: 1;
+}
+
+html.site--scrolled .header {
+  translate: 0 -100%;
+  pointer-events: none;
+  transition: translate 0.6s var(--ease-in-out);
+}
+
+.header__inner {
+  height: var(--header-h);
+  padding: 0 var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-8);
+}
+
+.header__logo img {
+  height: 56px;
+  width: auto;
+}
+
+.header__right {
+  display: flex;
+  align-items: center;
+  gap: 44px;
+}
+
+.header__phone,
+.header__mail {
+  transition: color 0.2s ease, opacity 0.3s;
+}
+
+.header__phone:focus-visible,
+.header__mail:focus-visible {
+  color: var(--control-hover-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .header__phone:hover,
+  .header__mail:hover {
+    color: var(--control-hover-bg);
+  }
+}
+
+.header__divider {
+  width: 1px;
+  height: 36px;
+  background: rgb(242, 242, 240, 0.2);
+}
+
+.header__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.header__phone {
+  font-size: 19px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.header__mail {
+  font-size: 16px;
+  color: var(--light);
+}
+
+.header__messengers {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.header__burger {
+  display: none;
+}
+
+.header__burger svg {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .header__phone,
+  .header__mail {
+    transition: none;
+  }
+
+  .header {
+    opacity: 1;
+    translate: none;
+    transition: none;
+  }
+
+  .header,
+  html.site--scrolled .header {
+    transition: none;
+  }
+}

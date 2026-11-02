@@ -1,0 +1,146 @@
+@media (max-width: 1100px) {
+  .hero__row {
+    flex-wrap: wrap;
+  }
+
+  .hero__content--leadership {
+    column-gap: var(--space-6);
+  }
+
+  .hero__content--leadership .hero__title {
+    gap: 14px;
+  }
+
+  .hero__content--leadership .hero__num {
+    font-size: 26vw;
+  }
+
+  .hero__content--leadership .hero__sub {
+    font-size: 3.25vw;
+  }
+
+  .hero__content--leadership .hero__experience {
+    padding-left: 24px;
+    gap: 14px;
+    min-height: 132px;
+  }
+
+  .hero__content--leadership .hero__experience strong {
+    font-size: 10vw;
+  }
+
+  .hero__content--leadership .hero__experience > span {
+    padding-left: 14px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    --hero-edge-gap: 24px;
+
+    min-height: 600px;
+  }
+
+  .hero__content {
+    top: auto;
+    bottom: calc(80px + (100vw - 32px) * 0.282);
+    transform: none;
+    gap: 22px;
+  }
+
+  .hero__title {
+    gap: var(--space-4);
+  }
+
+  .hero__num {
+    font-size: clamp(104px, 32.8vw, 128px);
+  }
+
+  .hero__sub {
+    font-size: clamp(18px, 5.6vw, 22px);
+    line-height: 1.17;
+    letter-spacing: -0.01em;
+  }
+
+  .hero__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-2);
+  }
+
+  .hero__experience strong {
+    font-size: 84px;
+  }
+
+  .hero__experience > span {
+    font-size: 21px;
+  }
+
+  .hero__years {
+    grid-column: 1 / -1;
+    order: -1;
+    margin-bottom: 12px;
+    font-size: 22px;
+  }
+
+  .hero__sep {
+    display: none;
+  }
+
+  .hero__content--leadership {
+    width: calc(100% - 2 * var(--pad));
+    top: auto;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .hero__content--leadership .hero__title {
+    gap: 10px;
+  }
+
+  .hero__number-sign {
+    font-size: 28px;
+  }
+
+  .hero__number-sign::after {
+    bottom: -12px;
+    height: 1px;
+  }
+
+  .hero__content--leadership .hero__num {
+    font-size: clamp(168px, 48vw, 216px);
+    -webkit-text-stroke-width: 1px;
+  }
+
+  .hero__content--leadership .hero__sub {
+    font-size: clamp(18px, 5.6vw, 27px);
+  }
+
+  .hero__content--leadership .hero__experience {
+    justify-self: end;
+    min-height: 0;
+    padding-left: 0;
+    border-left: 0;
+    gap: 18px;
+  }
+
+  .hero__content--leadership .hero__experience strong {
+    font-size: 72px;
+  }
+
+  .hero__content--leadership .hero__experience > span {
+    font-size: 16px;
+    padding-left: 18px;
+  }
+
+  .hero__content--gold {
+    top: 46%;
+    bottom: auto;
+    transform: translateY(-50%);
+    gap: 28px;
+
+    --one: clamp(108px, 30vw, 160px);
+    --gold-gap: 8px;
+  }
+}

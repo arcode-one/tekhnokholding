@@ -1,0 +1,19 @@
+@media (max-width: 1100px) {
+  .projects-heading {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-heading {
+    align-items: flex-end;
+    flex-direction: row;
+    margin-bottom: 28px;
+    gap: var(--space-6);
+  }
+
+  .projects-heading :is(h1, h2) {
+    max-width: 75%;
+    font-size: clamp(40px, 10.5vw, 62px);
+  }
+}

@@ -1,0 +1,62 @@
+.menu__nav a {
+  transition: color 0.2s ease, opacity 0.3s;
+}
+
+.menu__nav a:focus-visible {
+  color: var(--control-hover-bg);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 15;
+  padding: calc(var(--header-h) + 32px) var(--pad) 40px;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu[hidden] {
+  display: none;
+}
+
+.menu__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-size: 32px;
+  font-weight: 300;
+}
+
+.menu__contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 18px;
+}
+
+.menu__contacts a:last-child {
+  color: var(--light);
+}
+
+.menu__contacts a {
+  transition: color 0.2s ease;
+}
+
+.menu__contacts a:focus-visible {
+  color: var(--control-hover-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .menu__contacts a:hover {
+    color: var(--control-hover-bg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu__nav a,
+  .menu__contacts a {
+    transition: none;
+  }
+}

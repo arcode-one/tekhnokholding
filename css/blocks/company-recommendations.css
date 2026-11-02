@@ -1,0 +1,60 @@
+.company-recommendations {
+  --recommendation-columns: 5;
+  --recommendation-gap: 14px;
+  --recommendation-card-width: calc(
+    (100vw - var(--pad) * 2 - (var(--recommendation-columns) - 1) * var(--recommendation-gap)) /
+      var(--recommendation-columns)
+  );
+
+  padding-block: 80px;
+  background: var(--color-gray-light);
+}
+
+.company-recommendations .company-heading {
+  margin-bottom: 40px;
+}
+
+.company-recommendations__slider {
+  position: relative;
+}
+
+.company-recommendations .company-carousel__rail {
+  width: calc(100% - var(--pad) * 2);
+  margin-inline: var(--pad);
+  scroll-padding-inline: 0;
+}
+
+.company-recommendations .company-carousel__track {
+  gap: var(--recommendation-gap);
+  padding-block: 8px 24px;
+  padding-inline: 0;
+}
+
+.company-recommendations__arrow {
+  --icon-btn-bg: #fffffff0;
+
+  position: absolute;
+  top: calc(50% - 22px);
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--logo-yellow);
+  color: var(--control-hover-ink);
+}
+
+.company-recommendations__arrow--previous {
+  left: calc(var(--pad) - 16px);
+}
+
+.company-recommendations__arrow--next {
+  right: calc(var(--pad) - 16px);
+}
+
+.company-recommendations__arrow svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 1.5;
+}
+

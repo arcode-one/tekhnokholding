@@ -1,0 +1,70 @@
+.quality-stages {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 10%;
+  margin: 0 var(--pad) 112px;
+}
+
+.quality-stages details {
+  border-top: 1px solid #34454e55;
+}
+
+.quality-stages details:last-child {
+  border-bottom: 1px solid #34454e55;
+}
+
+.quality-stages summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: 28px 0;
+  font-size: 20px;
+  line-height: 1.4;
+  list-style: none;
+  cursor: pointer;
+}
+
+.quality-stages summary::-webkit-details-marker {
+  display: none;
+}
+
+.quality-stages summary span {
+  position: relative;
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.quality-stages summary span::before,
+.quality-stages summary span::after {
+  position: absolute;
+  content: '';
+  top: 9px;
+  width: 20px;
+  height: 1px;
+  background: currentcolor;
+}
+
+.quality-stages summary span::after {
+  transform: rotate(90deg);
+  transition: transform 0.2s var(--ease-out);
+}
+
+.quality-stages details[open] summary span::after {
+  transform: rotate(0);
+}
+
+.quality-stages details p {
+  max-width: 60ch;
+  margin: 0;
+  padding-bottom: 28px;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quality-stages summary span::after {
+    transition: none;
+  }
+}

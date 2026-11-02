@@ -1,0 +1,92 @@
+.object-page {
+  background: #f2f2f0;
+  color: var(--color-ink);
+}
+
+.object-page > main {
+  padding-top: var(--header-h);
+}
+
+.object-page .header {
+  background: transparent;
+  color: var(--light);
+}
+
+.object-page:not(.catalog-page) .header {
+  color: var(--color-ink);
+}
+
+:where(.object-page:not(.catalog-page)) .header__mail {
+  color: inherit;
+}
+
+.object-page:not(.catalog-page) .header__divider {
+  background: #34454e33;
+}
+
+.object-page :is(.dock, .menu) {
+  color: var(--light);
+}
+
+.object-story {
+  padding-top: 48px;
+}
+
+.object-story.object-story--motion {
+  padding-top: 0;
+}
+
+.object-story--motion .object-cover {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
+.object-story--motion .object-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.object-story--motion .object-cover figcaption {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding: 64px var(--pad) 28px;
+  background: linear-gradient(transparent, #15242db3);
+  color: var(--light);
+  font-size: 14px;
+}
+
+.object-page--motion.object-page--motion-ready .object-lead {
+  height: 138svh;
+}
+
+.object-story--motion .object-overview {
+  margin-block: 140px;
+}
+
+.object-story--motion .object-scope {
+  max-width: 24ch;
+}
+
+.object-story--motion .object-description {
+  max-width: 54ch;
+}
+
+.object-story--motion .object-specs {
+  margin-block: 140px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .object-story--motion .object-cover,
+  .object-story--motion .object-cover img {
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

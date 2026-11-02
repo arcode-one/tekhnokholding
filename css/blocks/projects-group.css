@@ -1,0 +1,10 @@
+.projects-group {
+  display: flex;
+  width: max-content;
+  gap: 28px;
+  padding-right: 28px;
+}
+
+.projects-group + .projects-group {
+  padding-left: 0;
+}

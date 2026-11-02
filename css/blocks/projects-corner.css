@@ -1,0 +1,12 @@
+.projects-corner {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  width: 54.4%;
+  height: var(--section-overlap);
+  background: var(--color-white);
+  pointer-events: none;
+  transition: none;
+  will-change: transform;
+}

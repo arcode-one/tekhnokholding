@@ -1,0 +1,31 @@
+@media (max-width: 1100px) {
+  .dock__clip {
+    display: none;
+  }
+
+  .dock.dock--open .dock__bg {
+    transform: translate3d(calc(100% - var(--dock-height)), 0, 0);
+  }
+
+  .dock.dock--open .dock__track {
+    transform: translate3d(calc(var(--dock-height) - 100%), 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .dock {
+    top: 12px;
+
+    --burger: 44px;
+    --dock-height: 44px;
+  }
+
+  .dock__burger {
+    margin-right: 0;
+  }
+
+  .dock__burger svg {
+    width: 22px;
+    height: 22px;
+  }
+}

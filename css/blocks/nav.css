@@ -1,0 +1,30 @@
+.nav {
+  display: flex;
+  gap: var(--space-8);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.nav a {
+  transition: color 0.2s ease, opacity 0.3s;
+}
+
+.nav a:focus-visible {
+  color: var(--control-hover-bg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.nav, .menu__nav, .dock__nav) a:hover {
+    color: var(--control-hover-bg);
+  }
+
+  :is(.nav, .menu__nav, .dock__nav, .header__contacts, .dock__contacts):has(a:hover) a:not(:hover) {
+    opacity: 0.4;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav a {
+    transition: none;
+  }
+}

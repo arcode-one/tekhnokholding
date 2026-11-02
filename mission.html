@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="ru" class="site site--loaded">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Миссия компании | Технохолдинг</title>
+    <meta
+      name="description"
+      content="Миссия компании. Через качественные кровельные решения создавать пространство, в котором человеку комфортно жить, а бизнесу уверенно расти и развиваться."
+    />
+    <meta name="theme-color" content="#34454e" />
+    <meta property="og:image" content="images/mission/roof-hero-generated-v2.webp" />
+    <link
+      rel="preload"
+      href="fonts/oswald/Oswald-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link
+      rel="preload"
+      href="fonts/manrope/manrope-cyrillic-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body id="top" class="object-page mission-page">
+    <header class="header">
+      <div class="header__inner">
+        <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="header__right">
+          <nav class="nav" aria-label="Основное меню">
+            <a href="index.html#services">Услуги</a>
+            <a href="index.html#objects">Объекты</a>
+            <a href="index.html#contacts">Контакты</a>
+            <a href="index.html#account">Личный кабинет</a>
+          </nav>
+          <span class="header__divider" aria-hidden="true"></span>
+          <div class="header__contacts">
+            <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+            <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+          </div>
+          <div class="header__messengers">
+            <a
+              class="icon-btn"
+              href="index.html#telegram"
+              aria-label="Написать в Telegram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+              </svg>
+            </a>
+            <a class="icon-btn" href="index.html#max" aria-label="Написать в MAX">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+              </svg>
+            </a>
+            <button
+              class="icon-btn burger-btn header__burger"
+              type="button"
+              data-menu-toggle=""
+              aria-label="Открыть меню"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              data-ui="header__burger"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="burger__line--hide" d="M4 8h16"></path>
+                <path class="burger__line--keep" d="M4 16h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
+    <div class="dock" data-ui="dock">
+      <div class="dock__surface">
+        <div class="dock__bg">
+          <div class="dock__track">
+            <div class="dock__clip">
+              <div class="dock__panel" id="dock-panel">
+                <a
+                  class="dock__logo dock__item"
+                  style="--r: 8"
+                  href="index.html"
+                  aria-label="Технохолдинг, на главную"
+                >
+                  <img
+                    src="icons/logo-light-compact.svg"
+                    alt="Технохолдинг"
+                    width="1292"
+                    height="430"
+                    loading="lazy"
+                  />
+                </a>
+                <nav class="dock__nav" aria-label="Меню">
+                  <a class="dock__item" style="--r: 7" href="index.html#services">Услуги</a>
+                  <a class="dock__item" style="--r: 6" href="index.html#objects">Объекты</a>
+                  <a class="dock__item" style="--r: 5" href="index.html#contacts">Контакты</a>
+                  <a class="dock__item" style="--r: 4" href="index.html#account">Личный кабинет</a>
+                </nav>
+                <span class="dock__divider dock__item" style="--r: 3" aria-hidden="true"></span>
+                <div class="dock__contacts dock__item" style="--r: 2">
+                  <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+                  <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+                </div>
+                <div class="dock__icons">
+                  <a
+                    class="icon-btn dock__item"
+                    style="--r: 1"
+                    href="index.html#telegram"
+                    aria-label="Написать в Telegram"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+                    </svg>
+                  </a>
+                  <a
+                    class="icon-btn dock__item"
+                    style="--r: 0"
+                    href="index.html#max"
+                    aria-label="Написать в MAX"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="icon-btn dock__burger burger-btn"
+        type="button"
+        data-menu-toggle=""
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="dock-panel"
+        data-ui="dock__burger"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="burger__line--hide" d="M4 8h16"></path>
+          <path class="burger__line--keep" d="M4 16h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="menu"
+      id="mobile-menu"
+      hidden=""
+      data-ui="menu"
+      data-mobile-menu=""
+      role="dialog"
+      aria-modal="true"
+      aria-label="Меню сайта"
+    >
+      <nav class="menu__nav" aria-label="Мобильное меню">
+        <a href="index.html#services">Услуги</a>
+        <a href="index.html#objects">Объекты</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="index.html#account">Личный кабинет</a>
+      </nav>
+      <div class="menu__contacts">
+        <a href="tel:+73512253040">8 (351) 225-30-40</a>
+        <a href="mailto:info@thld.su">info@thld.su</a>
+      </div>
+    </div>
+
+    <main>
+      <article class="mission-story" data-ui="mission-story">
+        <section
+          class="mission-hero"
+          aria-labelledby="mission-title"
+          data-ui="mission-hero roof-background"
+        >
+          <div class="mission-hero__stage" data-ui="mission-hero__stage">
+            <div class="mission-hero__photo" data-ui="mission-hero__photo">
+              <img
+                data-ui="roof-background__image"
+                src="images/mission/roof-hero-generated-v2.webp"
+                alt="Иллюстрация плоской кровли промышленного комплекса на фоне города"
+                fetchpriority="high"
+                decoding="async"
+                width="1672"
+                height="941"
+              />
+            </div>
+            <div class="mission-hero__content">
+              <nav
+                class="breadcrumbs breadcrumbs--mission"
+                aria-label="Хлебные крошки"
+                data-ui="breadcrumbs"
+              >
+                <ol>
+                  <li><a href="index.html">Главная</a></li>
+                  <li>
+                    <span class="breadcrumbs__separator" aria-hidden="true">/</span
+                    ><span aria-current="page">Миссия компании</span>
+                  </li>
+                </ol>
+              </nav>
+              <h1 id="mission-title">
+                <span class="mission-hero__title-main">Миссия</span
+                ><span class="mission-hero__title-sub">компании</span>
+              </h1>
+            </div>
+          </div>
+        </section>
+        <section class="mission-purpose" id="purpose" aria-labelledby="purpose-title">
+          <span class="mission-corner" aria-hidden="true" data-ui="mission-corner"></span>
+          <h2 id="purpose-title">Культурный код компании</h2>
+          <figure class="mission-purpose__detail" data-ui="mission-purpose__detail">
+            <img
+              src="images/company/departments/quality-service.webp"
+              alt="Проверка качества кровельных работ"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="700"
+              srcset="
+                images/company/departments/quality-service-480w.webp  480w,
+                images/company/departments/quality-service-960w.webp  960w,
+                images/company/departments/quality-service.webp      1400w
+              "
+              sizes="(max-width: 767px) 100vw, 100vw"
+            />
+          </figure>
+          <p class="mission-purpose__statement">
+            Через качественные кровельные решения создавать пространство, в котором человеку
+            комфортно жить, а бизнесу уверенно расти и развиваться.
+          </p>
+          <p class="mission-purpose__approach">
+            Мы меняем подход к строительству, формируя стандарты прозрачности, качества и
+            ответственности.
+          </p>
+        </section>
+        <section class="mission-chapters" id="talents" aria-labelledby="talents-title">
+          <span class="mission-corner" aria-hidden="true" data-ui="mission-corner"></span>
+          <figure class="mission-bridge" data-mission-bridge="" data-ui="mission-bridge">
+            <img
+              src="images/company/departments/project-management.webp"
+              alt="Совместная работа специалистов над кровельными решениями"
+              loading="lazy"
+              decoding="async"
+              width="1400"
+              height="700"
+              srcset="
+                images/company/departments/project-management-480w.webp  480w,
+                images/company/departments/project-management-960w.webp  960w,
+                images/company/departments/project-management.webp      1400w
+              "
+              sizes="(max-width: 767px) 100vw, 100vw"
+            />
+          </figure>
+          <h2 class="mission-section-title" id="talents-title">Наши таланты</h2>
+          <article
+            class="mission-scene mission-scene--expertise"
+            id="talent-1"
+            data-mission-scene=""
+            data-layout="expertise"
+            aria-labelledby="talent-1-title"
+          >
+            <h3 class="mission-scene__heading" id="talent-1-title">
+              Уникальная кровельная экспертиза и комплексное решение сложных задач
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/figures-roof-v2.webp"
+                  alt="Большой промышленный комплекс с плоской кровлей"
+                  loading="lazy"
+                  decoding="async"
+                  width="1448"
+                  height="1086"
+                  srcset="
+                    images/figures-roof-v2-480w.webp  480w,
+                    images/figures-roof-v2-960w.webp  960w,
+                    images/figures-roof-v2.webp      1448w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Умеем реализовывать сложные объекты и даём заказчику полный комплекс решений: от
+              анализа проекта и подбора технологии до организации работ и контроля качества.
+            </p>
+          </article>
+          <article
+            class="mission-scene mission-scene--result"
+            id="talent-2"
+            data-mission-scene=""
+            data-layout="result"
+            aria-labelledby="talent-2-title"
+          >
+            <h3 class="mission-scene__heading" id="talent-2-title">
+              Надёжный результат и долгосрочное доверие
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/departments/quality-service.webp"
+                  alt="Проверка качества кровли"
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="700"
+                  srcset="
+                    images/company/departments/quality-service-480w.webp  480w,
+                    images/company/departments/quality-service-960w.webp  960w,
+                    images/company/departments/quality-service.webp      1400w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Мы гибко адаптируемся к изменениям, доводим объект до качественного результата с
+              гарантией, приоритет на долгосрочные отношения с заказчиками, партнёрами и
+              сотрудниками.
+            </p>
+          </article>
+        </section>
+        <section class="mission-chapters" id="values" aria-labelledby="values-title">
+          <h2 class="mission-section-title" id="values-title">Наши ценности</h2>
+          <article
+            class="mission-scene mission-scene--initiative"
+            id="initiative"
+            data-mission-scene=""
+            data-layout="initiative"
+            aria-labelledby="initiative-title"
+          >
+            <h3 class="mission-scene__heading" id="initiative-title">
+              Возможности лидерства и инициативы. Развитие и рост
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/departments/production-technical.webp"
+                  alt="Совместная работа специалистов над проектом кровли"
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="788"
+                  srcset="
+                    images/company/departments/production-technical-480w.webp  480w,
+                    images/company/departments/production-technical-960w.webp  960w,
+                    images/company/departments/production-technical.webp      1400w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              У нас ценится не только должность, а вклад человека. Каждый может предлагать решения,
+              брать на себя ответственность, проявлять самостоятельность и расти за счёт своей
+              инициативы. Мы поддерживаем развитие людей, потому что именно они – основа роста всей
+              компании.
+            </p>
+            <div class="mission-scene__principle">
+              <h4>Принцип в работе</h4>
+              <p>
+                Берём ответственность в своей зоне работы, самостоятельно двигаемся к результату,
+                применяем свои знания и опыт для поиска лучшего решения.
+              </p>
+            </div>
+          </article>
+          <article
+            class="mission-scene mission-scene--belief"
+            id="belief"
+            data-mission-scene=""
+            data-layout="belief"
+            aria-labelledby="belief-title"
+          >
+            <h3 class="mission-scene__heading" id="belief-title">
+              Вера. Нацеленность на хороший результат. Верю – делаю
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/departments/construction.webp"
+                  alt="Специалисты строительно-монтажного отдела на объекте"
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="700"
+                  srcset="
+                    images/company/departments/construction-480w.webp  480w,
+                    images/company/departments/construction-960w.webp  960w,
+                    images/company/departments/construction.webp      1400w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Мы верим в хороший результат, в силу команды и в то, что решение есть всегда,
+              действуем до конца, создавая результат, которым можно гордиться.
+            </p>
+            <div class="mission-scene__principle">
+              <h4>Принцип в работе</h4>
+              <p>
+                Верим в то, что делаем: решение есть, команда справится, результат будет достигнут.
+                Выбираем честность, открытость и порядочность в каждом решении.
+              </p>
+            </div>
+          </article>
+          <article
+            class="mission-scene mission-scene--trust"
+            id="trust"
+            data-mission-scene=""
+            data-layout="trust"
+            aria-labelledby="trust-title"
+          >
+            <h3 class="mission-scene__heading" id="trust-title">Доверие людям в команде</h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/team/team-main-office-20261002-960w.webp"
+                  alt="Команда компании Технохолдинг"
+                  loading="lazy"
+                  decoding="async"
+                  width="960"
+                  height="540"
+                  srcset="
+                    images/company/team/team-main-office-20261002-960w-480w.webp 480w,
+                    images/company/team/team-main-office-20261002-960w.webp      960w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Мы работаем так, чтобы на слово, решение и результат коллег можно было положиться. В
+              команде мы не подводим, не бросаем и поддерживаем друг друга, потому что общий
+              результат зависит от каждого.
+            </p>
+            <div class="mission-scene__principle">
+              <h4>Принцип в работе</h4>
+              <p>
+                Мы строим работу на доверии, ответственности и вовлечённости каждого. Действуем как
+                единая команда: слышим мнение коллег, уважаем вклад каждого, помогаем друг другу
+                находить решения и вместе отвечаем за результат.
+              </p>
+            </div>
+          </article>
+          <article
+            class="mission-scene mission-scene--reputation"
+            id="reputation"
+            data-mission-scene=""
+            data-layout="reputation"
+            aria-labelledby="reputation-title"
+          >
+            <h3 class="mission-scene__heading" id="reputation-title">
+              Любовь к делу, забота о репутации
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/departments/quality-service.webp"
+                  alt="Специалист службы качества проверяет кровлю"
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="700"
+                  srcset="
+                    images/company/departments/quality-service-480w.webp  480w,
+                    images/company/departments/quality-service-960w.webp  960w,
+                    images/company/departments/quality-service.webp      1400w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Мы бережём имя компании через качество своей работы, отношение к клиенту и
+              ответственность за обещания. Мы любим своё дело и относимся к нему с уважением, для
+              нас важно не просто выполнять задачи, а делать так, чтобы результат укреплял репутацию
+              компании.
+            </p>
+            <div class="mission-scene__principle">
+              <h4>Принцип в работе</h4>
+              <p>
+                Внимательно относимся к заказчику, выполняем обязательства сверх ожиданий. Строим
+                честные долгосрочные отношения со всеми участниками процесса, сохраняя качество и не
+                допуская компромиссов.
+              </p>
+            </div>
+          </article>
+          <article
+            class="mission-scene mission-scene--craft"
+            id="craft"
+            data-mission-scene=""
+            data-layout="craft"
+            aria-labelledby="craft-title"
+          >
+            <h3 class="mission-scene__heading" id="craft-title">
+              Сила мастерства и профессионализм
+            </h3>
+            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
+              <div
+                class="mission-scene__frame"
+                data-mission-parallax=""
+                data-ui="mission-scene__frame"
+              >
+                <img
+                  src="images/company/departments/project-management.webp"
+                  alt="Профессиональная команда обсуждает решения для объекта"
+                  loading="lazy"
+                  decoding="async"
+                  width="1400"
+                  height="700"
+                  srcset="
+                    images/company/departments/project-management-480w.webp  480w,
+                    images/company/departments/project-management-960w.webp  960w,
+                    images/company/departments/project-management.webp      1400w
+                  "
+                  sizes="(max-width: 767px) 100vw, 100vw"
+                />
+              </div>
+            </figure>
+            <p class="mission-scene__lead">
+              Мы опираемся на знания, опыт и профессиональную точность. Сложные объекты для нас –
+              возможность показать уровень, найти решение и создать результат, превышающий ожидания
+              заказчика.
+            </p>
+            <div class="mission-scene__principle">
+              <h4>Принцип в работе</h4>
+              <p>
+                Мы растём как профессионалы, усиливаем свою экспертизу и не стоим на месте в
+                развитии, чем создаём сильную команду, способную брать сложные объекты. Передаём
+                качественный продукт, как внутри компании, так и заказчику.
+              </p>
+            </div>
+          </article>
+        </section>
+      </article>
+    </main>
+    <footer
+      class="site-footer"
+      id="contacts"
+      aria-labelledby="site-footer-title"
+      data-footer-motion=""
+    >
+      <div class="site-footer__scene" data-footer-scene="">
+        <div class="site-footer__visual" aria-hidden="true">
+          <img
+            class=""
+            src="images/company/footer-roof-day-v1.webp"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="1672"
+            height="941"
+            srcset="
+              images/company/footer-roof-day-v1-480w.webp   480w,
+              images/company/footer-roof-day-v1-960w.webp   960w,
+              images/company/footer-roof-day-v1-1600w.webp 1600w,
+              images/company/footer-roof-day-v1.webp       1672w
+            "
+            sizes="(max-width: 767px) 100vw, 100vw"
+          />
+        </div>
+        <div class="site-footer__layout" data-ui="site-footer__layout">
+          <div class="site-footer__left">
+            <nav class="site-footer__nav" aria-label="Разделы сайта">
+              <a href="index.html#figures">О компании</a><a href="mission.html">Миссия компании</a
+              ><a href="index.html#objects">Наши объекты</a
+              ><a href="index.html#map-objects">Карта объектов</a
+              ><a href="index.html#advantages">Преимущества</a
+              ><a href="index.html#clients">Нас рекомендуют</a><a href="team.html">Наша команда</a>
+            </nav>
+            <a class="site-footer__brand" href="index.html" aria-label="Технохолдинг, на главную"
+              ><img
+                src="icons/logo-light-compact.svg"
+                alt="Технохолдинг"
+                width="1292"
+                height="430"
+                loading="lazy"
+            /></a>
+            <p class="site-footer__copyright">
+              © 2026 ООО «Технохолдинг».<br />Все права защищены.
+            </p>
+            <a class="site-footer__privacy" href="privacy.html">Политика конфиденциальности</a>
+          </div>
+          <div class="site-footer__right">
+            <h2 id="site-footer-title">Контакты</h2>
+            <div class="site-footer__contacts">
+              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
+                <h3 id="footer-general-title">Общие контакты</h3>
+                <a class="site-footer__contact-link" href="tel:+73512253040">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#phone"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Телефон</span>
+                    <span class="site-footer__contact-value">8 (351) 225-30-40</span>
+                  </span>
+                </a>
+                <a class="site-footer__contact-link" href="mailto:info@thld.su">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#mail"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Электронная почта</span>
+                    <span class="site-footer__contact-value">info@thld.su</span>
+                  </span>
+                </a>
+              </section>
+              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
+                <h3 id="footer-sales-title">Отдел продаж</h3>
+                <a class="site-footer__contact-link" href="tel:+79058320078">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#phone"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Телефон</span>
+                    <span class="site-footer__contact-value">8 905 832-00-78</span>
+                  </span>
+                </a>
+                <a class="site-footer__contact-link" href="mailto:op@thld.su">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#mail"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Электронная почта</span>
+                    <span class="site-footer__contact-value">op@thld.su</span>
+                  </span>
+                </a>
+              </section>
+            </div>
+            <div class="site-footer__office">
+              <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <use href="icons/sprite.svg#map-pin"></use>
+              </svg>
+              <div>
+                <span class="site-footer__contact-label">Адрес офиса</span>
+                <a href="https://maps.google.com/?q=Челябинск,+ул.+Труда+174" target="_blank" rel="noopener">
+                  г. Челябинск, ул. Труда, д. 174, 2 этаж
+                  <small>ТК «Манхэттен», вход «С»</small>
+                </a>
+              </div>
+            </div>
+            <div class="site-footer__bottom">
+              <div class="site-footer__documents">
+                <a class="pill pill--calypso" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">
+                    <span class="pill__label-main">Скачать реквизиты</span>
+                    <span class="pill__label-copy" aria-hidden="true">Скачать реквизиты</span>
+                  </span>
+                </a>
+                <a class="pill pill--calypso" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">
+                    <span class="pill__label-main">Скачать каталог</span>
+                    <span class="pill__label-copy" aria-hidden="true">Скачать каталог</span>
+                  </span>
+                </a>
+              </div>
+              <a class="icon-btn site-footer__telegram" href="https://t.me/+79058320078" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

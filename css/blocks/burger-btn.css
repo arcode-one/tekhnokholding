@@ -1,0 +1,24 @@
+.burger-btn svg path {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .burger-btn:hover .burger__line--hide {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+
+  .burger-btn:hover .burger__line--keep {
+    transform: translateY(-4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .burger-btn svg path {
+    transition: none;
+  }
+}

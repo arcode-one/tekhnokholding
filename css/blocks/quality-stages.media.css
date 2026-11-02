@@ -1,0 +1,16 @@
+@media (max-width: 700px) {
+  .quality-stages {
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+    margin-bottom: 64px;
+  }
+
+  .quality-stages summary {
+    font-size: 18px;
+    padding-block: var(--space-6);
+  }
+
+  .quality-stages details p {
+    font-size: 14px;
+  }
+}

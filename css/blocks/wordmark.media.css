@@ -1,0 +1,5 @@
+@media (max-width: 767px) {
+  .wordmark {
+    bottom: calc(var(--hero-edge-gap) + 12px);
+  }
+}

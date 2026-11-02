@@ -1,0 +1,216 @@
+.object-cinema {
+  display: block;
+  padding: 0;
+  background: #28343b;
+  color: var(--light);
+}
+
+.object-cinema__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--space-8);
+  padding: 104px var(--pad) 80px;
+}
+
+.object-cinema__heading h2 {
+  margin: 0;
+  font-size: clamp(48px, 6vw, 104px);
+  line-height: 1.04;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+}
+
+.object-cinema__heading p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.object-cinema__frames {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px 28px;
+  padding-inline: var(--pad);
+}
+
+.object-cinema .object-cinema__frame {
+  position: relative;
+  grid-column: auto;
+  padding-top: 0;
+  margin: 0;
+  min-width: 0;
+}
+
+.object-cinema .object-cinema__frame--wide {
+  grid-column: 1 / -1;
+}
+
+.object-cinema__frame a {
+  display: block;
+  position: relative;
+  overflow: hidden;
+}
+
+.object-cinema__frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  height: auto;
+  object-fit: cover;
+  transition: none;
+}
+
+.object-cinema .object-cinema__frame--wide img {
+  aspect-ratio: 16 / 9;
+}
+
+.object-cinema .object-cinema__frame figcaption {
+  color: var(--light);
+  font-size: 12px;
+}
+
+.object-cinema__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-6);
+  padding: 28px var(--pad);
+  min-height: 84px;
+  font-size: 13px;
+}
+
+.object-cinema__position {
+  font-variant-numeric: tabular-nums;
+}
+
+.object-cinema__bar button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-4);
+  min-height: 44px;
+  padding: 0 12px;
+  margin-inline: -12px;
+  border: 0;
+  border-radius: 22px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.object-cinema__bar button:not(:disabled):focus-visible {
+  background: var(--control-hover-bg);
+  color: var(--control-hover-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .object-cinema__bar button:not(:disabled):hover {
+    background: var(--control-hover-bg);
+    color: var(--control-hover-ink);
+  }
+}
+
+.object-cinema__bar button .projects-sign {
+  width: 32px;
+  height: 32px;
+}
+
+.object-cinema__bar button[hidden] {
+  display: none;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__track {
+  height: 405svh;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__stage {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__frames {
+  position: relative;
+  flex: 1;
+  display: block;
+  padding: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__frame {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 50%;
+  overflow: hidden;
+}
+
+.object-page--motion-ready
+  .object-cinema:not(.object-page--gallery-grid)
+  .object-cinema__frame:nth-child(even) {
+  left: 50%;
+}
+
+.object-page--motion-ready
+  .object-cinema:not(.object-page--gallery-grid)
+  .object-cinema__frame--wide {
+  left: 0;
+  width: 100%;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__frame a {
+  height: 100%;
+}
+
+.object-page--motion-ready
+  .object-cinema:not(.object-page--gallery-grid)
+  .object-cinema__frame
+  img {
+  height: 100%;
+  aspect-ratio: auto;
+  transition: none;
+}
+
+.object-page--motion-ready
+  .object-cinema:not(.object-page--gallery-grid)
+  .object-cinema__frame
+  figcaption {
+  position: absolute;
+  bottom: 24px;
+  left: 28px;
+  margin: 0;
+  padding: 5px 10px;
+  background: #15242d99;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__bar {
+  flex: 0 0 84px;
+}
+
+.object-page--motion-ready .object-cinema:not(.object-page--gallery-grid) .object-cinema__position {
+  min-width: 90px;
+  text-align: center;
+}
+
+.object-page--motion-ready
+  .object-cinema:not(.object-page--gallery-grid)
+  .object-cinema__frame
+  a:hover
+  img {
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .object-cinema__frame,
+  .object-cinema__frame img {
+    transform: none !important;
+    clip-path: none !important;
+  }
+}

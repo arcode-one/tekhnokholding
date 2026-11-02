@@ -1,0 +1,39 @@
+@media (max-width: 767px) {
+  .company-lightbox {
+    width: 100%;
+    height: 100svh;
+    max-height: 100svh;
+    padding: var(--space-4);
+  }
+
+  .company-lightbox__head h2 {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 700px) {
+  .company-lightbox__gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .company-lightbox__gallery button {
+    padding: 12px;
+  }
+
+  .company-lightbox__gallery img {
+    height: 160px;
+  }
+
+  .company-lightbox__gallery span {
+    font-size: 11px;
+  }
+
+  .company-lightbox__bottom {
+    gap: 12px;
+  }
+
+  .company-lightbox__steps {
+    gap: 4px;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Производственно-технический отдел": { "sourceFile": "ПТО.png", "photo": "images/company/departments/production-technical.webp" },
+  "Контроль качества и заботы о клиенте": { "sourceFile": "Отдел качества.png", "photo": "images/company/departments/quality-service.webp" },
+  "Финансово-экономический отдел": { "sourceFile": "финансы.png", "photo": "images/company/departments/finance.webp" },
+  "Строительно-монтажный отдел": { "sourceFile": "стройка1.png", "photo": "images/company/departments/construction.webp" },
+  "Управление проектами": { "sourceFile": "управление проектами.png", "photo": "images/company/departments/project-management.webp" },
+  "Дирекция": { "sourceFile": "дирекция.png", "photo": "images/company/departments/management.webp" },
+  "Отдел снабжения и логистики": { "sourceFile": "снабжение.png", "photo": "images/company/departments/supply-logistics.webp" },
+  "Коммерческий отдел": { "sourceFile": "коммерческий отдел.png", "photo": "images/company/departments/commercial.webp" },
+  "Отдел персонала": { "sourceFile": "отдел персонала.png", "photo": "images/company/departments/hr.webp" }
+}

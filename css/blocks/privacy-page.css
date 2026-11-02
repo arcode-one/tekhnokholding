@@ -1,0 +1,135 @@
+.privacy-page {
+  min-height: calc(80svh - var(--header-h));
+  padding: 32px var(--pad) 120px;
+}
+
+.privacy-page > .breadcrumbs,
+.privacy-page__content {
+  max-width: 1560px;
+  margin-inline: auto;
+}
+
+.privacy-page > .breadcrumbs {
+  margin-block: 0;
+}
+
+.privacy-page__content {
+  margin-top: 40px;
+}
+
+.privacy-page h1 {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(40px, 4.4vw, 76px);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.035em;
+}
+
+.privacy-page__text {
+  min-width: 0;
+  font-size: clamp(18px, 1.12vw, 20px);
+  line-height: 1.7;
+}
+
+.privacy-page__body {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.3fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(48px, 6vw, 112px);
+  margin-top: 64px;
+}
+
+.privacy-page__nav {
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
+  max-height: calc(100svh - var(--header-h) - 48px);
+  overflow-y: auto;
+  padding: 0 8px 8px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.privacy-page__nav h2 {
+  margin: 0 0 20px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.privacy-page__nav ol {
+  margin: 0;
+  padding-left: 1.35em;
+}
+
+.privacy-page__nav li {
+  padding-left: 6px;
+}
+
+.privacy-page__nav li + li {
+  margin-top: 8px;
+}
+
+.privacy-page__nav li::marker {
+  color: #68767e;
+  font-variant-numeric: tabular-nums;
+}
+
+.privacy-page__nav a {
+  display: block;
+  padding-block: 8px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+}
+
+.privacy-page__nav a:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .privacy-page__nav a:hover {
+    text-decoration-color: currentcolor;
+  }
+}
+
+.privacy-page__status {
+  margin: 20px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.privacy-page__text h2 {
+  margin: 0 0 24px;
+  font-size: clamp(26px, 1.8vw, 32px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  scroll-margin-top: calc(var(--header-h) + 32px);
+}
+
+.privacy-page__text section {
+  margin-top: 56px;
+}
+
+.privacy-page__text p {
+  margin: 0 0 1em;
+}
+
+.privacy-page__text ul {
+  margin: 0 0 1em;
+  padding-left: 1.25em;
+}
+
+.privacy-page__text li + li {
+  margin-top: 12px;
+}
+
+.privacy-page__text a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.privacy-page__text a[href^='tel:'] {
+  white-space: nowrap;
+}

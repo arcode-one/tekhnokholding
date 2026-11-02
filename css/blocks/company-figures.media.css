@@ -1,0 +1,103 @@
+@media (max-width: 1100px) {
+  .company-figures__item {
+    gap: var(--space-2);
+  }
+
+  .company-figures__grid {
+    aspect-ratio: 1808 / 1150;
+  }
+
+  .company-figures__item--clients {
+    top: 74%;
+  }
+
+  .company-figures__item dt {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 767px) {
+  .company-figures {
+    --figures-edge-gap: 32px;
+
+    padding: 96px var(--pad);
+  }
+
+  .company-figures__title {
+    margin-bottom: 64px;
+    font-size: 18px;
+  }
+
+  .company-figures__grid {
+    display: grid;
+    aspect-ratio: auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 52px 20px;
+  }
+
+  .company-figures__item {
+    position: static;
+    width: auto;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .company-figures__item dt {
+    padding: 0;
+    align-self: flex-start;
+    font-size: 24px;
+  }
+
+  .company-figures__photo {
+    position: static;
+  }
+
+  .company-figures__item--area {
+    grid-column: 1 / -1;
+  }
+
+  .company-figures__item--projects {
+    grid-column: 2;
+    grid-row: 3;
+    padding-top: 0;
+  }
+
+  .company-figures__item--clients {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .company-figures__item--cities {
+    grid-column: 2;
+    grid-row: 4;
+    padding-top: 40px;
+  }
+
+  .company-figures__photo--roof {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 82%;
+    max-width: 280px;
+    margin-top: 40px;
+  }
+
+  .company-figures__photo--office {
+    grid-column: 1;
+    grid-row: 3;
+    width: 90%;
+    max-width: 140px;
+    margin-top: 0;
+  }
+
+  .company-figures__item dd {
+    font-size: clamp(44px, 14vw, 96px);
+  }
+
+  .company-figures__item--area dd {
+    font-size: clamp(48px, 12.5vw, 92px);
+  }
+
+  .company-figures--overlap {
+    --section-overlap: clamp(48px, 10svh, 80px);
+  }
+}

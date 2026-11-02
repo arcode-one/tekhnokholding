@@ -1,0 +1,31 @@
+.advantages-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.18fr 1fr;
+  grid-template-areas: 'left metrics right';
+  align-items: stretch;
+  gap: var(--space-4);
+  margin: 0 var(--pad);
+}
+
+.advantages-layout__side {
+  display: grid;
+  grid-template-rows: repeat(4, 1fr);
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.advantages-layout__side--left {
+  grid-area: left;
+}
+
+.advantages-layout__side--right {
+  grid-area: right;
+}
+
+.advantages-layout__metrics {
+  grid-area: metrics;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  gap: var(--space-4);
+  min-width: 0;
+}

@@ -1,0 +1,5 @@
+@media (max-width: 767px) {
+  .object-lead__pin {
+    height: 64svh;
+  }
+}

@@ -1,0 +1,25 @@
+.projects-heading {
+  margin-inline: var(--pad);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px 40px;
+  margin-bottom: 56px;
+}
+
+.projects-heading__title {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-6);
+}
+
+.projects-heading :is(h1, h2) {
+  margin: 0;
+  font-family: var(--projects-display);
+  font-size: clamp(56px, 6vw, 112px);
+  font-weight: 300;
+  line-height: 1.04;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}

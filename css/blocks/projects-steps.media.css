@@ -1,0 +1,6 @@
+@media (max-width: 767px) {
+  .projects-steps {
+    margin-left: auto;
+    gap: 20px;
+  }
+}

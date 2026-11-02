@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru" class="site site--loaded">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Политика конфиденциальности | Технохолдинг</title>
+    <meta name="description" content="Политика конфиденциальности ООО «Технохолдинг»." />
+    <meta name="theme-color" content="#34454e" />
+    <meta name="robots" content="noindex, follow" />
+    <link
+      rel="preload"
+      href="fonts/oswald/Oswald-Variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link
+      rel="preload"
+      href="fonts/manrope/manrope-cyrillic-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body id="top" class="object-page">
+    <header class="header">
+      <div class="header__inner">
+        <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
+          <img
+            src="icons/logo-dark-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="header__right">
+          <nav class="nav" aria-label="Основное меню">
+            <a href="index.html#services">Услуги</a>
+            <a href="index.html#objects">Объекты</a>
+            <a href="index.html#contacts">Контакты</a>
+            <a href="index.html#account">Личный кабинет</a>
+          </nav>
+          <span class="header__divider" aria-hidden="true"></span>
+          <div class="header__contacts">
+            <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+            <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+          </div>
+          <div class="header__messengers">
+            <a
+              class="icon-btn"
+              href="index.html#telegram"
+              aria-label="Написать в Telegram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+              </svg>
+            </a>
+            <a class="icon-btn" href="index.html#max" aria-label="Написать в MAX">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+              </svg>
+            </a>
+            <button
+              class="icon-btn burger-btn header__burger"
+              type="button"
+              data-menu-toggle=""
+              aria-label="Открыть меню"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              data-ui="header__burger"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="burger__line--hide" d="M4 8h16"></path>
+                <path class="burger__line--keep" d="M4 16h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
+    <div class="dock" data-ui="dock">
+      <div class="dock__surface">
+        <div class="dock__bg">
+          <div class="dock__track">
+            <div class="dock__clip">
+              <div class="dock__panel" id="dock-panel">
+                <a
+                  class="dock__logo dock__item"
+                  style="--r: 8"
+                  href="index.html"
+                  aria-label="Технохолдинг, на главную"
+                >
+                  <img
+                    src="icons/logo-light-compact.svg"
+                    alt="Технохолдинг"
+                    width="1292"
+                    height="430"
+                    loading="lazy"
+                  />
+                </a>
+                <nav class="dock__nav" aria-label="Меню">
+                  <a class="dock__item" style="--r: 7" href="index.html#services">Услуги</a>
+                  <a class="dock__item" style="--r: 6" href="index.html#objects">Объекты</a>
+                  <a class="dock__item" style="--r: 5" href="index.html#contacts">Контакты</a>
+                  <a class="dock__item" style="--r: 4" href="index.html#account">Личный кабинет</a>
+                </nav>
+                <span class="dock__divider dock__item" style="--r: 3" aria-hidden="true"></span>
+                <div class="dock__contacts dock__item" style="--r: 2">
+                  <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+                  <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+                </div>
+                <div class="dock__icons">
+                  <a
+                    class="icon-btn dock__item"
+                    style="--r: 1"
+                    href="index.html#telegram"
+                    aria-label="Написать в Telegram"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+                    </svg>
+                  </a>
+                  <a
+                    class="icon-btn dock__item"
+                    style="--r: 0"
+                    href="index.html#max"
+                    aria-label="Написать в MAX"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button
+        class="icon-btn dock__burger burger-btn"
+        type="button"
+        data-menu-toggle=""
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="dock-panel"
+        data-ui="dock__burger"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="burger__line--hide" d="M4 8h16"></path>
+          <path class="burger__line--keep" d="M4 16h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <div
+      class="menu"
+      id="mobile-menu"
+      hidden=""
+      data-ui="menu"
+      data-mobile-menu=""
+      role="dialog"
+      aria-modal="true"
+      aria-label="Меню сайта"
+    >
+      <nav class="menu__nav" aria-label="Мобильное меню">
+        <a href="index.html#services">Услуги</a>
+        <a href="index.html#objects">Объекты</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="index.html#account">Личный кабинет</a>
+      </nav>
+      <div class="menu__contacts">
+        <a href="tel:+73512253040">8 (351) 225-30-40</a>
+        <a href="mailto:info@thld.su">info@thld.su</a>
+      </div>
+    </div>
+
+    <main>
+      <article class="privacy-page" aria-labelledby="privacy-title">
+        <nav class="breadcrumbs" aria-label="Хлебные крошки" data-ui="breadcrumbs">
+          <ol>
+            <li><a href="index.html">Главная</a></li>
+            <li>
+              <span class="breadcrumbs__separator" aria-hidden="true">/</span>
+              <span aria-current="page">Политика конфиденциальности</span>
+            </li>
+          </ol>
+        </nav>
+        <div class="privacy-page__content">
+          <header class="privacy-page__header">
+            <h1 id="privacy-title">Политика конфиденциальности</h1>
+            <p class="privacy-page__status">Черновик для согласования. 2 ноября 2026 года.</p>
+          </header>
+          <div class="privacy-page__body">
+            <nav class="privacy-page__nav" aria-labelledby="privacy-contents">
+              <h2 id="privacy-contents">Содержание</h2>
+              <ol>
+                <li><a href="#privacy-operator">Оператор персональных данных</a></li>
+                <li><a href="#privacy-data">Какие данные и для чего обрабатываются</a></li>
+                <li><a href="#privacy-basis">Правовые основания обработки</a></li>
+                <li><a href="#privacy-storage">Порядок обработки и хранения</a></li>
+                <li><a href="#privacy-cookies">Файлы cookie и аналитика</a></li>
+                <li><a href="#privacy-services">Внешние сервисы и передача данных</a></li>
+                <li><a href="#privacy-rights">Права и обращения</a></li>
+                <li><a href="#privacy-updates">Изменения политики</a></li>
+              </ol>
+            </nav>
+            <div class="privacy-page__text">
+              <!-- Черновик: перед публикацией сверить фактические процессы обработки данных и убрать meta robots noindex. -->
+              <p>
+                Настоящая политика описывает обработку персональных данных посетителей сайта
+                Технохолдинг и лиц, которые обращаются в компанию по указанным на сайте контактам.
+                При обработке данных применяется Федеральный закон от 27 июля 2006 года № 152-ФЗ
+                «О персональных данных» и иные применимые требования законодательства Российской Федерации.
+              </p>
+
+              <section aria-labelledby="privacy-operator">
+                <h2 id="privacy-operator">1. Оператор персональных данных</h2>
+                <p>
+                  Оператором является Общество с ограниченной ответственностью «ТехноХОЛДИНГ»
+                  (ООО «ТехноХОЛДИНГ»), ИНН 7453304352, ОГРН 1177456001788.
+                </p>
+                <p>
+                  Юридический адрес: 454080, Челябинская область, г. Челябинск, ул. Труда, д. 174,
+                  вход С, 2 этаж, помещение 91Т.
+                </p>
+                <p>
+                  Для обращений по вопросам обработки персональных данных:
+                  <a href="mailto:info@thld.su">info@thld.su</a>.
+                  Телефон компании: <a href="tel:+73512253040">8 (351) 225-30-40</a>.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-data">
+                <h2 id="privacy-data">2. Какие данные и для чего обрабатываются</h2>
+                <p>Состав данных зависит от того, как посетитель взаимодействует с компанией.</p>
+                <ul>
+                  <li>
+                    При обращении по электронной почте, телефону или через мессенджер могут
+                    обрабатываться имя, контактный телефон, адрес электронной почты, содержание
+                    обращения и сведения, которые человек сообщил для получения ответа.
+                    Цели обработки: рассмотрение обращения, обратная связь, обсуждение работ
+                    и подготовка предложения или договора по инициативе заявителя.
+                  </li>
+                  <li>
+                    При загрузке сайта браузер передаёт технические сведения: IP-адрес,
+                    параметры браузера и запроса, адрес запрашиваемой страницы, дату и время
+                    обращения, а также адрес страницы перехода, если браузер его передаёт.
+                    Эти сведения могут обрабатываться для предоставления сайта, устранения
+                    технических ошибок и обеспечения безопасности.
+                  </li>
+                </ul>
+                <p>
+                  Для работы сайта не предусматриваются обработка биометрических данных
+                  и специальных категорий персональных данных. Объём запрашиваемых сведений
+                  должен соответствовать конкретной цели обращения.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-basis">
+                <h2 id="privacy-basis">3. Правовые основания обработки</h2>
+                <p>
+                  Обработка допускается при наличии основания, предусмотренного законодательством.
+                  В зависимости от ситуации таким основанием может быть согласие человека,
+                  заключение или исполнение договора по его инициативе, выполнение установленной
+                  законом обязанности, а также осуществление прав и законных интересов оператора,
+                  если при этом не нарушаются права и свободы человека.
+                </p>
+                <p>
+                  Само посещение сайта не является согласием на рекламную рассылку или на обработку,
+                  для которой требуется отдельное согласие. Такое согласие должно запрашиваться
+                  отдельно, когда оно необходимо.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-storage">
+                <h2 id="privacy-storage">4. Порядок обработки и хранения</h2>
+                <p>
+                  Обработка может включать сбор, запись, систематизацию, хранение, уточнение,
+                  использование, предоставление при наличии правового основания, блокирование,
+                  удаление и уничтожение данных. Обработка может осуществляться с использованием
+                  средств автоматизации и без них.
+                </p>
+                <p>
+                  Срок хранения определяется целью обработки и применимыми требованиями закона
+                  или договора. После достижения цели данные подлежат удалению, уничтожению
+                  или обезличиванию, если для их дальнейшего хранения нет другого законного основания.
+                </p>
+                <p>
+                  Доступ к данным должен ограничиваться лицами, которым он необходим для выполнения
+                  соответствующих обязанностей. При обработке должны применяться предусмотренные
+                  законом правовые, организационные и технические меры защиты от неправомерного
+                  доступа, изменения, утраты и распространения данных.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-cookies">
+                <h2 id="privacy-cookies">5. Файлы cookie и аналитика</h2>
+                <p>
+                  В текущей версии сайта не подключены рекламные счётчики и системы веб-аналитики,
+                  отсутствуют формы отправки персональных данных. Собственные скрипты сайта
+                  не используют файлы cookie для отслеживания посетителей.
+                </p>
+                <p>
+                  Настройки файлов cookie и сохранённых данных доступны в браузере посетителя.
+                  При подключении новых инструментов сбора данных информация о них должна быть
+                  отражена в политике, а необходимое согласие получено до начала соответствующей обработки.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-services">
+                <h2 id="privacy-services">6. Внешние сервисы и передача данных</h2>
+                <p>
+                  Для отображения карты объектов используются картографические материалы OpenFreeMap.
+                  При загрузке карты браузер обращается к серверам этого сервиса. В составе запросов
+                  передаются технические сведения, включая IP-адрес и параметры запроса браузера.
+                  Обработка сведений внешним сервисом регулируется его собственными правилами.
+                </p>
+                <p>
+                  Сайт также содержит ссылки на внешние карты и мессенджеры. При переходе по ним
+                  посетитель взаимодействует с выбранным сервисом на условиях этого сервиса.
+                  Сообщения, направленные компании через мессенджер, используются для рассмотрения
+                  обращения и обратной связи.
+                </p>
+                <p>
+                  Предоставление данных другим лицам допускается только при наличии законного
+                  основания и в объёме, необходимом для соответствующей цели. Если обработка
+                  поручается подрядчику, условия поручения должны определять цели, состав данных,
+                  допустимые действия и требования к их защите. Передача уполномоченным органам
+                  осуществляется в случаях, установленных законодательством.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-rights">
+                <h2 id="privacy-rights">7. Права и обращения</h2>
+                <p>Человек, чьи данные обрабатываются, вправе в предусмотренных законом случаях:</p>
+                <ul>
+                  <li>Получать сведения об обработке своих персональных данных.</li>
+                  <li>Требовать уточнения, блокирования или удаления данных.</li>
+                  <li>Отозвать согласие, если обработка осуществляется на его основании.</li>
+                  <li>Обжаловать действия оператора в уполномоченный орган или в суд.</li>
+                </ul>
+                <p>
+                  Обращение можно направить на <a href="mailto:info@thld.su">info@thld.su</a>
+                  или по юридическому адресу оператора. В обращении следует указать суть запроса и контакт для ответа.
+                  Для защиты данных от доступа посторонних могут потребоваться сведения,
+                  позволяющие подтвердить личность заявителя или полномочия его представителя.
+                </p>
+                <p>
+                  Обращения рассматриваются в установленные законом сроки. Отзыв согласия
+                  не исключает дальнейшую обработку, если для неё существует иное законное основание.
+                </p>
+              </section>
+
+              <section aria-labelledby="privacy-updates">
+                <h2 id="privacy-updates">8. Изменения политики</h2>
+                <p>
+                  Политика подлежит актуализации при изменении целей обработки, состава данных,
+                  используемых сервисов или применимых требований законодательства. Действующая
+                  редакция размещается на этой странице с указанием даты обновления.
+                </p>
+              </section>
+            </div>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer
+      class="site-footer"
+      id="contacts"
+      aria-labelledby="site-footer-title"
+      data-footer-motion=""
+    >
+      <div class="site-footer__scene" data-footer-scene="">
+        <div class="site-footer__visual" aria-hidden="true">
+          <img
+            class=""
+            src="images/company/footer-roof-day-v1.webp"
+            alt=""
+            loading="lazy"
+            decoding="async"
+            width="1672"
+            height="941"
+            srcset="
+              images/company/footer-roof-day-v1-480w.webp   480w,
+              images/company/footer-roof-day-v1-960w.webp   960w,
+              images/company/footer-roof-day-v1-1600w.webp 1600w,
+              images/company/footer-roof-day-v1.webp       1672w
+            "
+            sizes="(max-width: 767px) 100vw, 100vw"
+          />
+        </div>
+        <div class="site-footer__layout" data-ui="site-footer__layout">
+          <div class="site-footer__left">
+            <nav class="site-footer__nav" aria-label="Разделы сайта">
+              <a href="index.html#figures">О компании</a><a href="mission.html">Миссия компании</a
+              ><a href="index.html#objects">Наши объекты</a
+              ><a href="index.html#map-objects">Карта объектов</a
+              ><a href="index.html#advantages">Преимущества</a
+              ><a href="index.html#clients">Нас рекомендуют</a><a href="team.html">Наша команда</a>
+            </nav>
+            <a class="site-footer__brand" href="index.html" aria-label="Технохолдинг, на главную"
+              ><img
+                src="icons/logo-light-compact.svg"
+                alt="Технохолдинг"
+                width="1292"
+                height="430"
+                loading="lazy"
+            /></a>
+            <p class="site-footer__copyright">
+              © 2026 ООО «Технохолдинг».<br />Все права защищены.
+            </p>
+            <a class="site-footer__privacy" href="privacy.html">Политика конфиденциальности</a>
+          </div>
+          <div class="site-footer__right">
+            <h2 id="site-footer-title">Контакты</h2>
+            <div class="site-footer__contacts">
+              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
+                <h3 id="footer-general-title">Общие контакты</h3>
+                <a class="site-footer__contact-link" href="tel:+73512253040">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#phone"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Телефон</span>
+                    <span class="site-footer__contact-value">8 (351) 225-30-40</span>
+                  </span>
+                </a>
+                <a class="site-footer__contact-link" href="mailto:info@thld.su">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#mail"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Электронная почта</span>
+                    <span class="site-footer__contact-value">info@thld.su</span>
+                  </span>
+                </a>
+              </section>
+              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
+                <h3 id="footer-sales-title">Отдел продаж</h3>
+                <a class="site-footer__contact-link" href="tel:+79058320078">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#phone"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Телефон</span>
+                    <span class="site-footer__contact-value">8 905 832-00-78</span>
+                  </span>
+                </a>
+                <a class="site-footer__contact-link" href="mailto:op@thld.su">
+                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <use href="icons/sprite.svg#mail"></use>
+                  </svg>
+                  <span>
+                    <span class="site-footer__contact-label">Электронная почта</span>
+                    <span class="site-footer__contact-value">op@thld.su</span>
+                  </span>
+                </a>
+              </section>
+            </div>
+            <div class="site-footer__office">
+              <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <use href="icons/sprite.svg#map-pin"></use>
+              </svg>
+              <div>
+                <span class="site-footer__contact-label">Адрес офиса</span>
+                <a href="https://maps.google.com/?q=Челябинск,+ул.+Труда+174" target="_blank" rel="noopener">
+                  г. Челябинск, ул. Труда, д. 174, 2 этаж
+                  <small>ТК «Манхэттен», вход «С»</small>
+                </a>
+              </div>
+            </div>
+            <div class="site-footer__bottom">
+              <div class="site-footer__documents">
+                <a class="pill pill--calypso" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">
+                    <span class="pill__label-main">Скачать реквизиты</span>
+                    <span class="pill__label-copy" aria-hidden="true">Скачать реквизиты</span>
+                  </span>
+                </a>
+                <a class="pill pill--calypso" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">
+                    <span class="pill__label-main">Скачать каталог</span>
+                    <span class="pill__label-copy" aria-hidden="true">Скачать каталог</span>
+                  </span>
+                </a>
+              </div>
+              <a class="icon-btn site-footer__telegram" href="https://t.me/+79058320078" target="_blank" rel="noopener" aria-label="Написать в Telegram">
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+.object-opening {
+  padding-block: 40px 36px;
+}
+
+.object-opening .object-intro {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: center;
+  gap: 10%;
+  margin-block: 72px 60px;
+}
+
+.object-opening .object-intro h1 {
+  font-size: clamp(72px, 10vw, 180px);
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.object-opening .object-intro p {
+  font-size: clamp(18px, 1.6vw, 28px);
+  line-height: 1.4;
+}
+
+.object-opening__meta {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-6);
+  margin-inline: var(--pad);
+  font-size: 15px;
+}

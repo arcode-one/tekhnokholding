@@ -1,0 +1,20 @@
+@media (max-width: 767px) {
+  .object-intro {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-block: 48px 32px;
+  }
+
+  .object-intro h1 {
+    font-size: 38px;
+  }
+
+  .object-intro p {
+    display: flex;
+    gap: 20px;
+  }
+
+  .object-intro p span {
+    margin: 0;
+  }
+}

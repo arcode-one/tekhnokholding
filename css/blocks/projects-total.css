@@ -1,0 +1,25 @@
+.projects-total {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 10px;
+  color: var(--projects-ink);
+  white-space: nowrap;
+}
+
+.projects-total__value {
+  font-family: var(--projects-display);
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+
+.projects-total__label {
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,16 @@
+@media (max-width: 1100px) {
+  .projects-body {
+    --years-col: 150px;
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-body {
+    display: block;
+    padding-left: 0;
+  }
+
+  .projects-body > .projects-empty {
+    margin: 48px var(--pad);
+  }
+}

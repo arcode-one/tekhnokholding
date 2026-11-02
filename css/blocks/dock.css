@@ -1,0 +1,175 @@
+.dock__nav a {
+  transition: color 0.2s ease, opacity 0.3s;
+}
+
+.dock__nav a:focus-visible {
+  color: var(--control-hover-bg);
+}
+
+.dock {
+  position: fixed;
+  top: 16px;
+  right: var(--pad);
+  z-index: 30;
+
+  --burger: 48px;
+  --dock-height: 64px;
+
+  height: var(--dock-height);
+  left: var(--pad);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  translate: 0 calc(-100% - 24px);
+  pointer-events: none;
+  transition: translate 0.25s var(--ease-out);
+}
+
+html.site--scrolled .dock {
+  translate: 0 0;
+  transition: translate 0.65s var(--ease-out) 0.3s;
+}
+
+html.site--scrolled .dock__burger,
+html.site--scrolled .dock.dock--open {
+  pointer-events: auto;
+}
+
+.dock__surface {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+.dock__bg,
+.dock__track {
+  position: absolute;
+  inset: 0;
+  will-change: transform;
+  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.dock__bg {
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgb(36, 38, 41, 0.96);
+  transform: translate3d(calc(100% - var(--dock-height)), 0, 0);
+}
+
+.dock__track {
+  transform: translate3d(calc(var(--dock-height) - 100%), 0, 0);
+}
+
+.dock.dock--open .dock__bg,
+.dock.dock--open .dock__track {
+  transform: translate3d(0, 0, 0);
+  transition-duration: 0.75s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dock__burger {
+  --icon-btn-bg: transparent;
+
+  width: var(--burger);
+  height: var(--burger);
+  margin-right: 8px;
+}
+
+.dock__burger svg {
+  width: 26px;
+  height: 26px;
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+}
+
+.dock__clip {
+  position: absolute;
+  inset: 0 calc(var(--burger) + 8px) 0 0;
+  min-width: 0;
+  pointer-events: none;
+}
+
+.dock.dock--open .dock__clip {
+  pointer-events: auto;
+}
+
+.dock__panel {
+  height: var(--dock-height);
+  padding: 0 8px 0 28px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-8);
+  visibility: hidden;
+  transition: visibility 0s 0.5s;
+}
+
+.dock.dock--open .dock__panel {
+  visibility: visible;
+  transition: visibility 0s;
+}
+
+.dock__logo {
+  margin-right: auto;
+}
+
+.dock__logo img {
+  height: 40px;
+  width: auto;
+}
+
+.dock__nav {
+  display: flex;
+  gap: 28px;
+  font-size: 18px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.dock__divider {
+  width: 1px;
+  height: 32px;
+  background: rgb(242, 242, 240, 0.2);
+}
+
+.dock__contacts {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1px;
+}
+
+.dock__contacts .header__phone {
+  font-size: 18px;
+}
+
+.dock__contacts .header__mail {
+  font-size: 15px;
+}
+
+.dock__icons {
+  display: flex;
+  gap: var(--space-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dock__nav a {
+    transition: none;
+  }
+
+  .dock,
+  .dock__panel,
+  .dock__bg,
+  .dock__track,
+  .dock.dock--open .dock__bg,
+  .dock.dock--open .dock__track,
+  html.site--scrolled .dock,
+  .dock.dock--open .dock__panel,
+  .dock__clip,
+  .dock.dock--open .dock__clip {
+    transition: none;
+  }
+}

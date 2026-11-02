@@ -1,0 +1,6 @@
+@media (max-width: 767px) {
+  .hero-gold__caption {
+    font-size: clamp(11px, 3vw, 15px);
+    letter-spacing: 0.05em;
+  }
+}

@@ -1,0 +1,23 @@
+.test-block {
+  min-height: 100vh;
+  padding: 120px var(--pad);
+  background: var(--bg);
+}
+
+.test-block__inner {
+  max-width: 720px;
+}
+
+.test-block h2 {
+  margin: 0 0 20px;
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300;
+  letter-spacing: -0.03em;
+}
+
+.test-block p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--muted);
+}

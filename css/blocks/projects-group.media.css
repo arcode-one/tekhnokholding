@@ -1,0 +1,7 @@
+@media (max-width: 767px) {
+  .projects-group {
+    gap: var(--space-4);
+    padding-left: var(--pad);
+    padding-right: 16px;
+  }
+}

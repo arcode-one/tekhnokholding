@@ -1,0 +1,28 @@
+.object-intro {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) 1fr;
+  gap: 10%;
+  align-items: end;
+  margin: 72px var(--pad) 60px;
+}
+
+.object-intro h1 {
+  max-width: 22ch;
+  margin: 0;
+  font-size: clamp(38px, 4.8vw, 86px);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: -0.045em;
+  overflow-wrap: anywhere;
+}
+
+.object-intro p {
+  margin: 0 0 6px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.object-intro p span {
+  display: block;
+  margin-top: 20px;
+}

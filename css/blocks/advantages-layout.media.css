@@ -1,0 +1,22 @@
+@media (max-width: 1100px) {
+  .advantages-layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'metrics metrics' 'left right';
+  }
+
+  .advantages-layout__metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .advantages-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas: 'metrics' 'left' 'right';
+  }
+
+  .advantages-layout__metrics {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,7 @@
+.company-section {
+  position: relative;
+  padding-block: 112px;
+  background: var(--light);
+  color: var(--color-ink);
+}
+

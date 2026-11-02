@@ -1,0 +1,33 @@
+@media (max-width: 1439px) {
+  .company-recommendations {
+    --recommendation-columns: 4;
+  }
+}
+
+@media (max-width: 1199px) {
+  .company-recommendations {
+    --recommendation-columns: 3;
+  }
+}
+
+@media (max-width: 899px) {
+  .company-recommendations {
+    --recommendation-columns: 2;
+  }
+}
+
+@media (max-width: 767px) {
+  .company-recommendations {
+    padding-block: 64px 40px;
+  }
+
+  .company-recommendations__arrow {
+    display: none;
+  }
+}
+
+@media (max-width: 599px) {
+  .company-recommendations {
+    --recommendation-card-width: min(320px, calc(100vw - 56px));
+  }
+}

@@ -1,0 +1,10 @@
+@media (max-width: 767px) {
+  .breadcrumbs {
+    font-size: 12px;
+  }
+
+  .breadcrumbs ol,
+  .breadcrumbs li {
+    gap: 4px 10px;
+  }
+}

@@ -1,0 +1,14 @@
+@media (max-width: 767px) {
+  .projects-total {
+    gap: 6px;
+  }
+
+  .projects-total__value {
+    font-size: 30px;
+  }
+
+  .projects-total__label {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+}

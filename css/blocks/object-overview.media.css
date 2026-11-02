@@ -1,0 +1,7 @@
+@media (max-width: 767px) {
+  .object-overview {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-block: 64px;
+  }
+}

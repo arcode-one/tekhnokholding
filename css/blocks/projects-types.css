@@ -1,0 +1,52 @@
+.projects-types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.projects-types .pill {
+  color: var(--light);
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.projects-types .pill::before,
+.projects-types .pill::after {
+  background: var(--control-hover-bg);
+}
+
+.projects-types .pill:focus-visible {
+  color: var(--graphite);
+}
+
+.projects-types .pill[aria-pressed='true']::before,
+.projects-types .pill[aria-pressed='true']::after {
+  transform: translate3d(0, 0, 0);
+  transition: none;
+}
+
+.projects-types .pill[aria-pressed='true'] {
+  background: var(--control-hover-bg);
+  color: var(--graphite);
+  cursor: default;
+  transition: none;
+}
+
+.projects-types .pill[aria-pressed='true'] .pill__label-main {
+  transform: none;
+  opacity: 1;
+  transition: none;
+}
+
+.projects-types .pill[aria-pressed='true'] .pill__label-copy {
+  opacity: 0;
+  transition: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-types .pill:hover {
+    color: var(--graphite);
+  }
+}

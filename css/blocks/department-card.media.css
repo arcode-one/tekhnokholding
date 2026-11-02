@@ -1,0 +1,15 @@
+@media (max-width: 767px) {
+  .department-card {
+    width: 78vw;
+    flex-basis: 78vw;
+  }
+
+  .department-card__photo {
+    height: 300px;
+  }
+
+  .department-card h3 {
+    font-size: 20px;
+    padding: var(--space-6);
+  }
+}

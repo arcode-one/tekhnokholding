@@ -1,0 +1,22 @@
+.object-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  margin-left: var(--pad);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.object-back .projects-sign {
+  width: 28px;
+  height: 28px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .object-back:hover .projects-sign__fold {
+    transform: translateX(3px);
+  }
+}

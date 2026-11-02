@@ -1,0 +1,28 @@
+@media (max-width: 1100px) {
+  .company-heading__aside {
+    gap: var(--space-8);
+  }
+}
+
+@media (max-width: 767px) {
+  .company-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--space-8);
+    margin-bottom: 40px;
+  }
+
+  .company-heading h2 {
+    font-size: 24px;
+  }
+
+  .company-heading__aside {
+    width: 100%;
+    justify-content: space-between;
+    gap: var(--space-6);
+  }
+
+  .company-heading__figure {
+    font-size: 40px;
+  }
+}

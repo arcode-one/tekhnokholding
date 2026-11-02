@@ -1,0 +1,15 @@
+.projects-rail {
+  overflow-x: auto;
+  scrollbar-width: none;
+  cursor: grab;
+  touch-action: pan-x pan-y;
+}
+
+.projects-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-rail.projects-rail--dragging {
+  cursor: grabbing;
+  user-select: none;
+}

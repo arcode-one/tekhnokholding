@@ -1,0 +1,59 @@
+.projects-controls {
+  display: flex;
+  align-items: center;
+  gap: 48px;
+}
+
+.projects-controls button {
+  border: 0;
+  padding: 8px 10px;
+  margin-inline: -10px;
+  border-radius: 24px;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.projects-controls .projects-pause {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 48px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--projects-secondary);
+}
+
+.projects-controls .projects-step {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 48px;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.projects-controls button:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.projects-controls button:not(:disabled):focus-visible {
+  background: var(--control-hover-bg);
+  color: var(--control-hover-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-controls button:not(:disabled):hover {
+    background: var(--control-hover-bg);
+    color: var(--control-hover-ink);
+  }
+}

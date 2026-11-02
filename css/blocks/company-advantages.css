@@ -1,0 +1,10 @@
+.company-advantages {
+  background: var(--color-navy);
+  color: var(--color-white);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-story-photo] img {
+    transform: none !important;
+  }
+}

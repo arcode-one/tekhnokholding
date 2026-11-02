@@ -1,0 +1,26 @@
+@media (max-width: 1100px) {
+  .header__divider,
+  .header__contacts {
+    display: none;
+  }
+
+  .header__burger {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .header__logo img {
+    height: 42px;
+  }
+
+  .header__messengers {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 360px) {
+  .header__inner {
+    gap: var(--space-2);
+  }
+}

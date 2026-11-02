@@ -1,0 +1,69 @@
+@media (min-width: 768px) {
+  .projects-section:not(.projects-section--catalog) {
+    display: flex;
+    flex-direction: column;
+    height: clamp(680px, 100svh, 1200px);
+    padding: 72px 0 48px;
+  }
+
+  .projects-section:not(.projects-section--catalog) > .projects-surface {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .projects-section:not(.projects-section--catalog) .projects-heading {
+    flex: none;
+    margin-bottom: 40px;
+  }
+
+  .projects-section:not(.projects-section--catalog) .projects-body {
+    flex: 1;
+    min-height: 0;
+    container-type: size;
+
+    --card-height: 100cqh;
+  }
+
+  .projects-section:not(.projects-section--catalog) .project-card {
+    width: clamp(300px, calc(var(--card-height) * 0.7), 470px);
+    flex-basis: clamp(300px, calc(var(--card-height) * 0.7), 470px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .projects-section.projects-section--overlap:not(.projects-section--catalog) {
+    padding-top: calc(var(--section-overlap) + 8px);
+  }
+}
+
+@media (max-width: 1100px) {
+  .projects-section--catalog .projects-group {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-section--overlap {
+    --section-overlap: clamp(48px, 10svh, 80px);
+  }
+
+  .projects-section.projects-section--overlap {
+    padding-top: calc(64px + var(--section-overlap));
+  }
+
+  .projects-section {
+    padding-top: 64px;
+    border-radius: 0;
+  }
+
+  .projects-section--catalog .projects-group {
+    grid-template-columns: 1fr;
+    padding: 0 var(--pad);
+  }
+
+  .projects-section--catalog .project-card {
+    width: 100%;
+  }
+}

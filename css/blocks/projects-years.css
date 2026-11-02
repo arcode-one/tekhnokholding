@@ -1,0 +1,129 @@
+.projects-years {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  padding-right: 32px;
+}
+
+.projects-years__title {
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--logo-yellow);
+  color: var(--projects-secondary);
+  font-size: 11px;
+  line-height: 1.5;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.projects-years__step {
+  margin-left: -20px;
+}
+
+.projects-years__step:disabled {
+  opacity: 0.35;
+  cursor: default;
+  pointer-events: none;
+}
+
+.projects-years__list::-webkit-scrollbar {
+  display: none;
+}
+
+.projects-years__list {
+  --year-row: 46px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(var(--year-row) * 7);
+  overflow: hidden;
+  scrollbar-width: none;
+  overscroll-behavior: contain;
+  padding-left: 4px;
+}
+
+.projects-years__list button {
+  position: relative;
+  isolation: isolate;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  min-height: var(--year-row);
+  opacity: calc(1 - var(--fade, 0) * 0.7);
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease,
+    font-size 0.25s var(--ease-out),
+    opacity 0.3s ease;
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  color: var(--projects-year);
+  font-family: var(--projects-display);
+  font-size: 26px;
+  line-height: 1;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+}
+
+.projects-years__list button::after {
+  position: absolute;
+  content: '';
+  z-index: -1;
+  top: 0;
+  bottom: 0;
+  left: 3px;
+  width: 1px;
+  background: var(--projects-line);
+}
+
+.projects-years__list button::before {
+  content: '';
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border: 1px solid var(--projects-year);
+  border-radius: 50%;
+  background: var(--projects-surface);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.25s var(--ease-out);
+}
+
+.projects-years__list button[aria-pressed='true'] {
+  color: var(--projects-year-active);
+  font-size: 34px;
+  font-weight: 400;
+}
+
+.projects-years__list button[aria-pressed='true']::before {
+  border-color: var(--logo-yellow);
+  background: var(--logo-yellow);
+  transform: scale(1.4);
+}
+
+.projects-years__list button:focus-visible {
+  background: var(--control-hover-bg);
+  color: var(--control-hover-ink);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-years__list button:hover {
+    background: var(--control-hover-bg);
+    color: var(--control-hover-ink);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-years__list button,
+  .projects-years__list button::before {
+    transition: none;
+  }
+}

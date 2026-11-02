@@ -1,0 +1,12 @@
+.object-lead {
+  position: relative;
+}
+
+.object-lead__pin {
+  height: 88svh;
+}
+
+.object-page--motion-ready .object-lead__pin {
+  position: sticky;
+  top: 6svh;
+}

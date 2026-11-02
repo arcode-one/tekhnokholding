@@ -1,0 +1,21 @@
+.projects-sign {
+  display: block;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+}
+
+.projects-sign__fold {
+  transition: transform 0.25s var(--ease-out);
+}
+
+.projects-sign__play {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-sign__fold {
+    transition: none;
+    transform: none !important;
+  }
+}

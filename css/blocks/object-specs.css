@@ -1,0 +1,36 @@
+.object-specs {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 10%;
+  margin: 120px var(--pad);
+}
+
+.object-specs h2 {
+  margin: 0;
+  font-size: clamp(28px, 2.4vw, 44px);
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  line-height: 1.2;
+}
+
+.object-specs dl {
+  margin: 0;
+}
+
+.object-specs dl div {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--space-6);
+  border-top: 1px solid #34454e33;
+  padding: 24px 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.object-specs dt {
+  color: #65727b;
+}
+
+.object-specs dd {
+  margin: 0;
+}
