@@ -1,3 +1,9 @@
+@media (min-width: 768px) {
+  .company-map .home-heading__muted {
+    display: inline;
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1099px) {
   .company-map__card,
   .company-map__list {
@@ -10,6 +16,18 @@
 }
 
 @media (max-width: 767px) {
+  .company-map.company-map--viewport-fit {
+    padding-bottom: 24px;
+  }
+
+  .company-map--viewport-fit .company-heading {
+    margin-bottom: 24px;
+  }
+
+  .company-map--viewport-fit .company-map__filters {
+    margin-bottom: 20px;
+  }
+
   .company-map__filters {
     grid-template-columns: 1fr;
     gap: var(--space-6);

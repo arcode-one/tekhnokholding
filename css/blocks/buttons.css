@@ -1,0 +1,99 @@
+/* Единые состояния управляющих кнопок. Кнопки-фотографии, метки карты
+   и шкала годов сохраняют собственную геометрию и поведение. */
+:is(
+  .pill, .icon-btn:not(.burger-btn), .company-text-button,
+  .company-carousel__controls button, .projects-controls button,
+  .projects-empty button, .object-cinema__bar button,
+  .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
+  .company-lightbox__back, .company-lightbox__steps button,
+  .maplibregl-ctrl-group button
+) {
+  box-sizing: border-box;
+  border: var(--theme-border-width) solid var(--button-border);
+  background: var(--button-bg);
+  color: var(--button-text);
+  text-decoration: none;
+  box-shadow: none;
+  transition:
+    background-color var(--theme-hover-duration) var(--theme-hover-easing),
+    color var(--theme-hover-duration) var(--theme-hover-easing),
+    border-color var(--theme-hover-duration) var(--theme-hover-easing);
+}
+
+:is(
+  .pill, .icon-btn:not(.burger-btn), .company-text-button,
+  .company-carousel__controls button, .projects-controls button,
+  .projects-empty button, .object-cinema__bar button,
+  .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
+  .company-lightbox__back, .company-lightbox__steps button,
+  .maplibregl-ctrl-group button
+):not(:disabled):not([aria-disabled='true']):focus-visible {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  border-color: var(--button-hover-border);
+  outline: 2px solid var(--button-border);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(
+    .pill, .icon-btn:not(.burger-btn), .company-text-button,
+    .company-carousel__controls button, .projects-controls button,
+    .projects-empty button, .object-cinema__bar button,
+    .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
+    .company-lightbox__back, .company-lightbox__steps button,
+    .maplibregl-ctrl-group button
+  ):not(:disabled):not([aria-disabled='true']):hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
+    border-color: var(--button-hover-border);
+  }
+}
+
+.company-map__tools button[aria-pressed='true'] {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+}
+
+.company-map__list-project[aria-pressed='true'] {
+  background: var(--theme-bg-section);
+}
+
+.company-map__list-project:is(:hover, :focus-visible) :is(
+  .company-map__list-address, .company-map__list-facts > span > span
+) {
+  color: inherit;
+}
+
+.advantage-card:is(:hover, :focus-visible) .advantage-card__action {
+  color: inherit;
+}
+
+:is([data-company-image], [data-company-gallery]):focus-visible {
+  outline: 2px solid var(--button-border);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(.recommend-card__letter, .company-lightbox__gallery button):hover {
+    border-color: var(--theme-text-main);
+  }
+}
+
+/* Системные иконки MapLibre используют растровый спрайт. */
+.company-map .maplibregl-ctrl-group button:is(:hover, :focus-visible) .maplibregl-ctrl-icon {
+  filter: brightness(0) invert(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .pill, .icon-btn:not(.burger-btn), .company-text-button,
+    .company-carousel__controls button, .projects-controls button,
+    .projects-empty button, .object-cinema__bar button,
+    .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
+    .company-lightbox__back, .company-lightbox__steps button,
+    .maplibregl-ctrl-group button, .advantage-card, .company-map__list-project
+  ) {
+    transition: none;
+  }
+}

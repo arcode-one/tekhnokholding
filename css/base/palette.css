@@ -1,0 +1,45 @@
+/* Новая палитра. Подключена глобально, применяется к блокам по мере обновления. */
+:root {
+  /* Фоны: основной, секции, карточки, крупные и контрастные блоки. */
+  --theme-bg-main: #f5f5f5;
+  --theme-bg-section: #d9dadf;
+  --theme-bg-card: #a0a3ad;
+  --theme-bg-cool: #8c91a1;
+  --theme-bg-contrast: #697287;
+
+  /* Текст. */
+  --theme-text-main: #303a42;
+  --theme-text-secondary: #626b73;
+  --theme-text-inverse: #ffffff;
+  --theme-text-inverse-muted: #d9dadf;
+
+  /* Тёмный оттенок кнопок совпадает с хедером на присланном образце. */
+  --theme-button-ink: #2b2e30;
+
+  /* Кнопки на тёмном фоне. */
+  --theme-button-on-dark-bg: transparent;
+  --theme-button-on-dark-text: var(--theme-text-inverse);
+  --theme-button-on-dark-border: var(--theme-text-inverse);
+  --theme-button-on-dark-hover-bg: var(--theme-text-inverse);
+  --theme-button-on-dark-hover-text: var(--theme-button-ink);
+  --theme-button-on-dark-hover-border: var(--theme-text-inverse);
+
+  /* Кнопки на светлом фоне. */
+  --theme-button-on-light-bg: transparent;
+  --theme-button-on-light-text: var(--theme-button-ink);
+  --theme-button-on-light-border: var(--theme-button-ink);
+  --theme-button-on-light-hover-bg: var(--theme-button-ink);
+  --theme-button-on-light-hover-text: var(--theme-text-inverse);
+  --theme-button-on-light-hover-border: var(--theme-button-ink);
+
+  /* Навигация на тёмном фоне/фото и на светлом фоне. */
+  --theme-nav-on-dark: var(--theme-text-inverse);
+  --theme-nav-on-dark-hover: var(--theme-text-inverse-muted);
+  --theme-nav-on-light: var(--theme-text-main);
+  --theme-nav-on-light-hover: var(--theme-bg-contrast);
+
+  /* Общие параметры hover и тонких границ. */
+  --theme-hover-duration: 0.35s;
+  --theme-hover-easing: ease;
+  --theme-border-width: 1px;
+}

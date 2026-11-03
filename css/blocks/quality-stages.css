@@ -51,9 +51,9 @@
 }
 
 .quality-stage[open] {
-  border-color: var(--logo-yellow);
+  border-color: var(--theme-bg-section);
   background: var(--color-white);
-  box-shadow: inset 3px 0 var(--logo-yellow);
+  box-shadow: inset 3px 0 var(--theme-bg-contrast);
 }
 
 .quality-stage__head {

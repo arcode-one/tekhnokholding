@@ -79,7 +79,7 @@ html.site--preloading .preloader {
 }
 
 .preloader__arch {
-  fill: var(--logo-yellow);
+  fill: var(--brand-logo-yellow);
 }
 
 .preloader__hex-fill,

@@ -22,6 +22,7 @@ export default function init() {
 
   // ---------- Preloader ----------
 
+  const PRELOADER_ENABLED = false; // Временно отключён; true вернёт заставку при загрузке.
   const MIN_DURATION = 3600; // обводки → жёлтая заливка → белый куб → сдвиг к центру с надписью → короткая пауза
   const LOCKUP_OUT = 450;
   const CURTAIN_UP = 950;
@@ -46,7 +47,7 @@ export default function init() {
   }
 
   async function runPreloader() {
-    if (reducedMotion || !preloader) {
+    if (!PRELOADER_ENABLED || reducedMotion || !preloader) {
       preloader && preloader.remove();
       root.classList.remove('site--preloading');
       finishLoading();
@@ -66,7 +67,7 @@ export default function init() {
     root.classList.remove('site--preloading');
   }
 
-  if (preloader) {
+  if (PRELOADER_ENABLED && preloader) {
     root.classList.add('site--locked', 'site--preloading');
     root.classList.remove('site--loaded');
   }

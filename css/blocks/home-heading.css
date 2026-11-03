@@ -17,7 +17,7 @@
 }
 
 :is(.projects-section, .company-advantages) .home-heading__muted {
-  color: #a3aaa7;
+  color: var(--section-heading-muted, #a3aaa7);
 }
 
 .home-page .company-team__intro {

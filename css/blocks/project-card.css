@@ -1,5 +1,6 @@
 .project-card {
-  --project-photo-height: clamp(240px, 20vw, 380px);
+  --project-photo-height: clamp(180px, 14vw, 240px);
+  --project-photo-transfer: 32px;
 
   position: relative;
   display: flex;
@@ -9,10 +10,10 @@
   height: auto;
   min-height: var(--project-card-height, 0px);
   overflow: hidden;
-  border: 1px solid #ffffff2b;
+  border: 1px solid var(--theme-button-ink);
   border-radius: 4px;
   background: var(--projects-paper);
-  color: var(--color-white);
+  color: var(--theme-text-main);
 }
 
 .project-card[hidden] {
@@ -22,7 +23,7 @@
 .project-card__photo {
   position: relative;
   flex: none;
-  height: var(--project-photo-height);
+  height: calc(var(--project-photo-height) + var(--project-photo-extra, 0px));
   overflow: hidden;
 }
 
@@ -34,14 +35,22 @@
   transition: transform 0.4s var(--ease-out);
 }
 
+.project-card__photo--parallax img {
+  transition: none;
+}
+
+.project-card__photo--parallax-visible img {
+  will-change: transform;
+}
+
 .project-card__year {
   position: absolute;
   left: 16px;
   top: 16px;
   padding: 5px 10px;
   border-radius: 20px;
-  background: var(--graphite);
-  color: var(--logo-yellow);
+  background: var(--theme-text-inverse);
+  color: var(--theme-text-main);
   font-size: 11px;
   line-height: 1.4;
   font-weight: 600;
@@ -59,7 +68,7 @@
 }
 
 .project-card :is(h2, h3) {
-  min-height: 5.12em;
+  min-height: 2.56em;
   margin: 0;
   font-size: clamp(16px, 1.05vw, 20px);
   font-weight: 600;
@@ -70,9 +79,9 @@
 
 .project-card__details {
   display: grid;
-  gap: 12px;
+  gap: 10px;
   margin: auto 0 0;
-  padding-top: 16px;
+  padding-top: 12px;
 }
 
 .project-card__details div {
@@ -85,7 +94,7 @@
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #cbd1da;
+  color: var(--theme-text-secondary);
   margin-bottom: 4px;
 }
 
@@ -108,15 +117,15 @@
 .project-card__material,
 .project-card__city,
 .project-card__area {
-  padding-top: 12px;
+  padding-top: 8px;
 }
 
 .project-card__area {
-  border-top: 1px solid #ffffff2b;
+  border-top: 1px solid #303a4233;
 }
 
 .project-card__material {
-  min-height: 88px;
+  min-height: 64px;
 }
 
 .project-card__city dt {
@@ -138,16 +147,16 @@
   flex: none;
   width: 18px;
   height: 18px;
-  color: var(--logo-yellow);
+  color: currentcolor;
 }
 
 .project-card:focus-visible {
-  outline: 2px solid var(--logo-yellow);
+  outline: 2px solid var(--theme-button-ink);
   outline-offset: -2px;
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .project-card:hover .project-card__photo img {
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-card__photo:not(.project-card__photo--parallax) img {
     transform: translateY(-12px) scale(1.04);
   }
 }

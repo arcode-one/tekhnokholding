@@ -43,8 +43,8 @@
   height: 24px;
   padding-inline: 5px;
   border-radius: 12px;
-  background: var(--logo-yellow);
-  color: var(--color-ink);
+  background: var(--theme-bg-contrast);
+  color: var(--theme-text-inverse);
   font: 700 12px / 1 var(--font-body);
   font-variant-numeric: tabular-nums;
   pointer-events: none;
@@ -52,11 +52,13 @@
 
 .company-map-marker--active {
   z-index: 1;
-  background: var(--logo-yellow);
+  background: var(--theme-bg-section);
+  outline: 2px solid var(--theme-text-main);
+  outline-offset: 2px;
 }
 
 .company-map-marker--active::after {
-  border-top-color: var(--logo-yellow);
+  border-top-color: var(--theme-bg-section);
 }
 
 .company-map-marker--active .company-map-marker__count {
@@ -70,10 +72,10 @@
 
 @media (hover: hover) {
   .company-map-marker:hover {
-    background: var(--logo-yellow);
+    background: var(--theme-bg-section);
   }
 
   .company-map-marker:hover::after {
-    border-top-color: var(--logo-yellow);
+    border-top-color: var(--theme-bg-section);
   }
 }

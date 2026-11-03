@@ -9,7 +9,7 @@
   }
 
   .projects-section:not(.projects-section--catalog) .projects-years {
-    align-self: stretch;
+    align-self: center;
   }
 }
 

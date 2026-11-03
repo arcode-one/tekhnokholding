@@ -5,6 +5,7 @@
     width: max-content;
     align-items: center;
     padding-right: 0;
+    gap: 12px;
   }
 
   .projects-years__step {
@@ -83,11 +84,10 @@
     left: 0;
     width: 44px;
     height: 2px;
-    background: var(--logo-yellow);
+    background: var(--year-accent);
   }
 
   .projects-section .projects-years__step {
-    --icon-btn-bg: #36393c;
     border: 1px solid #ffffff40;
   }
 
@@ -100,8 +100,9 @@
   }
 
   .projects-section .projects-years__list {
-    --year-row: 48px;
-    flex: 1;
+    --year-row: 40px;
+    flex: none;
+    height: calc(var(--year-row) * 7);
     min-height: 0;
   }
 
@@ -134,9 +135,6 @@
     font-weight: 700;
   }
 
-  .projects-section .projects-years__list button[data-project-year='none'] {
-    font-size: 18px;
-  }
 }
 
 @media (max-width: 767px) {
@@ -166,7 +164,7 @@
     overflow-y: visible;
     padding-right: var(--pad);
     padding-left: 0;
-    border-bottom: 1px solid #ffffff38;
+    border-bottom: 1px solid var(--projects-line);
   }
 
   .projects-years__list button {

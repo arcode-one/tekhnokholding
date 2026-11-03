@@ -85,9 +85,10 @@
 .company-figures__item dd {
   order: -1;
   margin: 0;
+  font-family: var(--font-figures);
   font-size: clamp(72px, 8.4vw, 160px);
   line-height: 0.95;
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: -0.04em;
   white-space: nowrap;
   font-variant-numeric: lining-nums;

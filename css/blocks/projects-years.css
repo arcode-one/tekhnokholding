@@ -1,4 +1,5 @@
 .projects-years {
+  --year-accent: var(--projects-year-active);
   position: relative;
   display: flex;
   flex-direction: column;
@@ -9,7 +10,7 @@
 
 .projects-years__title {
   padding-bottom: 14px;
-  border-bottom: 2px solid var(--logo-yellow);
+  border-bottom: 2px solid var(--year-accent);
   color: var(--projects-secondary);
   font-size: 11px;
   line-height: 1.5;
@@ -104,8 +105,8 @@
 }
 
 .projects-years__list button[aria-pressed='true']::before {
-  border-color: var(--logo-yellow);
-  background: var(--logo-yellow);
+  border-color: var(--year-accent);
+  background: var(--year-accent);
   transform: scale(1.4);
 }
 
@@ -116,7 +117,7 @@
 }
 
 .projects-years__list button:focus-visible::before {
-  border-color: var(--logo-yellow);
+  border-color: var(--year-accent);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -127,7 +128,7 @@
   }
 
   .projects-years__list button:hover::before {
-    border-color: var(--logo-yellow);
+    border-color: var(--year-accent);
   }
 }
 

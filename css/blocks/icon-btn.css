@@ -1,6 +1,4 @@
 .icon-btn {
-  --icon-btn-bg: #36393c;
-
   position: relative;
   isolation: isolate;
   overflow: hidden;
@@ -8,20 +6,11 @@
   height: 48px;
   flex-shrink: 0;
   padding: 0;
-  border: 0;
   border-radius: 50%;
-  background: linear-gradient(to bottom, var(--icon-btn-bg) 50%, var(--control-hover-bg) 50%) 0 0 / 100%
-    200% no-repeat;
-  background-origin: border-box;
-  color: var(--light);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition:
-    color 0.2s ease,
-    background-position 0.2s ease,
-    opacity 0.2s ease;
 }
 
 .icon-btn svg {
@@ -32,12 +21,6 @@
   fill: currentcolor;
 }
 
-.icon-btn:not(:disabled):focus-visible {
-  color: var(--control-hover-ink);
-  background-position: 0 100%;
-  transition: none;
-}
-
 .icon-btn:not(:focus-visible) {
   outline: none;
 }
@@ -45,19 +28,6 @@
 .icon-btn:disabled {
   opacity: 0.35;
   cursor: default;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .icon-btn:not(:disabled):hover {
-    color: var(--control-hover-ink);
-    background-position: 0 100%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .icon-btn {
-    transition: none;
-  }
 }
 
 .icon-btn .projects-sign {

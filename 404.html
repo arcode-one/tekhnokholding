@@ -20,17 +20,19 @@
         document.head.append(icon);
       }
       // Абсолютный путь нужен и для неизвестных вложенных адресов GitHub Pages.
-      const fontStyles = document.createElement('link');
-      fontStyles.rel = 'stylesheet';
-      fontStyles.href = siteRoot + 'css/base/fonts.css';
-      document.head.append(fontStyles);
+      for (const stylesheet of ['fonts', 'palette']) {
+        const styles = document.createElement('link');
+        styles.rel = 'stylesheet';
+        styles.href = siteRoot + 'css/base/' + stylesheet + '.css';
+        document.head.append(styles);
+      }
       for (const subset of ['cyrillic', 'latin']) {
         const fontPreload = document.createElement('link');
         fontPreload.rel = 'preload';
         fontPreload.as = 'font';
         fontPreload.type = 'font/woff2';
         fontPreload.crossOrigin = '';
-        fontPreload.href = siteRoot + 'fonts/montserrat/montserrat-' + subset + '-wght-normal.woff2';
+        fontPreload.href = siteRoot + 'fonts/manrope/manrope-' + subset + '-wght-normal.woff2';
         document.head.append(fontPreload);
       }
       const oldRoot = siteRoot + 'hero-test';
@@ -49,13 +51,18 @@
     </script>
     <style>
       html { color-scheme: dark; background: #2a2c2f; color: #fff; }
-      body { margin: 0; font: 18px/1.5 'Montserrat', sans-serif; }
+      body { margin: 0; font: 18px/1.5 'Manrope', sans-serif; }
       main { box-sizing: border-box; min-height: 100svh; display: grid; align-content: center; padding: clamp(24px, 8vw, 120px); }
       h1 { margin: 0 0 24px; font-size: clamp(32px, 6vw, 72px); line-height: 1.1; }
       p { margin: 0 0 32px; }
-      a { justify-self: start; padding: 14px 24px; border: 1px solid #fec72a; border-radius: 32px; color: #fec72a; text-decoration: none; }
-      a:hover, a:focus-visible { background: #fec72a; color: #2a2c2f; }
-      a:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+      a { justify-self: start; padding: 14px 24px; border: var(--theme-border-width) solid var(--theme-button-on-dark-border); border-radius: 32px; background: var(--theme-button-on-dark-bg); color: var(--theme-button-on-dark-text); text-decoration: none; transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing); }
+      a:focus-visible { background: var(--theme-button-on-dark-hover-bg); color: var(--theme-button-on-dark-hover-text); outline: 2px solid var(--theme-text-inverse); outline-offset: 4px; }
+      @media (hover: hover) and (pointer: fine) {
+        a:hover { background: var(--theme-button-on-dark-hover-bg); color: var(--theme-button-on-dark-hover-text); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        a { transition: none; }
+      }
     </style>
   </head>
   <body>

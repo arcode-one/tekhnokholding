@@ -73,7 +73,7 @@
   }
 
   .mission-story a:not(:where(.breadcrumbs a)):hover {
-    color: var(--logo-yellow);
+    color: var(--nav-hover);
   }
 }
 
@@ -362,7 +362,7 @@
 .mission-scene--belief .mission-scene__principle {
   grid-column: 2 / 7;
   grid-row: 3;
-  background: var(--logo-yellow);
+  background: var(--theme-bg-section);
   color: var(--graphite);
   padding: var(--space-8);
 }
@@ -489,8 +489,9 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #14212933, transparent 40%, #14212988);
-  background: linear-gradient(90deg, #14212999, transparent 70%);
+  background:
+    linear-gradient(180deg, #14212970, #14212926 17%, transparent 34%),
+    linear-gradient(90deg, #14212957, transparent 62%);
 }
 
 .mission-hero__content {
@@ -513,7 +514,7 @@
 
 .mission-hero__title-sub {
   display: block;
-  color: #a3aaa7;
+  color: var(--color-mist);
 }
 
 .mission-hero__content .breadcrumbs--mission {

@@ -1,9 +1,10 @@
 .dock__nav a {
-  transition: color 0.2s ease, opacity 0.3s;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
 }
 
 .dock__nav a:focus-visible {
-  color: var(--control-hover-bg);
+  color: var(--nav-hover);
 }
 
 .dock {
@@ -70,7 +71,6 @@ html.site--scrolled .dock.dock--open {
 }
 
 .dock__burger {
-  --icon-btn-bg: transparent;
 
   width: var(--burger);
   height: var(--burger);

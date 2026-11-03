@@ -14,18 +14,18 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .company-text-button:not(:disabled):focus-visible {
-  background: var(--control-hover-bg);
-  color: var(--control-hover-ink);
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .company-text-button:not(:disabled):hover {
-    background: var(--control-hover-bg);
-    color: var(--control-hover-ink);
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
   }
 }
 

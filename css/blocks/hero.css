@@ -106,7 +106,7 @@
   line-height: 0.95;
   font-weight: 500;
   letter-spacing: -0.04em;
-  color: var(--logo-yellow);
+  color: var(--theme-text-inverse);
 }
 
 .hero__experience > span {
@@ -145,7 +145,7 @@
   right: 0;
   bottom: -18px;
   height: 2px;
-  background: var(--logo-yellow);
+  background: var(--theme-text-inverse);
 }
 
 .hero__content--leadership .hero__num {
@@ -153,8 +153,8 @@
   font-size: clamp(240px, 25vw, 380px);
   line-height: 0.85;
   font-weight: 300;
-  color: var(--logo-yellow);
-  -webkit-text-stroke: 1.5px var(--logo-yellow);
+  color: var(--theme-text-inverse);
+  -webkit-text-stroke: 1.5px var(--theme-text-inverse);
   letter-spacing: -0.04em;
 }
 
@@ -187,7 +187,7 @@
 
 .hero__content--leadership .hero__experience > span {
   padding-left: 24px;
-  border-left: 2px solid var(--logo-yellow);
+  border-left: 2px solid var(--theme-text-inverse);
   font-size: clamp(16px, 1.55vw, 24px);
   line-height: 1.4;
   text-transform: uppercase;

@@ -1,6 +1,23 @@
 .company-map {
   padding-bottom: 72px;
-  background: var(--color-gray-light);
+  background: var(--color-white);
+}
+
+.company-map.company-map--viewport-fit {
+  padding-bottom: 32px;
+}
+
+.company-map--viewport-fit .company-heading {
+  margin-bottom: 32px;
+}
+
+.company-map--viewport-fit .company-map__filters {
+  margin-bottom: 24px;
+}
+
+.company-map--viewport-fit .company-map__stage {
+  height: var(--map-viewport-height, 60svh);
+  min-height: 0;
 }
 
 .company-map [hidden] {
@@ -117,7 +134,7 @@
   box-shadow: 0 3px 12px #34454e14;
   font: 500 13px var(--font-body);
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .company-map__tools button[data-map-zoom] {
@@ -207,7 +224,7 @@
   font-family: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .company-map__list-project > img {
@@ -265,7 +282,7 @@
 }
 
 .company-map__list-project[aria-pressed='true'] {
-  background: #fff6d7;
+  background: var(--theme-bg-section);
 }
 
 .company-map__card {
@@ -346,7 +363,7 @@
   line-height: 1.5;
   font-weight: 600;
   text-decoration: none;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .company-map__back {
@@ -362,11 +379,10 @@
   text-decoration: underline;
   text-underline-offset: 4px;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .company-map__close {
-  --icon-btn-bg: #f2f4f4;
 
   flex: none;
   width: 44px;
@@ -376,7 +392,6 @@
 }
 
 .company-map__card > .company-map__close {
-  --icon-btn-bg: var(--color-white);
 
   position: absolute;
   z-index: 1;
@@ -415,8 +430,8 @@
 .company-map__list-project:focus-visible,
 .company-map__card-link:focus-visible,
 .company-map__back:focus-visible {
-  background: var(--control-hover-bg);
-  color: var(--control-hover-ink);
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -424,7 +439,7 @@
   .company-map__list-project:hover,
   .company-map__card-link:hover,
   .company-map__back:hover {
-    background: var(--control-hover-bg);
-    color: var(--control-hover-ink);
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
   }
 }

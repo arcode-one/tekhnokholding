@@ -70,7 +70,8 @@
   padding-block: 5px;
   font-size: 16px;
   line-height: 1.4;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.2s ease;
 }
 
 .site-footer__brand {
@@ -99,7 +100,7 @@
   min-height: 44px;
   max-width: 100%;
   margin-top: 4px;
-  color: #e0e6ec;
+  color: var(--nav-text);
   font-size: 12px;
   line-height: 1.5;
   text-decoration: underline;
@@ -139,7 +140,8 @@
 
 .site-footer__contact-link {
   min-height: 44px;
-  transition: color 0.2s ease;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .site-footer__contact-link > span,
@@ -161,7 +163,7 @@
   stroke-width: 1.8;
   stroke-linecap: round;
   stroke-linejoin: round;
-  color: var(--logo-yellow);
+  color: currentcolor;
 }
 
 .site-footer__contact-label {
@@ -201,7 +203,8 @@
   max-width: 42ch;
   font-size: inherit;
   line-height: inherit;
-  transition: color 0.2s ease;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .site-footer__office small {
@@ -230,15 +233,17 @@
 
 .site-footer__nav a:focus-visible,
 .site-footer__contact-link:focus-visible,
-.site-footer__office a:focus-visible {
-  color: var(--control-hover-bg);
+.site-footer__office a:focus-visible,
+.site-footer__privacy:focus-visible {
+  color: var(--nav-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .site-footer__nav a:hover,
   .site-footer__contact-link:hover,
-  .site-footer__office a:hover {
-    color: var(--control-hover-bg);
+  .site-footer__office a:hover,
+  .site-footer__privacy:hover {
+    color: var(--nav-hover);
   }
 
   .site-footer__privacy:hover {

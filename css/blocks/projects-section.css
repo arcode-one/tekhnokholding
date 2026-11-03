@@ -15,10 +15,10 @@
 
 .projects-section {
   --projects-surface: var(--color-slate-alt);
-  --projects-paper: var(--graphite);
+  --projects-paper: var(--theme-text-inverse);
   --projects-secondary: var(--light);
   --projects-ink: var(--color-white);
-  --project-accent: var(--logo-yellow);
+  --project-accent: var(--theme-text-main);
   --projects-gap: 16px;
   --projects-year: #ffffffb8;
   --projects-year-active: var(--color-white);
@@ -36,18 +36,22 @@
 }
 
 .projects-section:not(.projects-section--catalog) {
-  --projects-surface: #10191e;
+  --projects-surface: var(--color-mist);
+  --projects-ink: var(--color-ink);
+  --projects-secondary: var(--theme-text-secondary);
+  --projects-year: var(--theme-text-secondary);
+  --projects-year-active: var(--color-ink);
+  --projects-line: #34454e38;
+  --section-heading-muted: var(--color-slate);
   --projects-columns: 5;
   --project-card-width: calc(
     (100cqw - (var(--projects-columns) - 1) * var(--projects-gap)) / var(--projects-columns)
   );
 
-  background-image:
-    linear-gradient(180deg, #10191ecc, #10191eb3 45%, #10191ec7),
-    url('../../images/backgrounds/projects-blueprint-dark-v2.webp');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+}
+
+.projects-section:not(.projects-section--catalog) .projects-years__title {
+  color: var(--projects-secondary);
 }
 
 .projects-section:not(.projects-section--catalog) .projects-body {
@@ -107,7 +111,7 @@
   .projects-section--catalog .projects-years {
     position: sticky;
     top: calc(var(--header-h) + 24px);
-    height: min(760px, calc(100svh - var(--header-h) - 48px));
+    height: max-content;
   }
 }
 

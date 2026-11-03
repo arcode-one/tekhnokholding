@@ -5,6 +5,12 @@
 }
 
 @media (max-width: 767px) {
+  .home-page .projects-body::before,
+  .home-page .projects-body::after {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
   .projects-body {
     grid-template-columns: minmax(0, 1fr);
     padding-left: 0;

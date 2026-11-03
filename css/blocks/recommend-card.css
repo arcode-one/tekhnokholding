@@ -94,12 +94,12 @@
 }
 
 .recommend-card:focus-within {
-  border-color: var(--logo-yellow);
+  border-color: var(--theme-text-main);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .recommend-card:hover {
-    border-color: var(--logo-yellow);
+    border-color: var(--theme-text-main);
   }
 }
 

@@ -7,14 +7,14 @@
   min-height: 172px;
   padding: 12px;
   border: 0;
-  border-bottom: 2px solid #fec72a;
+  border-bottom: 2px solid var(--theme-bg-section);
   border-radius: 12px;
   background: var(--color-white);
   color: var(--color-ink);
   font-family: inherit;
   text-align: left;
   cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .advantage-card--static {
@@ -68,14 +68,14 @@
 }
 
 .advantage-card:not(.advantage-card--static):focus-visible {
-  background: var(--control-hover-bg);
-  color: var(--control-hover-ink);
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .advantage-card:not(.advantage-card--static):hover {
-    background: var(--control-hover-bg);
-    color: var(--control-hover-ink);
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
   }
 
   .advantage-card:not(.advantage-card--static):hover .advantage-card__action svg {

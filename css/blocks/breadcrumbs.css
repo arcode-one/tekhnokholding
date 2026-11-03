@@ -3,7 +3,7 @@
 }
 
 .breadcrumbs {
-  --breadcrumbs-hover: #805915;
+  --breadcrumbs-hover: var(--theme-nav-on-light-hover);
 
   margin: 0 var(--pad);
   color: var(--color-ink);
@@ -14,7 +14,7 @@
 }
 
 .breadcrumbs--inverse {
-  --breadcrumbs-hover: var(--logo-yellow);
+  --breadcrumbs-hover: var(--theme-nav-on-dark-hover);
 
   color: var(--color-white);
 }
@@ -43,7 +43,7 @@
   min-height: 44px;
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .breadcrumbs [aria-current='page'] {

@@ -4,10 +4,8 @@
   --graphite: #2a2c2f;
   --light: #f2f2f0;
   --muted: #b4b8bc;
-  --accent: #d99a2e;
-  --logo-yellow: #fec72a;
-  --control-hover-bg: var(--logo-yellow);
-  --control-hover-ink: var(--graphite);
+  --accent: var(--theme-bg-contrast);
+  --brand-logo-yellow: #fec72a;
   --logo-dark: #444344;
   --preloader-bg: #000;
   --pad: 56px;
@@ -29,9 +27,10 @@
   --layer-header: 50;
   --layer-preloader: 100;
   --layer-scrollbar: 10000;
-  --font-body: 'Montserrat', sans-serif;
+  --font-body: 'Manrope', sans-serif;
   --font-display: var(--font-body);
   --font-numbers: var(--font-body);
+  --font-figures: 'Jost', sans-serif;
 }
 
 @media (max-width: 767px) {

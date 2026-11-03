@@ -6,16 +6,17 @@
 }
 
 .nav a {
-  transition: color 0.2s ease, opacity 0.3s;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
 }
 
 .nav a:focus-visible {
-  color: var(--control-hover-bg);
+  color: var(--nav-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
   :is(.nav, .menu__nav, .dock__nav) a:hover {
-    color: var(--control-hover-bg);
+    color: var(--nav-hover);
   }
 
   :is(.nav, .menu__nav, .dock__nav, .header__contacts, .dock__contacts):has(a:hover) a:not(:hover) {

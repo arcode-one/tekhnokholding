@@ -6,6 +6,6 @@
 
 @media (hover: hover) and (pointer: fine) {
   .projects-total-link:hover {
-    color: var(--logo-yellow);
+    color: var(--theme-nav-on-dark-hover);
   }
 }

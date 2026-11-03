@@ -1,6 +1,10 @@
+import initMapLayout from './company-map-layout.js';
+import initProjectPhotoParallax from './project-photo-parallax.js';
+
 export default function init(section) {
   const rail = section.querySelector('[data-projects-rail]');
   const group = section.querySelector('[data-projects-group]');
+  const body = section.querySelector('.projects-body');
   const cards = [...group.children];
   const types = [...section.querySelectorAll('[data-project-type]')];
   const years = [...section.querySelectorAll('[data-project-year]')];
@@ -15,6 +19,8 @@ export default function init(section) {
   const prev = section.querySelector('[data-projects-prev]');
   const next = section.querySelector('[data-projects-next]');
   const catalog = section.classList.contains('projects-section--catalog');
+  const mapSection = section.nextElementSibling;
+  if (!catalog && mapSection?.matches('[data-company-map]')) initMapLayout(mapSection);
   const reduce = matchMedia('(prefers-reduced-motion:reduce)');
   const hover = matchMedia('(hover:hover) and (pointer:fine)');
   const plurals = new Intl.PluralRules('ru');
@@ -36,12 +42,36 @@ export default function init(section) {
     moved = false,
     manualUntil = 0;
   let cardSizeKey = '';
+  let edgeRanges = [];
+  const refreshPhotoParallax = initProjectPhotoParallax(section);
+
+  function syncEdgeRanges() {
+    if (catalog || !body) return;
+    const origin = rail.getBoundingClientRect().left - rail.scrollLeft;
+    const edgeCards = [...filtered, ...(loopGroup ? loopGroup.children : [])];
+    edgeRanges = edgeCards.map((card) => {
+      const rect = card.getBoundingClientRect();
+      return { left: rect.left - origin, right: rect.right - origin };
+    });
+  }
+
+  function updateEdgeBorders() {
+    if (catalog || !body) return;
+    // Геометрия кешируется при смене набора/размера, без чтения карточек на скролле.
+    const cutsCard = (position) => !rail.hidden && edgeRanges.some(
+      (range) => position > range.left + 0.5 && position < range.right - 0.5,
+    );
+    body.toggleAttribute('data-projects-cut-start', cutsCard(rail.scrollLeft));
+    body.toggleAttribute('data-projects-cut-end', cutsCard(rail.scrollLeft + rail.clientWidth));
+  }
 
   function syncCardHeights(force = false) {
     if (!rail.clientWidth) return;
     const key = `${rail.clientWidth}:${window.innerWidth}`;
     if (!force && key === cardSizeKey) return;
     cardSizeKey = key;
+    // Общую высоту считаем с прежним размером фотографии.
+    section.style.setProperty('--project-photo-extra', '0px');
     // Hidden years participate only in this synchronous measurement, never in paint.
     section.setAttribute('data-measuring-cards', '');
     try {
@@ -50,6 +80,24 @@ export default function init(section) {
     } finally {
       section.removeAttribute('data-measuring-cards');
     }
+    balanceCardPhotos();
+  }
+
+  function balanceCardPhotos() {
+    section.style.setProperty('--project-photo-extra', '0px');
+    const visibleCards = filtered.filter((card) => !card.hidden);
+    if (!visibleCards.length || rail.hidden) return;
+    const requested = parseFloat(
+      getComputedStyle(visibleCards[0]).getPropertyValue('--project-photo-transfer'),
+    ) || 0;
+    // Переносим свободный margin в фото, оставляя 8px воздуха над деталями.
+    // Один размер фото для всей выбранной группы; длинный текст не обрезается.
+    const available = Math.min(...visibleCards.map((card) => {
+      const details = card.querySelector('.project-card__details');
+      return Math.max(0, (parseFloat(getComputedStyle(details).marginTop) || 0) - 8);
+    }));
+    const extra = Math.floor(Math.min(requested, available));
+    section.style.setProperty('--project-photo-extra', `${extra}px`);
   }
 
   function wantsMotion() {
@@ -114,6 +162,7 @@ export default function init(section) {
       next.hidden = !scrollable;
       next.disabled = !scrollable || (!loopDistance && rail.scrollLeft >= room - 1);
     }
+    updateEdgeBorders();
   }
   // Фото дальних карточек ставятся, когда до них остаётся около трёх экранов ленты
   const photoObserver =
@@ -178,6 +227,8 @@ export default function init(section) {
     rail.scrollLeft = position;
     autoPosition = rail.scrollLeft;
     lastWrittenScroll = rail.scrollLeft;
+    syncEdgeRanges();
+    refreshPhotoParallax();
     updatePause();
     updateArrows();
   }
@@ -188,9 +239,7 @@ export default function init(section) {
         end = Number(card.dataset.yearEnd) || start;
       const matchYear =
         !selectedYear ||
-        (selectedYear === 'none'
-          ? !start
-          : start && Number(selectedYear) >= start && Number(selectedYear) <= end);
+        (start && Number(selectedYear) >= start && Number(selectedYear) <= end);
       card.hidden = !((!selectedType || card.dataset.type === selectedType) && matchYear);
       return !card.hidden;
     });
@@ -203,6 +252,7 @@ export default function init(section) {
     } else if (count) count.textContent = `${filtered.length} ${ending}`;
     empty.hidden = filtered.length !== 0;
     rail.hidden = filtered.length === 0;
+    balanceCardPhotos();
     rail.scrollLeft = 0;
     autoPosition = 0;
     lastWrittenScroll = 0;
@@ -213,9 +263,18 @@ export default function init(section) {
     button.addEventListener('click', () => {
       selectedType = button.dataset.projectType;
       types.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      if (!selectedType) {
+        clearYear();
+        manualUntil = performance.now() + 3000;
+      }
       applyFilters();
     }),
   );
+  function clearYear() {
+    selectedYear = '';
+    years.forEach((button) => button.setAttribute('aria-pressed', 'false'));
+    layoutYears();
+  }
   function setYear(button, scroll = true) {
     if (scroll) manualUntil = performance.now() + 3000;
     selectedYear = button.dataset.projectYear;
@@ -229,17 +288,17 @@ export default function init(section) {
     applyFilters();
   }
   years.forEach((button) => button.addEventListener('click', () => setYear(button)));
-  // Кольцо лет: каждый год встаёт на кратчайшее расстояние от выбранного, после «2005» снова идёт «Все».
+  // Кольцо лет: каждый год встаёт на кратчайшее расстояние от выбранного.
   // Год, перескочивший через край кольца, переставляется без анимации, пока он вне окна
   const drumMode = matchMedia('(min-width: 768px)');
-  const activeYear = () => years.findIndex((b) => b.getAttribute('aria-pressed') === 'true');
+  const activeYear = () => Math.max(0, years.findIndex((b) => b.getAttribute('aria-pressed') === 'true'));
   const yearAt = (shift) => years[(activeYear() + shift + years.length) % years.length];
   function layoutYears() {
     const n = years.length,
       active = activeYear();
     const rowHeight = yearList ? parseFloat(getComputedStyle(yearList).getPropertyValue('--year-row')) || 48 : 48;
     const radius = drumMode.matches && yearList
-      ? Math.max(1, Math.floor((yearList.clientHeight / rowHeight - 1) / 2))
+      ? Math.min(3, Math.max(1, Math.floor((yearList.clientHeight / rowHeight - 1) / 2)))
       : 3;
     const visibleOffsets = [];
     years.forEach((button, i) => {
@@ -249,7 +308,7 @@ export default function init(section) {
       button.classList.toggle('projects-years__year--jump', Math.abs(d - previous) > 3);
       button.dataset.d = d;
       button.style.setProperty('--d', d);
-      // Шаг постоянный: высокая шкала показывает больше лет, не растягивает интервалы.
+      // В окне активный год и не более трёх соседних с каждой стороны.
       button.style.setProperty('--fade', String(Math.min(1, Math.max(0, Math.abs(d) - 1) / Math.max(1, radius - 1))));
       button.classList.toggle('projects-years__year--far', drumMode.matches && Math.abs(d) > radius);
       button.tabIndex = drumMode.matches && Math.abs(d) > radius ? -1 : 0;
@@ -306,7 +365,9 @@ export default function init(section) {
   section.querySelector('[data-projects-reset]').addEventListener('click', () => {
     selectedType = '';
     types.forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0)));
-    setYear(years[0]);
+    clearYear();
+    manualUntil = performance.now() + 3000;
+    applyFilters();
   });
   pause?.addEventListener('click', () => {
     userPaused = !userPaused;
@@ -430,7 +491,10 @@ export default function init(section) {
     wake();
   }).observe(rail);
   syncCardHeights();
-  document.fonts.ready.then(() => syncCardHeights(true));
-  if (years[0]) setYear(years[0], false);
-  else applyFilters();
+  document.fonts.ready.then(() => {
+    syncCardHeights(true);
+    refreshPhotoParallax();
+  });
+  clearYear();
+  applyFilters();
 }

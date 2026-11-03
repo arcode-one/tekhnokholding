@@ -11,7 +11,9 @@ class PixelAlignedLenis extends Lenis {
 export default function init() {
   const root = document.documentElement;
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const nativeArea = '[data-lenis-prevent],[data-ui~=menu],select';
+  // Закрытые select прокручивают страницу вместе с остальным контентом.
+  // Открытый системный список обрабатывает колесо сам, вне DOM страницы.
+  const nativeArea = '[data-lenis-prevent],[data-ui~=menu]';
   let scroller = null;
 
   // Запас инерции ограничен половиной экрана; обратный жест сразу

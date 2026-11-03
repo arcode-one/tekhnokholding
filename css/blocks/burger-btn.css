@@ -1,3 +1,14 @@
+.burger-btn {
+  border: 0;
+  background: transparent;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing);
+}
+
+.burger-btn:focus-visible {
+  color: var(--nav-hover);
+}
+
 .burger-btn svg path {
   transform-box: fill-box;
   transform-origin: center;
@@ -7,6 +18,10 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .burger-btn:hover {
+    color: var(--nav-hover);
+  }
+
   .burger-btn:hover .burger__line--hide {
     opacity: 0;
     transform: scaleX(0);
@@ -18,6 +33,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .burger-btn,
   .burger-btn svg path {
     transition: none;
   }

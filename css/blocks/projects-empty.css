@@ -16,17 +16,17 @@
   margin-top: 24px;
   font-size: 16px;
   text-decoration: underline;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .projects-empty button:not(:disabled):focus-visible {
-  background: var(--control-hover-bg);
-  color: var(--control-hover-ink);
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .projects-empty button:not(:disabled):hover {
-    background: var(--control-hover-bg);
-    color: var(--control-hover-ink);
+    background: var(--button-hover-bg);
+    color: var(--button-hover-text);
   }
 }

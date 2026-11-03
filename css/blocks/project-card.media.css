@@ -1,6 +1,7 @@
 @media (max-width: 767px) {
   .project-card {
-    --project-photo-height: 280px;
+    --project-photo-height: 220px;
+    --project-photo-transfer: 24px;
 
     width: 78vw;
     flex-basis: 78vw;

@@ -19,7 +19,6 @@
 }
 
 .projects-body__arrow {
-  --icon-btn-bg: var(--graphite);
 
   grid-column: 2;
   grid-row: 1;
@@ -42,4 +41,30 @@
   fill: none;
   stroke: currentcolor;
   stroke-width: 1.5;
+}
+
+/* Замыкаем обводку карточки на неподвижном краю scrollport. */
+.home-page .projects-body::before,
+.home-page .projects-body::after {
+  content: none;
+  grid-column: 3;
+  grid-row: 1;
+  align-self: start;
+  justify-self: start;
+  width: 1px;
+  height: var(--project-card-height, 0px);
+  background: var(--theme-button-ink);
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.home-page .projects-body::after {
+  justify-self: end;
+}
+
+.home-page .projects-body[data-projects-cut-start]::before,
+.home-page .projects-body[data-projects-cut-end]::after {
+  content: '';
+  visibility: visible;
 }

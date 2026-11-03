@@ -40,18 +40,19 @@ html.site--scrolled .header {
 
 .header__phone,
 .header__mail {
-  transition: color 0.2s ease, opacity 0.3s;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
 }
 
 .header__phone:focus-visible,
 .header__mail:focus-visible {
-  color: var(--control-hover-bg);
+  color: var(--nav-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .header__phone:hover,
   .header__mail:hover {
-    color: var(--control-hover-bg);
+    color: var(--nav-hover);
   }
 }
 
@@ -76,7 +77,7 @@ html.site--scrolled .header {
 
 .header__mail {
   font-size: 16px;
-  color: var(--light);
+  color: var(--nav-text);
 }
 
 .header__messengers {

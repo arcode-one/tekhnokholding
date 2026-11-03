@@ -1,9 +1,10 @@
 .menu__nav a {
-  transition: color 0.2s ease, opacity 0.3s;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
 }
 
 .menu__nav a:focus-visible {
-  color: var(--control-hover-bg);
+  color: var(--nav-hover);
 }
 
 .menu {
@@ -37,20 +38,21 @@
 }
 
 .menu__contacts a:last-child {
-  color: var(--light);
+  color: var(--nav-text);
 }
 
 .menu__contacts a {
-  transition: color 0.2s ease;
+  color: var(--nav-text);
+  transition: color var(--theme-hover-duration) var(--theme-hover-easing);
 }
 
 .menu__contacts a:focus-visible {
-  color: var(--control-hover-bg);
+  color: var(--nav-hover);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .menu__contacts a:hover {
-    color: var(--control-hover-bg);
+    color: var(--nav-hover);
   }
 }
 

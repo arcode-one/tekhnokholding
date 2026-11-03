@@ -451,7 +451,7 @@ export default function init(section) {
           });
         ['highway_major_casing', 'highway_motorway_casing', 'highway_motorway_bridge_casing']
           .filter((id) => map.getLayer(id))
-          .forEach((id) => map.setPaintProperty(id, 'line-color', '#eac774'));
+          .forEach((id) => map.setPaintProperty(id, 'line-color', '#a0a3ad'));
         [
           ['water', '#e1eef5'],
           ['park', '#e9efea'],
@@ -476,7 +476,7 @@ export default function init(section) {
             },
             filter: ['!=', ['get', 'hide_3d'], true],
             paint: {
-              'fill-extrusion-color': '#b9b5a9',
+              'fill-extrusion-color': '#a0a3ad',
               'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6],
               'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
               'fill-extrusion-opacity': 0.95,
