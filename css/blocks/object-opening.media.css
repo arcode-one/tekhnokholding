@@ -11,7 +11,7 @@
 
 @media (max-width: 767px) {
   .object-opening {
-    padding-top: var(--breadcrumbs-offset);
+    padding-top: var(--page-back-offset);
     padding-bottom: 28px;
   }
 

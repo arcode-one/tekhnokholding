@@ -3,14 +3,12 @@ import { loadAsset as load } from '../lib/assets.js';
 export default function init(section) {
   const view = section.querySelector('[data-map-view]');
   const status = section.querySelector('[data-map-status]');
-  const citySelect = section.querySelector('[data-map-city]');
-  const projectSelect = section.querySelector('[data-map-project]');
   const card = section.querySelector('[data-map-card]');
   const list = section.querySelector('[data-map-list]');
   const listItems = section.querySelector('[data-map-list-items]');
   const itemTemplate = section.querySelector('[data-map-list-template]');
-  const backButton = section.querySelector('[data-map-card-back]');
   const pitchButton = section.querySelector('[data-map-pitch]');
+  const fitButton = section.querySelector('[data-map-fit]');
   const perspectivePitch = 58;
   const cameraPitch = () =>
     pitchButton.getAttribute('aria-pressed') === 'true' ? perspectivePitch : 0;
@@ -45,13 +43,12 @@ export default function init(section) {
     load(section.dataset.mapStyle, 'css').catch(() => {});
     load(section.dataset.mapScript, 'js').catch(() => {});
   };
-  const idle = window.requestIdleCallback || ((fn) => setTimeout(fn, 1200));
-  if (document.readyState === 'complete') idle(preload, { timeout: 1500 });
-  else window.addEventListener('load', () => idle(preload, { timeout: 1500 }), { once: true });
-
-  function visibleRecords() {
-    return records.filter((record) => !citySelect.value || record.city === citySelect.value);
-  }
+  const preloadObserver = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) return;
+    preloadObserver.disconnect();
+    preload();
+  }, { rootMargin: '1000px 0px' });
+  preloadObserver.observe(section);
 
   function updateSelection() {
     markers.forEach((group) => {
@@ -67,7 +64,6 @@ export default function init(section) {
     });
     // На узком экране список уступает место карточке, но сохраняет свою прокрутку.
     list.hidden = !activeGroup || (compact.matches && !card.hidden);
-    backButton.hidden = !activeGroup;
   }
 
   function closePanels(restoreFocus = false) {
@@ -75,7 +71,6 @@ export default function init(section) {
     selected = '';
     activeGroup = null;
     card.hidden = true;
-    projectSelect.value = '';
     updateSelection();
     if (restoreFocus && opener?.isConnected && !opener.hidden)
       opener.focus({ preventScroll: true });
@@ -84,7 +79,6 @@ export default function init(section) {
   function closeCard(restoreFocus = false) {
     selected = '';
     card.hidden = true;
-    projectSelect.value = '';
     updateSelection();
     const target = cardOpener?.isConnected ? cardOpener : opener;
     if (restoreFocus && target && !target.hidden) target.focus({ preventScroll: true });
@@ -105,7 +99,7 @@ export default function init(section) {
     row.querySelector('dd').textContent = value || '';
   }
 
-  function showProject(id, { fly = false, fromList = false, trigger = null, focus = false } = {}) {
+  function showProject(id, { fromList = false, trigger = null, focus = false } = {}) {
     const record = records.find((item) => item.id === id);
     if (!record) return;
     clearTimeout(hoverTimer);
@@ -115,7 +109,6 @@ export default function init(section) {
     }
     cardOpener = trigger;
     selected = id;
-    projectSelect.value = id;
     setImage(card.querySelector('[data-map-card-image]'), record);
     card.querySelector('[data-map-card-title]').textContent = record.title;
     card.querySelector('[data-map-card-address]').textContent =
@@ -131,20 +124,6 @@ export default function init(section) {
     card.querySelector('.company-map__card-content').scrollTop = 0;
     updateSelection();
     if (focus) card.querySelector('[data-map-card-close]').focus({ preventScroll: true });
-    // Наведение и нажатие на метку не двигают карту. Поиск через select приближает объект.
-    if (map && fly && record.coordinates) {
-      map.flyTo({
-        center: record.coordinates,
-        zoom: { address: 15.5, street: 13, area: 13, city: 11, region: 7 }[record.precision] || 11,
-        pitch: cameraPitch(),
-        bearing: 0,
-        padding: compact.matches
-          ? { left: 30, right: 30, top: 40, bottom: Math.min(view.clientHeight * 0.5, 300) }
-          : { left: 60, right: 420, top: 60, bottom: 60 },
-        retainPadding: false,
-        duration: reduced.matches ? 0 : 600,
-      });
-    }
   }
 
   function showGroup(group, focus = false) {
@@ -170,7 +149,6 @@ export default function init(section) {
       listItems.scrollTop = 0;
     }
     selected = '';
-    projectSelect.value = '';
     activeGroup = group;
     opener = group.button;
     card.hidden = true;
@@ -189,7 +167,7 @@ export default function init(section) {
     const previous = new Map(markers.map((group) => [group.key, group]));
     const next = [];
     const groups = new Map();
-    visibleRecords()
+    records
       .filter((record) => record.coordinates)
       .forEach((record) => {
         // Одна координата = одна метка. Не раздвигаем объекты с неизвестным адресом.
@@ -262,17 +240,9 @@ export default function init(section) {
       const id = selected || activeGroup?.records[0].id;
       opener =
         markers.find((group) => group.records.some((record) => record.id === id))?.button ||
-        projectSelect;
+        fitButton;
     }
     updateSelection();
-  }
-
-  function filterOptions() {
-    projectSelect.replaceChildren(
-      new Option('Выберите объект', ''),
-      ...visibleRecords().map((record) => new Option(record.title, record.id)),
-    );
-    renderMarkers();
   }
 
   function boundsFor(items) {
@@ -288,24 +258,14 @@ export default function init(section) {
     const bounds = boundsFor(items);
     if (!bounds) return;
     map.fitBounds(bounds, {
-      padding: citySelect.value === defaultCity ? overviewPadding : 70,
-      maxZoom: citySelect.value === defaultCity ? overviewZoom() : 12,
+      padding: 70,
+      maxZoom: 12,
       pitch: cameraPitch(),
       bearing: 0,
       duration: reduced.matches ? 0 : 600,
     });
   }
 
-  projectSelect.addEventListener('change', () => {
-    if (projectSelect.value)
-      showProject(projectSelect.value, { fly: true, trigger: projectSelect });
-    else closePanels();
-  });
-  citySelect.addEventListener('change', () => {
-    closePanels();
-    filterOptions();
-    fit(visibleRecords());
-  });
   listItems.addEventListener('click', (event) => {
     const button = event.target.closest('[data-map-list-project]');
     if (button)
@@ -317,7 +277,6 @@ export default function init(section) {
   });
   section.querySelector('[data-map-card-close]').addEventListener('click', () => closeCard(true));
   section.querySelector('[data-map-list-close]').addEventListener('click', () => closePanels(true));
-  backButton.addEventListener('click', () => closeCard(true));
   section.addEventListener('keydown', (event) => {
     if (event.key !== 'Escape' || (card.hidden && list.hidden)) return;
     event.preventDefault();
@@ -340,10 +299,8 @@ export default function init(section) {
       map.setLayoutProperty('thld-buildings-3d', 'visibility', active ? 'visible' : 'none');
     map.easeTo({ pitch: cameraPitch(), bearing: 0, duration: reduced.matches ? 0 : 500 });
   });
-  section.querySelector('[data-map-fit]').addEventListener('click', () => {
-    citySelect.value = '';
+  fitButton.addEventListener('click', () => {
     closePanels();
-    filterOptions();
     fit(records);
   });
 
@@ -370,19 +327,11 @@ export default function init(section) {
         };
       });
       section.dataset.mapState = 'assets';
-      citySelect.replaceChildren(
-        new Option('Вся география', ''),
-        ...[...new Set(records.map((record) => record.city).filter(Boolean))]
-          .sort((a, b) => a.localeCompare(b, 'ru'))
-          .map((city) => new Option(city, city)),
-      );
-      citySelect.value = defaultCity;
-      filterOptions();
       await Promise.all([
         load(section.dataset.mapStyle, 'css'),
         load(section.dataset.mapScript, 'js'),
       ]);
-      const initialBounds = boundsFor(visibleRecords());
+      const initialBounds = boundsFor(records.filter((record) => record.city === defaultCity));
       map = new maplibregl.Map({
         container: view,
         style: 'https://tiles.openfreemap.org/styles/positron',
@@ -415,6 +364,7 @@ export default function init(section) {
         new maplibregl.NavigationControl({ showZoom: false, visualizePitch: true }),
         'bottom-right',
       );
+      view.querySelector('.maplibregl-ctrl-compass')?.classList.add('icon-btn');
       map.on('movestart', () => clearTimeout(hoverTimer));
       map.on('cooperativegestureprevented', () => {
         clearTimeout(gestureHintTimer);
@@ -494,7 +444,7 @@ export default function init(section) {
       section.dataset.mapState = 'error';
       status.hidden = false;
       status.textContent =
-        'Карта временно недоступна. Выберите объект в списке, чтобы открыть фотографии и адрес.';
+        'Карта временно недоступна. Попробуйте обновить страницу.';
       section.querySelectorAll('[data-ui~=company-map__tools] button').forEach((button) => {
         button.disabled = true;
       });

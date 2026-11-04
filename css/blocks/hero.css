@@ -94,6 +94,15 @@
   gap: 12px;
 }
 
+.hero__row .pill {
+  --button-bg: transparent;
+  --button-text: var(--color-white);
+  --button-border: var(--color-white);
+  --button-hover-bg: var(--color-white);
+  --button-hover-text: var(--color-ink);
+  --button-hover-border: var(--color-white);
+}
+
 .hero__experience {
   margin: 0;
   display: flex;

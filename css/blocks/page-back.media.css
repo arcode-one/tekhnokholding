@@ -1,0 +1,3 @@
+@media (max-width: 767px) {
+  :root { --page-back-offset: 16px; }
+}

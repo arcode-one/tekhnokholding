@@ -5,27 +5,4 @@
   font-weight: 500;
 }
 
-.nav a {
-  color: var(--nav-text);
-  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
-}
-
-.nav a:focus-visible {
-  color: var(--nav-hover);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  :is(.nav, .menu__nav, .dock__nav) a:hover {
-    color: var(--nav-hover);
-  }
-
-  :is(.nav, .menu__nav, .dock__nav, .header__contacts, .dock__contacts):has(a:hover) a:not(:hover) {
-    opacity: 0.4;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .nav a {
-    transition: none;
-  }
-}
+.nav a { color: var(--nav-text); }

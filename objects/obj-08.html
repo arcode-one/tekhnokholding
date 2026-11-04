@@ -94,65 +94,6 @@
 
     <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
     <div class="dock" data-ui="dock">
-      <div class="dock__surface">
-        <div class="dock__bg">
-          <div class="dock__track">
-            <div class="dock__clip">
-              <div class="dock__panel" id="dock-panel">
-                <a
-                  class="dock__logo dock__item"
-                  style="--r: 8"
-                  href="../index.html"
-                  aria-label="Технохолдинг, на главную"
-                >
-                  <img
-                    src="../icons/logo-light-compact.svg"
-                    alt="Технохолдинг"
-                    width="1292"
-                    height="430"
-                    loading="lazy"
-                  />
-                </a>
-                <nav class="dock__nav" aria-label="Меню">
-                  <a class="dock__item" style="--r: 7" href="../services.html">Услуги</a>
-                  <a class="dock__item" style="--r: 6" href="../index.html#objects">Объекты</a>
-                  <a class="dock__item" style="--r: 5" href="../index.html#contacts">Контакты</a>
-                  <a class="dock__item" style="--r: 4" href="../index.html#account"
-                    >Личный кабинет</a
-                  >
-                </nav>
-                <span class="dock__divider dock__item" style="--r: 3" aria-hidden="true"></span>
-                <div class="dock__contacts dock__item" style="--r: 2">
-                  <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
-                  <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
-                </div>
-                <div class="dock__icons">
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 1"
-                    href="../index.html#telegram"
-                    aria-label="Написать в Telegram"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
-                    </svg>
-                  </a>
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 0"
-                    href="../index.html#max"
-                    aria-label="Написать в MAX"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <button
         class="icon-btn dock__burger burger-btn"
         type="button"
@@ -167,6 +108,54 @@
           <path class="burger__line--keep" d="M4 16h16"></path>
         </svg>
       </button>
+      <div class="dock__panel" id="dock-panel" inert aria-hidden="true">
+        <a
+          class="dock__logo"
+          href="../index.html"
+          aria-label="Технохолдинг, на главную"
+        >
+          <img
+            src="../icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+        <nav class="dock__nav" aria-label="Меню">
+          <a href="../services.html">Услуги</a>
+          <a href="../index.html#objects">Объекты</a>
+          <a href="../index.html#contacts">Контакты</a>
+          <a href="../index.html#account"
+            >Личный кабинет</a
+          >
+        </nav>
+        <span class="dock__divider" aria-hidden="true"></span>
+        <div class="dock__contacts">
+          <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+          <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+        </div>
+        <div class="dock__icons">
+          <a
+            class="icon-btn"
+            href="../index.html#telegram"
+            aria-label="Написать в Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
+            </svg>
+          </a>
+          <a
+            class="icon-btn"
+            href="../index.html#max"
+            aria-label="Написать в MAX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div
@@ -193,19 +182,11 @@
 
     <main>
       <article class="object-story">
-        <nav class="breadcrumbs" aria-label="Хлебные крошки" data-ui="breadcrumbs">
-          <ol>
-            <li><a href="../index.html">Главная</a></li>
-            <li>
-              <span class="breadcrumbs__separator" aria-hidden="true">/</span
-              ><a href="../objects.html">Объекты</a>
-            </li>
-            <li>
-              <span class="breadcrumbs__separator" aria-hidden="true">/</span
-              ><span aria-current="page">Редукторный завод</span>
-            </li>
-          </ol>
-        </nav>
+        <nav class="page-back" aria-label="Навигация" data-ui="page-back">
+            <a class="pill page-back__button" href="../objects.html" aria-label="Ко всем объектам" title="Ко всем объектам">
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+            </a>
+          </nav>
         <div class="object-intro">
           <h1>Редукторный завод</h1>
           <p>Производственные<span>2022</span></p>
@@ -437,17 +418,11 @@
             </div>
             <div class="site-footer__bottom">
               <div class="site-footer__documents">
-                <a class="pill pill--calypso" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать реквизиты</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать реквизиты</span>
-                  </span>
+                <a class="pill" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать реквизиты</span>
                 </a>
-                <a class="pill pill--calypso" href="../docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать каталог</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать каталог</span>
-                  </span>
+                <a class="pill" href="../docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать каталог</span>
                 </a>
               </div>
               <a class="icon-btn site-footer__telegram" href="https://t.me/+79058320078" target="_blank" rel="noopener" aria-label="Написать в Telegram">

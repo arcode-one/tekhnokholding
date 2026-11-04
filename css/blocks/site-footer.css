@@ -103,9 +103,7 @@
   color: var(--nav-text);
   font-size: 12px;
   line-height: 1.5;
-  text-decoration: underline;
-  text-decoration-color: #e0e6ec80;
-  text-underline-offset: 4px;
+  text-decoration: none;
 }
 
 .site-footer__right {
@@ -238,22 +236,6 @@
   color: var(--nav-hover);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .site-footer__nav a:hover,
-  .site-footer__contact-link:hover,
-  .site-footer__office a:hover,
-  .site-footer__privacy:hover {
-    color: var(--nav-hover);
-  }
-
-  .site-footer__privacy:hover {
-    text-decoration-color: currentcolor;
-  }
-
-  .site-footer__nav:has(a:hover) a:not(:hover) {
-    opacity: 0.45;
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .site-footer__nav a,

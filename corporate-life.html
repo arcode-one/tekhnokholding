@@ -90,63 +90,6 @@
 
     <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
     <div class="dock" data-ui="dock">
-      <div class="dock__surface">
-        <div class="dock__bg">
-          <div class="dock__track">
-            <div class="dock__clip">
-              <div class="dock__panel" id="dock-panel">
-                <a
-                  class="dock__logo dock__item"
-                  style="--r: 8"
-                  href="index.html"
-                  aria-label="Технохолдинг, на главную"
-                >
-                  <img
-                    src="icons/logo-light-compact.svg"
-                    alt="Технохолдинг"
-                    width="1292"
-                    height="430"
-                    loading="lazy"
-                  />
-                </a>
-                <nav class="dock__nav" aria-label="Меню">
-                  <a class="dock__item" style="--r: 7" href="services.html">Услуги</a>
-                  <a class="dock__item" style="--r: 6" href="index.html#objects">Объекты</a>
-                  <a class="dock__item" style="--r: 5" href="index.html#contacts">Контакты</a>
-                  <a class="dock__item" style="--r: 4" href="index.html#account">Личный кабинет</a>
-                </nav>
-                <span class="dock__divider dock__item" style="--r: 3" aria-hidden="true"></span>
-                <div class="dock__contacts dock__item" style="--r: 2">
-                  <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
-                  <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
-                </div>
-                <div class="dock__icons">
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 1"
-                    href="index.html#telegram"
-                    aria-label="Написать в Telegram"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="icons/sprite.svg#custom-de910d2ed695"></use>
-                    </svg>
-                  </a>
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 0"
-                    href="index.html#max"
-                    aria-label="Написать в MAX"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <button
         class="icon-btn dock__burger burger-btn"
         type="button"
@@ -161,6 +104,52 @@
           <path class="burger__line--keep" d="M4 16h16"></path>
         </svg>
       </button>
+      <div class="dock__panel" id="dock-panel" inert aria-hidden="true">
+        <a
+          class="dock__logo"
+          href="index.html"
+          aria-label="Технохолдинг, на главную"
+        >
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+        <nav class="dock__nav" aria-label="Меню">
+          <a href="services.html">Услуги</a>
+          <a href="index.html#objects">Объекты</a>
+          <a href="index.html#contacts">Контакты</a>
+          <a href="index.html#account">Личный кабинет</a>
+        </nav>
+        <span class="dock__divider" aria-hidden="true"></span>
+        <div class="dock__contacts">
+          <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+          <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+        </div>
+        <div class="dock__icons">
+          <a
+            class="icon-btn"
+            href="index.html#telegram"
+            aria-label="Написать в Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+            </svg>
+          </a>
+          <a
+            class="icon-btn"
+            href="index.html#max"
+            aria-label="Написать в MAX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div
@@ -188,14 +177,10 @@
     <main>
       <article class="company-story company-story--corporate">
         <header class="company-story__intro">
-          <nav class="breadcrumbs" aria-label="Хлебные крошки" data-ui="breadcrumbs">
-            <ol>
-              <li><a href="index.html">Главная</a></li>
-              <li>
-                <span class="breadcrumbs__separator" aria-hidden="true">/</span
-                ><span aria-current="page">Корпоративная жизнь</span>
-              </li>
-            </ol>
+          <nav class="page-back" aria-label="Навигация" data-ui="page-back">
+            <a class="pill page-back__button" href="index.html" aria-label="На главную" title="На главную">
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+            </a>
           </nav>
           <div>
             <h1>Корпоративная<br />жизнь</h1>
@@ -232,7 +217,6 @@
                 data-image-group="event-1"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда на кулинарном мастер-классе"
-                data-image-original="images/company/corporate/womens-day-2026-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -259,7 +243,6 @@
                 data-image-group="event-1"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Коллеги готовят блюда на мастер-классе"
-                data-image-original="images/company/corporate/womens-day-2026-02.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -286,7 +269,6 @@
                 data-image-group="event-1"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Участники кулинарного мастер-класса"
-                data-image-original="images/company/corporate/womens-day-2026-03.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -321,7 +303,6 @@
                 data-image-group="event-2"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Коллеги на озере в День строителя"
-                data-image-original="images/company/corporate/builders-day-2026-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -348,7 +329,6 @@
                 data-image-group="event-2"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Праздничный стол на Дне строителя"
-                data-image-original="images/company/corporate/builders-day-2026-02.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -375,7 +355,6 @@
                 data-image-group="event-2"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда за праздничным столом"
-                data-image-original="images/company/corporate/builders-day-2026-03.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -410,7 +389,6 @@
                 data-image-group="event-3"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда в защитной экипировке"
-                data-image-original="images/company/corporate/ryazan-2024-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -437,7 +415,6 @@
                 data-image-group="event-3"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Осмотр учебной кровли в Рязани"
-                data-image-original="images/company/corporate/ryazan-2024-02.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -464,7 +441,6 @@
                 data-image-group="event-3"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Командное фото в Рязани"
-                data-image-original="images/company/corporate/ryazan-2024-03.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -500,7 +476,6 @@
                 data-image-group="event-4"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда на площадке для падела"
-                data-image-original="images/company/corporate/sports-2026-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -527,7 +502,6 @@
                 data-image-group="event-4"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда ТехноХолдинг на керлинге"
-                data-image-original="images/company/corporate/sports-curling-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -563,7 +537,6 @@
                 data-image-group="event-5"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Команда на новогоднем празднике 2025"
-                data-image-original="images/company/corporate/new-year-2025-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -591,7 +564,6 @@
                 data-image-group="event-5"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Общее фото на новогоднем празднике 2024"
-                data-image-original="images/company/corporate/new-year-2024-01.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -619,7 +591,6 @@
                 data-image-group="event-5"
                 aria-haspopup="dialog"
                 aria-label="Открыть фото: Фирменная фотозона ТехноХолдинг"
-                data-image-original="images/company/corporate/new-year-2024-02.jpg"
               >
                 <span data-story-photo=""
                   ><img
@@ -688,7 +659,6 @@
             data-company-image="images/company/academy/kochnev-certificate.webp"
             data-image-title="Кочнев Дмитрий Сергеевич — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/kochnev-certificate.png"
           >
             <img
               src="images/company/preview/kochnev-certificate.webp"
@@ -702,7 +672,6 @@
             data-company-image="images/company/academy/shmidt-march-2026.webp"
             data-image-title="Шмидт Светлана Юрьевна — сертификат Академии ТЕХНОНИКОЛЬ, март 2026"
             data-image-group="academy"
-            data-image-original="images/company/academy/shmidt-march-2026.png"
           >
             <img
               src="images/company/preview/shmidt-march-2026.webp"
@@ -716,7 +685,6 @@
             data-company-image="images/company/academy/bagaudinov-sergey-vladimirovich.webp"
             data-image-title="Багаудинов Сергей Владимирович — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/bagaudinov-sergey-vladimirovich.png"
           >
             <img
               src="images/company/preview/bagaudinov-sergey-vladimirovich.webp"
@@ -730,7 +698,6 @@
             data-company-image="images/company/academy/gayazova-natalya-sergeevna.webp"
             data-image-title="Гаязова Наталья Сергеевна — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/gayazova-natalya-sergeevna.png"
           >
             <img
               src="images/company/preview/gayazova-natalya-sergeevna.webp"
@@ -744,7 +711,6 @@
             data-company-image="images/company/academy/kalugina-ekaterina-vitalevna.webp"
             data-image-title="Калугина Екатерина Витальевна — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/kalugina-ekaterina-vitalevna.png"
           >
             <img
               src="images/company/preview/kalugina-ekaterina-vitalevna.webp"
@@ -758,7 +724,6 @@
             data-company-image="images/company/academy/khudyakova-natalya-borisovna.webp"
             data-image-title="Худякова Наталья Борисовна — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/khudyakova-natalya-borisovna.png"
           >
             <img
               src="images/company/preview/khudyakova-natalya-borisovna.webp"
@@ -772,7 +737,6 @@
             data-company-image="images/company/academy/rusakov-maksim-sergeevich.webp"
             data-image-title="Русаков Максим Сергеевич — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/rusakov-maksim-sergeevich.png"
           >
             <img
               src="images/company/preview/rusakov-maksim-sergeevich.webp"
@@ -786,7 +750,6 @@
             data-company-image="images/company/academy/saulin-evgeniy-viktorovich.webp"
             data-image-title="Саулин Евгений Викторович — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/saulin-evgeniy-viktorovich.png"
           >
             <img
               src="images/company/preview/saulin-evgeniy-viktorovich.webp"
@@ -800,7 +763,6 @@
             data-company-image="images/company/academy/klepinin.webp"
             data-image-title="Клепинин Павел Петрович — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/klepinin.png"
           >
             <img
               src="images/company/preview/klepinin.webp"
@@ -814,7 +776,6 @@
             data-company-image="images/company/academy/shmidt-1282399.webp"
             data-image-title="Шмидт Светлана Юрьевна — сертификат № 1282399"
             data-image-group="academy"
-            data-image-original="images/company/academy/shmidt-1282399.png"
           >
             <img
               src="images/company/preview/shmidt-1282399.webp"
@@ -828,7 +789,6 @@
             data-company-image="images/company/academy/zaripova-mariya.webp"
             data-image-title="Зарипова Мария Михайловна — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/zaripova-mariya.png"
           >
             <img
               src="images/company/preview/zaripova-mariya.webp"
@@ -842,7 +802,6 @@
             data-company-image="images/company/academy/shmidt-1289784.webp"
             data-image-title="Шмидт Светлана Юрьевна — сертификат № 1289784"
             data-image-group="academy"
-            data-image-original="images/company/academy/shmidt-1289784.png"
           >
             <img
               src="images/company/preview/shmidt-1289784.webp"
@@ -856,7 +815,6 @@
             data-company-image="images/company/academy/cherepanova-liliya.webp"
             data-image-title="Лилия Черепанова — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/cherepanova-liliya.png"
           >
             <img
               src="images/company/preview/cherepanova-liliya.webp"
@@ -870,7 +828,6 @@
             data-company-image="images/company/academy/davydova-yuliya.webp"
             data-image-title="Давыдова Юлия — сертификат Академии ТЕХНОНИКОЛЬ"
             data-image-group="academy"
-            data-image-original="images/company/academy/davydova-yuliya.png"
           >
             <img
               src="images/company/preview/davydova-yuliya.webp"
@@ -892,9 +849,6 @@
           />
         </div>
         <div class="company-lightbox__bottom" data-lightbox-bottom="">
-          <a target="_blank" rel="noopener" data-lightbox-original="" href="objects.html"
-            >Открыть оригинал</a
-          >
           <div class="company-lightbox__steps" data-lightbox-steps="" hidden="">
             <button class="icon-btn" type="button" data-lightbox-step="-1" aria-label="Предыдущее изображение">
               <svg
@@ -1037,17 +991,11 @@
             </div>
             <div class="site-footer__bottom">
               <div class="site-footer__documents">
-                <a class="pill pill--calypso" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать реквизиты</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать реквизиты</span>
-                  </span>
+                <a class="pill" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать реквизиты</span>
                 </a>
-                <a class="pill pill--calypso" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать каталог</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать каталог</span>
-                  </span>
+                <a class="pill" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать каталог</span>
                 </a>
               </div>
               <a class="icon-btn site-footer__telegram" href="https://t.me/+79058320078" target="_blank" rel="noopener" aria-label="Написать в Telegram">

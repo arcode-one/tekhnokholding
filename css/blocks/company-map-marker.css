@@ -53,8 +53,6 @@
 .company-map-marker--active {
   z-index: 1;
   background: var(--theme-bg-section);
-  outline: 2px solid var(--theme-text-main);
-  outline-offset: 2px;
 }
 
 .company-map-marker--active::after {

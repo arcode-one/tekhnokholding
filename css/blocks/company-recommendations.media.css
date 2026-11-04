@@ -1,33 +1,18 @@
-@media (max-width: 1439px) {
-  .company-recommendations {
-    --recommendation-columns: 4;
-  }
-}
-
 @media (max-width: 1199px) {
-  .company-recommendations {
-    --recommendation-columns: 3;
-  }
+  .company-recommendations { --recommendation-columns: 3; }
 }
-
 @media (max-width: 899px) {
-  .company-recommendations {
-    --recommendation-columns: 2;
-  }
+  .company-recommendations { --recommendation-columns: 2; }
 }
-
 @media (max-width: 767px) {
-  .company-recommendations {
-    padding-block: 64px 40px;
-  }
-
-  .company-recommendations__arrow {
-    display: none;
-  }
+  .company-recommendations { --recommendation-step: clamp(48px, 10svh, 80px); }
+  .home-page .company-recommendations .company-heading .home-heading { font-size: clamp(24px, min(7vw, 6dvh), 48px); }
+  .company-recommendations__arrow { display: none; }
 }
-
 @media (max-width: 599px) {
-  .company-recommendations {
-    --recommendation-card-width: min(320px, calc(100vw - 56px));
-  }
+  .company-recommendations { --recommendation-card-width: min(320px, calc(100vw - 56px)); }
+}
+@media (max-height: 500px) {
+  .company-recommendations { --recommendation-step: 36px; padding-block: 48px 10px; gap: 12px; --recommendation-columns: 2; }
+  .home-page .company-recommendations .company-heading .home-heading { font-size: 26px; }
 }

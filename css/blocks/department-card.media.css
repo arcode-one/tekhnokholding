@@ -1,15 +1,11 @@
-@media (max-width: 767px) {
-  .department-card {
-    width: 78vw;
-    flex-basis: 78vw;
-  }
+@media (max-width: 1199px) {
+  .department-card { grid-template-columns: 104px minmax(0, 1fr); min-height: 116px; }
+  .department-card h3 { font-size: 18px; }
+}
 
-  .department-card__photo {
-    height: 300px;
-  }
-
-  .department-card h3 {
-    font-size: 20px;
-    padding: var(--space-6);
-  }
+@media (max-width: 599px) {
+  .department-card:nth-child(n) { grid-column: 1 / -1; grid-template-columns: 72px minmax(0, 1fr); min-height: 94px; gap: 14px; }
+  .department-card:nth-child(odd) { margin-right: 20px; }
+  .department-card:nth-child(even) { margin-left: 20px; }
+  .department-card h3 { font-size: 16px; }
 }

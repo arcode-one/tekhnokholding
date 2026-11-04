@@ -12,7 +12,7 @@
       content="Миссия компании. Через качественные кровельные решения создавать пространство, в котором человеку комфортно жить, а бизнесу уверенно расти и развиваться."
     />
     <meta name="theme-color" content="#34454e" />
-    <meta property="og:image" content="images/mission/mission-light-rooftop-v1.webp" />
+    <meta property="og:image" content="images/mission/mission-architecture-v2.webp" />
     <link
       rel="preload"
       href="fonts/manrope/manrope-latin-wght-normal.woff2"
@@ -90,63 +90,6 @@
 
     <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
     <div class="dock" data-ui="dock">
-      <div class="dock__surface">
-        <div class="dock__bg">
-          <div class="dock__track">
-            <div class="dock__clip">
-              <div class="dock__panel" id="dock-panel">
-                <a
-                  class="dock__logo dock__item"
-                  style="--r: 8"
-                  href="index.html"
-                  aria-label="Технохолдинг, на главную"
-                >
-                  <img
-                    src="icons/logo-light-compact.svg"
-                    alt="Технохолдинг"
-                    width="1292"
-                    height="430"
-                    loading="lazy"
-                  />
-                </a>
-                <nav class="dock__nav" aria-label="Меню">
-                  <a class="dock__item" style="--r: 7" href="services.html">Услуги</a>
-                  <a class="dock__item" style="--r: 6" href="index.html#objects">Объекты</a>
-                  <a class="dock__item" style="--r: 5" href="index.html#contacts">Контакты</a>
-                  <a class="dock__item" style="--r: 4" href="index.html#account">Личный кабинет</a>
-                </nav>
-                <span class="dock__divider dock__item" style="--r: 3" aria-hidden="true"></span>
-                <div class="dock__contacts dock__item" style="--r: 2">
-                  <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
-                  <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
-                </div>
-                <div class="dock__icons">
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 1"
-                    href="index.html#telegram"
-                    aria-label="Написать в Telegram"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="icons/sprite.svg#custom-de910d2ed695"></use>
-                    </svg>
-                  </a>
-                  <a
-                    class="icon-btn dock__item"
-                    style="--r: 0"
-                    href="index.html#max"
-                    aria-label="Написать в MAX"
-                  >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <button
         class="icon-btn dock__burger burger-btn"
         type="button"
@@ -161,6 +104,52 @@
           <path class="burger__line--keep" d="M4 16h16"></path>
         </svg>
       </button>
+      <div class="dock__panel" id="dock-panel" inert aria-hidden="true">
+        <a
+          class="dock__logo"
+          href="index.html"
+          aria-label="Технохолдинг, на главную"
+        >
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+        <nav class="dock__nav" aria-label="Меню">
+          <a href="services.html">Услуги</a>
+          <a href="index.html#objects">Объекты</a>
+          <a href="index.html#contacts">Контакты</a>
+          <a href="index.html#account">Личный кабинет</a>
+        </nav>
+        <span class="dock__divider" aria-hidden="true"></span>
+        <div class="dock__contacts">
+          <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+          <a class="header__mail" href="mailto:info@thld.su">info@thld.su</a>
+        </div>
+        <div class="dock__icons">
+          <a
+            class="icon-btn"
+            href="index.html#telegram"
+            aria-label="Написать в Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+            </svg>
+          </a>
+          <a
+            class="icon-btn"
+            href="index.html#max"
+            aria-label="Написать в MAX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div
@@ -190,19 +179,18 @@
         <section
           class="mission-hero"
           aria-labelledby="mission-title"
-          data-ui="mission-hero roof-background"
+          data-ui="mission-hero"
         >
           <div class="mission-hero__stage" data-ui="mission-hero__stage">
             <div class="mission-hero__photo" data-ui="mission-hero__photo">
               <img
-                data-ui="roof-background__image"
-                src="images/mission/mission-light-rooftop-v1.webp"
+                src="images/mission/mission-architecture-v3.webp"
                 srcset="
-                  images/mission/mission-light-rooftop-v1-960w.webp 960w,
-                  images/mission/mission-light-rooftop-v1.webp 1672w
+                  images/mission/mission-architecture-v3-960w.webp 960w,
+                  images/mission/mission-architecture-v3.webp 1672w
                 "
-                sizes="100vw"
-                alt="Современная светлая кровля на фоне зелёного города и набережной"
+                sizes="(max-width: 1100px) 1672px, 100vw"
+                alt="Угол современного здания с плоской кровлей и тенями деревьев на металлическом фасаде"
                 fetchpriority="high"
                 decoding="async"
                 width="1672"
@@ -210,19 +198,11 @@
               />
             </div>
             <div class="mission-hero__content">
-              <nav
-                class="breadcrumbs breadcrumbs--inverse breadcrumbs--mission"
-                aria-label="Хлебные крошки"
-                data-ui="breadcrumbs"
-              >
-                <ol>
-                  <li><a href="index.html">Главная</a></li>
-                  <li>
-                    <span class="breadcrumbs__separator" aria-hidden="true">/</span
-                    ><span aria-current="page">Миссия компании</span>
-                  </li>
-                </ol>
-              </nav>
+              <nav class="page-back page-back--inverse page-back--mission" aria-label="Навигация" data-ui="page-back">
+            <a class="pill page-back__button" href="index.html" aria-label="На главную" title="На главную">
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+            </a>
+          </nav>
               <h1 id="mission-title">
                 <span class="mission-hero__title-main">Миссия</span
                 ><span class="mission-hero__title-sub">компании</span>
@@ -230,365 +210,164 @@
             </div>
           </div>
         </section>
-        <section class="mission-purpose" id="purpose" aria-labelledby="purpose-title">
-          <span class="mission-corner" aria-hidden="true" data-ui="mission-corner"></span>
-          <h2 id="purpose-title">Культурный код <span class="mission-heading__muted">компании</span></h2>
-          <figure class="mission-purpose__detail" data-ui="mission-purpose__detail">
-            <img
-              src="images/company/departments/quality-service.webp"
-              alt="Проверка качества кровельных работ"
-              loading="lazy"
-              decoding="async"
-              width="1400"
-              height="700"
-              srcset="
+        <div class="services-accordion mission-accordion" data-services-accordion
+          data-accordion-open-ms="280" data-accordion-close-ms="220" data-accordion-copy-motion="none">
+          <details class="services-accordion__item" id="purpose">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">01</span>
+              <h2 id="purpose-title">Культурный код компании</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p>Через качественные кровельные решения создавать пространство, в котором человеку комфортно жить, а бизнесу уверенно расти и развиваться.</p>
+                <p>Мы меняем подход к строительству, формируя стандарты прозрачности, качества и ответственности.</p>
+              </div>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/departments/quality-service.webp" alt="Проверка качества кровельных работ" loading="lazy" decoding="async" width="1400" height="700" srcset="
                 images/company/departments/quality-service-480w.webp  480w,
                 images/company/departments/quality-service-960w.webp  960w,
                 images/company/departments/quality-service.webp      1400w
-              "
-              sizes="(max-width: 767px) 100vw, 100vw"
-            />
-          </figure>
-          <p class="mission-purpose__statement">
-            Через качественные кровельные решения создавать пространство, в котором человеку
-            комфортно жить, а бизнесу уверенно расти и развиваться.
-          </p>
-          <p class="mission-purpose__approach">
-            Мы меняем подход к строительству, формируя стандарты прозрачности, качества и
-            ответственности.
-          </p>
-        </section>
-        <section class="mission-chapters" id="talents" aria-labelledby="talents-title">
-          <span class="mission-corner" aria-hidden="true" data-ui="mission-corner"></span>
-          <figure class="mission-bridge" data-mission-bridge="" data-ui="mission-bridge">
-            <img
-              src="images/company/departments/project-management.webp"
-              alt="Совместная работа специалистов над кровельными решениями"
-              loading="lazy"
-              decoding="async"
-              width="1400"
-              height="700"
-              srcset="
-                images/company/departments/project-management-480w.webp  480w,
-                images/company/departments/project-management-960w.webp  960w,
-                images/company/departments/project-management.webp      1400w
-              "
-              sizes="(max-width: 767px) 100vw, 100vw"
-            />
-          </figure>
-          <h2 class="mission-section-title" id="talents-title">Наши <span class="mission-heading__muted">таланты</span></h2>
-          <article
-            class="mission-scene mission-scene--expertise"
-            id="talent-1"
-            data-mission-scene=""
-            data-layout="expertise"
-            aria-labelledby="talent-1-title"
-          >
-            <h3 class="mission-scene__heading" id="talent-1-title">
-              Уникальная кровельная экспертиза и комплексное решение сложных задач
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/figures-roof-v2.webp"
-                  alt="Большой промышленный комплекс с плоской кровлей"
-                  loading="lazy"
-                  decoding="async"
-                  width="1448"
-                  height="1086"
-                  srcset="
+              " sizes="(max-width: 767px) 100vw, 46vw"></figure>
+            </div>
+          </details>
+          <details class="services-accordion__item" id="talent-1">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">02</span>
+              <h2 id="talent-1-title">Уникальная кровельная экспертиза и комплексное решение сложных задач</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group" id="talents">Наши таланты</p>
+                <p>Умеем реализовывать сложные объекты и даём заказчику полный комплекс решений: от анализа проекта и подбора технологии до организации работ и контроля качества.</p>
+              </div>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/figures-roof-v2.webp" alt="Большой промышленный комплекс с плоской кровлей" loading="lazy" decoding="async" width="1448" height="1086" srcset="
                     images/figures-roof-v2-480w.webp  480w,
                     images/figures-roof-v2-960w.webp  960w,
                     images/figures-roof-v2.webp      1448w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
+            </div>
+          </details>
+          <details class="services-accordion__item" id="talent-2">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">03</span>
+              <h2 id="talent-2-title">Надёжный результат и долгосрочное доверие</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group">Наши таланты</p>
+                <p>Мы гибко адаптируемся к изменениям, доводим объект до качественного результата с гарантией, приоритет на долгосрочные отношения с заказчиками, партнёрами и сотрудниками.</p>
               </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Умеем реализовывать сложные объекты и даём заказчику полный комплекс решений: от
-              анализа проекта и подбора технологии до организации работ и контроля качества.
-            </p>
-          </article>
-          <article
-            class="mission-scene mission-scene--result"
-            id="talent-2"
-            data-mission-scene=""
-            data-layout="result"
-            aria-labelledby="talent-2-title"
-          >
-            <h3 class="mission-scene__heading" id="talent-2-title">
-              Надёжный результат и долгосрочное доверие
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/departments/quality-service.webp"
-                  alt="Проверка качества кровли"
-                  loading="lazy"
-                  decoding="async"
-                  width="1400"
-                  height="700"
-                  srcset="
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/departments/quality-service.webp" alt="Проверка качества кровли" loading="lazy" decoding="async" width="1400" height="700" srcset="
                     images/company/departments/quality-service-480w.webp  480w,
                     images/company/departments/quality-service-960w.webp  960w,
                     images/company/departments/quality-service.webp      1400w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
+            </div>
+          </details>
+          <details class="services-accordion__item" id="initiative">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">04</span>
+              <h2 id="initiative-title">Возможности лидерства и инициативы. Развитие и рост</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group" id="values">Наши ценности</p>
+                <p>У нас ценится не только должность, а вклад человека. Каждый может предлагать решения, брать на себя ответственность, проявлять самостоятельность и расти за счёт своей инициативы. Мы поддерживаем развитие людей, потому что именно они – основа роста всей компании.</p>
+                <div class="mission-accordion__principle"><h3>Принцип в работе</h3><p>Берём ответственность в своей зоне работы, самостоятельно двигаемся к результату, применяем свои знания и опыт для поиска лучшего решения.</p></div>
               </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Мы гибко адаптируемся к изменениям, доводим объект до качественного результата с
-              гарантией, приоритет на долгосрочные отношения с заказчиками, партнёрами и
-              сотрудниками.
-            </p>
-          </article>
-        </section>
-        <section class="mission-chapters" id="values" aria-labelledby="values-title">
-          <h2 class="mission-section-title" id="values-title">Наши <span class="mission-heading__muted">ценности</span></h2>
-          <article
-            class="mission-scene mission-scene--initiative"
-            id="initiative"
-            data-mission-scene=""
-            data-layout="initiative"
-            aria-labelledby="initiative-title"
-          >
-            <h3 class="mission-scene__heading" id="initiative-title">
-              Возможности лидерства и инициативы. Развитие и рост
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/departments/production-technical.webp"
-                  alt="Совместная работа специалистов над проектом кровли"
-                  loading="lazy"
-                  decoding="async"
-                  width="1400"
-                  height="788"
-                  srcset="
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/departments/production-technical.webp" alt="Совместная работа специалистов над проектом кровли" loading="lazy" decoding="async" width="1400" height="788" srcset="
                     images/company/departments/production-technical-480w.webp  480w,
                     images/company/departments/production-technical-960w.webp  960w,
                     images/company/departments/production-technical.webp      1400w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
-              </div>
-            </figure>
-            <p class="mission-scene__lead">
-              У нас ценится не только должность, а вклад человека. Каждый может предлагать решения,
-              брать на себя ответственность, проявлять самостоятельность и расти за счёт своей
-              инициативы. Мы поддерживаем развитие людей, потому что именно они – основа роста всей
-              компании.
-            </p>
-            <div class="mission-scene__principle">
-              <h4>Принцип в работе</h4>
-              <p>
-                Берём ответственность в своей зоне работы, самостоятельно двигаемся к результату,
-                применяем свои знания и опыт для поиска лучшего решения.
-              </p>
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
             </div>
-          </article>
-          <article
-            class="mission-scene mission-scene--belief"
-            id="belief"
-            data-mission-scene=""
-            data-layout="belief"
-            aria-labelledby="belief-title"
-          >
-            <h3 class="mission-scene__heading" id="belief-title">
-              Вера. Нацеленность на хороший результат. Верю – делаю
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/departments/construction.webp"
-                  alt="Специалисты строительно-монтажного отдела на объекте"
-                  loading="lazy"
-                  decoding="async"
-                  width="1400"
-                  height="700"
-                  srcset="
+          </details>
+          <details class="services-accordion__item" id="belief">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">05</span>
+              <h2 id="belief-title">Вера. Нацеленность на хороший результат. Верю – делаю</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group">Наши ценности</p>
+                <p>Мы верим в хороший результат, в силу команды и в то, что решение есть всегда, действуем до конца, создавая результат, которым можно гордиться.</p>
+                <div class="mission-accordion__principle"><h3>Принцип в работе</h3><p>Верим в то, что делаем: решение есть, команда справится, результат будет достигнут. Выбираем честность, открытость и порядочность в каждом решении.</p></div>
+              </div>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/departments/construction.webp" alt="Специалисты строительно-монтажного отдела на объекте" loading="lazy" decoding="async" width="1400" height="700" srcset="
                     images/company/departments/construction-480w.webp  480w,
                     images/company/departments/construction-960w.webp  960w,
                     images/company/departments/construction.webp      1400w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
-              </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Мы верим в хороший результат, в силу команды и в то, что решение есть всегда,
-              действуем до конца, создавая результат, которым можно гордиться.
-            </p>
-            <div class="mission-scene__principle">
-              <h4>Принцип в работе</h4>
-              <p>
-                Верим в то, что делаем: решение есть, команда справится, результат будет достигнут.
-                Выбираем честность, открытость и порядочность в каждом решении.
-              </p>
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
             </div>
-          </article>
-          <article
-            class="mission-scene mission-scene--trust"
-            id="trust"
-            data-mission-scene=""
-            data-layout="trust"
-            aria-labelledby="trust-title"
-          >
-            <h3 class="mission-scene__heading" id="trust-title">Доверие людям в команде</h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/team/team-main-office-20261002-960w.webp"
-                  alt="Команда компании Технохолдинг"
-                  loading="lazy"
-                  decoding="async"
-                  width="960"
-                  height="540"
-                  srcset="
+          </details>
+          <details class="services-accordion__item" id="trust">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">06</span>
+              <h2 id="trust-title">Доверие людям в команде</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group">Наши ценности</p>
+                <p>Мы работаем так, чтобы на слово, решение и результат коллег можно было положиться. В команде мы не подводим, не бросаем и поддерживаем друг друга, потому что общий результат зависит от каждого.</p>
+                <div class="mission-accordion__principle"><h3>Принцип в работе</h3><p>Мы строим работу на доверии, ответственности и вовлечённости каждого. Действуем как единая команда: слышим мнение коллег, уважаем вклад каждого, помогаем друг другу находить решения и вместе отвечаем за результат.</p></div>
+              </div>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/team/team-main-office-20261002-960w.webp" alt="Команда компании Технохолдинг" loading="lazy" decoding="async" width="960" height="540" srcset="
                     images/company/team/team-main-office-20261002-960w-480w.webp 480w,
                     images/company/team/team-main-office-20261002-960w.webp      960w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
-              </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Мы работаем так, чтобы на слово, решение и результат коллег можно было положиться. В
-              команде мы не подводим, не бросаем и поддерживаем друг друга, потому что общий
-              результат зависит от каждого.
-            </p>
-            <div class="mission-scene__principle">
-              <h4>Принцип в работе</h4>
-              <p>
-                Мы строим работу на доверии, ответственности и вовлечённости каждого. Действуем как
-                единая команда: слышим мнение коллег, уважаем вклад каждого, помогаем друг другу
-                находить решения и вместе отвечаем за результат.
-              </p>
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
             </div>
-          </article>
-          <article
-            class="mission-scene mission-scene--reputation"
-            id="reputation"
-            data-mission-scene=""
-            data-layout="reputation"
-            aria-labelledby="reputation-title"
-          >
-            <h3 class="mission-scene__heading" id="reputation-title">
-              Любовь к делу, забота о репутации
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/departments/quality-service.webp"
-                  alt="Специалист службы качества проверяет кровлю"
-                  loading="lazy"
-                  decoding="async"
-                  width="1400"
-                  height="700"
-                  srcset="
+          </details>
+          <details class="services-accordion__item" id="reputation">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">07</span>
+              <h2 id="reputation-title">Любовь к делу, забота о репутации</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group">Наши ценности</p>
+                <p>Мы бережём имя компании через качество своей работы, отношение к клиенту и ответственность за обещания. Мы любим своё дело и относимся к нему с уважением, для нас важно не просто выполнять задачи, а делать так, чтобы результат укреплял репутацию компании.</p>
+                <div class="mission-accordion__principle"><h3>Принцип в работе</h3><p>Внимательно относимся к заказчику, выполняем обязательства сверх ожиданий. Строим честные долгосрочные отношения со всеми участниками процесса, сохраняя качество и не допуская компромиссов.</p></div>
+              </div>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/company/departments/quality-service.webp" alt="Специалист службы качества проверяет кровлю" loading="lazy" decoding="async" width="1400" height="700" srcset="
                     images/company/departments/quality-service-480w.webp  480w,
                     images/company/departments/quality-service-960w.webp  960w,
                     images/company/departments/quality-service.webp      1400w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
-              </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Мы бережём имя компании через качество своей работы, отношение к клиенту и
-              ответственность за обещания. Мы любим своё дело и относимся к нему с уважением, для
-              нас важно не просто выполнять задачи, а делать так, чтобы результат укреплял репутацию
-              компании.
-            </p>
-            <div class="mission-scene__principle">
-              <h4>Принцип в работе</h4>
-              <p>
-                Внимательно относимся к заказчику, выполняем обязательства сверх ожиданий. Строим
-                честные долгосрочные отношения со всеми участниками процесса, сохраняя качество и не
-                допуская компромиссов.
-              </p>
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
             </div>
-          </article>
-          <article
-            class="mission-scene mission-scene--craft"
-            id="craft"
-            data-mission-scene=""
-            data-layout="craft"
-            aria-labelledby="craft-title"
-          >
-            <h3 class="mission-scene__heading" id="craft-title">
-              Сила мастерства и профессионализм
-            </h3>
-            <figure class="mission-scene__visual" data-ui="mission-scene__visual">
-              <div
-                class="mission-scene__frame"
-                data-mission-parallax=""
-                data-ui="mission-scene__frame"
-              >
-                <img
-                  src="images/company/departments/project-management.webp"
-                  alt="Профессиональная команда обсуждает решения для объекта"
-                  loading="lazy"
-                  decoding="async"
-                  width="1400"
-                  height="700"
-                  srcset="
-                    images/company/departments/project-management-480w.webp  480w,
-                    images/company/departments/project-management-960w.webp  960w,
-                    images/company/departments/project-management.webp      1400w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
+          </details>
+          <details class="services-accordion__item" id="craft">
+            <summary>
+              <span class="services-accordion__number" aria-hidden="true">08</span>
+              <h2 id="craft-title">Сила мастерства и профессионализм</h2>
+              <span class="services-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body">
+              <div class="services-accordion__copy">
+                <p class="mission-accordion__group">Наши ценности</p>
+                <p>Мы опираемся на знания, опыт и профессиональную точность. Сложные объекты для нас – возможность показать уровень, найти решение и создать результат, превышающий ожидания заказчика.</p>
+                <div class="mission-accordion__principle"><h3>Принцип в работе</h3><p>Мы растём как профессионалы, усиливаем свою экспертизу и не стоим на месте в развитии, чем создаём сильную команду, способную брать сложные объекты. Передаём качественный продукт, как внутри компании, так и заказчику.</p></div>
               </div>
-            </figure>
-            <p class="mission-scene__lead">
-              Мы опираемся на знания, опыт и профессиональную точность. Сложные объекты для нас –
-              возможность показать уровень, найти решение и создать результат, превышающий ожидания
-              заказчика.
-            </p>
-            <div class="mission-scene__principle">
-              <h4>Принцип в работе</h4>
-              <p>
-                Мы растём как профессионалы, усиливаем свою экспертизу и не стоим на месте в
-                развитии, чем создаём сильную команду, способную брать сложные объекты. Передаём
-                качественный продукт, как внутри компании, так и заказчику.
-              </p>
+              <figure class="services-accordion__photo" data-story-photo data-story-travel="0.06"><img src="images/mission/mission-roof-collaboration-v1.webp" alt="Профессиональная команда обсуждает решения для объекта" loading="lazy" decoding="async" width="1536" height="1024" srcset="
+                    images/mission/mission-roof-collaboration-v1-480w.webp  480w,
+                    images/mission/mission-roof-collaboration-v1-960w.webp  960w,
+                    images/mission/mission-roof-collaboration-v1.webp      1536w
+                  " sizes="(max-width: 767px) 100vw, 46vw"></figure>
             </div>
-          </article>
-        </section>
+          </details>
+        </div>
       </article>
     </main>
     <footer
       class="site-footer"
       id="contacts"
       aria-labelledby="site-footer-title"
-      data-footer-motion=""
+      data-mission-footer=""
     >
       <div class="site-footer__scene" data-footer-scene="">
         <div class="site-footer__visual" aria-hidden="true">
@@ -691,17 +470,11 @@
             </div>
             <div class="site-footer__bottom">
               <div class="site-footer__documents">
-                <a class="pill pill--calypso" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать реквизиты</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать реквизиты</span>
-                  </span>
+                <a class="pill" href="docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать реквизиты</span>
                 </a>
-                <a class="pill pill--calypso" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">
-                    <span class="pill__label-main">Скачать каталог</span>
-                    <span class="pill__label-copy" aria-hidden="true">Скачать каталог</span>
-                  </span>
+                <a class="pill" href="docs/catalog-objects-tekhnokholding-2026.pdf" target="_blank" rel="noopener">
+                  <span class="pill__label">Скачать каталог</span>
                 </a>
               </div>
               <a class="icon-btn site-footer__telegram" href="https://t.me/+79058320078" target="_blank" rel="noopener" aria-label="Написать в Telegram">

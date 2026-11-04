@@ -1,4 +1,5 @@
 html {
+  scroll-behavior: smooth;
   background: var(--bg);
   scrollbar-gutter: stable;
   scrollbar-color: #6a6d71 var(--bg);
@@ -8,16 +9,10 @@ html.site--locked {
   overflow: hidden;
 }
 
-html.site--preloading {
-  overflow: hidden;
-  scrollbar-gutter: auto;
-  scrollbar-width: none;
-}
-
-html.site--preloading::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {

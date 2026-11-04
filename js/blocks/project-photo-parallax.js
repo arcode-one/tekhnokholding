@@ -3,6 +3,7 @@ export default function initProjectPhotoParallax(section) {
   const photos = new Map();
   const visible = new Set();
   let frame = 0;
+  let measureFrame = 0;
   let viewport = window.innerHeight;
 
   function paint(photo) {
@@ -40,7 +41,8 @@ export default function initProjectPhotoParallax(section) {
     });
   });
 
-  function refresh() {
+  function measure() {
+    measureFrame = 0;
     observer.disconnect();
     photos.forEach(({ image }, element) => {
       element.classList.remove('project-card__photo--parallax', 'project-card__photo--parallax-visible');
@@ -51,16 +53,21 @@ export default function initProjectPhotoParallax(section) {
     viewport = window.innerHeight;
     if (reducedMotion.matches) return;
     const scrollY = window.scrollY;
-    section.querySelectorAll('.project-card:not([hidden]) .project-card__photo').forEach((element) => {
+    const measured = [...section.querySelectorAll('.project-card:not([hidden]) .project-card__photo')].map((element) => {
       const image = element.querySelector('img');
       const rect = element.getBoundingClientRect();
+      return { element, image, rect };
+    });
+    measured.forEach(({ element, image, rect }) => {
       if (!image || !rect.height) return;
-      element.classList.remove('project-card__photo--parallax-visible');
-      image.style.removeProperty('transform');
       photos.set(element, { image, top: rect.top + scrollY, height: rect.height });
       element.classList.add('project-card__photo--parallax');
       observer.observe(element);
     });
+  }
+
+  function refresh() {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
   }
 
   window.addEventListener('scroll', schedule, { passive: true });

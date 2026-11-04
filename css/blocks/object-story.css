@@ -29,7 +29,7 @@
 }
 
 .object-story {
-  padding-top: var(--breadcrumbs-offset);
+  padding-top: var(--page-back-offset);
 }
 
 .object-story.object-story--motion {

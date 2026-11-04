@@ -2,6 +2,15 @@ export default function init(section) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const rail = section.querySelector('[data-carousel-rail]');
   if (!rail) return;
+  const vertical = section.dataset.carouselAxis === 'vertical';
+  const position = vertical ? 'scrollTop' : 'scrollLeft';
+  const scrollSize = vertical ? 'scrollHeight' : 'scrollWidth';
+  const clientSize = vertical ? 'clientHeight' : 'clientWidth';
+  const offset = vertical ? 'offsetTop' : 'offsetLeft';
+  const coordinate = vertical ? 'clientY' : 'clientX';
+  const scrollAxis = vertical ? 'top' : 'left';
+  const backwardKey = vertical ? 'ArrowUp' : 'ArrowLeft';
+  const forwardKey = vertical ? 'ArrowDown' : 'ArrowRight';
   const items = [...rail.querySelectorAll('[data-carousel-item]')];
   const previous = section.querySelector('[data-carousel-step="-1"]');
   const next = section.querySelector('[data-carousel-step="1"]');
@@ -16,9 +25,8 @@ export default function init(section) {
     if (count) count.textContent = '00 / 00';
     return;
   }
-  const stride = () =>
-    items.length > 1 ? items[1].offsetLeft - items[0].offsetLeft : items[0].offsetWidth;
-  const limit = (left) => Math.max(0, Math.min(rail.scrollWidth - rail.clientWidth, left));
+  const itemPosition = (item) => item[offset] - items[0][offset];
+  const limit = (left) => Math.max(0, Math.min(rail[scrollSize] - rail[clientSize], left));
 
   function stopMomentum() {
     cancelAnimationFrame(momentumFrame);
@@ -28,14 +36,14 @@ export default function init(section) {
   function coast(velocity) {
     if (reduced.matches || Math.abs(velocity) < 0.08) return;
     const duration = 260;
-    const start = rail.scrollLeft;
+    const start = rail[position];
     const distance = (Math.max(-3, Math.min(3, velocity)) * duration) / 3;
     const started = performance.now();
     function tick(now) {
       const progress = Math.min(1, (now - started) / duration);
       const left = start + distance * (1 - (1 - progress) ** 3);
-      rail.scrollLeft = limit(left);
-      if (progress < 1 && left > 0 && left < rail.scrollWidth - rail.clientWidth) {
+      rail[position] = limit(left);
+      if (progress < 1 && left > 0 && left < rail[scrollSize] - rail[clientSize]) {
         momentumFrame = requestAnimationFrame(tick);
       } else {
         momentumFrame = 0;
@@ -45,20 +53,21 @@ export default function init(section) {
   }
   function update() {
     frame = 0;
-    const max = rail.scrollWidth - rail.clientWidth;
-    const index = Math.min(items.length - 1, Math.round(rail.scrollLeft / stride()));
+    const max = rail[scrollSize] - rail[clientSize];
+    const index = items.reduce((closest, item, candidate) =>
+      Math.abs(itemPosition(item) - rail[position]) <
+      Math.abs(itemPosition(items[closest]) - rail[position]) ? candidate : closest, 0);
     if (count) count.textContent = `${String(index + 1).padStart(2, '0')} / ${String(items.length).padStart(2, '0')}`;
-    if (previous) previous.disabled = rail.scrollLeft < 2;
-    if (next) next.disabled = rail.scrollLeft >= max - 2;
+    if (previous) previous.disabled = rail[position] < 2;
+    if (next) next.disabled = rail[position] >= max - 2;
   }
   function step(direction, instant = false) {
     stopMomentum();
-    const width = stride();
-    const index = direction > 0
-      ? Math.floor((rail.scrollLeft + 2) / width) + 1
-      : Math.ceil((rail.scrollLeft - 2) / width) - 1;
+    const target = direction > 0
+      ? items.find((item) => itemPosition(item) > rail[position] + 2)
+      : items.findLast((item) => itemPosition(item) < rail[position] - 2);
     rail.scrollTo({
-      left: limit(index * width),
+      [scrollAxis]: target ? limit(itemPosition(target)) : direction > 0 ? limit(Infinity) : 0,
       behavior: instant || reduced.matches ? 'instant' : 'smooth',
     });
   }
@@ -72,9 +81,9 @@ export default function init(section) {
     { passive: true },
   );
   rail.addEventListener('keydown', (event) => {
-    if (event.target !== rail || !['ArrowLeft', 'ArrowRight'].includes(event.key)) return;
+    if (event.target !== rail || ![backwardKey, forwardKey].includes(event.key)) return;
     event.preventDefault();
-    step(event.key === 'ArrowLeft' ? -1 : 1, true);
+    step(event.key === backwardKey ? -1 : 1, true);
   });
   // Фото и ссылки не должны запускать нативное перетаскивание вместо ленты.
   rail.addEventListener('dragstart', (event) => event.preventDefault());
@@ -84,16 +93,16 @@ export default function init(section) {
     stopMomentum();
     suppressClick = false;
     // На сенсорном экране прокрутку и инерцию выполняет сам браузер.
-    if (event.pointerType === 'touch' || rail.scrollWidth <= rail.clientWidth) return;
-    rail.scrollTo({ left: rail.scrollLeft, behavior: 'instant' });
+    if (event.pointerType === 'touch' || rail[scrollSize] <= rail[clientSize]) return;
+    rail.scrollTo({ [scrollAxis]: rail[position], behavior: 'instant' });
     drag = {
       id: event.pointerId,
-      x: event.clientX,
-      left: rail.scrollLeft,
+      x: event[coordinate],
+      left: rail[position],
       time: event.timeStamp,
       direction: 0,
       active: false,
-      samples: [{ left: rail.scrollLeft, time: event.timeStamp }],
+      samples: [{ left: rail[position], time: event.timeStamp }],
     };
   });
   // До захвата указателя движение может выйти за границы ленты.
@@ -103,7 +112,7 @@ export default function init(section) {
       endDrag(event, false);
       return;
     }
-    const delta = event.clientX - drag.x;
+    const delta = event[coordinate] - drag.x;
     if (!drag.active) {
       // Мыши не нужна блокировка по оси: небольшое движение вниз не отменяет свайп.
       if (Math.abs(delta) < 3) return;
@@ -114,15 +123,15 @@ export default function init(section) {
     event.preventDefault();
     const direction = Math.sign(delta);
     if (direction && direction !== drag.direction) {
-      drag.samples = [{ left: rail.scrollLeft, time: drag.time }];
+      drag.samples = [{ left: rail[position], time: drag.time }];
       drag.direction = direction;
     }
     // Считаем от последней позиции, чтобы разворот у края срабатывал сразу.
     drag.left = limit(drag.left - delta);
-    rail.scrollLeft = drag.left;
-    drag.x = event.clientX;
+    rail[position] = drag.left;
+    drag.x = event[coordinate];
     drag.time = event.timeStamp;
-    drag.samples.push({ left: rail.scrollLeft, time: event.timeStamp });
+    drag.samples.push({ left: rail[position], time: event.timeStamp });
     while (drag.samples.length > 2 && event.timeStamp - drag.samples[0].time > 100) {
       drag.samples.shift();
     }
@@ -139,7 +148,7 @@ export default function init(section) {
     const last = finished.samples[finished.samples.length - 1];
     const elapsed = event.timeStamp - first.time;
     if (elapsed > 0 && event.timeStamp - last.time < 80) {
-      coast((rail.scrollLeft - first.left) / elapsed);
+      coast((rail[position] - first.left) / elapsed);
     }
   }
   window.addEventListener('pointerup', endDrag);
@@ -149,12 +158,8 @@ export default function init(section) {
     endDrag(null, false);
     stopMomentum();
   });
-  rail.addEventListener('wheel', (event) => {
+  rail.addEventListener('wheel', () => {
     stopMomentum();
-    // Горизонтальный жест трекпада остаётся нативным и не попадает в Lenis.
-    if (Math.abs(event.deltaX) > Math.abs(event.deltaY) || event.shiftKey) {
-      event.stopPropagation();
-    }
   }, { passive: true });
   rail.addEventListener(
     'click',

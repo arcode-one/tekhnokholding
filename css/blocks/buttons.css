@@ -2,7 +2,7 @@
    и шкала годов сохраняют собственную геометрию и поведение. */
 :is(
   .pill, .icon-btn:not(.burger-btn), .company-text-button,
-  .company-carousel__controls button, .projects-controls button,
+  .company-carousel__controls button,
   .projects-empty button, .object-cinema__bar button,
   .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
   .company-lightbox__back, .company-lightbox__steps button,
@@ -22,7 +22,7 @@
 
 :is(
   .pill, .icon-btn:not(.burger-btn), .company-text-button,
-  .company-carousel__controls button, .projects-controls button,
+  .company-carousel__controls button,
   .projects-empty button, .object-cinema__bar button,
   .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
   .company-lightbox__back, .company-lightbox__steps button,
@@ -38,7 +38,7 @@
 @media (hover: hover) and (pointer: fine) {
   :is(
     .pill, .icon-btn:not(.burger-btn), .company-text-button,
-    .company-carousel__controls button, .projects-controls button,
+    .company-carousel__controls button,
     .projects-empty button, .object-cinema__bar button,
     .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
     .company-lightbox__back, .company-lightbox__steps button,
@@ -55,17 +55,9 @@
   color: var(--button-hover-text);
 }
 
-.company-map__list-project[aria-pressed='true'] {
-  background: var(--theme-bg-section);
-}
-
 .company-map__list-project:is(:hover, :focus-visible) :is(
   .company-map__list-address, .company-map__list-facts > span > span
 ) {
-  color: inherit;
-}
-
-.advantage-card:is(:hover, :focus-visible) .advantage-card__action {
   color: inherit;
 }
 
@@ -81,14 +73,24 @@
 }
 
 /* Системные иконки MapLibre используют растровый спрайт. */
-.company-map .maplibregl-ctrl-group button:is(:hover, :focus-visible) .maplibregl-ctrl-icon {
+.company-map .maplibregl-ctrl-group button .maplibregl-ctrl-icon {
   filter: brightness(0) invert(1);
+}
+
+.company-map .maplibregl-ctrl-group button:focus-visible .maplibregl-ctrl-icon {
+  filter: brightness(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .company-map .maplibregl-ctrl-group button:hover .maplibregl-ctrl-icon {
+    filter: brightness(0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   :is(
     .pill, .icon-btn:not(.burger-btn), .company-text-button,
-    .company-carousel__controls button, .projects-controls button,
+    .company-carousel__controls button,
     .projects-empty button, .object-cinema__bar button,
     .company-map .company-map__tools button, .company-map__card-link, .company-map__back,
     .company-lightbox__back, .company-lightbox__steps button,

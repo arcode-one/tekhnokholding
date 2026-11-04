@@ -1,4 +1,6 @@
 .company-recommendations {
+  --recommendation-divider: 45.6%;
+  --recommendation-step: clamp(80px, 16svh, 160px);
   --recommendation-columns: 5;
   --recommendation-gap: 14px;
   --recommendation-card-width: calc(
@@ -6,34 +8,98 @@
       var(--recommendation-columns)
   );
 
-  padding-block: 80px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(14px, 2.4dvh, 28px);
+  height: 100vh;
+  height: 100dvh;
+  padding-block: calc(var(--recommendation-step) + 16px) clamp(12px, 2dvh, 24px);
   background: var(--color-gray-light);
 }
 
+.company-recommendations__transition {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: calc(var(--recommendation-step) + 24px);
+  overflow: clip;
+  pointer-events: none;
+}
+
+.company-recommendations__edge {
+  position: absolute;
+  inset: 0;
+}
+
+.company-recommendations__edge::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: var(--recommendation-divider);
+  height: 24px;
+  background: var(--color-white);
+}
+
+.company-recommendations__corner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: var(--recommendation-divider);
+  height: var(--recommendation-step);
+  background: var(--color-white);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .company-recommendations__corner { will-change: transform; }
+}
+
+@media (min-width: 1200px) {
+  .company-recommendations {
+    /* Centre of the gap after the team's 0.85fr column in a 2fr grid. */
+    --recommendation-divider: calc(42.5% + var(--pad) * 0.15 + var(--team-layout-gap) * 0.075);
+  }
+}
+
 .company-recommendations .company-heading {
-  margin-bottom: 40px;
+  margin-bottom: 0;
+}
+
+.home-page .company-recommendations .company-heading .home-heading {
+  font-size: clamp(26px, min(5vw, 7dvh), 84px);
 }
 
 .company-recommendations__slider {
   position: relative;
+  min-width: 0;
+  min-height: 0;
 }
 
 .company-recommendations .company-carousel__rail {
   width: calc(100% - var(--pad) * 2);
   margin-inline: var(--pad);
   scroll-padding-inline: 0;
+  height: 100%;
+  overflow-y: hidden;
 }
 
 .company-recommendations .company-carousel__track {
-  gap: var(--recommendation-gap);
-  padding-block: 8px 24px;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: var(--recommendation-card-width);
+  grid-template-rows: minmax(60px, 1fr) auto minmax(70px, 1fr);
+  column-gap: var(--recommendation-gap);
+  row-gap: clamp(10px, 1.5dvh, 18px);
+  height: 100%;
+  padding-block: 8px 20px;
   padding-inline: 0;
 }
 
 .company-recommendations__arrow {
 
   position: absolute;
-  top: calc(50% - 22px);
+  bottom: calc(100% + 12px);
   z-index: 1;
   width: 44px;
   height: 44px;
@@ -42,11 +108,11 @@
 }
 
 .company-recommendations__arrow--previous {
-  left: calc(var(--pad) - 16px);
+  right: calc(var(--pad) + 56px);
 }
 
 .company-recommendations__arrow--next {
-  right: calc(var(--pad) - 16px);
+  right: var(--pad);
 }
 
 .company-recommendations__arrow svg {

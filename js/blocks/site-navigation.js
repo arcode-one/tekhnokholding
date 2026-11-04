@@ -1,88 +1,28 @@
+import initDock from './dock.js';
+
 export default function init() {
   const root = document.documentElement;
-  const preloader = document.querySelector('[data-ui~=preloader]');
-  const lockup = document.querySelector('[data-ui~=preloader__lockup]');
+  const header = document.querySelector('.header');
   const wordmark = document.querySelector('[data-ui~=wordmark]');
   const burger = document.querySelector('[data-ui~=header__burger]');
   const menu = document.querySelector('[data-mobile-menu]');
   const dock = document.querySelector('[data-ui~=dock]');
   const dockBurger = document.querySelector('[data-ui~=dock__burger]');
+  const dockMenu = initDock(dock);
 
-  // Раскрывающаяся панель в доке работает только на десктопе с мышью; иначе бургер открывает полноэкранное меню
-  const desktopDock = window.matchMedia('(min-width: 1101px)');
-  const canHover = window.matchMedia('(hover: hover)');
-
-  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const entryAnchor = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  let entryAnchor = null;
+  try { entryAnchor = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch {}
   const isReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
 
   // Превью должно открывать именно первый экран, поэтому при обновлении всегда стартуем сверху
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.scrollTo(0, 0);
+  window.scrollTo({ top: 0, behavior: 'instant' });
 
-  // ---------- Preloader ----------
-
-  const PRELOADER_ENABLED = false; // Временно отключён; true вернёт заставку при загрузке.
-  const MIN_DURATION = 3600; // обводки → жёлтая заливка → белый куб → сдвиг к центру с надписью → короткая пауза
-  const LOCKUP_OUT = 450;
-  const CURTAIN_UP = 950;
-
-  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
-  const pageLoaded = new Promise((resolve) => {
-    if (document.readyState === 'complete') resolve();
-    else window.addEventListener('load', resolve, { once: true });
-  });
-
-  const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
-
-  function finishLoading() {
-    root.classList.add('site--loaded');
-    root.classList.remove('site--locked');
-    document.dispatchEvent(new Event('site:scroll-lock-change'));
-    // Возврат со страницы объекта ведёт к каталогу на главной.
-    // При обычном обновлении прежнее поведение превью (начало сверху) сохранено.
+  root.classList.add('site--loaded');
+  requestAnimationFrame(() => {
     if (entryAnchor && !isReload) entryAnchor.scrollIntoView({ behavior: 'instant' });
-    requestAnimationFrame(updateScrollState);
-  }
-
-  async function runPreloader() {
-    if (!PRELOADER_ENABLED || reducedMotion || !preloader) {
-      preloader && preloader.remove();
-      root.classList.remove('site--preloading');
-      finishLoading();
-      return;
-    }
-
-    await Promise.all([pageLoaded, fontsReady, wait(MIN_DURATION)]);
-
-    lockup.classList.add('preloader__lockup--out');
-    await wait(LOCKUP_OUT - 100);
-
-    preloader.classList.add('preloader--leaving');
-    finishLoading();
-    await wait(CURTAIN_UP);
-
-    preloader.remove();
-    root.classList.remove('site--preloading');
-  }
-
-  if (PRELOADER_ENABLED && preloader) {
-    root.classList.add('site--locked', 'site--preloading');
-    root.classList.remove('site--loaded');
-  }
-  const releasePreloader = () => {
-    preloader?.remove();
-    root.classList.remove('site--preloading', 'site--locked');
-    root.classList.add('site--loaded');
-  };
-  const watchdog = setTimeout(releasePreloader, 8000);
-  runPreloader()
-    .catch((error) => {
-      console.error('preloader', error);
-      releasePreloader();
-    })
-    .finally(() => clearTimeout(watchdog));
+    updateScrollState();
+  });
 
   // ---------- Скролл: разворот букв и сворачивание шапки в бургер ----------
 
@@ -132,18 +72,6 @@ export default function init() {
     if (!root.classList.contains('site--loaded')) return;
     updateWordmark(window.scrollY);
 
-    // Инерция скролла не должна перебивать наведение или работу с клавиатуры.
-    // Вне меню сохраняем прежнее закрытие при прокрутке после открытия кликом.
-    const dockEngaged =
-      (canHover.matches && dock.matches(':hover')) || dock.querySelector(':focus-visible');
-    if (
-      dock.classList.contains('dock--open') &&
-      !dockEngaged &&
-      Math.abs(window.scrollY - dockOpenedAt) > 30
-    ) {
-      setDock(false);
-    }
-
     const y = window.scrollY;
     let isScrolled = scrolled;
     if (scrolled) {
@@ -161,58 +89,16 @@ export default function init() {
     }
     if (isScrolled === scrolled) return;
     scrolled = isScrolled;
+    header.inert = scrolled;
+    dockMenu.setVisible(scrolled);
     root.classList.toggle('site--scrolled', scrolled);
-    if (!scrolled) setDock(false);
   }
 
   window.addEventListener('scroll', updateScrollState, { passive: true });
 
-  // ---------- Dock: панель раскрывается при наведении на бургер ----------
-
-  let closeTimer = null;
-  let dockOpenedAt = 0;
-
-  function setDock(open) {
-    clearTimeout(closeTimer);
-    if (open && !dock.classList.contains('dock--open')) dockOpenedAt = window.scrollY;
-    dock.classList.toggle('dock--open', open);
-    dockBurger.setAttribute('aria-expanded', String(open));
-    dockBurger.setAttribute('aria-label', open ? 'Скрыть меню' : 'Открыть меню');
-  }
-
-  const dockMode = () => desktopDock.matches;
-
-  dock.addEventListener('mouseenter', () => {
-    if (dockMode() && canHover.matches) setDock(true);
-  });
-
-  dock.addEventListener('mouseleave', () => {
-    // Открытой оставляем только при навигации с клавиатуры; после клика мышью фокус на бургере не держит плашку
-    if (!dockMode() || dock.querySelector(':focus-visible')) return;
-    // Небольшая задержка, чтобы панель не схлопывалась, если курсор чуть промахнулся
-    closeTimer = setTimeout(() => setDock(false), 200);
-  });
-
-  dock.addEventListener('focusin', () => {
-    if (dockMode() && dock.querySelector(':focus-visible')) setDock(true);
-  });
-
-  dock.addEventListener('focusout', (e) => {
-    if (dockMode() && !dock.contains(e.relatedTarget) && !dock.matches(':hover')) setDock(false);
-  });
-
   dockBurger.addEventListener('click', () => {
-    if (!dockMode()) return setMenu(menu.hidden);
-    // С мышью плашка уже раскрыта наведением, клик её не схлопывает; без наведения (тачскрин, клавиатура) клик переключает
-    if (canHover.matches && dock.matches(':hover')) setDock(true);
-    else setDock(!dock.classList.contains('dock--open'));
+    if (!dockMenu.isDesktop()) setMenu(menu.hidden);
   });
-
-  document.addEventListener('click', (e) => {
-    if (dock.classList.contains('dock--open') && !dock.contains(e.target)) setDock(false);
-  });
-
-  desktopDock.addEventListener('change', () => setDock(false));
 
   // ---------- Полноэкранное меню (планшет и телефон) ----------
 
@@ -256,9 +142,6 @@ export default function init() {
     if (!menu.hidden) {
       setMenu(false);
       (scrolled ? dockBurger : burger).focus();
-    } else if (dock.classList.contains('dock--open')) {
-      setDock(false);
-      dockBurger.focus();
     }
   });
 }

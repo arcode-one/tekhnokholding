@@ -8,6 +8,7 @@ export default function init(footer) {
   const desktop = matchMedia('(min-width:768px)');
   let visible = false;
   let frame = 0;
+  let distance = 0;
   const clamp = (value) => Math.max(0, Math.min(1, value));
   function render() {
     frame = 0;
@@ -15,25 +16,37 @@ export default function init(footer) {
       image.style.transform = '';
       return;
     }
-    const rect = footer.getBoundingClientRect();
-    const progress = clamp((innerHeight - rect.top) / innerHeight);
-    const imageHeight = image.offsetHeight;
-    const distance = imageHeight * 0.5;
-    const offset = Math.round((1 - progress) * distance);
+    // Earlier sections can change height after an anchor jump. Read the current
+    // position, and never move the photo beyond the visible bottom of the footer.
+    const bounds = footer.getBoundingClientRect();
+    const progress = clamp((innerHeight - bounds.top) / innerHeight);
+    const offset = Math.min(
+      Math.round((1 - progress) * distance),
+      Math.max(0, bounds.bottom - innerHeight),
+    );
     image.style.transform = `translateY(${-offset}px)`;
   }
+  function measure() {
+    distance = image.offsetHeight * 0.5;
+    render();
+  }
   function schedule() {
-    if (visible && !frame) frame = requestAnimationFrame(render);
+    if (visible && desktop.matches && !reduced.matches && !document.hidden && !frame)
+      frame = requestAnimationFrame(render);
   }
   new IntersectionObserver(
     (entries) => {
       visible = entries[0].isIntersecting;
-      if (visible) render();
+      if (visible) measure();
     },
     { rootMargin: '100px' },
   ).observe(footer);
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', render, { passive: true });
-  reduced.addEventListener('change', render);
-  desktop.addEventListener('change', render);
+  addEventListener('resize', measure, { passive: true });
+  reduced.addEventListener('change', measure);
+  desktop.addEventListener('change', measure);
+  const resizeObserver = new ResizeObserver(measure);
+  resizeObserver.observe(footer);
+  resizeObserver.observe(document.body);
+  document.fonts?.ready.then(measure);
 }

@@ -1,0 +1,142 @@
+/* Entrances run once. Image parallax uses the independent translate property. */
+.mission-page {
+  --mission-copy-offset: 12px;
+  --mission-section-edge: 72px;
+}
+
+.mission-page [data-mission-enter] {
+  --mission-duration: 450ms;
+  --mission-delay: 0ms;
+}
+
+.mission-page [data-mission-enter='heading'] {
+  --mission-duration: 500ms;
+}
+
+.mission-page [data-mission-enter='photo'] {
+  --mission-duration: 900ms;
+  --mission-photo-clip: inset(0 0 100% 0);
+}
+
+.mission-page :is(.mission-scene--expertise, .mission-scene--trust, .mission-scene--craft) [data-mission-enter='photo'] {
+  --mission-photo-clip: inset(48% 0 48% 0);
+}
+
+.mission-page [data-mission-enter='cover'] {
+  --mission-duration: 700ms;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .mission-page .mission-parallax {
+    overflow: hidden;
+  }
+
+  .mission-page .mission-parallax > img {
+    position: absolute;
+    inset: -30% 0 auto;
+    display: block;
+    width: 100%;
+    height: 160%;
+    max-width: none;
+    object-fit: cover;
+  }
+
+  .mission-page .mission-parallax--visible > img {
+    will-change: translate;
+  }
+
+  .mission-page :is([data-mission-enter='heading'], [data-mission-enter='text'])[data-mission-state='waiting'] {
+    opacity: 0;
+    transform: translateY(var(--mission-copy-offset));
+  }
+
+  .mission-page :is([data-mission-enter='heading'], [data-mission-enter='text'])[data-mission-state='running'] {
+    animation: mission-once-copy var(--mission-duration) var(--ease-out) var(--mission-delay) both;
+  }
+
+  .mission-page [data-mission-enter='section'][data-mission-state='waiting'] {
+    clip-path: inset(var(--mission-section-edge) 0 0 0);
+  }
+
+  .mission-page [data-mission-enter='section'][data-mission-state='running'] {
+    animation: mission-once-section 750ms var(--ease-in-out) both;
+  }
+
+  .mission-page [data-mission-enter='photo'][data-mission-state='waiting'] {
+    opacity: 0;
+    clip-path: var(--mission-photo-clip);
+  }
+
+  .mission-page [data-mission-enter='photo'][data-mission-state='running'] {
+    animation: mission-once-photo var(--mission-duration) var(--ease-out) both;
+  }
+
+  .mission-page [data-mission-enter='cover'][data-mission-state='running'] {
+    animation: mission-once-cover var(--mission-duration) var(--ease-out) both;
+  }
+
+  .mission-page [data-mission-enter='photo'][data-mission-state='running'] > img {
+    animation: mission-once-image var(--mission-duration) var(--ease-out) both;
+  }
+}
+
+@keyframes mission-once-copy {
+  from { opacity: 0; transform: translateY(var(--mission-copy-offset)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes mission-once-section {
+  from { clip-path: inset(var(--mission-section-edge) 0 0 0); }
+  to { clip-path: inset(0); }
+}
+
+@keyframes mission-once-photo {
+  from { opacity: 0; clip-path: var(--mission-photo-clip); }
+  to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes mission-once-cover {
+  from { opacity: 0.72; }
+  to { opacity: 1; }
+}
+
+@keyframes mission-once-image {
+  from { transform: scale(1.045); }
+  to { transform: none; }
+}
+
+@media (max-width: 767px) {
+  .mission-page {
+    --mission-copy-offset: 12px;
+    --mission-section-edge: 32px;
+  }
+
+  .mission-page .mission-parallax > img {
+    top: -24%;
+    height: 148%;
+  }
+}
+
+/* Keep the architecture in frame; reserve travel above the hero instead of zooming 160%. */
+@media (prefers-reduced-motion: no-preference) {
+  .mission-page .mission-hero__photo.mission-parallax > img {
+    top: -8%;
+    height: 108%;
+  }
+}
+
+@media print {
+  .mission-page [data-mission-enter],
+  .mission-page [data-mission-enter] > img {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    translate: none !important;
+    clip-path: none !important;
+  }
+
+  .mission-page .mission-parallax > img {
+    inset: 0;
+    height: 100%;
+  }
+}

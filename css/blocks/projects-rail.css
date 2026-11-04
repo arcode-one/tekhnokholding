@@ -9,6 +9,14 @@
   display: none;
 }
 
+.projects-section:not(.projects-section--catalog) .projects-rail {
+  /* Keep card sizing aligned with the content, but clip scrolling at the viewport. */
+  padding-block: 20px;
+  margin-block: -20px;
+  padding-inline: var(--pad);
+  margin-inline: calc(-1 * var(--pad));
+}
+
 .projects-rail.projects-rail--dragging {
   cursor: grabbing;
   user-select: none;

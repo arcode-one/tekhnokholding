@@ -1,6 +1,33 @@
-.projects-corner {
+.projects-transition {
   position: absolute;
   z-index: 2;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: calc(var(--section-overlap) + 24px);
+  overflow: clip;
+  pointer-events: none;
+}
+
+.projects-transition__edge {
+  position: absolute;
+  inset: 0;
+}
+
+.projects-section:not(.projects-section--overlap) > .projects-transition { display: none; }
+
+.projects-transition__edge::before {
+  content: '';
+  position: absolute;
+  top: -24px;
+  left: 0;
+  width: 45.6%;
+  height: 24px;
+  background: var(--color-white);
+}
+
+.projects-corner {
+  position: absolute;
   top: 0;
   right: 0;
   width: 54.4%;

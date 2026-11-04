@@ -1,9 +1,9 @@
-.company-story__intro .breadcrumbs {
+.company-story__intro .page-back {
   margin-inline: 0;
 }
 
 .company-story {
-  padding-top: var(--breadcrumbs-offset);
+  padding-top: var(--page-back-offset);
   padding-bottom: 80px;
 }
 

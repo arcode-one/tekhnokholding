@@ -3,13 +3,13 @@ export default function init(dialog) {
     button.dataset.lightboxTarget
       ? button.dataset.lightboxTarget === dialog.id
       : document.querySelector('[data-company-lightbox]') === dialog;
-  const triggers = [...document.querySelectorAll('[data-company-image]')].filter(matchesDialog);
+  const triggers = [...document.querySelectorAll('[data-company-image], [data-company-pages]')].filter(matchesDialog);
   let opener;
   const image = dialog.querySelector('[data-lightbox-image]');
   const title = dialog.querySelector('h2');
-  const original = dialog.querySelector('[data-lightbox-original]');
   const gallery = dialog.querySelector('[data-lightbox-gallery]');
   const view = dialog.querySelector('[data-lightbox-view]');
+  const pages = dialog.querySelector('[data-lightbox-pages]');
   const bottom = dialog.querySelector('[data-lightbox-bottom]');
   const back = dialog.querySelector('[data-lightbox-back]');
   const steps = dialog.querySelector('[data-lightbox-steps]');
@@ -17,7 +17,6 @@ export default function init(dialog) {
   let collection = [];
   let index = 0;
   let academy = false;
-  dialog.setAttribute('data-lenis-prevent', '');
   function open() {
     if (dialog.open) return;
     if (!document.documentElement.classList.contains('site--locked')) ownsLock = true;
@@ -27,17 +26,31 @@ export default function init(dialog) {
   }
   function show(button) {
     const fromGallery = gallery && !gallery.hidden;
-    image.src = button.dataset.companyImage;
-    image.alt = button.dataset.imageTitle;
+    const documentPages = button.dataset.companyPages?.split(' ').filter(Boolean);
+    image.hidden = !!documentPages;
+    if (pages) {
+      pages.hidden = !documentPages;
+      pages.replaceChildren(...(documentPages || []).map((src, pageIndex) => {
+        const page = document.createElement('img');
+        page.src = src;
+        page.alt = `${button.dataset.imageTitle}, страница ${pageIndex + 1}`;
+        page.width = 1414;
+        page.height = 2000;
+        return page;
+      }));
+    }
+    if (!documentPages) {
+      image.src = button.dataset.companyImage;
+      image.alt = button.dataset.imageTitle;
+    }
     title.textContent = button.dataset.imageTitle;
-    if (original) original.href = button.dataset.imageOriginal || button.dataset.companyImage;
     if (gallery) gallery.hidden = true;
     if (view) view.hidden = false;
     view?.classList.toggle(
       'company-lightbox__image--rotated',
       button.dataset.imageRotation === '90',
     );
-    if (bottom) bottom.hidden = false;
+    if (bottom) bottom.hidden = collection.length < 2;
     if (back) back.hidden = !academy;
     if (steps) {
       steps.hidden = collection.length < 2;
@@ -45,6 +58,7 @@ export default function init(dialog) {
         `${index + 1} / ${collection.length}`;
     }
     open();
+    if (view) view.scrollTop = 0;
     if (academy && fromGallery) back.focus({ preventScroll: true });
   }
   function showAcademy() {
@@ -57,7 +71,8 @@ export default function init(dialog) {
     open();
   }
   triggers.forEach((button) =>
-    button.addEventListener('click', () => {
+    button.addEventListener('click', (event) => {
+      event.preventDefault();
       const group = button.dataset.imageGroup;
       collection = group ? triggers.filter((item) => item.dataset.imageGroup === group) : [button];
       index = collection.indexOf(button);
@@ -83,6 +98,17 @@ export default function init(dialog) {
       button.addEventListener('click', () => step(Number(button.dataset.lightboxStep))),
     );
   dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      const focusable = [...dialog.querySelectorAll('button, a[href], [tabindex]')]
+        .filter((element) => !element.disabled && element.tabIndex >= 0 && element.getClientRects().length);
+      const first = focusable[0];
+      const last = focusable.at(-1);
+      if (first && ((!event.shiftKey && document.activeElement === last) ||
+        (event.shiftKey && document.activeElement === first))) {
+        event.preventDefault();
+        (event.shiftKey ? last : first).focus();
+      }
+    }
     if (
       ['ArrowLeft', 'ArrowRight'].includes(event.key) &&
       collection.length > 1 &&

@@ -7,11 +7,11 @@
   --accent: var(--theme-bg-contrast);
   --brand-logo-yellow: #fec72a;
   --logo-dark: #444344;
-  --preloader-bg: #000;
   --pad: 56px;
   --header-h: 88px;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.25, 1);
+  --ease-header: cubic-bezier(0.76, 0, 0.24, 1);
   --color-ink: #34454e;
   --color-paper: #f3f3f3;
   --color-slate: #616982;
@@ -25,7 +25,6 @@
   --space-6: 24px;
   --space-8: 32px;
   --layer-header: 50;
-  --layer-preloader: 100;
   --layer-scrollbar: 10000;
   --font-body: 'Manrope', sans-serif;
   --font-display: var(--font-body);

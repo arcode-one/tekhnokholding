@@ -1,10 +1,12 @@
 import { mount, loadBlocks } from './lib/blocks.js';
 import navigation from './blocks/site-navigation.js';
+import textRoll from './blocks/text-roll.js';
 
 const enhancements = [];
 const enhance = (...args) => enhancements.push(loadBlocks(...args));
 mount(document.documentElement, 'navigation', navigation);
-enhance('html', 'smooth-scroll', () => import('./blocks/smooth-scroll.js'));
+mount(document.documentElement, 'text-roll', textRoll);
+enhance('html', 'wheel-scroll', () => import('./blocks/wheel-scroll.js'));
 enhance('html', 'scrollbar', () => import('./blocks/site-scrollbar.js'));
 enhance('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
 enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
@@ -14,8 +16,14 @@ enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-ca
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
 enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
 enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
+enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('./blocks/architecture-parallax.js'));
+
+enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
+enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 enhance('[data-ui~="mission-story"]', 'mission', () => import('./blocks/mission.js'));
+
+enhance('[data-ui~="quality-page"]', 'quality', () => import('./blocks/quality.js'));
 enhance('[data-privacy-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
 enhance(
   '[data-ui~="object-page--motion"]',

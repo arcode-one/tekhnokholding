@@ -1,28 +1,11 @@
-@media (max-width: 1100px) {
-  .projects-types {
-    justify-content: flex-start;
-    margin-left: 0;
-  }
-}
-
 @media (max-width: 767px) {
   .projects-types {
-    flex-wrap: nowrap;
-    width: calc(100% + var(--pad));
-    margin-right: calc(-1 * var(--pad));
+    margin-inline: -8px;
+    padding-inline: 8px;
     overflow-x: auto;
     scrollbar-width: none;
-    gap: var(--space-2);
   }
-
   .projects-types::-webkit-scrollbar {
     display: none;
-  }
-
-  .projects-types .pill {
-    flex-shrink: 0;
-    height: 44px;
-    padding-inline: 20px;
-    font-size: 15px;
   }
 }

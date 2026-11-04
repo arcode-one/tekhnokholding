@@ -1,0 +1,82 @@
+.projects-filters {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  margin: 0 var(--pad) 40px;
+  color: var(--projects-ink);
+}
+
+.projects-filters .projects-types__button {
+  position: relative;
+  flex: none;
+  min-height: 44px;
+  padding: 10px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+  font-family: inherit;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.4;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.projects-filters .projects-types__button::before,
+.projects-filters .projects-types__button::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border: 0 solid currentColor;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease-out, transform 180ms ease-out;
+}
+
+.projects-filters .projects-types__button::before {
+  top: 3px;
+  left: -8px;
+  border-top-width: 1px;
+  border-left-width: 1px;
+  transform: translate(2px, 2px);
+}
+
+.projects-filters .projects-types__button::after {
+  right: -8px;
+  bottom: 3px;
+  border-bottom-width: 1px;
+  border-right-width: 1px;
+  transform: translate(-2px, -2px);
+}
+
+.projects-filters .projects-types__button[aria-pressed='true'] {
+  font-weight: 600;
+}
+
+.projects-filters .projects-types__button[aria-pressed='true']::before,
+.projects-filters .projects-types__button[aria-pressed='true']::after {
+  opacity: 1;
+  transform: none;
+}
+
+.projects-filters .projects-types__button:focus-visible {
+  outline: 2px solid currentcolor;
+  outline-offset: 4px;
+}
+
+.projects-filters .projects-types__button:focus-visible::before,
+.projects-filters .projects-types__button:focus-visible::after {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .projects-filters .projects-types__button,
+  .projects-filters .projects-types__button::before,
+  .projects-filters .projects-types__button::after {
+    transition: none;
+  }
+}

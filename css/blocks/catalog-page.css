@@ -1,5 +1,5 @@
 .catalog-page {
-  background: #10191e;
+  background: var(--color-gray-light);
 }
 
 .catalog-page > main {
@@ -7,15 +7,48 @@
 }
 
 .catalog-page .projects-section {
-  --projects-surface: #10191e;
+  --projects-surface: var(--color-gray-light);
+  --projects-paper: #fff;
+  --projects-ink: var(--color-ink);
+  --projects-secondary: var(--theme-text-secondary);
+  --projects-gap: 32px;
 
-  padding-top: calc(var(--header-h) + var(--breadcrumbs-offset));
-  background-image:
-    linear-gradient(#10191e80, #10191e80),
-    url('../../images/backgrounds/objects-blueprint-dark-v1.webp');
-  background-position: center top;
-  background-size: auto, max(1200px, 100%) auto;
-  background-repeat: no-repeat, repeat-y;
+  padding-top: calc(var(--header-h) + var(--page-back-offset));
   border-radius: 0;
   margin-top: 0;
+}
+
+.catalog-page .header,
+.catalog-page .header__mail {
+  color: var(--color-ink);
+}
+
+.catalog-page .header__divider {
+  background: #34454e33;
+}
+
+.catalog-page .projects-heading {
+  margin-bottom: 40px;
+}
+
+.projects-section--catalog .projects-group {
+  gap: var(--projects-gap);
+}
+
+.projects-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.projects-more button {
+  cursor: pointer;
+}
+
+@media (max-width: 1279px) {
+  .catalog-page .projects-section { --projects-gap: 24px; }
+}
+
+@media (max-width: 767px) {
+  .catalog-page .projects-section { --projects-gap: 20px; }
 }

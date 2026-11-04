@@ -1,0 +1,27 @@
+@media (max-width: 1199px) {
+  .projects-filters {
+    flex-wrap: wrap;
+    gap: 12px 24px;
+  }
+
+  .projects-types {
+    flex-basis: 100%;
+  }
+
+  .projects-filters .projects-types__button {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .projects-filters {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .projects-filters .projects-types__button {
+    font-size: 14px;
+  }
+}

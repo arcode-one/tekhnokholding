@@ -1,10 +1,69 @@
 .company-advantages {
-  background: var(--color-navy);
-  color: var(--color-white);
+  isolation: isolate;
+  background: var(--color-gray-light);
+  color: var(--color-ink);
+}
+
+.company-advantages__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.company-advantages__background img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 65% 30%;
+}
+
+.company-advantages__background[data-parallax-active] img {
+  top: -80px;
+  height: calc(100% + 160px);
+}
+
+.company-advantages > .advantages-layout,
+.company-heading.company-advantages__intro {
+  position: relative;
+  z-index: 1;
+}
+
+.company-heading.company-advantages__intro {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 1099px) {
+  .company-advantages__background img { object-position: left top; }
+}
+
+@media (max-width: 767px) {
+  .company-heading.company-advantages__intro { align-items: flex-start; margin-bottom: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-story-photo] img {
-    transform: none !important;
+  [data-story-photo] img { transform: none !important; }
+  .company-advantages__background[data-parallax-active] img { top: 0; height: 100%; transform: none !important; }
+}
+
+/* На широком экране композиция занимает ровно видимую высоту окна. */
+@media (min-width: 1100px) {
+  .company-advantages {
+    display: grid;
+    grid-template-rows: minmax(120px, 1fr) auto;
+    gap: clamp(16px, 2vh, 24px);
+    height: max(650px, 100vh);
+    height: max(650px, 100svh);
+    padding-block: clamp(24px, 4vh, 48px);
+  }
+  .company-heading.company-advantages__intro {
+    min-height: 0;
+    margin-block: 0;
   }
 }

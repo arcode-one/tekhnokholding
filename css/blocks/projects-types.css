@@ -1,22 +1,6 @@
 .projects-types {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-left: auto;
-}
-
-.projects-types .pill {
-  font-family: inherit;
-  cursor: pointer;
-}
-
-.projects-types .pill[aria-pressed='true'] {
-  background: var(--button-hover-bg);
-  color: var(--button-hover-text);
-  cursor: default;
-}
-
-.home-page .projects-section:not(.projects-section--catalog) .projects-types .pill[aria-pressed='true'] {
-  font-weight: 700;
+  align-items: center;
+  gap: clamp(20px, 2.4vw, 44px);
+  min-width: 0;
 }

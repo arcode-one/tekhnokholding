@@ -4,100 +4,67 @@ import initProjectPhotoParallax from './project-photo-parallax.js';
 export default function init(section) {
   const rail = section.querySelector('[data-projects-rail]');
   const group = section.querySelector('[data-projects-group]');
-  const body = section.querySelector('.projects-body');
   const cards = [...group.children];
+  const headings = cards.map((card) => card.querySelector('.project-card__heading'));
+  const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
   const types = [...section.querySelectorAll('[data-project-type]')];
-  const years = [...section.querySelectorAll('[data-project-year]')];
-  const yearList = section.querySelector('[data-years-list]');
-  const yearSteps = [...section.querySelectorAll('[data-years-step]')];
   const count = section.querySelector('[data-projects-count]');
   const countValue = count?.querySelector('[data-projects-count-value]');
   const countLabel = count?.querySelector('[data-projects-count-label]');
   const empty = section.querySelector('[data-projects-empty]');
-  const pause = section.querySelector('[data-projects-pause]');
-  const pauseLabel = pause?.querySelector('[data-projects-pause-label]');
   const prev = section.querySelector('[data-projects-prev]');
   const next = section.querySelector('[data-projects-next]');
+  const controls = section.querySelector('[data-projects-controls]');
   const catalog = section.classList.contains('projects-section--catalog');
+  const more = section.querySelector('[data-projects-more]');
+  const moreWrap = section.querySelector('[data-projects-more-wrap]');
+  const pageSize = 8;
+  let shown = pageSize;
   const mapSection = section.nextElementSibling;
   if (!catalog && mapSection?.matches('[data-company-map]')) initMapLayout(mapSection);
   const reduce = matchMedia('(prefers-reduced-motion:reduce)');
   const hover = matchMedia('(hover:hover) and (pointer:fine)');
   const plurals = new Intl.PluralRules('ru');
   let selectedType = '',
-    selectedYear = '',
     filtered = cards;
   let frame = 0,
     lastTime = 0,
     speed = 0;
+  let resumeTimer = 0;
   let autoPosition = 0,
     lastWrittenScroll = 0;
   let loopGroup = null,
     loopDistance = 0;
   let visible = false,
     hovered = false,
-    focused = false,
-    userPaused = false;
+    focused = false;
   let pointer = null,
     moved = false,
     manualUntil = 0;
   let cardSizeKey = '';
-  let edgeRanges = [];
   const refreshPhotoParallax = initProjectPhotoParallax(section);
-
-  function syncEdgeRanges() {
-    if (catalog || !body) return;
-    const origin = rail.getBoundingClientRect().left - rail.scrollLeft;
-    const edgeCards = [...filtered, ...(loopGroup ? loopGroup.children : [])];
-    edgeRanges = edgeCards.map((card) => {
-      const rect = card.getBoundingClientRect();
-      return { left: rect.left - origin, right: rect.right - origin };
-    });
-  }
-
-  function updateEdgeBorders() {
-    if (catalog || !body) return;
-    // Геометрия кешируется при смене набора/размера, без чтения карточек на скролле.
-    const cutsCard = (position) => !rail.hidden && edgeRanges.some(
-      (range) => position > range.left + 0.5 && position < range.right - 0.5,
-    );
-    body.toggleAttribute('data-projects-cut-start', cutsCard(rail.scrollLeft));
-    body.toggleAttribute('data-projects-cut-end', cutsCard(rail.scrollLeft + rail.clientWidth));
-  }
 
   function syncCardHeights(force = false) {
     if (!rail.clientWidth) return;
     const key = `${rail.clientWidth}:${window.innerWidth}`;
     if (!force && key === cardSizeKey) return;
     cardSizeKey = key;
-    // Общую высоту считаем с прежним размером фотографии.
-    section.style.setProperty('--project-photo-extra', '0px');
-    // Hidden years participate only in this synchronous measurement, never in paint.
+    // Align content rows before measuring the whole card, including compound areas.
+    // Hidden categories participate only in this synchronous measurement, never in paint.
     section.setAttribute('data-measuring-cards', '');
     try {
+      section.style.removeProperty('--project-heading-height');
+      section.style.removeProperty('--project-area-value-height');
+      section.style.removeProperty('--project-card-height');
+      const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
+      const areaHeight = Math.ceil(Math.max(0, ...areaValues.map((value) => value.getBoundingClientRect().height)));
+      section.style.setProperty('--project-heading-height', `${headingHeight}px`);
+      section.style.setProperty('--project-area-value-height', `${areaHeight}px`);
       const height = Math.ceil(Math.max(0, ...cards.map((card) => card.getBoundingClientRect().height)));
       section.style.setProperty('--project-card-height', `${height}px`);
     } finally {
       section.removeAttribute('data-measuring-cards');
     }
-    balanceCardPhotos();
-  }
-
-  function balanceCardPhotos() {
-    section.style.setProperty('--project-photo-extra', '0px');
-    const visibleCards = filtered.filter((card) => !card.hidden);
-    if (!visibleCards.length || rail.hidden) return;
-    const requested = parseFloat(
-      getComputedStyle(visibleCards[0]).getPropertyValue('--project-photo-transfer'),
-    ) || 0;
-    // Переносим свободный margin в фото, оставляя 8px воздуха над деталями.
-    // Один размер фото для всей выбранной группы; длинный текст не обрезается.
-    const available = Math.min(...visibleCards.map((card) => {
-      const details = card.querySelector('.project-card__details');
-      return Math.max(0, (parseFloat(getComputedStyle(details).marginTop) || 0) - 8);
-    }));
-    const extra = Math.floor(Math.min(requested, available));
-    section.style.setProperty('--project-photo-extra', `${extra}px`);
   }
 
   function wantsMotion() {
@@ -107,7 +74,6 @@ export default function init(section) {
       visible &&
       !document.hidden &&
       !reduce.matches &&
-      !userPaused &&
       !hovered &&
       !focused &&
       !pointer &&
@@ -133,23 +99,21 @@ export default function init(section) {
     if (
       visible &&
       !document.hidden &&
-      (target || Math.abs(speed) > 0.05 || performance.now() < manualUntil)
+      (target || Math.abs(speed) > 0.05)
     )
       frame = requestAnimationFrame(tick);
-    else lastTime = 0;
+    else {
+      lastTime = 0;
+      const remaining = manualUntil - performance.now();
+      if (visible && !document.hidden && remaining > 0) {
+        clearTimeout(resumeTimer);
+        resumeTimer = setTimeout(wake, remaining);
+      }
+    }
   }
   function wake() {
+    clearTimeout(resumeTimer);
     if (!frame && !catalog) frame = requestAnimationFrame(tick);
-  }
-  function updatePause() {
-    if (!pause) return;
-    pause.disabled = !loopDistance || reduce.matches;
-    (pauseLabel || pause).textContent = pause.disabled
-      ? 'Лента остановлена'
-      : userPaused
-        ? 'Запустить ленту'
-        : 'Остановить ленту';
-    pause.setAttribute('aria-pressed', String(userPaused || pause.disabled));
   }
   function updateArrows() {
     const room = rail.scrollWidth - rail.clientWidth;
@@ -162,7 +126,7 @@ export default function init(section) {
       next.hidden = !scrollable;
       next.disabled = !scrollable || (!loopDistance && rail.scrollLeft >= room - 1);
     }
-    updateEdgeBorders();
+    if (controls) controls.hidden = !scrollable;
   }
   // Фото дальних карточек ставятся, когда до них остаётся около трёх экранов ленты
   const photoObserver =
@@ -227,20 +191,25 @@ export default function init(section) {
     rail.scrollLeft = position;
     autoPosition = rail.scrollLeft;
     lastWrittenScroll = rail.scrollLeft;
-    syncEdgeRanges();
     refreshPhotoParallax();
-    updatePause();
     updateArrows();
   }
+  function syncCatalogPage() {
+    if (!catalog || !more) return;
+    filtered.forEach((card, index) => { card.hidden = index >= shown; });
+    moreWrap.hidden = shown >= filtered.length;
+    refreshPhotoParallax();
+  }
+  more?.addEventListener('click', () => {
+    const firstNewCard = filtered[shown];
+    shown += pageSize;
+    syncCatalogPage();
+    firstNewCard?.focus({ preventScroll: true });
+  });
   function applyFilters() {
     speed = 0;
     filtered = cards.filter((card) => {
-      const start = Number(card.dataset.yearStart),
-        end = Number(card.dataset.yearEnd) || start;
-      const matchYear =
-        !selectedYear ||
-        (start && Number(selectedYear) >= start && Number(selectedYear) <= end);
-      card.hidden = !((!selectedType || card.dataset.type === selectedType) && matchYear);
+      card.hidden = Boolean(selectedType && card.dataset.type !== selectedType);
       return !card.hidden;
     });
     const ending = { one: 'объект', few: 'объекта', many: 'объектов', other: 'объекта' }[
@@ -252,7 +221,8 @@ export default function init(section) {
     } else if (count) count.textContent = `${filtered.length} ${ending}`;
     empty.hidden = filtered.length !== 0;
     rail.hidden = filtered.length === 0;
-    balanceCardPhotos();
+    shown = pageSize;
+    syncCatalogPage();
     rail.scrollLeft = 0;
     autoPosition = 0;
     lastWrittenScroll = 0;
@@ -263,116 +233,15 @@ export default function init(section) {
     button.addEventListener('click', () => {
       selectedType = button.dataset.projectType;
       types.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-      if (!selectedType) {
-        clearYear();
-        manualUntil = performance.now() + 3000;
-      }
+      manualUntil = performance.now() + 3000;
       applyFilters();
-    }),
-  );
-  function clearYear() {
-    selectedYear = '';
-    years.forEach((button) => button.setAttribute('aria-pressed', 'false'));
-    layoutYears();
-  }
-  function setYear(button, scroll = true) {
-    if (scroll) manualUntil = performance.now() + 3000;
-    selectedYear = button.dataset.projectYear;
-    years.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
-    layoutYears();
-    // На телефоне шкала обычная лента: подкручиваем выбранный год в видимую часть
-    if (scroll && yearList && !drumMode.matches) {
-      const left = button.offsetLeft - (yearList.clientWidth - button.offsetWidth) / 2;
-      yearList.scrollTo({ left, behavior: reduce.matches ? 'auto' : 'smooth' });
-    }
-    applyFilters();
-  }
-  years.forEach((button) => button.addEventListener('click', () => setYear(button)));
-  // Кольцо лет: каждый год встаёт на кратчайшее расстояние от выбранного.
-  // Год, перескочивший через край кольца, переставляется без анимации, пока он вне окна
-  const drumMode = matchMedia('(min-width: 768px)');
-  const activeYear = () => Math.max(0, years.findIndex((b) => b.getAttribute('aria-pressed') === 'true'));
-  const yearAt = (shift) => years[(activeYear() + shift + years.length) % years.length];
-  function layoutYears() {
-    const n = years.length,
-      active = activeYear();
-    const rowHeight = yearList ? parseFloat(getComputedStyle(yearList).getPropertyValue('--year-row')) || 48 : 48;
-    const radius = drumMode.matches && yearList
-      ? Math.min(3, Math.max(1, Math.floor((yearList.clientHeight / rowHeight - 1) / 2)))
-      : 3;
-    const visibleOffsets = [];
-    years.forEach((button, i) => {
-      let d = (((i - active) % n) + n) % n;
-      if (d > n / 2) d -= n;
-      const previous = Number(button.dataset.d ?? d);
-      button.classList.toggle('projects-years__year--jump', Math.abs(d - previous) > 3);
-      button.dataset.d = d;
-      button.style.setProperty('--d', d);
-      // В окне активный год и не более трёх соседних с каждой стороны.
-      button.style.setProperty('--fade', String(Math.min(1, Math.max(0, Math.abs(d) - 1) / Math.max(1, radius - 1))));
-      button.classList.toggle('projects-years__year--far', drumMode.matches && Math.abs(d) > radius);
-      button.tabIndex = drumMode.matches && Math.abs(d) > radius ? -1 : 0;
-      if (Math.abs(d) <= radius) visibleOffsets.push(d);
-    });
-    if (drumMode.matches && yearList && visibleOffsets.length) {
-      const first = Math.min(...visibleOffsets) * rowHeight;
-      const last = Math.max(...visibleOffsets) * rowHeight;
-      yearList.style.setProperty('--year-line-start', `${first}px`);
-      yearList.style.setProperty('--year-line-height', `${last - first}px`);
-      const halfHeight = yearList.clientHeight / 2;
-      section.style.setProperty('--year-button-top-offset', `${Math.max(0, halfHeight + first - 12)}px`);
-      section.style.setProperty('--year-button-bottom-offset', `${Math.max(0, halfHeight - last - 12)}px`);
-    }
-  }
-  function syncYearScroll() {
-    if (!yearList) return;
-    const drum = drumMode.matches;
-    const overflow =
-      yearList.scrollHeight > yearList.clientHeight + 1 ||
-      yearList.scrollWidth > yearList.clientWidth + 1;
-    // Вертикальный барабан забирает колесо всегда, горизонтальная лента на телефоне только при переполнении
-    yearList.toggleAttribute('data-lenis-prevent', drum || overflow);
-    yearList.classList.toggle('projects-years__list--scrollable', !drum && overflow);
-  }
-  let wheelSum = 0,
-    wheelLock = 0;
-  yearList?.addEventListener(
-    'wheel',
-    (e) => {
-      if (!drumMode.matches) return;
-      e.preventDefault();
-      wheelSum += e.deltaMode === 1 ? e.deltaY * 40 : e.deltaY;
-      const now = performance.now();
-      if (Math.abs(wheelSum) < 40 || now < wheelLock) return;
-      const nextYear = yearAt(Math.sign(wheelSum));
-      wheelSum = 0;
-      wheelLock = now + 140;
-      setYear(nextYear);
-    },
-    { passive: false },
-  );
-  if (yearList) new ResizeObserver(() => requestAnimationFrame(() => {
-    layoutYears();
-    syncYearScroll();
-  })).observe(yearList);
-  window.addEventListener('load', syncYearScroll);
-  syncYearScroll();
-  yearSteps.forEach((step) =>
-    step.addEventListener('click', () => {
-      setYear(yearAt(Number(step.dataset.yearsStep)));
     }),
   );
   section.querySelector('[data-projects-reset]').addEventListener('click', () => {
     selectedType = '';
     types.forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0)));
-    clearYear();
     manualUntil = performance.now() + 3000;
     applyFilters();
-  });
-  pause?.addEventListener('click', () => {
-    userPaused = !userPaused;
-    updatePause();
-    wake();
   });
   function nudge(direction) {
     speed = 0;
@@ -423,6 +292,7 @@ export default function init(section) {
       };
       moved = false;
       speed = 0;
+      rail.scrollTo({ left: rail.scrollLeft, behavior: 'instant' });
       wake();
     });
     rail.addEventListener('pointermove', (e) => {
@@ -440,14 +310,16 @@ export default function init(section) {
     });
     function release(e) {
       if (!pointer || pointer.id !== e.pointerId) return;
-      if (rail.hasPointerCapture(pointer.id)) rail.releasePointerCapture(pointer.id);
+      const id = pointer.id;
       pointer = null;
+      if (rail.hasPointerCapture(id)) rail.releasePointerCapture(id);
       rail.classList.remove('projects-rail--dragging');
       manualUntil = performance.now() + 2000;
       wake();
     }
     window.addEventListener('pointerup', release);
     rail.addEventListener('pointercancel', release);
+    rail.addEventListener('lostpointercapture', release);
     rail.addEventListener(
       'click',
       (e) => {
@@ -486,7 +358,6 @@ export default function init(section) {
   });
   new ResizeObserver(() => {
     syncCardHeights();
-    layoutYears();
     syncLoop();
     wake();
   }).observe(rail);
@@ -495,6 +366,5 @@ export default function init(section) {
     syncCardHeights(true);
     refreshPhotoParallax();
   });
-  clearYear();
   applyFilters();
 }

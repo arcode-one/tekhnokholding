@@ -16,10 +16,6 @@
   display: none;
 }
 
-html.site--preloading .site-scrollbar {
-  display: none;
-}
-
 .site-scrollbar__thumb {
   position: absolute;
   top: 0;

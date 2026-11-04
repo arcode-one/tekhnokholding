@@ -31,7 +31,6 @@ export default function init() {
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const locked = () =>
     root.classList.contains('site--locked') ||
-    root.classList.contains('site--preloading') ||
     document.hidden;
   function render() {
     renderFrame = 0;
@@ -64,7 +63,7 @@ export default function init() {
       return;
     }
     const height = bar.clientHeight;
-    // Та же формула, что в October; на низком окне оставляем место для движения.
+    // Keep the thumb usable on small windows.
     const minimum = Math.min(200, height / 2);
     thumbHeight = clamp(height - limit, minimum, height);
     travel = height - thumbHeight;
@@ -81,10 +80,7 @@ export default function init() {
   function moveTo(value) {
     if (!enabled || locked()) return;
     const top = clamp(value, 0, limit);
-    const event = new CustomEvent('site:scrollbar-move', { detail: top, cancelable: true });
-    document.dispatchEvent(event);
-    // Работает и при reduced motion, и если библиотека сглаживания не загрузилась.
-    if (!event.defaultPrevented) scrollTo({ top, behavior: 'instant' });
+    scrollTo({ top, behavior: 'instant' });
     scheduleRender();
   }
   bar.addEventListener('pointerdown', (event) => {

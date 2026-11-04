@@ -13,8 +13,8 @@
   --theme-text-inverse: #ffffff;
   --theme-text-inverse-muted: #d9dadf;
 
-  /* Тёмный оттенок кнопок совпадает с хедером на присланном образце. */
-  --theme-button-ink: #2b2e30;
+  /* Единый тёмный оттенок кнопок и фона раскрытого хедера. */
+  --theme-button-ink: var(--color-ink);
 
   /* Кнопки на тёмном фоне. */
   --theme-button-on-dark-bg: transparent;

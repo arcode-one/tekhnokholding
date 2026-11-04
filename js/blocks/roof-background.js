@@ -20,6 +20,7 @@ export default function init(scene) {
   const SPLIT_DISTANCE = 0.6; // доля высоты экрана, за которую композиция раскрывается полностью
   let geometry = null;
   let frame = 0;
+  let visible = false;
 
   function update() {
     frame = 0;
@@ -72,7 +73,8 @@ export default function init(scene) {
   }
 
   function scheduleUpdate() {
-    if (!frame && !reducedMotion.matches) frame = requestAnimationFrame(update);
+    if (!frame && visible && !document.hidden && !reducedMotion.matches)
+      frame = requestAnimationFrame(update);
   }
 
   function measure() {
@@ -135,6 +137,10 @@ export default function init(scene) {
   }
 
   measure();
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    if (visible) scheduleUpdate();
+  }, { rootMargin: '100px' }).observe(scene);
   new ResizeObserver(measure).observe(scene);
   if (copy) new ResizeObserver(measure).observe(copy);
   window.addEventListener('resize', measure, { passive: true });

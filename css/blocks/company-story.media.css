@@ -13,7 +13,7 @@
 
 @media (max-width: 700px) {
   .company-story {
-    padding-top: var(--breadcrumbs-offset);
+    padding-top: var(--page-back-offset);
     padding-bottom: 56px;
   }
 

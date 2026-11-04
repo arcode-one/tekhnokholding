@@ -1,0 +1,57 @@
+/* Общая заливка для текстовых и круглых кнопок. Содержимое не движется. */
+:where(.pill, .icon-btn:not(.burger-btn), .recommend-card__open) {
+  --button-fill-duration: 0.4s;
+  --button-fill-ease: cubic-bezier(0.1, 0, 0.3, 1);
+  --button-fill-top: -110%;
+}
+
+.icon-btn:not(.burger-btn),
+.recommend-card__open {
+  /* Круг должен покрывать всю кнопку с равными шириной и высотой. */
+  --button-fill-top: -10%;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open)::before,
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open)::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: var(--button-hover-bg);
+    pointer-events: none;
+    transition: transform var(--button-fill-duration) var(--button-fill-ease);
+  }
+
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open)::before {
+    inset: var(--button-fill-top) auto auto -10%;
+    width: 120%;
+    height: 0;
+    padding-bottom: 120%;
+    border-radius: 50%;
+    transform: translate3d(0, 68%, 0) scale3d(0, 0, 1);
+  }
+
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open)::after {
+    transform: translate3d(0, -100%, 0);
+  }
+
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open):not(:disabled):not([aria-disabled='true']):not([aria-pressed='true']):hover,
+  .recommend-card__letter:not(:disabled):hover .recommend-card__open {
+    /* Цвет значка меняется по buttons.css, фон рисуют только эти слои. */
+    background: var(--button-bg);
+  }
+
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open):not(:disabled):not([aria-disabled='true']):not([aria-pressed='true']):hover::before,
+  .recommend-card__letter:not(:disabled):hover .recommend-card__open::before {
+    transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  }
+
+  :is(.pill, .icon-btn:not(.burger-btn), .recommend-card__open):not(:disabled):not([aria-disabled='true']):not([aria-pressed='true']):hover::after,
+  .recommend-card__letter:not(:disabled):hover .recommend-card__open::after {
+    transform: translate3d(0, 0, 0);
+    transition-duration: 0.05s;
+    transition-delay: var(--button-fill-duration);
+    transition-timing-function: linear;
+  }
+}

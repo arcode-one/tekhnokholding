@@ -1,41 +1,19 @@
-@media (max-width: 1100px) {
-  .company-team__intro {
-    gap: 40px;
-  }
+@media (max-width: 1199px) {
+  .company-team { height: auto; min-height: 100dvh; grid-template-rows: auto auto; padding-block: 32px; gap: 24px; }
+  .company-team__layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .company-team__features { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: auto; gap: 16px; }
+  .company-team__feature { aspect-ratio: 1.5; }
+  .company-team__feature-label { padding: 40px 18px 18px; font-size: 19px; }
+  .company-team__department-grid { height: auto; grid-template-rows: repeat(4, auto); }
 }
 
-@media (max-width: 767px) {
-  .company-team__intro h2 {
-    font-size: 24px;
-  }
-
-  .company-team__intro {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    margin-bottom: 40px;
-  }
-
-  .company-team__features {
-    grid-template-columns: 1fr;
-    gap: var(--space-8);
-    margin-bottom: 64px;
-  }
-
-  .company-team__feature--1 {
-    width: 86%;
-    margin: 0 0 0 auto;
-  }
-
-  .company-team__feature-label {
-    font-size: 11px;
-  }
-
-  .company-team__subhead {
-    display: block;
-  }
-
-  .company-team__subhead h3 {
-    font-size: 24px;
-    margin-bottom: 16px;
-  }
+@media (max-width: 599px) {
+  .company-team { padding-block: 24px; gap: 20px; }
+  .home-page .company-team .company-team__intro .home-heading { font-size: clamp(24px, 7.5vw, 42px); }
+  .company-team__features { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .company-team__feature { aspect-ratio: 1.9; border-radius: 16px; }
+  .company-team__feature-label { padding: 28px 16px 12px; font-size: 18px; }
+  .company-team__subhead { margin-bottom: 16px; }
+  .company-team__subhead h3 { font-size: 20px; }
+  .company-team__department-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 10px; }
 }

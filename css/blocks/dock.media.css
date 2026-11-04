@@ -1,14 +1,6 @@
 @media (max-width: 1100px) {
-  .dock__clip {
+  .dock__panel {
     display: none;
-  }
-
-  .dock.dock--open .dock__bg {
-    transform: translate3d(calc(100% - var(--dock-height)), 0, 0);
-  }
-
-  .dock.dock--open .dock__track {
-    transform: translate3d(calc(var(--dock-height) - 100%), 0, 0);
   }
 }
 

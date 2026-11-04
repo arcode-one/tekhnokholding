@@ -1,0 +1,32 @@
+/* Only the label moves. The link hit area, contact labels and icons stay still. */
+.text-roll {
+  display: inline-grid;
+  max-width: 100%;
+  overflow: clip;
+  vertical-align: bottom;
+}
+
+.text-roll__track {
+  position: relative;
+  display: block;
+  transform: none;
+}
+
+.text-roll__line { display: block; }
+
+.text-roll__copy {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .text-roll__track { transition: transform 550ms var(--ease-in-out); }
+  .text-roll-link:hover .text-roll__track { transform: translateY(-100%); }
+  /* Keyboard focus is immediate and never runs the pointer animation. */
+  .text-roll-link:focus-visible .text-roll__track { transform: none; transition: none; }
+}
+

@@ -1,13 +1,13 @@
 .privacy-page {
   min-height: calc(80svh - var(--header-h));
-  padding: var(--breadcrumbs-offset) var(--pad) 120px;
+  padding: var(--page-back-offset) var(--pad) 120px;
 }
 
 .privacy-page__content {
   width: 100%;
 }
 
-.privacy-page > .breadcrumbs {
+.privacy-page > .page-back {
   margin: 0;
 }
 

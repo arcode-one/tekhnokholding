@@ -24,7 +24,7 @@
 
 @media (max-width: 767px) {
   .privacy-page {
-    padding-block: var(--breadcrumbs-offset) 64px;
+    padding-block: var(--page-back-offset) 64px;
   }
 
   .privacy-page__content {

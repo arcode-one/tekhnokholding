@@ -9,9 +9,15 @@ export default function init(section) {
   const coverSurface = coverSection?.querySelector('[data-ui~=projects-surface]');
   const corner = coverSurface ? document.createElement('span') : null;
   if (corner) {
+    const transition = document.createElement('span');
+    const edge = document.createElement('span');
+    transition.className = 'projects-transition';
+    transition.setAttribute('aria-hidden', 'true');
+    edge.className = 'projects-transition__edge';
     corner.className = 'projects-corner';
-    corner.setAttribute('aria-hidden', 'true');
-    coverSection.prepend(corner);
+    edge.append(corner);
+    transition.append(edge);
+    coverSection.prepend(transition);
   }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const COUNT_DURATION = 2000;
@@ -33,7 +39,7 @@ export default function init(section) {
     textNode.replaceWith(num);
     const format = (n) =>
       separator ? String(n).replace(/\B(?=(\d{3})+(?!\d))/g, separator) : String(n);
-    return { num, target, format, started: false };
+    return { num, target, format, started: false, frame: 0 };
   }
 
   function reserveWidth(counter) {
@@ -51,9 +57,9 @@ export default function init(section) {
     const tick = (now) => {
       const t = Math.min(1, (now - start) / COUNT_DURATION);
       counter.num.textContent = counter.format(Math.round(counter.target * easeOutCubic(t)));
-      if (t < 1) requestAnimationFrame(tick);
+      counter.frame = t < 1 ? requestAnimationFrame(tick) : 0;
     };
-    requestAnimationFrame(tick);
+    counter.frame = requestAnimationFrame(tick);
   }
 
   const reveals = Array.from(section.querySelectorAll('[data-figures-reveal]'), (outer) => {
@@ -76,6 +82,7 @@ export default function init(section) {
     image: outer.querySelector('img'),
   }));
   let frame = 0;
+  const visibleSections = new Set();
   let viewport = 0;
   let maxScroll = 0;
   let sectionTop = 0;
@@ -128,8 +135,8 @@ export default function init(section) {
   }
 
   function schedule() {
-    updateCorner(window.scrollY);
-    if (!frame && !reducedMotion.matches) frame = requestAnimationFrame(update);
+    if (!frame && visibleSections.size && !document.hidden && !reducedMotion.matches)
+      frame = requestAnimationFrame(update);
   }
 
   function measure() {
@@ -158,7 +165,11 @@ export default function init(section) {
       if (item.counter) reserveWidth(item.counter);
       if (reducedMotion.matches) {
         item.revealed = true;
-        if (item.counter) item.counter.num.textContent = item.counter.format(item.counter.target);
+        if (item.counter) {
+          cancelAnimationFrame(item.counter.frame);
+          item.counter.frame = 0;
+          item.counter.num.textContent = item.counter.format(item.counter.target);
+        }
       }
     });
     photos.forEach((photo) => {
@@ -236,6 +247,15 @@ export default function init(section) {
   }
 
   measure();
+  const visibility = new IntersectionObserver((entries) => {
+    entries.forEach(({ target, isIntersecting }) => {
+      if (isIntersecting) visibleSections.add(target);
+      else visibleSections.delete(target);
+    });
+    schedule();
+  }, { rootMargin: '100px' });
+  visibility.observe(section);
+  if (coverSurface) visibility.observe(coverSurface);
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', measure, { passive: true });
   reducedMotion.addEventListener('change', measure);

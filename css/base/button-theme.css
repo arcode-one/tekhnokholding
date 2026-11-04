@@ -1,7 +1,7 @@
 /* Контекст кнопок наследуется от фона секции. Для новых блоков также можно
    использовать data-control-theme="light" или data-control-theme="dark". */
 :root,
-:is(.company-map, .company-lightbox, .advantage-card, .projects-section:not(.projects-section--catalog), [data-control-theme='light']) {
+:is(.company-lightbox, .advantage-card, .projects-section, [data-control-theme='light']) {
   --button-bg: var(--theme-button-on-light-bg);
   --button-text: var(--theme-button-on-light-text);
   --button-border: var(--theme-button-on-light-border);
@@ -13,7 +13,7 @@
 }
 
 :is(
-  .hero, .header, .dock, .menu, .site-footer, .projects-section,
+  .hero, .header, .dock, .menu, .site-footer,
   .object-cinema, .mission-hero, .mission-purpose, .mission-scene--craft,
   [data-control-theme='dark']
 ) {
@@ -27,7 +27,7 @@
   --nav-hover: var(--theme-nav-on-dark-hover);
 }
 
-.object-page:not(.catalog-page):not(.mission-page):not(.quality-page-body) .header {
+.object-page:not(.mission-page):not(.quality-page-body):not(.services-page-body) .header {
   --button-bg: var(--theme-button-on-light-bg);
   --button-text: var(--theme-button-on-light-text);
   --button-border: var(--theme-button-on-light-border);

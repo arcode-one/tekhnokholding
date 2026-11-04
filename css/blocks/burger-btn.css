@@ -22,14 +22,18 @@
     color: var(--nav-hover);
   }
 
-  .burger-btn:hover .burger__line--hide {
+  .burger-btn:not(.dock__burger):hover .burger__line--hide {
     opacity: 0;
     transform: scaleX(0);
   }
 
-  .burger-btn:hover .burger__line--keep {
+  .burger-btn:not(.dock__burger):hover .burger__line--keep {
     transform: translateY(-4px);
   }
+}
+
+.dock__burger svg path {
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {

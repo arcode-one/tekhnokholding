@@ -1,70 +1,11 @@
-.projects-body > .projects-empty {
-  grid-column: 2;
-  margin: 80px 0;
-}
-
 .projects-body {
-  --years-col: 196px;
-
   display: grid;
-  grid-template-columns: var(--years-col) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr);
   align-items: start;
-  padding-left: var(--pad);
+  padding-inline: var(--pad);
   position: relative;
 }
 
-.projects-body > .projects-rail {
-  grid-column: 2;
-  grid-row: 1;
-}
-
-.projects-body__arrow {
-
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
-  z-index: 1;
-  border: 1px solid #ffffff55;
-}
-
-.projects-body__arrow--previous {
-  justify-self: center;
-}
-
-.projects-body__arrow--next {
-  justify-self: center;
-}
-
-.projects-body__arrow svg {
-  width: 24px;
-  height: 24px;
-  fill: none;
-  stroke: currentcolor;
-  stroke-width: 1.5;
-}
-
-/* Замыкаем обводку карточки на неподвижном краю scrollport. */
-.home-page .projects-body::before,
-.home-page .projects-body::after {
-  content: none;
-  grid-column: 3;
-  grid-row: 1;
-  align-self: start;
-  justify-self: start;
-  width: 1px;
-  height: var(--project-card-height, 0px);
-  background: var(--theme-button-ink);
-  visibility: hidden;
-  pointer-events: none;
-  z-index: 1;
-}
-
-.home-page .projects-body::after {
-  justify-self: end;
-}
-
-.home-page .projects-body[data-projects-cut-start]::before,
-.home-page .projects-body[data-projects-cut-end]::after {
-  content: '';
-  visibility: visible;
+.projects-body > .projects-empty {
+  margin: 80px 0;
 }

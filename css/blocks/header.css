@@ -2,20 +2,24 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 20;
-  opacity: 0;
-  transition:
-    opacity 0.8s 0.2s var(--ease-out),
-    translate 0.35s var(--ease-out);
+  translate: 0 -100%;
+  transition: translate 0.5s var(--ease-header);
 }
 
 .site--loaded .header {
-  opacity: 1;
+  translate: 0 0;
+  animation: header-enter 0.5s var(--ease-header);
 }
 
 html.site--scrolled .header {
+  animation: none;
   translate: 0 -100%;
   pointer-events: none;
-  transition: translate 0.6s var(--ease-in-out);
+}
+
+@keyframes header-enter {
+  from { translate: 0 -100%; }
+  to { translate: 0 0; }
 }
 
 .header__inner {
@@ -49,12 +53,6 @@ html.site--scrolled .header {
   color: var(--nav-hover);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .header__phone:hover,
-  .header__mail:hover {
-    color: var(--nav-hover);
-  }
-}
 
 .header__divider {
   width: 1px;
@@ -108,7 +106,9 @@ html.site--scrolled .header {
   }
 
   .header,
+  .site--loaded .header,
   html.site--scrolled .header {
+    animation: none;
     transition: none;
   }
 }

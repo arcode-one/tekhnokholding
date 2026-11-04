@@ -1,10 +1,5 @@
 .dock__nav a {
   color: var(--nav-text);
-  transition: color var(--theme-hover-duration) var(--theme-hover-easing), opacity 0.3s;
-}
-
-.dock__nav a:focus-visible {
-  color: var(--nav-hover);
 }
 
 .dock {
@@ -21,57 +16,21 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  background: var(--color-ink);
+  border-radius: 999px;
+  overflow: hidden;
   translate: 0 calc(-100% - 24px);
+  clip-path: inset(0 0 0 calc(100% - var(--dock-height)) round calc(var(--dock-height) / 2));
   pointer-events: none;
-  transition: translate 0.25s var(--ease-out);
+  transition: translate 0.5s var(--ease-header);
 }
 
 html.site--scrolled .dock {
   translate: 0 0;
-  transition: translate 0.65s var(--ease-out) 0.3s;
-}
-
-html.site--scrolled .dock__burger,
-html.site--scrolled .dock.dock--open {
   pointer-events: auto;
 }
 
-.dock__surface {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  border-radius: 999px;
-  pointer-events: none;
-}
-
-.dock__bg,
-.dock__track {
-  position: absolute;
-  inset: 0;
-  will-change: transform;
-  transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-.dock__bg {
-  overflow: hidden;
-  border-radius: 999px;
-  background: rgb(36, 38, 41, 0.96);
-  transform: translate3d(calc(100% - var(--dock-height)), 0, 0);
-}
-
-.dock__track {
-  transform: translate3d(calc(var(--dock-height) - 100%), 0, 0);
-}
-
-.dock.dock--open .dock__bg,
-.dock.dock--open .dock__track {
-  transform: translate3d(0, 0, 0);
-  transition-duration: 0.75s;
-  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
-}
-
 .dock__burger {
-
   width: var(--burger);
   height: var(--burger);
   margin-right: 8px;
@@ -85,31 +44,16 @@ html.site--scrolled .dock.dock--open {
   stroke-width: 2;
 }
 
-.dock__clip {
-  position: absolute;
-  inset: 0 calc(var(--burger) + 8px) 0 0;
-  min-width: 0;
-  pointer-events: none;
-}
-
-.dock.dock--open .dock__clip {
-  pointer-events: auto;
-}
-
 .dock__panel {
+  position: absolute;
+  inset: 0 var(--dock-height) 0 0;
+  min-width: 0;
   height: var(--dock-height);
   padding: 0 8px 0 28px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: var(--space-8);
-  visibility: hidden;
-  transition: visibility 0s 0.5s;
-}
-
-.dock.dock--open .dock__panel {
-  visibility: visible;
-  transition: visibility 0s;
 }
 
 .dock__logo {
@@ -161,15 +105,7 @@ html.site--scrolled .dock.dock--open {
   }
 
   .dock,
-  .dock__panel,
-  .dock__bg,
-  .dock__track,
-  .dock.dock--open .dock__bg,
-  .dock.dock--open .dock__track,
-  html.site--scrolled .dock,
-  .dock.dock--open .dock__panel,
-  .dock__clip,
-  .dock.dock--open .dock__clip {
+  html.site--scrolled .dock {
     transition: none;
   }
 }

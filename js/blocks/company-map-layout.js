@@ -4,7 +4,7 @@ export default function init(section) {
   section.classList.add('company-map--viewport-fit');
 
   function measure() {
-    // Карте остаётся высота окна за вычетом заголовка, фильтров и отступов.
+    // Карте остаётся высота окна за вычетом заголовка и отступов.
     const fixedHeight = section.getBoundingClientRect().height - stage.getBoundingClientRect().height;
     const height = `${Math.max(320, Math.floor(innerHeight - fixedHeight))}px`;
     if (section.style.getPropertyValue('--map-viewport-height') !== height)

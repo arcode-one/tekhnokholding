@@ -1,112 +1,117 @@
-.company-team__intro h2 {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: clamp(24px, 1.9vw, 34px);
-  line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-transform: none;
+.home-page {
+  --team-layout-gap: clamp(28px, 3vw, 56px);
 }
 
 .company-team {
-  padding-top: 104px;
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  gap: clamp(16px, 3dvh, 32px);
+  height: 100vh;
+  height: 100dvh;
+  min-height: 700px;
+  padding-block: clamp(20px, 4dvh, 48px);
   background: var(--color-white);
   color: var(--color-ink);
 }
 
-.company-team__intro {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: end;
-  gap: 10%;
-  margin: 0 var(--pad) 64px;
+.company-team__intro { margin: 0 var(--pad); }
+
+.home-page .company-team .company-team__intro .home-heading {
+  font-size: clamp(24px, min(5vw, 8dvh), 96px);
 }
 
-.company-team__description {
-  justify-self: end;
-  max-width: 48ch;
-  margin: 0;
-  color: var(--color-slate);
-  font-size: 16px;
-  line-height: 1.65;
+.company-team__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: var(--team-layout-gap);
+  min-height: 0;
+  margin-inline: var(--pad);
 }
 
 .company-team__features {
   display: grid;
-  grid-template-columns: 1.6fr 1fr;
-  align-items: start;
-  gap: 28px;
-  margin: 0 var(--pad) 104px;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  min-width: 0;
+  min-height: 0;
 }
 
 .company-team__feature {
   position: relative;
+  min-height: 0;
   margin: 0;
   overflow: hidden;
-}
-
-.company-team__feature--1 {
-  margin-top: 112px;
-}
-
-.company-team__feature > button {
-  display: block;
-  width: 100%;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: inherit;
-  text-align: left;
-  cursor: zoom-in;
+  border-radius: 18px;
+  transition: box-shadow 220ms ease-out;
 }
 
 .company-team__feature > a {
+  position: relative;
   display: block;
-  width: 100%;
-  color: inherit;
+  height: 100%;
+  color: var(--color-white);
 }
 
 .company-team__feature img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 42%;
+  transition: scale 400ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .company-team__feature-label {
+  position: absolute;
+  inset: auto 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-6);
-  padding: 20px 0;
-  border-bottom: 1px solid #34454e33;
-  font-size: 13px;
+  gap: 16px;
+  padding: 48px 24px 22px;
+  background: linear-gradient(transparent, rgb(17 33 43 / 76%));
+  font-size: clamp(19px, 1.4vw, 26px);
+  line-height: 1.25;
   font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
 }
 
-.company-team__feature-label .projects-sign {
-  width: 32px;
-  height: 32px;
+.company-team__feature-label .projects-sign { width: 28px; height: 28px; flex-shrink: 0; }
+.company-team__feature > a:focus-visible { outline: 2px solid white; outline-offset: -6px; }
+
+.company-team__feature:has(> a:focus-visible) {
+  box-shadow: 0 14px 32px -12px rgb(22 35 46 / 32%);
 }
 
-.company-team__subhead {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-8);
-  margin: 0 var(--pad) 40px;
+@media (hover: hover) and (pointer: fine) {
+  .company-team__feature:hover {
+    box-shadow: 0 14px 32px -12px rgb(22 35 46 / 32%);
+  }
+
+  .company-team__feature:hover img { scale: 1.035; }
 }
 
-.company-team__subhead h3 {
-  margin: 0;
-  font-size: 28px;
-  line-height: 1.3;
-  font-weight: 400;
-  letter-spacing: -0.025em;
+@media (prefers-reduced-motion: reduce) {
+  .company-team__feature,
+  .company-team__feature img { transition: none; }
+  .company-team__feature:hover img { scale: none; }
 }
 
-.company-team__subhead p {
-  margin: 0;
-  font-size: 14px;
+.company-team__departments {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  min-width: 0;
+  min-height: 0;
+
 }
 
+.company-team__subhead { margin: 0 0 18px; }
+.company-team__subhead h3 { margin: 0; font-size: clamp(20px, 1.5vw, 28px); line-height: 1.3; font-weight: 400; letter-spacing: -0.025em; }
+
+.company-team__department-list { min-height: 0; }
+
+.company-team__department-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: clamp(10px, 1vw, 18px);
+  height: 100%;
+}

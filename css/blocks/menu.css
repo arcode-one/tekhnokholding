@@ -50,11 +50,6 @@
   color: var(--nav-hover);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .menu__contacts a:hover {
-    color: var(--nav-hover);
-  }
-}
 
 @media (prefers-reduced-motion: reduce) {
   .menu__nav a,

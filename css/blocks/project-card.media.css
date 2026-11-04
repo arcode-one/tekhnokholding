@@ -1,39 +1,22 @@
-@media (max-width: 767px) {
+@media (max-width: 1279px) {
   .project-card {
-    --project-photo-height: 220px;
-    --project-photo-transfer: 24px;
-
-    width: 78vw;
-    flex-basis: 78vw;
+    padding: 12px;
   }
 
   .project-card__info {
-    padding: 20px;
+    padding-inline: 4px;
   }
 
   .project-card :is(h2, h3) {
-    font-size: 18px;
+    font-size: 22px;
   }
+}
 
-  .project-card__details {
-    padding-top: 12px;
-    gap: 12px;
-  }
+@media (max-width: 767px) {
+  .project-card {
+    --project-area-size: 32px;
 
-  .project-card__details dt {
-    font-size: 11px;
-  }
-
-  .project-card__details dd {
-    font-size: 14px;
-  }
-
-  .project-card__area dd {
-    font-size: 20px;
-  }
-
-  .project-card__year {
-    left: 16px;
-    top: 16px;
+    width: 78vw;
+    flex-basis: 78vw;
   }
 }

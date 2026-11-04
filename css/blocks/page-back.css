@@ -1,0 +1,45 @@
+:root {
+  --page-back-offset: 24px;
+}
+
+.page-back {
+  --button-bg: transparent;
+  --button-text: var(--color-ink);
+  --button-border: var(--color-ink);
+  --button-hover-bg: var(--color-ink);
+  --button-hover-text: #fff;
+  --button-hover-border: var(--color-ink);
+  margin: 0 var(--pad);
+}
+
+.page-back--inverse {
+  --button-text: #fff;
+  --button-border: #ffffffb3;
+  --button-hover-bg: #fff;
+  --button-hover-text: var(--color-ink);
+  --button-hover-border: #fff;
+}
+
+.page-back .page-back__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  vertical-align: top;
+  cursor: pointer;
+}
+
+.page-back__button svg {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 12px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
