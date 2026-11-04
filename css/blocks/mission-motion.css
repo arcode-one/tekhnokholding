@@ -122,7 +122,22 @@
   .mission-page .mission-hero__photo.mission-parallax > img {
     top: -8%;
     height: 108%;
+    transform-origin: center;
+    /* Start partway through the approach so motion is visible immediately. */
+    animation: mission-hero-breathe 7s var(--ease-in-out) -1.75s infinite alternate;
+    animation-play-state: paused;
   }
+
+  .mission-page .mission-hero__photo.mission-parallax--visible > img {
+    animation-play-state: running;
+    will-change: translate, transform;
+  }
+}
+
+/* Scale stays independent of the scroll-driven translate and cover fade. */
+@keyframes mission-hero-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.025); }
 }
 
 @media print {

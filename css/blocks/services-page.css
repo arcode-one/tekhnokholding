@@ -21,20 +21,50 @@
   overflow: hidden;
 }
 .services-hero__photo { position: absolute; z-index: -2; inset: 0; overflow: hidden; }
-.services-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.services-hero__ambient { width: 100%; height: 100%; }
+.services-hero__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
 .services-hero .page-back { position: absolute; top: calc(var(--header-h) + var(--page-back-offset)); left: var(--pad); margin: 0; }
 .services-hero h1 {
+  position: absolute;
+  top: 43%;
+  left: 15%;
   margin: 0;
-  max-width: 1100px;
+  width: max-content;
+  max-width: 78%;
   font-family: var(--font-display);
-  font-size: clamp(42px, 4.8vw, 88px);
-  font-weight: 400;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  text-align: center;
-  text-wrap: balance;
+  font-size: clamp(32px, 4.2vw, 62px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  text-align: left;
+  text-transform: uppercase;
 }
 .services-hero h1 span { display: block; }
+.services-hero h1::before, .services-hero h1::after {
+  content: '';
+  position: absolute;
+  width: clamp(24px, 2.2vw, 40px);
+  height: clamp(24px, 2.2vw, 40px);
+  border: 0 solid rgb(255 255 255 / 70%);
+  pointer-events: none;
+}
+.services-hero h1::before { top: -28px; left: -28px; border-top-width: 1px; border-left-width: 1px; }
+.services-hero h1::after { bottom: -28px; right: -28px; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* The wrapper scales independently of the image's scroll-driven transform. */
+@media (prefers-reduced-motion: no-preference) {
+  .services-hero__ambient {
+    animation: services-hero-breathe 7s var(--ease-in-out) -1.75s infinite alternate;
+  }
+  .services-hero[data-ambient-paused] .services-hero__ambient { animation-play-state: paused; }
+}
+@keyframes services-hero-breathe {
+  from { transform: scale(1); }
+  to { transform: scale(1.025); }
+}
+@media print {
+  .services-hero__ambient { animation: none !important; }
+}
 
 .services-accordion__item {
   position: relative;
@@ -87,9 +117,14 @@
 .services-accordion__icon::before, .services-accordion__icon::after { content: ''; position: absolute; top: 21px; left: 11px; width: 22px; height: 1px; background: currentColor; }
 .services-accordion__icon::after { transform: rotate(90deg); }
 .services-accordion__item[open]:not([data-closing]) .services-accordion__icon { transform: rotate(45deg); }
+.services-page .services-accordion__item[open] .services-accordion__icon {
+  background: var(--color-white);
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px #34454e26;
+}
 .services-accordion__item[open]:not([data-closing]) .services-accordion__number { transform: scale(2.8); }
 @media (min-width: 768px) {
-  .services-accordion__item[open]:not([data-closing]) .services-accordion__icon { transform: translateY(80px) rotate(45deg); }
+  .services-page .services-accordion summary { padding-right: calc(var(--pad) + 80px); }
 }
 .services-accordion__body {
   min-height: max(440px, calc(100svh - var(--service-row)));
@@ -112,6 +147,8 @@
   pointer-events: none;
 }
 .services-accordion__photo img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+
+#service-4 .services-accordion__photo img { object-position: center top; }
 /* Native details remains usable without JavaScript. Animated frames stay clipped. */
 .services-accordion__item[data-animating] .services-accordion__photo { height: var(--service-open-height); bottom: auto; }
 @media (hover: hover) and (pointer: fine) {
@@ -125,7 +162,9 @@
 @media (max-width: 767px) {
   .services-page { --service-row: 96px; --service-number-column: 56px; }
   .services-hero { min-height: 380px; padding-bottom: 40px; }
-  .services-hero h1 { font-size: clamp(32px, 7.8vw, 54px); }
+  .services-hero h1 { left: calc(var(--pad) + 16px); max-width: calc(100% - 2 * (var(--pad) + 16px)); font-size: clamp(24px, 6vw, 44px); }
+  .services-hero h1::before { top: -18px; left: -16px; }
+  .services-hero h1::after { bottom: -18px; right: -16px; }
   .services-hero__photo img { object-position: 65% bottom; }
   .services-accordion summary { grid-template-columns: 56px minmax(0, 1fr) 36px; padding-block: 18px; }
   .services-accordion h2 { width: 100%; font-size: 20px; padding-right: 12px; }

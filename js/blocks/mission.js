@@ -6,6 +6,13 @@ export default function init(story) {
   const { add, start } = createScrollReveal('mission');
   initMissionParallax(story, footer);
 
+  const heroImage = story.querySelector('.mission-hero__photo > img');
+  const syncHeroVisibility = () => {
+    if (heroImage) heroImage.style.animationPlayState = document.hidden ? 'paused' : '';
+  };
+  document.addEventListener('visibilitychange', syncHeroVisibility);
+  syncHeroVisibility();
+
   add(story, '.mission-hero__photo', 'cover');
   add(story, '.mission-hero__title-main', 'heading');
   add(story, '.mission-hero__title-sub', 'heading', 70);

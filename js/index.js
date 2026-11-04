@@ -7,6 +7,7 @@ const enhance = (...args) => enhancements.push(loadBlocks(...args));
 mount(document.documentElement, 'navigation', navigation);
 mount(document.documentElement, 'text-roll', textRoll);
 enhance('html', 'wheel-scroll', () => import('./blocks/wheel-scroll.js'));
+enhance('.home-page', 'home-section-scroll', () => import('./blocks/home-section-scroll.js'));
 enhance('html', 'scrollbar', () => import('./blocks/site-scrollbar.js'));
 enhance('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
 enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
@@ -20,6 +21,7 @@ enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('.
 
 enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
+enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 enhance('[data-ui~="mission-story"]', 'mission', () => import('./blocks/mission.js'));
 

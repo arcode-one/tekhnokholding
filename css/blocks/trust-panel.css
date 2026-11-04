@@ -1,0 +1,213 @@
+/* Approved homepage trust panel. Other card and hover systems stay independent. */
+.company-advantages.company-advantages--panel {
+  display: grid;
+  grid-template-rows: minmax(230px, 1fr) auto;
+  gap: 28px;
+  height: auto;
+  min-height: max(820px, 100svh);
+  padding-block: clamp(32px, 4svh, 56px);
+  font-family: var(--font-body);
+}
+
+.company-advantages--panel .company-advantages__intro {
+  align-items: flex-start;
+  margin-block: 0;
+}
+
+.home-page .company-advantages--panel .home-heading__muted { margin-left: 0; }
+.company-advantages--panel .company-advantages__background img { object-position: 65% 35%; }
+
+.company-advantages--panel .advantages-layout {
+  display: block;
+  padding: clamp(18px, 1.5vw, 28px);
+  border-radius: 18px;
+  background: var(--color-white);
+}
+
+.advantages-highlights {
+  display: grid;
+  grid-template-columns: minmax(0, .93fr) minmax(0, 1.27fr);
+  gap: clamp(16px, 1.4vw, 26px);
+}
+
+.company-advantages--panel .advantages-highlights .advantage-card {
+  grid-column: auto;
+  min-height: 266px;
+  border-radius: 12px;
+  box-shadow: none;
+}
+
+.company-advantages--panel .advantage-card--quality .advantage-card__copy { padding: 26px; }
+.company-advantages--panel .advantage-card--quality .advantage-card__title {
+  font-size: clamp(26px, 2vw, 36px);
+  font-weight: 600;
+  line-height: 1.15;
+}
+.company-advantages--panel .advantage-card--quality .advantage-card__description {
+  margin-top: 16px;
+  font-size: 15px;
+  line-height: 1.45;
+}
+.company-advantages--panel .advantage-card--quality .advantage-card__icon { width: 25px; height: 25px; margin-bottom: 14px; }
+.company-advantages--panel .advantage-card--quality .advantage-card__photo img { object-position: center; }
+.company-advantages--panel .advantage-card--quality .advantage-card__photo::after {
+  background: linear-gradient(90deg, rgb(24 41 50 / 94%), rgb(24 41 50 / 62%) 54%, rgb(24 41 50 / 8%));
+}
+
+.advantages-metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  align-content: center;
+  gap: 22px 28px;
+  padding: 24px clamp(22px, 2vw, 38px);
+  border-radius: 12px;
+  background: #f3f5f4;
+}
+.advantages-metric { min-width: 0; color: inherit; text-decoration: none; }
+.advantages-metric__value {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(8px, .75vw, 14px);
+  margin: 0 0 16px;
+  font-family: var(--font-body);
+  line-height: 1;
+  white-space: nowrap;
+}
+.advantages-metric__number {
+  font-size: clamp(72px, 6vw, 112px);
+  font-weight: 400;
+  letter-spacing: -.065em;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.advantages-metric__prefix { font-size: 23px; color: #6b7c83; }
+.advantages-metric__unit { font-size: clamp(24px, 1.9vw, 34px); letter-spacing: -.035em; }
+.advantages-metric__label { margin: 0; font-size: clamp(19px, 1.45vw, 26px); line-height: 1.3; letter-spacing: -.03em; }
+.advantages-metrics__description {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding-top: 17px;
+  border-top: 1px solid #dce2e1;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #6e8088;
+}
+.advantages-metric--experience:focus-visible { outline: 2px solid currentColor; outline-offset: 6px; border-radius: 4px; }
+
+.advantages-proofs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin-top: 24px;
+  padding-block: 24px;
+  border-top: 1px solid #dce2e4;
+}
+.company-advantages--panel .advantages-proofs .advantage-card {
+  grid-column: auto;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  min-height: 92px;
+  padding: 0 20px;
+  border: 0;
+  border-left: 1px solid #dce2e4;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+}
+.company-advantages--panel .advantages-proofs .advantage-card:first-child { padding-left: 0; border-left: 0; }
+.company-advantages--panel .advantages-proofs .advantage-card:last-child { padding-right: 0; }
+.company-advantages--panel .advantages-proofs .advantage-card__photo { width: 76px; height: 80px; border-radius: 6px; }
+.company-advantages--panel .advantages-proofs .advantage-card__copy { padding: 0; }
+.company-advantages--panel .advantages-proofs .advantage-card__icon { display: none; }
+.company-advantages--panel .advantages-proofs .advantage-card__title { font-size: clamp(13px, .95vw, 17px); line-height: 1.35; font-weight: 600; letter-spacing: -.025em; }
+.company-advantages--panel .advantages-proofs .advantage-card__description { margin-top: 6px; font-size: clamp(12px, .8vw, 14px); line-height: 1.45; color: #74838b; }
+
+.company-advantages--panel .advantages-rating {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  min-height: 64px;
+  padding: 18px 0 0;
+  border: 0;
+  border-top: 1px solid #dce2e4;
+  border-radius: 0;
+  background: none;
+  color: var(--color-ink);
+}
+.company-advantages--panel .advantages-rating__brand { font-size: 21px; }
+.company-advantages--panel .advantages-rating__score { padding-left: 24px; gap: 22px; border-color: #dce2e4; }
+.company-advantages--panel .advantages-rating__value { font-size: 30px; font-weight: 400; }
+.company-advantages--panel .advantages-rating__stars { gap: 6px; color: #bb9446; }
+.company-advantages--panel .advantages-rating__star { width: 19px; height: 19px; }
+.company-advantages--panel .advantages-rating__description { padding: 0 0 0 24px; border-top: 0; border-left: 1px solid #dce2e4; font-size: 13px; color: #74838b; }
+
+@media (hover: hover) and (pointer: fine) {
+  .company-advantages--panel .advantage-card:hover { translate: none; box-shadow: none; }
+  .company-advantages--panel .advantages-proofs .advantage-card { transition: opacity 200ms ease; }
+  .company-advantages--panel .advantages-proofs .advantage-card:hover { opacity: .78; }
+}
+
+@media (max-width: 1279px) and (min-width: 1100px) {
+  .company-advantages--panel .advantages-proofs .advantage-card { grid-template-columns: 56px minmax(0, 1fr); gap: 10px; padding-inline: 12px; }
+  .company-advantages--panel .advantages-proofs .advantage-card__photo { width: 56px; height: 70px; }
+}
+
+@media (max-width: 1099px) {
+  .company-advantages.company-advantages--panel { min-height: 0; grid-template-rows: auto auto; gap: 100px; padding-block: 48px; }
+  .advantages-highlights { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 16px; }
+  .advantages-metrics { gap: 20px 16px; padding: 22px; }
+  .advantages-metric__number { font-size: 62px; }
+  .advantages-metric__prefix { font-size: 16px; }
+  .advantages-metric__unit { font-size: 22px; }
+  .advantages-metric__label { font-size: 18px; }
+  .advantages-metrics__description { font-size: 13px; }
+  .company-advantages--panel .advantage-card--quality .advantage-card__copy { padding: 22px; }
+  .company-advantages--panel .advantage-card--quality .advantage-card__title { font-size: 26px; }
+  .advantages-proofs { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 0; }
+  .company-advantages--panel .advantages-proofs .advantage-card:nth-child(odd) { border-left: 0; padding-left: 0; }
+  .company-advantages--panel .advantages-proofs .advantage-card:nth-child(even) { padding-right: 0; }
+  .company-advantages--panel .advantages-proofs .advantage-card__title { font-size: 16px; }
+  .company-advantages--panel .advantages-proofs .advantage-card__description { font-size: 13px; }
+}
+
+@media (max-width: 767px) {
+  .company-advantages.company-advantages--panel { gap: 110px; padding-block: 40px; }
+  .company-advantages--panel .advantages-layout { padding: 12px; border-radius: 16px; }
+  .advantages-highlights { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  .company-advantages--panel .advantages-highlights .advantage-card { min-height: 232px; }
+  .company-advantages--panel .advantage-card--quality .advantage-card__copy { padding: 22px; }
+  .company-advantages--panel .advantage-card--quality .advantage-card__title { font-size: 26px; }
+  .company-advantages--panel .advantage-card--quality .advantage-card__description { font-size: 14px; }
+  .advantages-metrics { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); padding: 22px 16px; gap: 20px 14px; }
+  .advantages-metric__value { gap: 6px; margin-bottom: 13px; }
+  .advantages-metric__number { font-size: clamp(44px, 13vw, 64px); }
+  .advantages-metric__prefix { font-size: 13px; }
+  .advantages-metric__unit { font-size: 18px; }
+  .advantages-metric__label { font-size: 16px; line-height: 1.35; }
+  .advantages-metrics__description { font-size: 12px; padding-top: 16px; }
+  .advantages-proofs { grid-template-columns: minmax(0, 1fr); gap: 0; margin-top: 20px; padding-block: 0; }
+  .company-advantages--panel .advantages-proofs .advantage-card { grid-template-columns: 80px minmax(0, 1fr); gap: 18px; min-height: 114px; padding: 16px 4px; border: 0; border-bottom: 1px solid #dce2e4; }
+  .company-advantages--panel .advantages-proofs .advantage-card__photo { width: 80px; height: 80px; }
+  .company-advantages--panel .advantages-proofs .advantage-card__title { font-size: 16px; }
+  .company-advantages--panel .advantages-proofs .advantage-card__description { font-size: 13px; }
+  .company-advantages--panel .advantages-rating { gap: 14px; border-top: 0; padding: 22px 8px 12px; }
+  .company-advantages--panel .advantages-rating__brand { font-size: 18px; }
+  .company-advantages--panel .advantages-rating__score { gap: 14px; padding-left: 14px; }
+  .company-advantages--panel .advantages-rating__value { font-size: 28px; }
+  .company-advantages--panel .advantages-rating__star { width: 15px; height: 15px; }
+  .company-advantages--panel .advantages-rating__stars { gap: 3px; }
+  .company-advantages--panel .advantages-rating__description { flex-basis: 100%; border: 0; padding: 0; font-size: 12px; text-align: center; }
+}
+
+@media (max-width: 359px) {
+  .advantages-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); padding-inline: 12px; gap: 18px 12px; }
+  .advantages-metric__value { gap: 4px; }
+  .advantages-metric__number { font-size: 42px; }
+  .advantages-metric__prefix { font-size: 12px; }
+  .advantages-metric__unit { font-size: 16px; }
+  .advantages-metric__label { font-size: 14px; overflow-wrap: anywhere; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .company-advantages--panel .advantage-card { transition: none; }
+}

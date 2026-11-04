@@ -45,6 +45,8 @@ export default function init(section) {
   const refreshPhotoParallax = initProjectPhotoParallax(section);
 
   function syncCardHeights(force = false) {
+    // The homepage photo-led layout sizes cards from the available screen space.
+    if (section.classList.contains('projects-section--photo-first')) return;
     if (!rail.clientWidth) return;
     const key = `${rail.clientWidth}:${window.innerWidth}`;
     if (!force && key === cardSizeKey) return;
