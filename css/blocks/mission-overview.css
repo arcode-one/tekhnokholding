@@ -313,7 +313,7 @@
 .mission-values { padding-top: 0; }
 .mission-story .mission-values > h2 { padding-top: 12px; }
 .mission-values__list { grid-template-columns: minmax(0, 1fr); gap: 0; }
-.mission-value { width: 100%; min-height: 46px; padding: 10px 16px; flex-direction: row; align-items: center; gap: 24px; border-radius: 0; border: 0; border-bottom: 1px solid #34454e26; background: transparent; font-size: 18px; font-weight: 550; text-align: left; box-shadow: none; }
+.mission-value { width: 100%; min-height: 46px; padding: 10px 16px; flex-direction: row; align-items: center; gap: 24px; border-radius: 0; border: 0; background: transparent; font-size: 18px; font-weight: 550; text-align: left; box-shadow: none; }
 .mission-value__sentence { display: inline; }
 .mission-value__title { min-width: 0; }
 .mission-value__hint { flex: 0 0 auto; width: auto; margin: 0 0 0 auto; gap: 14px; }
@@ -387,6 +387,49 @@
   .mission-value:hover .mission-value__title { transform: none; }
 }
 
+.mission-value__number { flex: 0 0 52px; padding-right: 18px; border-right: 1px solid currentColor; color: #718087; font-size: 23px; font-weight: 500; font-variant-numeric: tabular-nums; line-height: 1; }
+.mission-value[aria-expanded="true"] .mission-value__number { color: #e0e5e6; }
+@media (hover: hover) and (pointer: fine) {
+  .mission-value:hover .mission-value__number { color: #e0e5e6; }
+}
+@media (min-width: 1000px) {
+  .mission-statement { container-type: inline-size; }
+  .mission-story .mission-statement h1 { font-size: 9.7cqw; white-space: nowrap; }
+  .mission-overview__content { gap: 34px; }
+}
+@media (min-width: 1000px) and (max-height: 950px) {
+  .mission-overview__content { gap: 28px; }
+}
+@media (min-width: 1000px) and (min-height: 951px) {
+  .mission-statement .mission-statement__copy p { font-size: 22px; }
+  .mission-statement__copy { padding: 20px 28px; }
+  .mission-talents__item { padding: 18px 24px; }
+  .mission-story .mission-talents__item h3 { font-size: 22px; }
+}
+@media (min-width: 1000px) and (max-height: 800px) {
+  .mission-overview__content { gap: 22px; }
+  .mission-value__number { font-size: 20px; flex-basis: 44px; padding-right: 14px; }
+  .mission-value__hint-text { display: none; }
+}
+@media (min-width: 1000px) and (max-width: 1300px) and (max-height: 800px) {
+  .mission-overview__content { gap: 20px; }
+  .mission-statement .mission-statement__copy p { font-size: 17px; line-height: 1.32; }
+  .mission-statement__copy { padding: 10px 16px; }
+  .mission-story .mission-talents__item h3 { font-size: 16px; }
+}
+@media (min-width: 1000px) and (max-width: 1100px) and (max-height: 800px) {
+  .mission-statement .mission-statement__copy p { font-size: 16.5px; }
+}
+@media (min-width: 1000px) and (max-height: 740px) {
+  .mission-overview__content { gap: 18px; }
+  .mission-statement__copy { margin-top: 10px; }
+  .mission-talents__item { padding-block: 8px; }
+}
+@media (max-width: 699px) {
+  .mission-value__number { flex-basis: 32px; padding-right: 10px; font-size: 19px; }
+  .mission-value { gap: 12px; }
+}
+
 /* A little movement remains visible even when the overview needs no scrolling. */
 @media (prefers-reduced-motion: no-preference) {
   .mission-project__photo > img {
@@ -412,7 +455,23 @@
   .mission-value:hover .mission-value__title { transform: translateX(6px); }
 }
 .mission-value:focus-visible, .mission-value:focus-visible .mission-value__hint { transition: none; }
+/* Inset the colored surface without making the five-row list taller. */
+.mission-value { border-radius: 10px; }
+.mission-value::before {
+  content: '';
+  inset: 3px 0 4px;
+  border-radius: 8px;
+  background: #34454e;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+.mission-value[aria-expanded="true"] { background: transparent; }
+.mission-value[aria-expanded="true"]::before { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .mission-value:is(:hover, [aria-expanded="true"]) { background: transparent; }
+  .mission-value:is(:hover, [aria-expanded="true"])::before { opacity: 1; }
+}
 @media (prefers-reduced-motion: reduce) {
-  .mission-value, .mission-value__hint { transition: none; }
+  .mission-value, .mission-value::before, .mission-value__hint { transition: none; }
   .mission-value:hover .mission-value__title { transform: none; }
 }
