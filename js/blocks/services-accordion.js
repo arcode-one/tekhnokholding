@@ -83,7 +83,7 @@ export default function init(container) {
     if (expanded) items.filter((other) => other !== item && other.expanded)
       .forEach((other) => toggle(other, false, animate));
     toggle(item, expanded, animate);
-    if (expanded) align(item, animate);
+    if (expanded && container.dataset.accordionAlign !== 'none') align(item, animate);
   }));
   for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown'])
     addEventListener(type, stopAlign, { passive: true });
