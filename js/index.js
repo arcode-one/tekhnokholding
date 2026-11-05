@@ -7,7 +7,6 @@ const enhance = (...args) => enhancements.push(loadBlocks(...args));
 mount(document.documentElement, 'navigation', navigation);
 mount(document.documentElement, 'text-roll', textRoll);
 enhance('html', 'wheel-scroll', () => import('./blocks/wheel-scroll.js'));
-enhance('.home-page', 'home-section-scroll', () => import('./blocks/home-section-scroll.js'));
 enhance('html', 'scrollbar', () => import('./blocks/site-scrollbar.js'));
 enhance('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
 enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
