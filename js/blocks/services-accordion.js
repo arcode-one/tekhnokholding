@@ -3,6 +3,8 @@ export default function init(container) {
   const openDuration = Number(container.dataset.accordionOpenMs) || 460;
   const closeDuration = Number(container.dataset.accordionCloseMs) || openDuration;
   const animateCopy = container.dataset.accordionCopyMotion !== 'none';
+  const alignMode = container.dataset.accordionAlign;
+  const overview = alignMode === 'overview' ? container.closest('.mission-overview') : null;
   const items = [...container.querySelectorAll('details')].map((element) => ({
     element,
     summary: element.querySelector('summary'),
@@ -17,21 +19,49 @@ export default function init(container) {
     cancelAnimationFrame(alignFrame);
     alignFrame = 0;
   }
-  function align(item, animate) {
+  function align(item, animate, expanded = true) {
     stopAlign();
+    const anchor = expanded ? item.element : overview;
+    if (!anchor) return;
+    const offset = expanded
+      ? (overview ? parseFloat(getComputedStyle(item.element).scrollMarginTop) || 0 : (innerWidth < 768 ? 80 : 0))
+      : 0;
+    const destination = () => {
+      const top = anchor.getBoundingClientRect().top + scrollY;
+      if (!overview || !expanded) return Math.max(0, top - offset);
+
+      const section = overview.getBoundingClientRect();
+      const sectionTop = section.top + scrollY;
+      // Read the natural panel height, not its partially revealed animation frame.
+      const panelHeight = item.summary.offsetHeight + item.body.offsetHeight;
+      const bottomGap = 24;
+      const target = panelHeight <= innerHeight - offset - bottomGap
+        ? top + panelHeight + bottomGap - innerHeight
+        : top - offset;
+      // Keep as much introduction as possible and never pull the footer into view.
+      return Math.max(sectionTop, Math.min(target, section.bottom + scrollY - innerHeight));
+    };
     if (!animate || reduced.matches) {
-      scrollTo({ top: item.element.getBoundingClientRect().top + scrollY - (innerWidth < 768 ? 80 : 0), behavior: 'instant' });
+      scrollTo({ top: destination(), behavior: 'instant' });
       return;
     }
     const startY = scrollY;
     const startTime = performance.now();
+    // Finish after both panels settle, including the overview's vertical centering.
+    const duration = overview ? Math.max(openDuration, closeDuration) + 100 : openDuration;
     function step(now) {
-      const progress = Math.min(1, (now - startTime) / openDuration);
+      const progress = Math.min(1, (now - startTime) / duration);
       const eased = 1 - Math.pow(1 - progress, 3);
       // An earlier panel may be closing at the same time, so its new height
       // must be reflected in the destination throughout this transition.
-      const destination = item.element.getBoundingClientRect().top + scrollY - (innerWidth < 768 ? 80 : 0);
-      scrollTo({ top: startY + (destination - startY) * eased, behavior: 'instant' });
+      let nextY = startY + (destination() - startY) * eased;
+      if (overview) {
+        // The panel can shrink faster than the return scroll. Keep the viewport
+        // inside the current section on every frame, not just at the destination.
+        const limit = Math.max(0, Math.floor(overview.getBoundingClientRect().bottom + scrollY - innerHeight));
+        nextY = Math.min(nextY, limit);
+      }
+      scrollTo({ top: nextY, behavior: 'instant' });
       alignFrame = progress < 1 ? requestAnimationFrame(step) : 0;
     }
     alignFrame = requestAnimationFrame(step);
@@ -83,7 +113,7 @@ export default function init(container) {
     if (expanded) items.filter((other) => other !== item && other.expanded)
       .forEach((other) => toggle(other, false, animate));
     toggle(item, expanded, animate);
-    if (expanded && container.dataset.accordionAlign !== 'none') align(item, animate);
+    if (alignMode !== 'none' && (expanded || overview)) align(item, animate, expanded);
   }));
   for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown'])
     addEventListener(type, stopAlign, { passive: true });
