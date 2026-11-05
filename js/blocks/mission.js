@@ -13,7 +13,8 @@ export default function init(story) {
   add(story, '.mission-project__photo', 'cover', 100);
   add(story, '#talents-title, #values-title', 'text', 140);
   add(story, '.mission-talents__item', 'text', (index) => 140 + index * 60);
-  add(story, 'button.mission-value', 'text', (index) => 140 + index * 45);
+  // Start the entire list when its section enters, including the last row at the viewport edge.
+  add(story, 'button.mission-value', 'text', (index) => 140 + index * 45, story.querySelector('.mission-values'));
   add(footer, '.site-footer__visual', 'cover');
   add(footer, '.site-footer__nav, .site-footer__right > h2', 'heading');
   add(footer, '.site-footer__contact-group, .site-footer__office', 'text', 60);

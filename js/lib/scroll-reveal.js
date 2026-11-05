@@ -3,12 +3,13 @@ export default function createScrollReveal(prefix, options = {}) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const targets = new Set();
   const pending = new Set();
+  const groups = new Map();
   const enterKey = `${prefix}Enter`;
   const stateKey = `${prefix}State`;
   const delayProperty = `--${prefix}-delay`;
   let lastScrollY = scrollY;
 
-  function add(scope, selector, kind, delay = 0) {
+  function add(scope, selector, kind, delay = 0, trigger = null) {
     scope?.querySelectorAll(selector).forEach((element, index) => {
       element.dataset[enterKey] = kind;
       element.dataset[stateKey] = 'waiting';
@@ -16,6 +17,9 @@ export default function createScrollReveal(prefix, options = {}) {
       if (stagger) element.style.setProperty(delayProperty, `${stagger}ms`);
       targets.add(element);
       pending.add(element);
+      const anchor = trigger || element;
+      if (!groups.has(anchor)) groups.set(anchor, new Set());
+      groups.get(anchor).add(element);
     });
   }
 
@@ -53,7 +57,11 @@ export default function createScrollReveal(prefix, options = {}) {
     lastScrollY = scrollY;
     for (const entry of entries) {
       if (!entry.isIntersecting) continue;
-      reveal(entry.target, !movingBack && entry.boundingClientRect.top >= 0);
+      observer.unobserve(entry.target);
+      for (const element of groups.get(entry.target) || []) {
+        if (pending.has(element))
+          reveal(element, !movingBack && entry.boundingClientRect.top >= 0);
+      }
     }
   }, { rootMargin: options.rootMargin ?? '0px 0px -64px 0px', threshold: 0 });
 
@@ -93,7 +101,7 @@ export default function createScrollReveal(prefix, options = {}) {
     addEventListener('beforeprint', finishAll);
     reduced.addEventListener('change', onReducedChange);
     if (reduced.matches) finishAll();
-    else targets.forEach((element) => observer.observe(element));
+    else groups.forEach((elements, anchor) => observer.observe(anchor));
   }
 
   return { add, start };
