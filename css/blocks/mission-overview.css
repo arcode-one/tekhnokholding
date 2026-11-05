@@ -109,8 +109,8 @@
 /* Mission and talents stay visible; value cards open separate reading windows. */
 .mission-overview__content { gap: clamp(22px, 3svh, 34px); }
 .mission-intro { grid-template-columns: 1.75fr 1fr; }
-.mission-statement p { max-width: 960px; font-size: clamp(22px, 1.55vw, 28px); line-height: 1.36; }
-.mission-statement p + p { max-width: 960px; margin-top: 16px; font-size: clamp(22px, 1.55vw, 28px); line-height: 1.36; color: inherit; }
+.mission-statement p { max-width: 960px; font-size: clamp(21px, 1.4vw, 25px); line-height: 1.36; }
+.mission-statement p + p { max-width: 960px; margin-top: 16px; font-size: clamp(21px, 1.4vw, 25px); line-height: 1.36; color: inherit; }
 .mission-project { align-self: center; width: 100%; }
 .mission-project__photo { flex: auto; min-height: 0; aspect-ratio: 1.55; border-radius: 10px; }
 .mission-talents__list { gap: 16px; }
@@ -126,7 +126,7 @@
 .mission-value-dialog .mission-value__copy p { font-size: 17px; line-height: 1.6; }
 .mission-value-dialog__principle { margin-top: 24px; padding: 20px 24px; background: #e8e9e6; border-radius: 10px; }
 .mission-story .mission-value-dialog__principle h3 { margin: 0 0 10px; }
-.mission-value-dialog__close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; display: grid; place-items: center; padding: 10px; border: 0; border-radius: 8px; background: #e4e6e2; color: inherit; cursor: pointer; }
+.mission-value-dialog__close { position: absolute; z-index: 2; top: 16px; right: 16px; width: 44px; height: 44px; display: grid; place-items: center; padding: 10px; border: 0; border-radius: 8px; background: #e4e6e2; color: inherit; cursor: pointer; }
 .mission-value-dialog__close svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 1.5; }
 .mission-value-dialog__close:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .mission-value-dialog__close:hover { background: #d7dcd6; }
@@ -191,4 +191,34 @@
 @media (max-width: 599px) {
   .mission-value-popover { padding: 60px 22px 24px; }
   .mission-value-popover .mission-value__copy > p:first-child { padding-right: 0; }
+}
+
+/* Approved typography preview: shared typeface, distinct content hierarchy. */
+.mission-overview { background: #efefec; }
+.mission-statement p, .mission-statement p + p { max-width: 980px; font-weight: 400; color: #5c696f; }
+.mission-statement strong { font-weight: 700; color: #293d47; }
+.mission-project__photo { border-radius: 14px; }
+.mission-story :is(.mission-talents, .mission-values) > h2 { letter-spacing: -.03em; }
+.mission-talents__item { border-radius: 12px; background: #fff; }
+.mission-story .mission-talents__item h3 { font-weight: 750; line-height: 1.24; letter-spacing: -.025em; max-width: 640px; }
+.mission-talents__item p { max-width: 72ch; color: #5c696f; }
+.mission-value { background: #e0e4e1; border-radius: 12px; font-weight: 650; }
+.mission-value__plus { opacity: .72; }
+@media (min-width: 1000px) and (min-height: 801px) {
+  .mission-overview__content { gap: 30px; padding-top: 160px; padding-bottom: 38px; }
+  .mission-story .mission-statement h1 { font-size: clamp(38px, 3.125vw, 60px); letter-spacing: -.045em; margin-bottom: 30px; }
+  .mission-statement p, .mission-statement p + p { line-height: 1.42; }
+  .mission-talents, .mission-values { padding-top: 0; }
+  .mission-story :is(.mission-talents, .mission-values) > h2 { font-size: 28px; padding-top: 22px; }
+  .mission-talents__item { padding: 24px 28px; }
+  .mission-story .mission-talents__item h3 { font-size: 23px; margin-bottom: 14px; }
+  .mission-talents__item p { font-size: 16px; line-height: 1.55; }
+  .mission-value { padding: 22px 24px; min-height: 154px; font-size: 18px; line-height: 1.35; }
+}
+@media (min-width: 1101px) and (max-height: 800px) {
+  .mission-story .mission-talents__item h3 { font-size: 19px; }
+  .mission-value { font-size: 15px; }
+}
+@media (max-width: 999px) {
+  .mission-story .mission-talents__item h3 { font-size: 20px; }
 }
