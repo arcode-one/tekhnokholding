@@ -1,5 +1,5 @@
 // Shared one-shot lifecycle; each page defines its own sequence and CSS motion.
-export default function createScrollReveal(prefix) {
+export default function createScrollReveal(prefix, options = {}) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const targets = new Set();
   const pending = new Set();
@@ -55,7 +55,7 @@ export default function createScrollReveal(prefix) {
       if (!entry.isIntersecting) continue;
       reveal(entry.target, !movingBack && entry.boundingClientRect.top >= 0);
     }
-  }, { rootMargin: '0px 0px -64px 0px', threshold: 0 });
+  }, { rootMargin: options.rootMargin ?? '0px 0px -64px 0px', threshold: 0 });
 
   function onAnimationEnd(event) {
     if (targets.has(event.target) && event.animationName.startsWith(`${prefix}-once-`))

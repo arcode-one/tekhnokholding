@@ -4,12 +4,16 @@ import initMissionValues from './mission-values.js';
 
 export default function init(story) {
   const footer = document.querySelector('[data-mission-footer]');
-  const { add, start } = createScrollReveal('mission');
+  const { add, start } = createScrollReveal('mission', { rootMargin: '0px' });
   initMissionParallax(story, footer);
   initMissionValues(story);
 
-  add(story, '.mission-project__photo', 'cover');
   add(story, '#mission-title', 'heading');
+  add(story, '.mission-statement__copy', 'text', 80);
+  add(story, '.mission-project__photo', 'cover', 100);
+  add(story, '#talents-title, #values-title', 'text', 140);
+  add(story, '.mission-talents__item', 'text', (index) => 140 + index * 60);
+  add(story, 'button.mission-value', 'text', (index) => 140 + index * 45);
   add(footer, '.site-footer__visual', 'cover');
   add(footer, '.site-footer__nav, .site-footer__right > h2', 'heading');
   add(footer, '.site-footer__contact-group, .site-footer__office', 'text', 60);

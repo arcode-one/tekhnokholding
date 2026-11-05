@@ -15,7 +15,7 @@ export default function initMissionValues(story) {
     const gap = 10, edge = 16;
     const width = panel.offsetWidth, height = panel.offsetHeight;
     const left = hover.matches ? Math.max(edge, Math.min(innerWidth - width - edge,
-      anchor.left + anchor.width / 2 - width / 2)) : (innerWidth - width) / 2;
+      anchor.right - width)) : (innerWidth - width) / 2;
     let top = (innerHeight - height) / 2;
     if (hover.matches) {
       top = anchor.top - height - gap;
@@ -24,20 +24,39 @@ export default function initMissionValues(story) {
     }
     panel.style.left = `${Math.round(left)}px`;
     panel.style.top = `${Math.round(Math.max(edge, Math.min(innerHeight - height - edge, top)))}px`;
+    const above = top + height / 2 < anchor.top + anchor.height / 2;
+    const originX = Math.max(24, Math.min(width - 24, anchor.right - 24 - left));
+    panel.style.transformOrigin = hover.matches ? `${originX}px ${above ? '100%' : '0%'}` : '50% 50%';
+    active.offset = hover.matches ? (above ? 18 : -18) : 12;
   };
-  const hide = (restore = false) => {
+  const snapshot = (state) => {
+    const style = getComputedStyle(state.panel);
+    return { opacity: style.opacity, transform: style.transform };
+  };
+  const finishClose = (state, restore) => {
+    if (active !== state) return;
+    active = null;
+    state.animation?.cancel();
+    restoringFocus = true;
+    state.panel.hidePopover();
+    state.button.setAttribute('aria-expanded', 'false');
+    if (restore) state.button.focus({ preventScroll: true });
+    restoringFocus = false;
+  };
+  const hide = (restore = false, instant = false, resumable = false) => {
     clearTimers();
     if (!active) return;
-    const { panel, button, animation } = active;
-    active = null;
-    animation?.cancel();
-    panel.hidePopover();
-    button.setAttribute('aria-expanded', 'false');
-    if (restore) {
-      restoringFocus = true;
-      button.focus({ preventScroll: true });
-      restoringFocus = false;
-    }
+    const state = active;
+    if (restore || instant || reduced.matches) { finishClose(state, restore); return; }
+    if (state.closing) return;
+    const from = snapshot(state);
+    state.animation?.cancel();
+    state.closing = true;
+    state.resumable = resumable;
+    state.animation = state.panel.animate([from,
+      { opacity: 0, transform: `translateY(${state.offset}px) scale(.96)` },
+    ], { duration: 180, easing: 'cubic-bezier(.2, .65, .35, 1)', fill: 'both' });
+    state.animation.onfinish = () => finishClose(state, false);
   };
   const scheduleHide = () => {
     clearTimeout(enterTimer);
@@ -47,7 +66,7 @@ export default function initMissionValues(story) {
       const { panel, button } = active;
       if (panel.matches(':hover') || button.matches(':hover') ||
           panel.contains(document.activeElement) || button.matches(':focus-visible')) return;
-      hide();
+      hide(false, false, true);
     }, 240);
   };
   story.querySelectorAll('.mission-value-item').forEach((item) => {
@@ -84,25 +103,37 @@ export default function initMissionValues(story) {
     button.after(panel);
     const show = (animate = true) => {
       clearTimers();
-      if (active?.button === button) return;
-      hide();
-      active = { button, panel };
-      panel.showPopover();
-      panel.scrollTop = 0;
+      const resuming = active?.button === button && active.closing;
+      if (active?.button === button && !resuming) {
+        if (!animate) active.animation?.cancel();
+        return;
+      }
+      const from = resuming ? snapshot(active) : null;
+      if (resuming) active.animation?.cancel();
+      else {
+        hide(false, true);
+        panel.showPopover();
+        panel.scrollTop = 0;
+      }
+      active = { button, panel, closing: false };
       button.setAttribute('aria-expanded', 'true');
       position();
       if (animate && !reduced.matches) active.animation = panel.animate([
-        { opacity: 0, transform: 'translateY(6px) scale(.985)' },
+        from || { opacity: 0, transform: `translateY(${active.offset}px) scale(.94)` },
         { opacity: 1, transform: 'none' },
-      ], { duration: 200, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
+      ], { duration: resuming ? 200 : 280, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
     };
     button.addEventListener('pointerenter', (event) => {
       if (!hover.matches || event.pointerType === 'touch') return;
       clearTimers();
+      if (active?.button === button && active.closing && active.resumable) { show(); return; }
       enterTimer = setTimeout(() => show(), 160);
     });
     button.addEventListener('pointerleave', scheduleHide);
-    panel.addEventListener('pointerenter', clearTimers);
+    panel.addEventListener('pointerenter', () => {
+      clearTimers();
+      if (active?.button === button && active.closing && active.resumable) show();
+    });
     panel.addEventListener('pointerleave', scheduleHide);
     button.addEventListener('focus', () => {
       if (!restoringFocus && button.matches(':focus-visible')) show(false);
@@ -124,8 +155,13 @@ export default function initMissionValues(story) {
   });
   document.addEventListener('scroll', (event) => {
     // Reading a long panel is independent of the document scroll.
-    if (active && !active.panel.contains(event.target)) hide();
+    if (active && !active.panel.contains(event.target)) hide(false, true);
   }, { capture: true, passive: true });
   addEventListener('resize', position, { passive: true });
-  hover.addEventListener('change', () => hide());
+  hover.addEventListener('change', () => hide(false, true));
+  reduced.addEventListener('change', () => {
+    if (!reduced.matches || !active) return;
+    if (active.closing) hide(false, true);
+    else active.animation?.cancel();
+  });
 }
