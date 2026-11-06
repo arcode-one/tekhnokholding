@@ -23,6 +23,19 @@
   overflow: hidden;
 }
 
+.home-page .roof-background__viewport::after {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: calc(var(--header-h) + 112px);
+  background: linear-gradient(
+    to bottom,
+    rgb(20 25 30 / 72%),
+    rgb(20 25 30 / 60%) var(--header-h),
+    transparent
+  );
+}
+
 .roof-background__image {
   position: absolute;
   inset: 0;

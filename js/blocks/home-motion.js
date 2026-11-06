@@ -1,4 +1,5 @@
 import createScrollReveal from '../lib/scroll-reveal.js';
+import initMissionLineReveal from './mission-line-reveal.js';
 
 function initValuesOverlap(section) {
   const card = section?.querySelector('.home-values__card');
@@ -50,9 +51,8 @@ export default function init(home) {
 
   add(mission, '#home-mission-title', 'heading');
   add(mission, '.home-mission__thumbnail', 'photo', 80);
-  add(mission, '.home-mission__statement p', 'heading', (index) => 80 + index * 80);
   add(mission, '#home-mission-talents-title', 'heading');
-  add(mission, '.home-mission__talent', 'text', (index) => 80 + index * 80);
+  add(mission, '.home-mission__talent', 'talent', (index) => 80 + index * 80);
 
   add(values, '#home-values-title', 'heading');
   add(values, '.home-values__media', 'photo', 55);
@@ -71,5 +71,6 @@ export default function init(home) {
   add(clients, '.company-recommendations__slider', 'rail', 55);
 
   start();
+  initMissionLineReveal(mission);
   initValuesOverlap(values);
 }

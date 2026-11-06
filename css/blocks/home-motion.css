@@ -19,11 +19,6 @@
     --home-offset: 26px;
   }
 
-  .home-mission [data-home-enter='text'] {
-    --home-duration: 500ms;
-    --home-offset: 18px;
-  }
-
   .home-mission [data-home-enter='photo'] {
     --home-photo-duration: 740ms;
     --home-photo-inset: 100%;
@@ -31,12 +26,57 @@
 
   .home-page [data-home-state='waiting'] { opacity: 0; }
 
+  .home-mission [data-mission-lines-waiting] { opacity: 0; }
+
+  .home-mission__line {
+    display: block;
+    overflow: clip;
+  }
+
+  .home-mission__line + .home-mission__line { text-indent: 0; }
+
+  .home-mission__line > span {
+    display: block;
+    animation: home-once-mission-line 600ms var(--ease-out) var(--mission-line-delay) both;
+  }
+
   .home-page [data-home-state='running'] {
     animation: home-once-rise var(--home-duration) var(--ease-out) var(--home-delay, 0ms) both;
   }
 
   .home-page [data-home-enter='photo'][data-home-state='running'] {
     animation: home-once-photo var(--home-photo-duration, 540ms) var(--ease-out) var(--home-delay, 0ms) both;
+  }
+
+  .home-mission__talent[data-home-state='running'] {
+    --home-duration: 660ms;
+    --home-offset: 0px;
+    border-top-color: transparent;
+    position: relative;
+  }
+
+  .home-mission__talent[data-home-state='running']::before {
+    content: '';
+    position: absolute;
+    inset: -1px 0 auto;
+    height: 1px;
+    background: var(--color-mist);
+    transform-origin: left;
+    animation: home-once-talent-rule 500ms var(--ease-out) var(--home-delay, 0ms) both;
+  }
+
+  .home-mission__talent + .home-mission__talent[data-home-state='running']::before {
+    transform-origin: right;
+  }
+
+  .home-mission__talent[data-home-state='running'] h4,
+  .home-mission__talent[data-home-state='running'] p {
+    --home-offset: 10px;
+    animation: home-once-rise 460ms var(--ease-out) calc(var(--home-delay, 0ms) + 90ms) both;
+  }
+
+  .home-mission__talent[data-home-state='running'] p {
+    animation-delay: calc(var(--home-delay, 0ms) + 160ms);
   }
 }
 
@@ -48,4 +88,14 @@
 @keyframes home-once-photo {
   from { opacity: 0; clip-path: inset(0 0 var(--home-photo-inset, 22%) 0); }
   to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes home-once-mission-line {
+  from { opacity: 0; transform: translateY(75%); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes home-once-talent-rule {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
 }
