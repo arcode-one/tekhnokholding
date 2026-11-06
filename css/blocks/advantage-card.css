@@ -81,13 +81,10 @@
   grid-template-columns: minmax(0, 1fr);
 }
 
-.advantage-card--experience { grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); }
-.advantage-card--experience .advantage-card__title { font-size: clamp(17px, 1.35vw, 25px); }
 .advantage-card--plastfoil .advantage-card__photo img { object-position: 88% center; }
 
 .advantage-card--quality,
-.advantage-card--warranty,
-.advantage-card--experience {
+.advantage-card--warranty {
   min-height: clamp(236px, 16.3vw, 300px);
 }
 

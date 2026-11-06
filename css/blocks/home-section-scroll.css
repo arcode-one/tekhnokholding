@@ -1,5 +1,3 @@
-/* Straight section edges on the homepage, including the figures/projects join. */
-.home-page .projects-transition { display: none; }
 .home-page .company-recommendations {
   --recommendation-step: 0px;
   padding-top: clamp(24px, 4svh, 48px);

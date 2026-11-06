@@ -21,7 +21,7 @@
   position: absolute;
   top: -24px;
   left: 0;
-  width: 45.6%;
+  width: 50%;
   height: 24px;
   background: var(--color-white);
 }
@@ -30,7 +30,7 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 54.4%;
+  width: 50%;
   height: var(--section-overlap);
   background: var(--color-white);
   pointer-events: none;

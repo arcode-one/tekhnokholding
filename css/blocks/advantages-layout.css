@@ -6,5 +6,25 @@
 }
 
 .advantages-layout > .advantage-card { grid-column: span 6; }
-.advantages-layout > .advantage-card--quality,
-.advantages-layout > .advantage-card--experience { grid-column: span 9; }
+.advantages-layout > .advantage-card--quality { grid-column: span 14; }
+.advantages-layout > .advantage-card--warranty { grid-column: span 10; }
+
+.advantages-rating {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  min-width: 0;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--color-ink) 14%, transparent);
+  color: var(--color-ink);
+}
+
+.advantages-rating__brand { margin: 0; font-size: 17px; font-weight: 650; }
+.advantages-rating__score { display: flex; align-items: center; gap: 12px; }
+.advantages-rating__value { margin: 0; font-size: 25px; line-height: 1; letter-spacing: -.04em; }
+.advantages-rating__stars { display: flex; gap: 4px; color: #a17b2c; }
+.advantages-rating__star { width: 16px; height: 16px; fill: currentColor; stroke: none; }
+.advantages-rating__description { margin: 0; font-size: 13px; color: #52626b; }

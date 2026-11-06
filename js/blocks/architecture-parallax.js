@@ -1,9 +1,12 @@
+import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
+
 export default function init(container) {
   const image = container.querySelector('img');
   if (!image) return;
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const narrow = matchMedia('(max-width: 767px)');
+  const figuresMotion = container.dataset.architectureParallax === 'figures';
   const desktopTravel = Number(container.dataset.parallaxTravel) || 78;
   let visible = false;
   let frame = 0;
@@ -14,6 +17,11 @@ export default function init(container) {
 
     // Measure the stationary frame, never the translated image.
     const rect = container.getBoundingClientRect();
+    if (figuresMotion) {
+      setFiguresPhotoParallax(image, rect.top, rect.height, innerHeight, 0.35);
+      return;
+    }
+
     const progress = Math.max(-1, Math.min(1,
       (rect.top + rect.height / 2 - innerHeight / 2) / ((innerHeight + rect.height) / 2),
     ));

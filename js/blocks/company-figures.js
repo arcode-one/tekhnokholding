@@ -1,3 +1,5 @@
+import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
+
 export default function init(section) {
   const grid = section.querySelector('[data-ui~=company-figures__grid]');
   const nextSection = section.closest('[data-ui~=roof-background]')?.nextElementSibling;
@@ -124,12 +126,7 @@ export default function init(section) {
       );
       const frameOffset = photo.startOffset + frameProgress * (photo.endOffset - photo.startOffset);
       photo.outer.style.transform = `translate3d(0, ${frameOffset.toFixed(2)}px, 0)`;
-      const progress = Math.max(
-        0,
-        Math.min(1, (viewport - photo.top + y) / (viewport + photo.height)),
-      );
-      const offset = (progress - 0.5) * photo.height * 0.32;
-      photo.image.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0) scale(1.34)`;
+      setFiguresPhotoParallax(photo.image, photo.top - y, photo.height, viewport);
     });
     updateCorner(y);
   }

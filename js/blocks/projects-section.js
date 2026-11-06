@@ -6,6 +6,7 @@ export default function init(section) {
   const group = section.querySelector('[data-projects-group]');
   const cards = [...group.children];
   const headings = cards.map((card) => card.querySelector('.project-card__heading'));
+  const photoFirst = section.classList.contains('projects-section--photo-first');
   const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
   const types = [...section.querySelectorAll('[data-project-type]')];
   const count = section.querySelector('[data-projects-count]');
@@ -45,8 +46,6 @@ export default function init(section) {
   const refreshPhotoParallax = initProjectPhotoParallax(section);
 
   function syncCardHeights(force = false) {
-    // The homepage photo-led layout sizes cards from the available screen space.
-    if (section.classList.contains('projects-section--photo-first')) return;
     if (!rail.clientWidth) return;
     const key = `${rail.clientWidth}:${window.innerWidth}`;
     if (!force && key === cardSizeKey) return;
@@ -58,10 +57,12 @@ export default function init(section) {
       section.style.removeProperty('--project-heading-height');
       section.style.removeProperty('--project-area-value-height');
       section.style.removeProperty('--project-card-height');
-      const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
-      const areaHeight = Math.ceil(Math.max(0, ...areaValues.map((value) => value.getBoundingClientRect().height)));
-      section.style.setProperty('--project-heading-height', `${headingHeight}px`);
-      section.style.setProperty('--project-area-value-height', `${areaHeight}px`);
+      if (!photoFirst) {
+        const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
+        section.style.setProperty('--project-heading-height', `${headingHeight}px`);
+        const areaHeight = Math.ceil(Math.max(0, ...areaValues.map((value) => value.getBoundingClientRect().height)));
+        section.style.setProperty('--project-area-value-height', `${areaHeight}px`);
+      }
       const height = Math.ceil(Math.max(0, ...cards.map((card) => card.getBoundingClientRect().height)));
       section.style.setProperty('--project-card-height', `${height}px`);
     } finally {

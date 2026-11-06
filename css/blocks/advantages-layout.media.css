@@ -1,9 +1,13 @@
 @media (max-width: 1279px) {
   .advantages-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .advantages-layout > .advantage-card { grid-column: auto; }
-  .advantages-layout > .advantage-card--authorized { grid-column: 1 / -1; }
 }
 
 @media (max-width: 767px) {
   .advantages-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+}
+
+@media (max-width: 420px) {
+  .advantages-rating { gap: 8px 15px; }
+  .advantages-rating__description { flex-basis: 100%; text-align: center; }
 }
