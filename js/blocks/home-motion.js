@@ -14,7 +14,6 @@ export default function init(home) {
 
   add(team, '#company-team-title', 'heading');
   add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
-  add(team, '.company-team__subhead', 'text', 55);
   add(team, '.department-card', 'text', (index) => 55 + (index % 2) * 55);
 
   add(clients, '#recommendations-title', 'heading');

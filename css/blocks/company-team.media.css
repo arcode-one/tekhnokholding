@@ -13,7 +13,5 @@
   .company-team__features { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .company-team__feature { aspect-ratio: 2.1; border-radius: 16px; }
   .company-team__feature-label { padding: 28px 16px 12px; font-size: 18px; }
-  .company-team__subhead { margin-bottom: 16px; }
-  .company-team__subhead h3 { font-size: 20px; }
   .company-team__department-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; gap: 10px; }
 }
