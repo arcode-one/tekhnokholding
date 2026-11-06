@@ -44,6 +44,7 @@ export default function init(home) {
   if (!('IntersectionObserver' in window)) return;
   const mission = home.querySelector('#mission');
   const values = home.querySelector('#values');
+  const figures = home.querySelector('#figures');
   const projects = home.querySelector('#objects');
   const team = home.querySelector('#team');
   const clients = home.querySelector('#clients');
@@ -57,6 +58,8 @@ export default function init(home) {
   add(values, '#home-values-title', 'heading');
   add(values, '.home-values__media', 'photo', 55);
   add(values, '.home-values__list li', 'text', (index) => 55 + index * 40);
+
+  add(figures, '.company-figures__photo-inner', 'photo');
 
   add(projects, '#projects-title', 'heading');
   add(projects, '.projects-filters', 'text', 55);

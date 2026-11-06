@@ -19,10 +19,15 @@
     --home-offset: 26px;
   }
 
-  .home-mission [data-home-enter='photo'] {
-    --home-photo-duration: 740ms;
-    --home-photo-inset: 100%;
+  :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo-inner) {
+    --home-photo-duration: 1220ms;
+    --home-photo-easing: var(--ease-in-out);
   }
+
+  .home-mission__thumbnail { --home-photo-inset: 0 0 100% 0; }
+  .home-values__media { --home-photo-inset: 44%; }
+  .company-figures__photo--roof .company-figures__photo-inner { --home-photo-inset: 0 0 0 100%; }
+  .company-figures__photo--office .company-figures__photo-inner { --home-photo-inset: 0 100% 0 0; }
 
   .home-page [data-home-state='waiting'] { opacity: 0; }
 
@@ -45,7 +50,13 @@
   }
 
   .home-page [data-home-enter='photo'][data-home-state='running'] {
-    animation: home-once-photo var(--home-photo-duration, 540ms) var(--ease-out) var(--home-delay, 0ms) both;
+    animation: home-once-photo var(--home-photo-duration, 540ms)
+      var(--home-photo-easing, var(--ease-out)) var(--home-delay, 0ms) both;
+  }
+
+  :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo-inner)[data-home-state='running'] img {
+    animation: home-once-photo-pullback var(--home-photo-duration) var(--home-photo-easing)
+      var(--home-delay, 0ms) both;
   }
 
   .home-mission__talent[data-home-state='running'] {
@@ -86,8 +97,13 @@
 }
 
 @keyframes home-once-photo {
-  from { opacity: 0; clip-path: inset(0 0 var(--home-photo-inset, 22%) 0); }
+  from { opacity: 0; clip-path: inset(var(--home-photo-inset, 0 0 22% 0)); }
   to { opacity: 1; clip-path: inset(0); }
+}
+
+@keyframes home-once-photo-pullback {
+  from { scale: 1.1; }
+  to { scale: 1; }
 }
 
 @keyframes home-once-mission-line {
