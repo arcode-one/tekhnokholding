@@ -9,7 +9,6 @@
 
 @media (max-width: 599px) {
   .company-team { padding-block: 24px; gap: 20px; }
-  .home-page .company-team .company-team__intro .home-heading { font-size: clamp(24px, 7.5vw, 42px); }
   .company-team__features { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .company-team__feature { aspect-ratio: 2.1; border-radius: 16px; }
   .company-team__feature-label { padding: 28px 16px 12px; font-size: 18px; }

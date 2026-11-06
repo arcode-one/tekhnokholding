@@ -3,7 +3,6 @@
   max-width: none;
   margin: 0;
   font-family: var(--font-display);
-  font-size: 60px;
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -13,11 +12,13 @@
 
 .home-page :is(.projects-heading, .company-heading, .company-team__intro) .home-heading,
 .catalog-page .projects-heading .home-heading {
-  font-size: clamp(72px, 5vw, 96px);
   font-weight: 300;
   text-transform: none;
   color: var(--color-ink);
 }
+
+.home-page .home-heading { font-size: clamp(26px, min(5vw, 7dvh), 84px); }
+.catalog-page .projects-heading .home-heading { font-size: clamp(72px, 5vw, 96px); }
 
 .home-heading__muted {
   display: block;

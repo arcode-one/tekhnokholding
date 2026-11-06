@@ -8,7 +8,6 @@
 .home-page #objects .projects-heading { margin-bottom: 20px; padding-right: 80px; }
 .home-page #objects .home-heading {
   font-family: var(--font-display);
-  font-size: clamp(40px, 4.2vw, 80px);
   font-weight: 300;
   line-height: 1;
   letter-spacing: -.03em;
@@ -62,6 +61,70 @@
 
 @media (max-width: 767px) {
   .home-page #objects .projects-heading { padding-right: 40px; }
-  .home-page #objects .home-heading { font-size: clamp(28px, 7.5vw, 44px); }
   .home-page #objects .project-card__photo { aspect-ratio: 1.15; }
+}
+
+.home-page #objects .project-card--fact-row {
+  align-self: flex-start;
+  container-type: inline-size;
+}
+
+.home-page #objects .project-card--fact-row .project-card__photo { aspect-ratio: 2.05; }
+
+.home-page #objects .project-card--fact-row .project-card__info {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr minmax(36px, auto);
+  min-height: 120px;
+  gap: 9px 8px;
+  padding: 10px 12px 12px;
+}
+
+.home-page #objects .project-card--fact-row .project-card__heading {
+  grid-column: 1 / -1;
+  padding-bottom: 9px;
+  border-bottom: 1px solid #303a422b;
+}
+
+.home-page #objects .project-card--fact-row .project-card__meta {
+  margin-top: 6px;
+  font-size: clamp(12px, .8vw, 14px);
+}
+
+.home-page #objects .project-card--fact-row .project-card__location + .project-card__period {
+  margin-inline-start: auto;
+  padding-inline-start: 0;
+  border: 0;
+}
+
+.home-page #objects .project-card--fact-row .project-card__work {
+  font-size: clamp(12px, .77vw, 14px);
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+}
+
+.home-page #objects .project-card--fact-row .project-card__details {
+  padding-inline-start: 8px;
+  border-inline-start: 1px solid #303a422b;
+}
+
+.home-page #objects .project-card--fact-row .project-card__area { padding: 0; border: 0; }
+.home-page #objects .project-card--fact-row .project-card__area dd {
+  font-size: clamp(20px, 1.45vw, 28px);
+  white-space: nowrap;
+}
+.home-page #objects .project-card--fact-row .project-card__area-unit { font-size: .72em; }
+
+@container (max-width: 229px) {
+  .home-page #objects .project-card--fact-row .project-card__info {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: 1fr auto auto;
+    row-gap: 9px;
+  }
+
+  .home-page #objects .project-card--fact-row .project-card__details {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
 }

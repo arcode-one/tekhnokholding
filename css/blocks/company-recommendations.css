@@ -66,10 +66,6 @@
   margin-bottom: 0;
 }
 
-.home-page .company-recommendations .company-heading .home-heading {
-  font-size: clamp(26px, min(5vw, 7dvh), 84px);
-}
-
 .company-recommendations__slider {
   position: relative;
   min-width: 0;
