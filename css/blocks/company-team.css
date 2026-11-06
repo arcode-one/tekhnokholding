@@ -3,11 +3,13 @@
 }
 
 .company-team {
+  width: 100%;
+  max-width: none;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr);
   gap: clamp(16px, 3dvh, 32px);
-  height: 92vh;
-  height: 92dvh;
+  height: 100vh;
+  height: 100dvh;
   min-height: 640px;
   padding-block: clamp(20px, 4dvh, 48px);
   background: var(--color-white);

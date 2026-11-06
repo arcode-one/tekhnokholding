@@ -1,69 +1,64 @@
 .company-advantages {
   isolation: isolate;
-  background: var(--color-gray-light);
+  padding-block: clamp(24px, 4svh, 48px);
+  background: var(--color-paper);
   color: var(--color-ink);
 }
 
-.company-advantages__background {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
+.company-heading.company-advantages__intro {
+  --trust-corner-width: min(31vw, 420px);
+  position: relative;
+  margin: 0 var(--pad) clamp(22px, 3svh, 36px);
+  padding-inline-end: calc(var(--trust-corner-width) + clamp(16px, 2vw, 40px));
 }
 
-.company-advantages__background img {
+.home-page .company-advantages .home-heading__muted { margin-left: 0; }
+
+.company-advantages__corner {
   position: absolute;
-  inset: 0;
-  width: 100%;
+  inset: 0 0 0 auto;
+  display: block;
+  width: var(--trust-corner-width);
   height: 100%;
   object-fit: cover;
-  object-position: 65% 30%;
+  object-position: center 62%;
+  border-radius: 0 14px 14px 0;
+  clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%);
 }
 
-.company-advantages__background[data-parallax-active] img {
-  top: -80px;
-  height: calc(100% + 160px);
+@media (min-width: 1280px) {
+  .company-advantages {
+    display: flex;
+    min-height: 100svh;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-block: clamp(24px, 4.8svh, 52px) clamp(14px, 2.4svh, 24px);
+  }
+
+  .company-heading.company-advantages__intro {
+    --trust-corner-width: min(46vw, 880px);
+    margin-bottom: clamp(16px, 2.5svh, 24px);
+  }
 }
 
-.company-advantages > .advantages-layout,
-.company-heading.company-advantages__intro {
-  position: relative;
-  z-index: 1;
-}
+@media (max-width: 599px) {
+  .company-heading.company-advantages__intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+    padding-inline-end: 0;
+  }
 
-.company-heading.company-advantages__intro {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  margin-bottom: 40px;
-}
-
-@media (max-width: 1099px) {
-  .company-advantages__background img { object-position: left top; }
-}
-
-@media (max-width: 767px) {
-  .company-heading.company-advantages__intro { align-items: flex-start; margin-bottom: 24px; }
+  .company-advantages__corner {
+    position: static;
+    width: min(52vw, 240px);
+    height: clamp(64px, 19vw, 92px);
+    align-self: flex-end;
+    border-radius: 0 10px 10px 0;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-story-photo] img { transform: none !important; }
-  .company-advantages__background[data-parallax-active] img { top: 0; height: 100%; transform: none !important; }
-}
-
-/* На широком экране композиция занимает ровно видимую высоту окна. */
-@media (min-width: 1100px) {
-  .company-advantages {
-    display: grid;
-    grid-template-rows: minmax(120px, 1fr) auto;
-    gap: clamp(16px, 2vh, 24px);
-    height: max(650px, 100vh);
-    height: max(650px, 100svh);
-    padding-block: clamp(24px, 4vh, 48px);
-  }
-  .company-heading.company-advantages__intro {
-    min-height: 0;
-    margin-block: 0;
-  }
 }

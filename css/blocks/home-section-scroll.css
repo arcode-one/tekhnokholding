@@ -5,14 +5,3 @@
   padding-top: clamp(24px, 4svh, 48px);
 }
 
-/* Keep all content readable while fitting ordinary desktop windows into slides. */
-@media (min-width: 1100px) and (min-height: 700px) and (hover: hover) and (pointer: fine) {
-  .home-page .company-advantages--panel {
-    min-height: 100svh;
-    grid-template-rows: minmax(160px, 1fr) auto;
-    gap: 20px;
-    padding-block: 24px;
-  }
-  .home-page .company-advantages--panel .advantages-highlights .advantage-card { min-height: 230px; }
-}
-

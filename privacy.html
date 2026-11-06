@@ -26,8 +26,8 @@
     />
     <link rel="stylesheet" href="css/index.css" />
   </head>
-  <body id="top" class="object-page">
-    <header class="header">
+  <body id="top" class="object-page privacy-page-body">
+    <header class="header" data-control-theme="light">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
@@ -172,7 +172,7 @@
     </div>
 
     <main>
-      <article class="privacy-page" aria-labelledby="privacy-title">
+      <article class="privacy-page" aria-labelledby="privacy-title" data-control-theme="light">
         <nav class="page-back" aria-label="Навигация" data-ui="page-back">
             <a class="pill page-back__button" href="index.html" aria-label="На главную" title="На главную">
               <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
@@ -180,13 +180,13 @@
           </nav>
         <div class="privacy-page__content">
           <header class="privacy-page__header">
-            <h1 id="privacy-title">Политика <span class="privacy-page__title-muted">конфиденциальности</span></h1>
+            <h1 id="privacy-title">Политика <span class="privacy-page__title-end">конфиденциальности</span></h1>
             <p class="privacy-page__status">Черновик для согласования. 2 ноября 2026 года.</p>
           </header>
           <div class="privacy-page__body">
             <nav class="privacy-page__nav" aria-labelledby="privacy-contents" data-privacy-toc="">
               <h2 id="privacy-contents">Содержание</h2>
-              <ol>
+              <ol role="list">
                 <li><a href="#privacy-operator">Оператор персональных данных</a></li>
                 <li><a href="#privacy-data">Какие данные и для чего обрабатываются</a></li>
                 <li><a href="#privacy-basis">Правовые основания обработки</a></li>
@@ -199,7 +199,7 @@
             </nav>
             <div class="privacy-page__text">
               <!-- Черновик: перед публикацией сверить фактические процессы обработки данных и убрать meta robots noindex. -->
-              <p>
+              <p class="privacy-page__lead">
                 Настоящая политика описывает обработку персональных данных посетителей сайта
                 Технохолдинг и лиц, которые обращаются в компанию по указанным на сайте контактам.
                 При обработке данных применяется Федеральный закон от 27 июля 2006 года № 152-ФЗ

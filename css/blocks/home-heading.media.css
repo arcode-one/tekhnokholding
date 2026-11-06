@@ -22,3 +22,8 @@
 @media (min-width: 1100px) {
   .home-page .company-advantages .home-heading { font-size: clamp(44px, 7.6vh, 80px); }
 }
+
+.home-page #company-map-title { font-size: clamp(40px, 4.2vw, 80px); }
+@media (max-width: 767px) {
+  .home-page #company-map-title { font-size: clamp(28px, 7.5vw, 44px); }
+}

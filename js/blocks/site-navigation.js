@@ -1,4 +1,5 @@
 import initDock from './dock.js';
+import restoreReloadPosition from '../lib/reload-position.js';
 
 export default function init() {
   const root = document.documentElement;
@@ -12,15 +13,16 @@ export default function init() {
 
   let entryAnchor = null;
   try { entryAnchor = document.getElementById(decodeURIComponent(location.hash.slice(1))); } catch {}
-  const isReload = performance.getEntriesByType('navigation')[0]?.type === 'reload';
+  const navigationType = performance.getEntriesByType('navigation')[0]?.type;
 
-  // Превью должно открывать именно первый экран, поэтому при обновлении всегда стартуем сверху
-  if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-  window.scrollTo({ top: 0, behavior: 'instant' });
+  // Let the browser restore the reading position on reload and history navigation.
+  if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
+  restoreReloadPosition(root);
 
   root.classList.add('site--loaded');
   requestAnimationFrame(() => {
-    if (entryAnchor && !isReload) entryAnchor.scrollIntoView({ behavior: 'instant' });
+    if (entryAnchor && navigationType !== 'reload' && navigationType !== 'back_forward')
+      entryAnchor.scrollIntoView({ behavior: 'instant' });
     updateScrollState();
   });
 

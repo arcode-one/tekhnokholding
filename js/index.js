@@ -15,6 +15,7 @@ enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js'));
 enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-carousel.js'));
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
 enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
+enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
 enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
 enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('./blocks/architecture-parallax.js'));
 

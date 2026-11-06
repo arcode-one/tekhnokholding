@@ -194,7 +194,7 @@
 }
 
 /* Approved typography preview: shared typeface, distinct content hierarchy. */
-.mission-overview { background: #efefec; }
+.mission-overview { background: var(--color-reading-bg); }
 .mission-statement p, .mission-statement p + p { max-width: 980px; font-weight: 400; color: #5c696f; }
 .mission-statement strong { font-weight: 700; color: #293d47; }
 .mission-project__photo { border-radius: 14px; }
