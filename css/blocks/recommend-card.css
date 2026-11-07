@@ -2,7 +2,7 @@
   display: grid;
   grid-row: 1 / -1;
   grid-template-rows: subgrid;
-  gap: clamp(10px, 1.5dvh, 18px);
+  gap: 8px;
   flex: 0 0 var(--recommendation-card-width);
   width: var(--recommendation-card-width);
   min-width: 0;
@@ -11,7 +11,7 @@
   border: 1px solid transparent;
   border-radius: 16px;
   background: var(--color-white);
-  box-shadow: 0 10px 24px -8px rgb(22 35 46 / 16%);
+  box-shadow: 0 7px 18px -7px rgb(22 35 46 / 11%);
   transition: box-shadow 220ms ease-out;
 }
 
@@ -28,19 +28,18 @@
 .recommend-card__project--empty { display: grid; place-items: center; background: var(--color-gray-light); }
 .recommend-card__project--empty img { width: 64%; height: auto; object-fit: contain; }
 .recommend-card__copy { min-width: 0; padding-inline: 8px; }
-.recommend-card h3 { margin: 0 0 8px; font-size: clamp(16px, 1.05vw, 20px); line-height: 1.25; font-weight: 600; letter-spacing: -0.025em; color: var(--color-ink); }
+.recommend-card h3 { margin: 0; font-size: clamp(16px, 1.05vw, 20px); line-height: 1.25; font-weight: 600; letter-spacing: -0.025em; color: var(--color-ink); }
+.recommend-card h3 + p { margin-top: 4px; }
 .recommend-card__copy > p { margin: 0; font-size: clamp(13px, 0.85vw, 16px); line-height: 1.35; color: var(--color-ink); }
 
 .recommend-card__letter {
   position: relative;
-  container-type: size;
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 12px;
   width: 100%;
   min-height: 0;
-  padding: 0 8px;
+  padding: 0;
   border: 0;
   background: none;
   color: var(--color-ink);
@@ -49,7 +48,7 @@
 
 .recommend-card__document {
   display: block;
-  height: min(100cqh, calc((100cqw - 104px) / 0.72));
+  width: min(calc(100% - 52px), 166px);
   aspect-ratio: 0.72;
   max-width: 100%;
   min-width: 0;
@@ -62,26 +61,25 @@
 .recommend-card__document img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .recommend-card__open {
   position: absolute;
+  right: 0;
+  bottom: 0;
   isolation: isolate;
   overflow: hidden;
-  right: 8px;
-  bottom: 0;
   display: grid;
   place-items: center;
-  flex: 0 0 44px;
-  width: 44px;
-  height: 44px;
+  width: 24px;
+  height: 24px;
   border: 1px solid rgb(52 69 78 / 24%);
-  border-radius: 10px;
+  border-radius: 7px;
   transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing);
 }
-.recommend-card__open svg { position: relative; z-index: 1; width: 20px; height: 20px; }
+.recommend-card__open svg { position: relative; z-index: 1; width: 15px; height: 15px; }
 .recommend-card__letter:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 6px; }
 .recommend-card__letter:focus-visible .recommend-card__open { background: var(--color-ink); color: white; }
-.recommend-card:focus-within { box-shadow: 0 14px 30px -8px rgb(22 35 46 / 23%); }
+.recommend-card:focus-within { box-shadow: 0 8px 20px -7px rgb(22 35 46 / 16%); }
 
 @media (hover: hover) and (pointer: fine) {
-  .recommend-card:hover { box-shadow: 0 14px 30px -8px rgb(22 35 46 / 23%); }
+  .recommend-card:hover { box-shadow: 0 8px 20px -7px rgb(22 35 46 / 16%); }
   .recommend-card__letter:hover .recommend-card__open { background: var(--color-ink); color: white; }
 }
 

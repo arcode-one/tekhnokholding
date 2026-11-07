@@ -3,17 +3,15 @@
   --recommendation-step: clamp(80px, 16svh, 160px);
   --recommendation-columns: 5;
   --recommendation-gap: 14px;
+  --recommendation-shadow-gutter: min(14px, var(--pad));
   --recommendation-card-width: calc(
-    (100vw - var(--pad) * 2 - (var(--recommendation-columns) - 1) * var(--recommendation-gap)) /
+    (100cqw - (var(--recommendation-columns) - 1) * var(--recommendation-gap)) /
       var(--recommendation-columns)
   );
 
   display: grid;
-  grid-template-rows: auto minmax(0, 1fr);
   gap: clamp(14px, 2.4dvh, 28px);
-  height: 100vh;
-  height: 100dvh;
-  padding-block: calc(var(--recommendation-step) + 16px) clamp(12px, 2dvh, 24px);
+  padding-block: calc(var(--recommendation-step) + clamp(24px, 4vw, 56px)) clamp(16px, 3vw, 40px);
   background: var(--color-gray-light);
 }
 
@@ -73,22 +71,29 @@
 }
 
 .company-recommendations .company-carousel__rail {
-  width: calc(100% - var(--pad) * 2);
-  margin-inline: var(--pad);
-  scroll-padding-inline: 0;
-  height: 100%;
+  container-type: inline-size;
+  width: calc(100% - 2 * (var(--pad) - var(--recommendation-shadow-gutter)));
+  margin-inline: calc(var(--pad) - var(--recommendation-shadow-gutter));
+  padding-inline: var(--recommendation-shadow-gutter);
+  scroll-padding-inline: var(--recommendation-shadow-gutter);
   overflow-y: hidden;
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 var(--recommendation-shadow-gutter),
+    #000 calc(100% - var(--recommendation-shadow-gutter)),
+    transparent
+  );
 }
 
 .company-recommendations .company-carousel__track {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: var(--recommendation-card-width);
-  grid-template-rows: minmax(60px, 1fr) auto minmax(70px, 1fr);
+  grid-template-rows: clamp(100px, 10vw, 124px) auto auto;
   column-gap: var(--recommendation-gap);
-  row-gap: clamp(10px, 1.5dvh, 18px);
-  height: 100%;
-  padding-block: 8px 20px;
+  row-gap: 8px;
+  padding-block: 10px 26px;
   padding-inline: 0;
 }
 

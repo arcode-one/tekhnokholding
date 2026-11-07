@@ -13,6 +13,7 @@ enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/compan
 enhance('[data-projects]', 'projects', () => import('./blocks/projects-section.js'));
 enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js'));
 enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-carousel.js'));
+enhance('[data-department-profiles]', 'department-profiles', () => import('./blocks/department-profiles.js'));
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
 enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
 enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
@@ -22,6 +23,7 @@ enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('.
 enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
 enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.js'));
+enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 enhance('[data-ui~="mission-story"]', 'mission', () => import('./blocks/mission.js'));
 

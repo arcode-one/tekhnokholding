@@ -1,5 +1,7 @@
 /* Homepage only: generous photographs, compact facts, and the mission typography. */
 .home-page #objects {
+  --projects-surface: var(--color-white);
+  --projects-paper: var(--color-gray-light);
   --projects-gap: 20px;
   height: auto;
   min-height: 0;
@@ -20,7 +22,6 @@
   text-transform: none;
   text-wrap: wrap;
 }
-.home-page #objects .home-heading__muted { margin-left: 1.2em; }
 .home-page #objects .home-heading::before,
 .home-page #objects .home-heading::after { content: none; }
 .home-page #objects .projects-filters { margin-bottom: 16px; }

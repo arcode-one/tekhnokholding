@@ -1,6 +1,8 @@
 import { loadAsset as load } from '../lib/assets.js';
+import initMapLayout from './company-map-layout.js';
 
 export default function init(section) {
+  initMapLayout(section);
   const view = section.querySelector('[data-map-view]');
   const status = section.querySelector('[data-map-status]');
   const card = section.querySelector('[data-map-card]');

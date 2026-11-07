@@ -263,9 +263,6 @@
               </p>
             </div>
             <div class="hero__row">
-              <a class="pill" href="mission.html" data-hero-split="button-left"
-                ><span class="pill__label">Миссия компании</span></a
-              >
               <a class="pill" href="quality.html" data-hero-split="button-right"
                 ><span class="pill__label">Служба качества</span></a
               >
@@ -339,18 +336,20 @@
             <div class="home-mission__aside">
               <h2 id="home-mission-title">Миссия<br />компании</h2>
               <div class="home-mission__thumbnail" data-architecture-parallax data-parallax-travel="16">
-                <img
-                  src="images/mission/mission-architecture-v3-480w.webp"
-                  width="480"
-                  height="270"
-                  alt=""
-                  loading="lazy"
-                  decoding="async"
-                />
+                <div class="home-photo-zoom">
+                  <img
+                    src="images/mission/mission-architecture-v3-480w.webp"
+                    width="480"
+                    height="270"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </div>
             <div class="home-mission__statement">
-              <p>Через качественные кровельные решения создавать пространство, в котором <strong>человеку комфортно жить</strong>, а <strong>бизнесу уверенно расти и развиваться</strong>.</p>
+              <p>Через <strong>качественные кровельные решения</strong> создавать пространство, в котором <strong>человеку комфортно жить</strong>, а <strong>бизнесу уверенно расти и развиваться</strong>.</p>
               <p>Мы меняем подход к строительству, формируя стандарты <strong>прозрачности, качества и ответственности</strong>.</p>
             </div>
           </div>
@@ -370,26 +369,25 @@
         <section class="home-values" id="values" aria-labelledby="home-values-title">
           <div class="home-values__card">
             <div class="home-values__body">
-              <h2 id="home-values-title">Ценности</h2>
-              <ol class="home-values__list" role="list">
-                <li><span aria-hidden="true">01</span>Возможности лидерства и инициативы. Развитие и рост</li>
-                <li><span aria-hidden="true">02</span>Вера. Нацеленность на хороший результат. Верю – делаю</li>
-                <li><span aria-hidden="true">03</span>Доверие людям в команде</li>
-                <li><span aria-hidden="true">04</span>Любовь к делу, забота о репутации</li>
-                <li><span aria-hidden="true">05</span>Сила мастерства и профессионализм</li>
-              </ol>
+              <h2 id="home-values-title">Наши ценности</h2>
+              <p class="home-values__intro">За каждым проектом — мастерство команды, ответственность за результат и внимание к деталям. Мы верим, что качество рождается из доверия, инициативы и любви к своему делу.</p>
+              <a class="pill home-values__link" href="values.html">
+                <span class="pill__label">Смотреть ценности</span>
+              </a>
             </div>
             <div class="home-values__media" data-architecture-parallax="figures">
-              <img
-                src="images/mission/values-roof-detail-960w.webp"
-                srcset="images/mission/values-roof-detail-480w.webp 480w, images/mission/values-roof-detail-960w.webp 960w"
-                sizes="(max-width: 767px) calc(100vw - 32px), (max-width: 1252px) 180px, (max-width: 1910px) 14.3vw, 274px"
-                width="960"
-                height="960"
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
+              <div class="home-photo-zoom">
+                <img
+                  src="images/mission/values-graphite-facade-960w.webp"
+                  srcset="images/mission/values-graphite-facade-480w.webp 480w, images/mission/values-graphite-facade-960w.webp 960w"
+                  sizes="(max-width: 767px) calc(100vw - 52px), (max-width: 1252px) 180px, (max-width: 1910px) 14.3vw, 274px"
+                  width="960"
+                  height="960"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -408,7 +406,7 @@
               <dt><span>м² кровель</span></dt>
               <dd data-figures-reveal="200">
                 <span class="company-figures__value"
-                  >1 500 000<span class="company-figures__accent">+</span></span
+                  >2 000 000<span class="company-figures__accent">+</span></span
                 >
               </dd>
             </dl>
@@ -428,20 +426,22 @@
               data-figures-image=""
             >
               <div class="company-figures__photo-inner">
-                <img
-                  src="images/figures-roof-v2.webp"
-                  alt="Крупный промышленный комплекс со светлой плоской кровлей, вид сверху"
-                  width="1448"
-                  height="1086"
-                  loading="lazy"
-                  decoding="async"
-                  srcset="
-                    images/figures-roof-v2-480w.webp  480w,
-                    images/figures-roof-v2-960w.webp  960w,
-                    images/figures-roof-v2.webp      1448w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
+                <div class="home-photo-zoom">
+                  <img
+                    src="images/figures-roof-v2.webp"
+                    alt="Крупный промышленный комплекс со светлой плоской кровлей, вид сверху"
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                    decoding="async"
+                    srcset="
+                      images/figures-roof-v2-480w.webp  480w,
+                      images/figures-roof-v2-960w.webp  960w,
+                      images/figures-roof-v2.webp      1448w
+                    "
+                    sizes="(max-width: 767px) 100vw, 100vw"
+                  />
+                </div>
               </div>
             </figure>
             <figure
@@ -449,20 +449,22 @@
               data-figures-image=""
             >
               <div class="company-figures__photo-inner">
-                <img
-                  src="images/figures-office-v2.webp"
-                  alt="Угол современного коммерческого здания со стеклянным фасадом"
-                  width="1122"
-                  height="1402"
-                  loading="lazy"
-                  decoding="async"
-                  srcset="
-                    images/figures-office-v2-480w.webp  480w,
-                    images/figures-office-v2-960w.webp  960w,
-                    images/figures-office-v2.webp      1122w
-                  "
-                  sizes="(max-width: 767px) 100vw, 100vw"
-                />
+                <div class="home-photo-zoom">
+                  <img
+                    src="images/figures-office-v2.webp"
+                    alt="Угол современного коммерческого здания со стеклянным фасадом"
+                    width="1122"
+                    height="1402"
+                    loading="lazy"
+                    decoding="async"
+                    srcset="
+                      images/figures-office-v2-480w.webp  480w,
+                      images/figures-office-v2-960w.webp  960w,
+                      images/figures-office-v2.webp      1122w
+                    "
+                    sizes="(max-width: 767px) 100vw, 100vw"
+                  />
+                </div>
               </div>
             </figure>
             <dl
@@ -488,6 +490,156 @@
           </div>
         </section>
       </div>
+      <section
+        class="company-map company-section"
+        id="map-objects"
+        aria-labelledby="company-map-title"
+        data-company-map=""
+        data-locations="data/project-locations.json"
+        data-projects-source="data/projects.json"
+        data-map-script="js/vendor/maplibre-gl-5.24.0.js"
+        data-map-style="css/vendor/maplibre-gl-5.24.0.css"
+      >
+        <div class="company-heading">
+          <h2 class="home-heading" id="company-map-title">Наш опыт на карте</h2>
+        </div>
+        <div class="company-map__stage">
+          <div
+            class="company-map__canvas"
+            data-map-view=""
+            aria-label="Интерактивная карта объектов Технохолдинга"
+            role="region"
+          ></div>
+          <div class="company-map__tools" data-ui="company-map__tools">
+            <button class="icon-btn" type="button" data-map-zoom="1" aria-label="Увеличить карту">+</button
+            ><button class="icon-btn" type="button" data-map-zoom="-1" aria-label="Уменьшить карту">−</button
+            ><button
+              class="icon-btn"
+              type="button"
+              data-map-pitch=""
+              aria-pressed="true"
+              aria-label="Объёмные здания"
+            >
+              3D</button
+            ><button class="pill" type="button" data-map-fit="">Вся география</button>
+          </div>
+          <p class="company-map__status" data-map-status="" role="status">Загружаем карту</p>
+          <aside
+            class="company-map__list"
+            id="map-object-list"
+            data-map-list=""
+            aria-labelledby="map-object-list-title"
+            hidden
+          >
+            <div class="company-map__list-header">
+              <h3 id="map-object-list-title">
+                Объекты в этой группе · <span data-map-list-count=""></span>
+              </h3>
+              <button
+                class="icon-btn company-map__close"
+                type="button"
+                data-map-list-close=""
+                aria-label="Закрыть список объектов"
+              >
+                <svg
+                  class="company-map__icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <use href="icons/sprite.svg#x"></use>
+                </svg>
+              </button>
+            </div>
+            <ul class="company-map__list-items" data-map-list-items=""></ul>
+          </aside>
+          <template data-map-list-template="">
+            <li>
+              <button
+                class="company-map__list-project"
+                type="button"
+                data-map-list-project=""
+                aria-pressed="false"
+              >
+                <img alt="" loading="lazy" width="120" height="136" />
+                <span class="company-map__list-content">
+                  <strong class="company-map__list-title" data-map-list-title=""></strong>
+                  <span class="company-map__list-address" data-map-list-address=""></span>
+                  <span class="company-map__list-facts">
+                    <span data-map-list-area=""><span>Площадь</span><strong></strong></span>
+                    <span data-map-list-year=""><span>Год</span><strong></strong></span>
+                  </span>
+                </span>
+              </button>
+            </li>
+          </template>
+          <article
+            class="company-map__card"
+            id="map-object-card"
+            data-map-card=""
+            aria-labelledby="map-object-card-title"
+            hidden
+          >
+            <button
+              class="icon-btn company-map__close"
+              type="button"
+              data-map-card-close=""
+              aria-label="Закрыть карточку объекта"
+            >
+              <svg
+                class="company-map__icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linejoin="round"
+                aria-hidden="true"
+                focusable="false"
+                stroke-linecap="round"
+              >
+                <use href="icons/sprite.svg#x"></use>
+              </svg></button
+            ><img
+              src="images/projects/thumb-1bfa84981c36ccdbfd9f.webp"
+              alt=""
+              data-map-card-image=""
+              width="960"
+              height="640"
+            />
+            <div class="company-map__card-content">
+              <h3
+                id="map-object-card-title"
+                data-map-card-title=""
+                class="company-map__card-title"
+              ></h3>
+              <p class="company-map__card-address" data-map-card-address=""></p>
+              <dl class="company-map__facts">
+                <div data-map-card-row="area">
+                  <dt>Площадь</dt>
+                  <dd></dd>
+                </div>
+                <div data-map-card-row="year">
+                  <dt>Год</dt>
+                  <dd></dd>
+                </div>
+                <div class="company-map__roof" data-map-card-row="roof">
+                  <dt>Тип кровли</dt>
+                  <dd></dd>
+                </div>
+              </dl>
+              <p class="company-map__precision" data-map-card-precision="" hidden></p>
+              <a class="pill company-map__card-link" data-map-card-link="" href="objects.html"
+                target="_blank"
+                rel="noopener"
+                >Посмотреть объект</a
+              >
+            </div>
+          </article>
+        </div>
+      </section>
       <!-- OBJECTS:START -->
       <section
         class="projects-section projects-section--photo-first"
@@ -5376,156 +5528,6 @@
       </section>
       <!-- OBJECTS:END -->
       <!-- COMPANY:START -->
-      <section
-        class="company-map company-section"
-        id="map-objects"
-        aria-labelledby="company-map-title"
-        data-company-map=""
-        data-locations="data/project-locations.json"
-        data-projects-source="data/projects.json"
-        data-map-script="js/vendor/maplibre-gl-5.24.0.js"
-        data-map-style="css/vendor/maplibre-gl-5.24.0.css"
-      >
-        <div class="company-heading">
-          <h2 class="home-heading" id="company-map-title">Наш опыт на карте</h2>
-        </div>
-        <div class="company-map__stage">
-          <div
-            class="company-map__canvas"
-            data-map-view=""
-            aria-label="Интерактивная карта объектов Технохолдинга"
-            role="region"
-          ></div>
-          <div class="company-map__tools" data-ui="company-map__tools">
-            <button class="icon-btn" type="button" data-map-zoom="1" aria-label="Увеличить карту">+</button
-            ><button class="icon-btn" type="button" data-map-zoom="-1" aria-label="Уменьшить карту">−</button
-            ><button
-              class="icon-btn"
-              type="button"
-              data-map-pitch=""
-              aria-pressed="true"
-              aria-label="Объёмные здания"
-            >
-              3D</button
-            ><button class="pill" type="button" data-map-fit="">Вся география</button>
-          </div>
-          <p class="company-map__status" data-map-status="" role="status">Загружаем карту</p>
-          <aside
-            class="company-map__list"
-            id="map-object-list"
-            data-map-list=""
-            aria-labelledby="map-object-list-title"
-            hidden
-          >
-            <div class="company-map__list-header">
-              <h3 id="map-object-list-title">
-                Объекты в этой группе · <span data-map-list-count=""></span>
-              </h3>
-              <button
-                class="icon-btn company-map__close"
-                type="button"
-                data-map-list-close=""
-                aria-label="Закрыть список объектов"
-              >
-                <svg
-                  class="company-map__icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="1.5"
-                  aria-hidden="true"
-                  focusable="false"
-                >
-                  <use href="icons/sprite.svg#x"></use>
-                </svg>
-              </button>
-            </div>
-            <ul class="company-map__list-items" data-map-list-items=""></ul>
-          </aside>
-          <template data-map-list-template="">
-            <li>
-              <button
-                class="company-map__list-project"
-                type="button"
-                data-map-list-project=""
-                aria-pressed="false"
-              >
-                <img alt="" loading="lazy" width="120" height="136" />
-                <span class="company-map__list-content">
-                  <strong class="company-map__list-title" data-map-list-title=""></strong>
-                  <span class="company-map__list-address" data-map-list-address=""></span>
-                  <span class="company-map__list-facts">
-                    <span data-map-list-area=""><span>Площадь</span><strong></strong></span>
-                    <span data-map-list-year=""><span>Год</span><strong></strong></span>
-                  </span>
-                </span>
-              </button>
-            </li>
-          </template>
-          <article
-            class="company-map__card"
-            id="map-object-card"
-            data-map-card=""
-            aria-labelledby="map-object-card-title"
-            hidden
-          >
-            <button
-              class="icon-btn company-map__close"
-              type="button"
-              data-map-card-close=""
-              aria-label="Закрыть карточку объекта"
-            >
-              <svg
-                class="company-map__icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linejoin="round"
-                aria-hidden="true"
-                focusable="false"
-                stroke-linecap="round"
-              >
-                <use href="icons/sprite.svg#x"></use>
-              </svg></button
-            ><img
-              src="images/projects/thumb-1bfa84981c36ccdbfd9f.webp"
-              alt=""
-              data-map-card-image=""
-              width="960"
-              height="640"
-            />
-            <div class="company-map__card-content">
-              <h3
-                id="map-object-card-title"
-                data-map-card-title=""
-                class="company-map__card-title"
-              ></h3>
-              <p class="company-map__card-address" data-map-card-address=""></p>
-              <dl class="company-map__facts">
-                <div data-map-card-row="area">
-                  <dt>Площадь</dt>
-                  <dd></dd>
-                </div>
-                <div data-map-card-row="year">
-                  <dt>Год</dt>
-                  <dd></dd>
-                </div>
-                <div class="company-map__roof" data-map-card-row="roof">
-                  <dt>Тип кровли</dt>
-                  <dd></dd>
-                </div>
-              </dl>
-              <p class="company-map__precision" data-map-card-precision="" hidden></p>
-              <a class="pill company-map__card-link" data-map-card-link="" href="objects.html"
-                target="_blank"
-                rel="noopener"
-                >Посмотреть объект</a
-              >
-            </div>
-          </article>
-        </div>
-      </section>
       <section class="company-advantages company-section" id="advantages" aria-labelledby="advantages-title">
         <div class="company-heading company-advantages__intro">
           <h2 class="home-heading" id="advantages-title">Есть основания <span class="home-heading__muted">нам доверять</span></h2>
@@ -5535,7 +5537,6 @@
           <a class="advantage-card advantage-card--quality" href="quality.html" data-company-reveal>
             <span class="advantage-card__photo"><img src="images/company/trust/quality-wide-v1.webp" srcset="images/company/trust/quality-wide-v1-640w.webp 640w, images/company/trust/quality-wide-v1.webp 1280w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 37vw" alt="" width="1280" height="474" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#shield-check"></use></svg>
               <span class="advantage-card__title">Собственная<br>служба качества</span>
               <span class="advantage-card__description">Контроль на всех<br>этапах работ</span>
               <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
@@ -5544,14 +5545,19 @@
           <div class="advantage-card advantage-card--warranty advantage-card--static">
             <span class="advantage-card__photo"><img src="images/company/trust/warranty-drawing-v1.webp" srcset="images/company/trust/warranty-drawing-v1-420w.webp 420w, images/company/trust/warranty-drawing-v1.webp 840w" sizes="(max-width: 767px) 62vw, (max-width: 1279px) 30vw, (max-width: 1700px) 16vw, 300px" alt="" width="840" height="494" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#shield"></use></svg>
               <span class="advantage-card__title">До 10 лет<br>гарантии</span>
             </span>
           </div>
+          <button class="advantage-card advantage-card--academy" type="button" data-company-gallery="academy" aria-haspopup="dialog" data-company-reveal>
+            <span class="advantage-card__photo"><img src="images/company/proofs/preview-academy-technonicol-3d-v5-480w.webp" srcset="images/company/proofs/preview-academy-technonicol-3d-v5-480w.webp 480w, images/company/proofs/preview-academy-technonicol-3d-v5-960w.webp 960w" sizes="(max-width: 767px) 42vw, 20vw" alt="" width="480" height="360" loading="lazy" decoding="async"></span>
+            <span class="advantage-card__copy">
+              <span class="advantage-card__title">Специалисты обучены в Академии ТЕХНОНИКОЛЬ</span>
+              <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
+            </span>
+          </button>
           <button class="advantage-card advantage-card--plastfoil" type="button" data-company-image="images/company/proofs/proof-12-plastfoil.webp" data-image-title="Сертификат PLASTFOIL" aria-haspopup="dialog" data-company-reveal data-lightbox-target="trust-document-dialog">
             <span class="advantage-card__photo"><img src="images/company/trust/reference-plastfoil.webp"  alt="" width="236" height="217" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#files"></use></svg>
               <span class="advantage-card__title">Сертификация PLASTFOIL</span>
               <span class="advantage-card__description">Официальный подрядчик</span>
               <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
@@ -5560,7 +5566,6 @@
           <a class="advantage-card advantage-card--sro" href="docs/vypiska-sro.pdf" aria-haspopup="dialog" data-company-reveal data-lightbox-target="trust-document-dialog" data-company-pages="images/company/proofs/sro-1.webp images/company/proofs/sro-2.webp images/company/proofs/sro-3.webp" data-image-title="СРО и допуски к высотным работам">
             <span class="advantage-card__photo"><img src="images/company/trust/reference-sro.webp"  alt="" width="236" height="217" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#layers"></use></svg>
               <span class="advantage-card__title">СРО и допуски к высотным работам</span>
               <span class="advantage-card__description">Действующие свидетельства и разрешения</span>
               <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
@@ -5569,7 +5574,6 @@
           <button class="advantage-card advantage-card--granat" type="button" data-company-image="images/company/proofs/proof-11-granat.webp" data-image-title="Сертификат Клуба ГРАНАТ TNPRO" aria-haspopup="dialog" data-company-reveal data-lightbox-target="trust-document-dialog">
             <span class="advantage-card__photo"><img src="images/company/trust/granat-v3.webp" srcset="images/company/trust/granat-v3-480w.webp 480w, images/company/trust/granat-v3.webp 719w" sizes="(max-width: 767px) 45vw, 16vw" alt="" width="719" height="474" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#award"></use></svg>
               <span class="advantage-card__title">Клуб ГРАНАТ ТЕХНОНИКОЛЬ</span>
               <span class="advantage-card__description">Сертификат участника клуба</span>
               <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
@@ -5578,13 +5582,12 @@
           <button class="advantage-card advantage-card--authorized" type="button" data-company-image="images/company/proofs/proof-10-tn-award.webp" data-image-rotation="90" data-image-title="Грамота «Стабильное качество» ТЕХНОНИКОЛЬ" aria-haspopup="dialog" data-company-reveal data-lightbox-target="trust-document-dialog">
             <span class="advantage-card__photo"><img src="images/company/trust/reference-authorized.webp"  alt="" width="267" height="264" loading="lazy" decoding="async"></span>
             <span class="advantage-card__copy">
-              <svg class="advantage-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#award"></use></svg>
               <span class="advantage-card__title">Авторизованный подрядчик ТЕХНОНИКОЛЬ</span>
               <span class="advantage-card__description">Официальный статус и подтверждённые компетенции</span>
               <svg class="advantage-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><use href="icons/sprite.svg#arrow-up"></use></svg>
             </span>
           </button>
-          <div class="advantages-rating">
+          <a class="advantages-rating" href="#roof-reviews">
             <p class="advantages-rating__brand">ROOF.RU</p>
             <div class="advantages-rating__score">
               <p class="advantages-rating__value">5.0</p>
@@ -5597,7 +5600,7 @@
               </span>
             </div>
             <p class="advantages-rating__description">Рейтинг от реальных клиентов</p>
-          </div>
+          </a>
         </div>
       </section>
       <section class="company-team company-section" id="team" aria-labelledby="company-team-title">
@@ -5668,173 +5671,133 @@
             ></a>
           </figure>
         </div>
-        <div class="company-team__departments">
+        <div class="company-team__departments" data-company-carousel="" data-department-profiles>
+          <div class="company-team__department-controls" role="group" aria-label="Навигация по подразделениям" data-control-theme="light">
+            <span class="company-carousel__count" data-carousel-count="" aria-live="polite">01 / 02</span>
+            <button class="icon-btn" type="button" data-carousel-step="-1" aria-label="Предыдущие подразделения" aria-controls="team-departments-rail" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="icons/sprite.svg#chevron-left"></use></svg>
+            </button>
+            <button class="icon-btn" type="button" data-carousel-step="1" aria-label="Следующие подразделения" aria-controls="team-departments-rail">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="icons/sprite.svg#chevron-right"></use></svg>
+            </button>
+          </div>
           <div
-            class="company-team__department-list"
+            class="company-carousel__rail company-team__department-list"
+            id="team-departments-rail"
+            data-carousel-rail=""
+            tabindex="0"
             role="region"
             aria-label="Подразделения Технохолдинга"
           >
-            <div class="company-team__department-grid">
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/production-technical.webp"
-                    alt="Технический отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="788"
-                    srcset="
-                      images/company/departments/production-technical-480w.webp  480w,
-                      images/company/departments/production-technical-960w.webp  960w,
-                      images/company/departments/production-technical.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Технический отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/quality-service.webp"
-                    alt="Контроль качества"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/quality-service-480w.webp  480w,
-                      images/company/departments/quality-service-960w.webp  960w,
-                      images/company/departments/quality-service.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Контроль качества</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/finance.webp"
-                    alt="Финансовый отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/finance-480w.webp  480w,
-                      images/company/departments/finance-960w.webp  960w,
-                      images/company/departments/finance.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Финансовый отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/construction.webp"
-                    alt="Строительный отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/construction-480w.webp  480w,
-                      images/company/departments/construction-960w.webp  960w,
-                      images/company/departments/construction.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Строительный отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/project-management.webp"
-                    alt="Управление проектами"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/project-management-480w.webp  480w,
-                      images/company/departments/project-management-960w.webp  960w,
-                      images/company/departments/project-management.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Управление проектами</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/management.webp"
-                    alt="Дирекция"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/management-480w.webp  480w,
-                      images/company/departments/management-960w.webp  960w,
-                      images/company/departments/management.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Дирекция</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/supply-logistics.webp"
-                    alt="Отдел снабжения"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="788"
-                    srcset="
-                      images/company/departments/supply-logistics-480w.webp  480w,
-                      images/company/departments/supply-logistics-960w.webp  960w,
-                      images/company/departments/supply-logistics.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Отдел снабжения</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/commercial.webp"
-                    alt="Коммерческий отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/commercial-480w.webp  480w,
-                      images/company/departments/commercial-960w.webp  960w,
-                      images/company/departments/commercial.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 64px, (max-width: 1199px) 88px, 104px"
-                  />
-                </div>
-                <h3>Коммерческий отдел</h3>
-              </article>
+            <div class="company-carousel__track company-team__department-track">
+              <div class="company-team__department-page" data-carousel-item="">
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Технический отдел</p>
+                    <p class="department-card__description" id="department-technical-description">Готовит чертежи и подбирает решения для кровли.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Технический отдел" aria-expanded="false" aria-controls="department-technical-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Контроль качества</p>
+                    <p class="department-card__description" id="department-quality-description">Проверяет монтаж и принимает выполненные работы.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Контроль качества" aria-expanded="false" aria-controls="department-quality-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Финансовый отдел</p>
+                    <p class="department-card__description" id="department-finance-description">Ведёт бюджеты проектов и контролирует оплаты.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Финансовый отдел" aria-expanded="false" aria-controls="department-finance-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Строительный отдел</p>
+                    <p class="department-card__description" id="department-construction-description">Организует работы на объекте и координирует бригады.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Строительный отдел" aria-expanded="false" aria-controls="department-construction-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+              </div>
+              <div class="company-team__department-page" data-carousel-item="">
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Управление проектами</p>
+                    <p class="department-card__description" id="department-projects-description">Ведёт график проекта и держит связь с заказчиком.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Управление проектами" aria-expanded="false" aria-controls="department-projects-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Дирекция</p>
+                    <p class="department-card__description" id="department-management-description">Определяет приоритеты и координирует работу отделов.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Дирекция" aria-expanded="false" aria-controls="department-management-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Отдел снабжения</p>
+                    <p class="department-card__description" id="department-supply-description">Подбирает материалы и организует поставки на объект.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Отдел снабжения" aria-expanded="false" aria-controls="department-supply-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+                <article class="department-card">
+                  <div class="department-card__photo">
+                    <img src="icons/portrait-placeholder.svg" alt="" width="400" height="500" loading="lazy" decoding="async" />
+                  </div>
+                  <div class="department-card__copy">
+                    <h3>Имя Фамилия</h3>
+                    <p class="department-card__department">Коммерческий отдел</p>
+                    <p class="department-card__description" id="department-commercial-description">Готовит предложения и ведёт переговоры с заказчиками.</p>
+                  </div>
+                  <button class="department-card__toggle" type="button" aria-label="О сотруднике: Коммерческий отдел" aria-expanded="false" aria-controls="department-commercial-description" hidden>
+                    <span class="department-card__mark" aria-hidden="true"></span>
+                  </button>
+                </article>
+              </div>
             </div>
           </div>
         </div>
@@ -5877,7 +5840,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>ОАО "Агрегат"</h3>
-                  <p>Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим</p>
+                  <p>Реконструкция кровли корпуса №33, Сим</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -5964,7 +5927,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>ГК Егоза</h3>
-                  <p>Производственный комплекс ООО «Егоза»</p>
+                  <p>Производственный комплекс</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -6009,7 +5972,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>ГК Энерго</h3>
-                  <p>Гипермаркет "Магнит" г. Верхняя Салда</p>
+                  <p>Гипермаркет «Магнит», Верхняя Салда</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -6052,7 +6015,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>Регинас</h3>
-                  <p>Гидроизоляция автопарковки дилерского центра Skoda</p>
+                  <p>Гидроизоляция парковки Škoda</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -6095,7 +6058,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>Политранс</h3>
-                  <p>Ветилируемый фасад АБК "Политранс"</p>
+                  <p>Вентилируемый фасад АБК</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -6139,7 +6102,7 @@
                 </figure>
                 <div class="recommend-card__copy">
                   <h3>Политранс</h3>
-                  <p>Ветилируемый фасад АБК "Политранс"</p>
+                  <p>Вентилируемый фасад АБК</p>
                 </div>
                 <button
                   class="recommend-card__letter"
@@ -6158,6 +6121,436 @@
                     srcset="
                       images/company/letters/politrans-02-480w.webp 480w,
                       images/company/letters/politrans-02.webp      752w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/temp-avoteh.webp"
+                    alt='Здания автотранспортного предприятия ОАО "Темп Автотех"'
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="768"
+                    srcset="
+                      images/company/recommendation-projects/temp-avoteh-480w.webp  480w,
+                      images/company/recommendation-projects/temp-avoteh-960w.webp  960w,
+                      images/company/recommendation-projects/temp-avoteh.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>ОАО "Темп Автотех"</h3>
+                  <p>Здания автотранспортного предприятия</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/temp-avoteh-01.webp"
+                  data-image-title='Рекомендательное письмо: ОАО "Темп Автотех"'
+                  aria-label='Открыть рекомендательное письмо: ОАО "Темп Автотех"'
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/temp-avoteh-01.webp"
+                    alt='Рекомендательное письмо: ОАО "Темп Автотех"'
+                    loading="lazy"
+                    decoding="async"
+                    width="752"
+                    height="1024"
+                    srcset="
+                      images/company/letters/temp-avoteh-01-480w.webp 480w,
+                      images/company/letters/temp-avoteh-01.webp      752w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="" data-letter-year="2005">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/faktorial.webp"
+                    alt="Кровля производственного цеха ООО «Факториал» по пр.Ленина"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="768"
+                    srcset="
+                      images/company/recommendation-projects/faktorial-480w.webp  480w,
+                      images/company/recommendation-projects/faktorial-960w.webp  960w,
+                      images/company/recommendation-projects/faktorial.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>Факториал</h3>
+                  <p>Кровля цеха на проспекте Ленина</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/faktorial-01.webp"
+                  data-image-title="Рекомендательное письмо: Факториал"
+                  aria-label="Открыть рекомендательное письмо: Факториал"
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/faktorial-01.webp"
+                    alt="Рекомендательное письмо: Факториал"
+                    loading="lazy"
+                    decoding="async"
+                    width="738"
+                    height="1024"
+                    srcset="
+                      images/company/letters/faktorial-01-480w.webp 480w,
+                      images/company/letters/faktorial-01.webp      738w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="" data-letter-year="2014">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/zlatmash.webp"
+                    alt='Реконструкция производственного цеха №97 ОАО "Златоустовский машиностроительный завод"'
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="768"
+                    srcset="
+                      images/company/recommendation-projects/zlatmash-480w.webp  480w,
+                      images/company/recommendation-projects/zlatmash-960w.webp  960w,
+                      images/company/recommendation-projects/zlatmash.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>АО "Златмаш"</h3>
+                  <p>Реконструкция цеха №97</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/zlatmash-01.webp"
+                  data-image-title='Рекомендательное письмо: АО "Златмаш"'
+                  aria-label='Открыть рекомендательное письмо: АО "Златмаш"'
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/zlatmash-01.webp"
+                    alt='Рекомендательное письмо: АО "Златмаш"'
+                    loading="lazy"
+                    decoding="async"
+                    width="752"
+                    height="1024"
+                    srcset="
+                      images/company/letters/zlatmash-01-480w.webp 480w,
+                      images/company/letters/zlatmash-01.webp      752w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="" data-letter-year="2013">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/danone.webp"
+                    alt='Кровля молочного комбината "Шадринский"'
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="768"
+                    srcset="
+                      images/company/recommendation-projects/danone-480w.webp  480w,
+                      images/company/recommendation-projects/danone-960w.webp  960w,
+                      images/company/recommendation-projects/danone.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>АО "ДАНОН"</h3>
+                  <p>Кровля Шадринского молкомбината</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/danone-01.webp"
+                  data-image-title='Рекомендательное письмо: АО "ДАНОН"'
+                  aria-label='Открыть рекомендательное письмо: АО "ДАНОН"'
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/danone-01.webp"
+                    alt='Рекомендательное письмо: АО "ДАНОН"'
+                    loading="lazy"
+                    decoding="async"
+                    width="753"
+                    height="1024"
+                    srcset="
+                      images/company/letters/danone-01-480w.webp 480w,
+                      images/company/letters/danone-01.webp      753w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/niagara.webp"
+                    alt="Производственная база Ниагара п. Касарги"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="658"
+                    srcset="
+                      images/company/recommendation-projects/niagara-480w.webp  480w,
+                      images/company/recommendation-projects/niagara-960w.webp  960w,
+                      images/company/recommendation-projects/niagara.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>НВК "Ниагара"</h3>
+                  <p>Производственная база, Касарги</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/niagara-01.webp"
+                  data-image-title='Рекомендательное письмо: НВК "Ниагара"'
+                  aria-label='Открыть рекомендательное письмо: НВК "Ниагара"'
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/niagara-01.webp"
+                    alt='Рекомендательное письмо: НВК "Ниагара"'
+                    loading="lazy"
+                    decoding="async"
+                    width="753"
+                    height="1024"
+                    srcset="
+                      images/company/letters/niagara-01-480w.webp 480w,
+                      images/company/letters/niagara-01.webp      753w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="" data-letter-year="2013">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/fortum.webp"
+                    alt="Челябинская ТЭЦ-1"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="683"
+                    srcset="
+                      images/company/recommendation-projects/fortum-480w.webp  480w,
+                      images/company/recommendation-projects/fortum-960w.webp  960w,
+                      images/company/recommendation-projects/fortum.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>ОАО "Фортум"</h3>
+                  <p>Челябинская ТЭЦ-1</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/fortum-01.webp"
+                  data-image-title='Рекомендательное письмо: ОАО "Фортум"'
+                  aria-label='Открыть рекомендательное письмо: ОАО "Фортум"'
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/fortum-01.webp"
+                    alt='Рекомендательное письмо: ОАО "Фортум"'
+                    loading="lazy"
+                    decoding="async"
+                    width="753"
+                    height="1024"
+                    srcset="
+                      images/company/letters/fortum-01-480w.webp 480w,
+                      images/company/letters/fortum-01.webp      753w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/reginas.webp"
+                    alt="Гидроизоляция автопарковки дилерского центра Skoda"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="685"
+                    srcset="
+                      images/company/recommendation-projects/reginas-480w.webp  480w,
+                      images/company/recommendation-projects/reginas-960w.webp  960w,
+                      images/company/recommendation-projects/reginas.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>Регинас</h3>
+                  <p>Гидроизоляция парковки Škoda</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/reginas-02.webp"
+                  data-image-title="Рекомендательное письмо: Регинас"
+                  aria-label="Открыть рекомендательное письмо: Регинас"
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/reginas-02.webp"
+                    alt="Рекомендательное письмо: Регинас"
+                    loading="lazy"
+                    decoding="async"
+                    width="755"
+                    height="1024"
+                    srcset="
+                      images/company/letters/reginas-02-480w.webp 480w,
+                      images/company/letters/reginas-02.webp      755w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/reginas.webp"
+                    alt="Гидроизоляция автопарковки дилерского центра Skoda"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="685"
+                    srcset="
+                      images/company/recommendation-projects/reginas-480w.webp  480w,
+                      images/company/recommendation-projects/reginas-960w.webp  960w,
+                      images/company/recommendation-projects/reginas.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>Регинас</h3>
+                  <p>Гидроизоляция парковки Škoda</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/reginas-03.webp"
+                  data-image-title="Рекомендательное письмо: Регинас"
+                  aria-label="Открыть рекомендательное письмо: Регинас"
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/reginas-03.webp"
+                    alt="Рекомендательное письмо: Регинас"
+                    loading="lazy"
+                    decoding="async"
+                    width="753"
+                    height="1024"
+                    srcset="
+                      images/company/letters/reginas-03-480w.webp 480w,
+                      images/company/letters/reginas-03.webp      753w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/makfa.webp"
+                    alt='Склад готовой продукции ОАО "Макфа" п. Рощино'
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="740"
+                    srcset="
+                      images/company/recommendation-projects/makfa-480w.webp  480w,
+                      images/company/recommendation-projects/makfa-960w.webp  960w,
+                      images/company/recommendation-projects/makfa.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>Макфа</h3>
+                  <p>Склад готовой продукции, Рощино</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/makfa-01.webp"
+                  data-image-title="Рекомендательное письмо: Макфа"
+                  aria-label="Открыть рекомендательное письмо: Макфа"
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/makfa-01.webp"
+                    alt="Рекомендательное письмо: Макфа"
+                    loading="lazy"
+                    decoding="async"
+                    width="755"
+                    height="1024"
+                    srcset="
+                      images/company/letters/makfa-01-480w.webp 480w,
+                      images/company/letters/makfa-01.webp      755w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
+              </article>
+              <article class="recommend-card" data-carousel-item="" data-letter-year="2014">
+                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
+                  <img
+                    src="images/company/recommendation-projects/spar.webp"
+                    alt="Гипермаркет SPAR на ул. Чичерина"
+                    loading="lazy"
+                    decoding="async"
+                    width="1024"
+                    height="682"
+                    srcset="
+                      images/company/recommendation-projects/spar-480w.webp  480w,
+                      images/company/recommendation-projects/spar-960w.webp  960w,
+                      images/company/recommendation-projects/spar.webp      1024w
+                    "
+                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
+                  />
+                </figure>
+                <div class="recommend-card__copy">
+                  <h3>SPAR</h3>
+                  <p>Гипермаркет на ул. Чичерина</p>
+                </div>
+                <button
+                  class="recommend-card__letter"
+                  type="button"
+                  data-company-image="images/company/letters/spar-01.webp"
+                  data-image-title="Рекомендательное письмо: SPAR"
+                  aria-label="Открыть рекомендательное письмо: SPAR"
+                >
+                  <span class="recommend-card__document"><img
+                    src="images/company/letters/spar-01.webp"
+                    alt="Рекомендательное письмо: SPAR"
+                    loading="lazy"
+                    decoding="async"
+                    width="752"
+                    height="1024"
+                    srcset="
+                      images/company/letters/spar-01-480w.webp 480w,
+                      images/company/letters/spar-01.webp      752w
                     "
                     sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
                   />
@@ -6279,49 +6672,6 @@
                   />
                 </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
               </article>
-              <article class="recommend-card" data-carousel-item="">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/temp-avoteh.webp"
-                    alt='Здания автотранспортного предприятия ОАО "Темп Автотех"'
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="768"
-                    srcset="
-                      images/company/recommendation-projects/temp-avoteh-480w.webp  480w,
-                      images/company/recommendation-projects/temp-avoteh-960w.webp  960w,
-                      images/company/recommendation-projects/temp-avoteh.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>ОАО "Темп Автотех"</h3>
-                  <p>Здания автотранспортного предприятия ОАО "Темп Автотех"</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/temp-avoteh-01.webp"
-                  data-image-title='Рекомендательное письмо: ОАО "Темп Автотех"'
-                  aria-label='Открыть рекомендательное письмо: ОАО "Темп Автотех"'
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/temp-avoteh-01.webp"
-                    alt='Рекомендательное письмо: ОАО "Темп Автотех"'
-                    loading="lazy"
-                    decoding="async"
-                    width="752"
-                    height="1024"
-                    srcset="
-                      images/company/letters/temp-avoteh-01-480w.webp 480w,
-                      images/company/letters/temp-avoteh-01.webp      752w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
               <article class="recommend-card" data-carousel-item="" data-letter-year="2012">
                 <div class="recommend-card__project recommend-card__project--empty" aria-hidden="true">
                   <img src="icons/logo-dark-compact.svg" alt="" width="1292" height="430" loading="lazy" />
@@ -6375,49 +6725,6 @@
                     srcset="
                       images/company/letters/honda-01-480w.webp 480w,
                       images/company/letters/honda-01.webp      750w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="" data-letter-year="2005">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/faktorial.webp"
-                    alt="Кровля производственного цеха ООО «Факториал» по пр.Ленина"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="768"
-                    srcset="
-                      images/company/recommendation-projects/faktorial-480w.webp  480w,
-                      images/company/recommendation-projects/faktorial-960w.webp  960w,
-                      images/company/recommendation-projects/faktorial.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>Факториал</h3>
-                  <p>Кровля производственного цеха ООО «Факториал» по пр.Ленина</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/faktorial-01.webp"
-                  data-image-title="Рекомендательное письмо: Факториал"
-                  aria-label="Открыть рекомендательное письмо: Факториал"
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/faktorial-01.webp"
-                    alt="Рекомендательное письмо: Факториал"
-                    loading="lazy"
-                    decoding="async"
-                    width="738"
-                    height="1024"
-                    srcset="
-                      images/company/letters/faktorial-01-480w.webp 480w,
-                      images/company/letters/faktorial-01.webp      738w
                     "
                     sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
                   />
@@ -6539,135 +6846,6 @@
                   />
                 </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
               </article>
-              <article class="recommend-card" data-carousel-item="" data-letter-year="2014">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/zlatmash.webp"
-                    alt='Реконструкция производственного цеха №97 ОАО "Златоустовский машиностроительный завод"'
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="768"
-                    srcset="
-                      images/company/recommendation-projects/zlatmash-480w.webp  480w,
-                      images/company/recommendation-projects/zlatmash-960w.webp  960w,
-                      images/company/recommendation-projects/zlatmash.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>АО "Златмаш"</h3>
-                  <p> Реконструкция производственного цеха №97 ОАО "Златоустовский машиностроительный завод" </p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/zlatmash-01.webp"
-                  data-image-title='Рекомендательное письмо: АО "Златмаш"'
-                  aria-label='Открыть рекомендательное письмо: АО "Златмаш"'
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/zlatmash-01.webp"
-                    alt='Рекомендательное письмо: АО "Златмаш"'
-                    loading="lazy"
-                    decoding="async"
-                    width="752"
-                    height="1024"
-                    srcset="
-                      images/company/letters/zlatmash-01-480w.webp 480w,
-                      images/company/letters/zlatmash-01.webp      752w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="" data-letter-year="2013">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/danone.webp"
-                    alt='Кровля молочного комбината "Шадринский"'
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="768"
-                    srcset="
-                      images/company/recommendation-projects/danone-480w.webp  480w,
-                      images/company/recommendation-projects/danone-960w.webp  960w,
-                      images/company/recommendation-projects/danone.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>АО "ДАНОН"</h3>
-                  <p>Кровля молочного комбината "Шадринский"</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/danone-01.webp"
-                  data-image-title='Рекомендательное письмо: АО "ДАНОН"'
-                  aria-label='Открыть рекомендательное письмо: АО "ДАНОН"'
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/danone-01.webp"
-                    alt='Рекомендательное письмо: АО "ДАНОН"'
-                    loading="lazy"
-                    decoding="async"
-                    width="753"
-                    height="1024"
-                    srcset="
-                      images/company/letters/danone-01-480w.webp 480w,
-                      images/company/letters/danone-01.webp      753w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/niagara.webp"
-                    alt="Производственная база Ниагара п. Касарги"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="658"
-                    srcset="
-                      images/company/recommendation-projects/niagara-480w.webp  480w,
-                      images/company/recommendation-projects/niagara-960w.webp  960w,
-                      images/company/recommendation-projects/niagara.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>НВК "Ниагара"</h3>
-                  <p>Производственная база Ниагара п. Касарги</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/niagara-01.webp"
-                  data-image-title='Рекомендательное письмо: НВК "Ниагара"'
-                  aria-label='Открыть рекомендательное письмо: НВК "Ниагара"'
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/niagara-01.webp"
-                    alt='Рекомендательное письмо: НВК "Ниагара"'
-                    loading="lazy"
-                    decoding="async"
-                    width="753"
-                    height="1024"
-                    srcset="
-                      images/company/letters/niagara-01-480w.webp 480w,
-                      images/company/letters/niagara-01.webp      753w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
               <article class="recommend-card" data-carousel-item="" data-letter-year="2008">
                 <div class="recommend-card__project recommend-card__project--empty" aria-hidden="true">
                   <img src="icons/logo-dark-compact.svg" alt="" width="1292" height="430" loading="lazy" />
@@ -6697,135 +6875,6 @@
                   />
                 </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
               </article>
-              <article class="recommend-card" data-carousel-item="" data-letter-year="2013">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/fortum.webp"
-                    alt="Челябинская ТЭЦ-1"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="683"
-                    srcset="
-                      images/company/recommendation-projects/fortum-480w.webp  480w,
-                      images/company/recommendation-projects/fortum-960w.webp  960w,
-                      images/company/recommendation-projects/fortum.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>ОАО "Фортум"</h3>
-                  <p>Челябинская ТЭЦ-1</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/fortum-01.webp"
-                  data-image-title='Рекомендательное письмо: ОАО "Фортум"'
-                  aria-label='Открыть рекомендательное письмо: ОАО "Фортум"'
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/fortum-01.webp"
-                    alt='Рекомендательное письмо: ОАО "Фортум"'
-                    loading="lazy"
-                    decoding="async"
-                    width="753"
-                    height="1024"
-                    srcset="
-                      images/company/letters/fortum-01-480w.webp 480w,
-                      images/company/letters/fortum-01.webp      753w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/reginas.webp"
-                    alt="Гидроизоляция автопарковки дилерского центра Skoda"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="685"
-                    srcset="
-                      images/company/recommendation-projects/reginas-480w.webp  480w,
-                      images/company/recommendation-projects/reginas-960w.webp  960w,
-                      images/company/recommendation-projects/reginas.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>Регинас</h3>
-                  <p>Гидроизоляция автопарковки дилерского центра Skoda</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/reginas-02.webp"
-                  data-image-title="Рекомендательное письмо: Регинас"
-                  aria-label="Открыть рекомендательное письмо: Регинас"
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/reginas-02.webp"
-                    alt="Рекомендательное письмо: Регинас"
-                    loading="lazy"
-                    decoding="async"
-                    width="755"
-                    height="1024"
-                    srcset="
-                      images/company/letters/reginas-02-480w.webp 480w,
-                      images/company/letters/reginas-02.webp      755w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/reginas.webp"
-                    alt="Гидроизоляция автопарковки дилерского центра Skoda"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="685"
-                    srcset="
-                      images/company/recommendation-projects/reginas-480w.webp  480w,
-                      images/company/recommendation-projects/reginas-960w.webp  960w,
-                      images/company/recommendation-projects/reginas.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>Регинас</h3>
-                  <p>Гидроизоляция автопарковки дилерского центра Skoda</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/reginas-03.webp"
-                  data-image-title="Рекомендательное письмо: Регинас"
-                  aria-label="Открыть рекомендательное письмо: Регинас"
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/reginas-03.webp"
-                    alt="Рекомендательное письмо: Регинас"
-                    loading="lazy"
-                    decoding="async"
-                    width="753"
-                    height="1024"
-                    srcset="
-                      images/company/letters/reginas-03-480w.webp 480w,
-                      images/company/letters/reginas-03.webp      753w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
               <article class="recommend-card" data-carousel-item="" data-letter-year="2011">
                 <div class="recommend-card__project recommend-card__project--empty" aria-hidden="true">
                   <img src="icons/logo-dark-compact.svg" alt="" width="1292" height="430" loading="lazy" />
@@ -6850,92 +6899,6 @@
                     srcset="
                       images/company/letters/unimilk-01-480w.webp 480w,
                       images/company/letters/unimilk-01.webp      753w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/makfa.webp"
-                    alt='Склад готовой продукции ОАО "Макфа" п. Рощино'
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="740"
-                    srcset="
-                      images/company/recommendation-projects/makfa-480w.webp  480w,
-                      images/company/recommendation-projects/makfa-960w.webp  960w,
-                      images/company/recommendation-projects/makfa.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>Макфа</h3>
-                  <p>Склад готовой продукции ОАО "Макфа" п. Рощино</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/makfa-01.webp"
-                  data-image-title="Рекомендательное письмо: Макфа"
-                  aria-label="Открыть рекомендательное письмо: Макфа"
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/makfa-01.webp"
-                    alt="Рекомендательное письмо: Макфа"
-                    loading="lazy"
-                    decoding="async"
-                    width="755"
-                    height="1024"
-                    srcset="
-                      images/company/letters/makfa-01-480w.webp 480w,
-                      images/company/letters/makfa-01.webp      755w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </span><span class="recommend-card__open" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M10 14 21 3M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"/></svg></span></button>
-              </article>
-              <article class="recommend-card" data-carousel-item="" data-letter-year="2014">
-                <figure class="recommend-card__project" data-story-photo data-story-travel="0.12">
-                  <img
-                    src="images/company/recommendation-projects/spar.webp"
-                    alt="Гипермаркет SPAR на ул. Чичерина"
-                    loading="lazy"
-                    decoding="async"
-                    width="1024"
-                    height="682"
-                    srcset="
-                      images/company/recommendation-projects/spar-480w.webp  480w,
-                      images/company/recommendation-projects/spar-960w.webp  960w,
-                      images/company/recommendation-projects/spar.webp      1024w
-                    "
-                    sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
-                  />
-                </figure>
-                <div class="recommend-card__copy">
-                  <h3>SPAR</h3>
-                  <p>Гипермаркет SPAR на ул. Чичерина</p>
-                </div>
-                <button
-                  class="recommend-card__letter"
-                  type="button"
-                  data-company-image="images/company/letters/spar-01.webp"
-                  data-image-title="Рекомендательное письмо: SPAR"
-                  aria-label="Открыть рекомендательное письмо: SPAR"
-                >
-                  <span class="recommend-card__document"><img
-                    src="images/company/letters/spar-01.webp"
-                    alt="Рекомендательное письмо: SPAR"
-                    loading="lazy"
-                    decoding="async"
-                    width="752"
-                    height="1024"
-                    srcset="
-                      images/company/letters/spar-01-480w.webp 480w,
-                      images/company/letters/spar-01.webp      752w
                     "
                     sizes="(min-width: 1440px) calc((100vw - 168px) / 5 - 34px), (min-width: 1200px) calc((100vw - 154px) / 4 - 34px), (min-width: 900px) calc((100vw - 140px) / 3 - 34px), (min-width: 768px) calc((100vw - 126px) / 2 - 34px), (min-width: 600px) calc((100vw - 46px) / 2 - 30px), 290px"
                   />

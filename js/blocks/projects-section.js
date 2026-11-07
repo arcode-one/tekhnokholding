@@ -1,4 +1,3 @@
-import initMapLayout from './company-map-layout.js';
 import initProjectPhotoParallax from './project-photo-parallax.js';
 
 export default function init(section) {
@@ -21,8 +20,6 @@ export default function init(section) {
   const moreWrap = section.querySelector('[data-projects-more-wrap]');
   const pageSize = 8;
   let shown = pageSize;
-  const mapSection = section.nextElementSibling;
-  if (!catalog && mapSection?.matches('[data-company-map]')) initMapLayout(mapSection);
   const reduce = matchMedia('(prefers-reduced-motion:reduce)');
   const hover = matchMedia('(hover:hover) and (pointer:fine)');
   const plurals = new Intl.PluralRules('ru');

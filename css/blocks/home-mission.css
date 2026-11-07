@@ -26,9 +26,7 @@
 .home-mission__aside h2,
 .home-mission__talents h3 {
   margin: 0;
-  font-size: clamp(18px, 1.2vw, 23px);
   font-weight: 600;
-  line-height: 1.25;
 }
 
 .home-mission__thumbnail {
@@ -37,11 +35,16 @@
   margin-top: clamp(8px, 1.4vw, 26px);
 }
 
+.home-mission__aside h2,
+.home-mission__talents h3,
 .home-mission__statement {
-  max-width: 48rem;
   font-size: clamp(25px, 2.1vw, 42px);
   line-height: 1.24;
   letter-spacing: -0.045em;
+}
+
+.home-mission__statement {
+  max-width: 48rem;
 }
 
 .home-mission__statement p,
@@ -93,7 +96,7 @@
 
 .home-values {
   padding-inline: var(--pad);
-  background: linear-gradient(var(--mission-surface) 50%, var(--color-white) 50%);
+  background: linear-gradient(var(--mission-surface) 65%, var(--color-white) 65%);
 }
 
 .home-values + .company-figures {
@@ -101,18 +104,20 @@
 }
 
 .home-values__card {
+  --values-panel-bg: var(--color-ink);
   position: relative;
   z-index: 1;
   display: grid;
   grid-template-columns: minmax(0, 68fr) minmax(0, 32fr);
   width: min(100%, clamp(560px, 44.7vw, 854px));
-  overflow: hidden;
-  border: 1px solid var(--color-mist);
-  background: var(--color-white);
 }
 
 .home-values__body {
   padding: clamp(16px, 1.35vw, 26px);
+  padding-block: clamp(26px, 2.4vw, 46px);
+  border: 1px solid var(--values-panel-bg);
+  background: var(--values-panel-bg);
+  color: var(--light);
 }
 
 .home-values__body h2 {
@@ -123,26 +128,53 @@
   letter-spacing: -0.055em;
 }
 
-.home-values__list {
-  padding: 0;
+.home-values__intro {
+  max-width: 53ch;
   margin: 0;
-  list-style: none;
+  font-size: clamp(15px, 1.1vw, 18px);
+  line-height: 1.5;
 }
 
-.home-values__list li {
-  display: grid;
-  grid-template-columns: 3ch 1fr;
-  gap: 10px;
-  align-items: baseline;
-  padding-block: 6px;
-  font-size: 15px;
-  line-height: 1.35;
+.home-values__link {
+  --button-bg: var(--color-white);
+  --button-text: var(--values-panel-bg);
+  --button-border: var(--color-white);
+  --button-hover-bg: var(--values-panel-bg);
+  --button-hover-text: var(--color-white);
+  --button-hover-border: var(--button-border);
+  height: 44px;
+  margin-top: 18px;
+  padding-inline: 20px;
+  font-size: 14px;
+  font-weight: 650;
 }
 
-.home-values__list li span {
-  color: var(--color-slate-alt);
-  font-size: 0.8em;
-  font-variant-numeric: tabular-nums;
+@media (min-width: 768px) {
+  .home-values__card {
+    --values-photo-offset-x: clamp(20px, 1.55vw, 30px);
+  }
+
+  .home-values__card::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    /* End the panel at the center of the offset photo. */
+    inset: 0 calc(16% - var(--values-photo-offset-x)) 0 calc(-1 * var(--pad));
+    background: var(--values-panel-bg);
+  }
+
+  .home-values__body {
+    border-color: transparent;
+    border-inline-start: 0;
+    padding-inline-start: 0;
+    background: transparent;
+  }
+
+  .home-values__media {
+    --values-photo-offset-y: clamp(32px, 2.5vw, 48px);
+    translate: var(--values-photo-offset-x)
+      calc(var(--values-photo-offset-y) * var(--values-photo-side, 1));
+  }
 }
 
 .home-mission__thumbnail,
@@ -162,7 +194,7 @@
 }
 
 .home-mission__thumbnail img {
-  object-position: 37% center;
+  object-position: 23% center;
 }
 
 .home-mission__thumbnail[data-parallax-active] img {
@@ -191,7 +223,14 @@
     text-indent: 0;
   }
 
+  .home-values__body {
+    margin-inline-start: calc(-1 * var(--pad));
+    padding-inline-start: var(--pad);
+    border-inline-start: 0;
+  }
+
   .home-values__media {
     aspect-ratio: 12 / 5;
+    margin: 16px 0 0 20px;
   }
 }

@@ -3,15 +3,10 @@ import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
 export default function init(section) {
   const grid = section.querySelector('[data-ui~=company-figures__grid]');
   const nextSection = section.closest('[data-ui~=roof-background]')?.nextElementSibling;
-  const coverSection = nextSection?.matches(
-    '[data-ui~=projects-section]:not([data-ui~=projects-section--catalog])',
-  )
-    ? nextSection
-    : null;
-  const coverSurface = coverSection?.querySelector('[data-ui~=projects-surface]');
-  const corner = coverSurface ? document.createElement('span') : null;
-  if (corner) {
-    const transition = document.createElement('span');
+  const coverSection = nextSection?.matches('[data-company-map]') ? nextSection : null;
+  const transition = coverSection ? document.createElement('span') : null;
+  const corner = transition ? document.createElement('span') : null;
+  if (transition) {
     const edge = document.createElement('span');
     transition.className = 'projects-transition';
     transition.setAttribute('aria-hidden', 'true');
@@ -137,16 +132,10 @@ export default function init(section) {
   }
 
   function measure() {
-    const overlapEnabled = !!coverSurface && !reducedMotion.matches;
-    section.classList.toggle('company-figures--overlap', overlapEnabled);
-    coverSection?.classList.toggle('projects-section--overlap', overlapEnabled);
-    section
-      .closest('[data-ui~=roof-background]')
-      ?.classList.toggle('roof-background--corner', overlapEnabled);
+    const overlapEnabled = !!transition && !reducedMotion.matches;
     grid.style.removeProperty('transform');
-    coverSurface?.style.removeProperty('transform');
-    if (corner) {
-      corner.hidden = !overlapEnabled;
+    if (transition) {
+      transition.hidden = !overlapEnabled;
       corner.style.removeProperty('transform');
     }
     viewport = window.innerHeight;
@@ -252,10 +241,12 @@ export default function init(section) {
     schedule();
   }, { rootMargin: '100px' });
   visibility.observe(section);
-  if (coverSurface) visibility.observe(coverSurface);
+  if (coverSection) visibility.observe(coverSection);
   window.addEventListener('scroll', schedule, { passive: true });
   window.addEventListener('resize', measure, { passive: true });
   reducedMotion.addEventListener('change', measure);
-  new ResizeObserver(measure).observe(section);
+  const sizes = new ResizeObserver(measure);
+  sizes.observe(section);
+  if (coverSection) sizes.observe(coverSection);
   if (document.fonts) document.fonts.ready.then(measure);
 }

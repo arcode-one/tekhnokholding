@@ -1,3 +1,9 @@
+@media (min-width: 1400px) {
+  .company-recommendations { --recommendation-columns: 6; }
+}
+@media (min-width: 1700px) {
+  .company-recommendations { --recommendation-columns: 7; }
+}
 @media (max-width: 1199px) {
   .company-recommendations { --recommendation-columns: 3; }
 }
@@ -9,8 +15,8 @@
   .company-recommendations__arrow { display: none; }
 }
 @media (max-width: 599px) {
-  .company-recommendations { --recommendation-card-width: min(320px, calc(100vw - 56px)); }
+  .company-recommendations { --recommendation-card-width: min(236px, calc(100cqw - 24px)); }
 }
 @media (max-height: 500px) {
-  .company-recommendations { --recommendation-step: 36px; padding-block: 48px 10px; gap: 12px; --recommendation-columns: 2; }
+  .company-recommendations { --recommendation-step: 36px; gap: 12px; }
 }

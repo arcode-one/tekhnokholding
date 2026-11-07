@@ -2,7 +2,7 @@
 // the scrollbar, and all scroll-based effects. Touch/keyboard remain native.
 export default function init() {
   if (new URLSearchParams(location.search).get('scroll') === 'native') return;
-  const sections = ['objects', 'map-objects', 'advantages', 'team', 'clients', 'contacts']
+  const sections = ['map-objects', 'objects', 'advantages', 'team', 'clients', 'contacts']
     .map((id) => document.getElementById(id)).filter(Boolean);
   if (sections.length < 2) return;
   const root = document.documentElement;

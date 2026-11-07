@@ -1,4 +1,5 @@
 .projects-transition {
+  --section-overlap: clamp(80px, 16svh, 160px);
   position: absolute;
   z-index: 2;
   top: 0;
@@ -13,8 +14,6 @@
   position: absolute;
   inset: 0;
 }
-
-.projects-section:not(.projects-section--overlap) > .projects-transition { display: none; }
 
 .projects-transition__edge::before {
   content: '';
@@ -36,4 +35,10 @@
   pointer-events: none;
   transition: none;
   will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .projects-transition {
+    --section-overlap: clamp(48px, 10svh, 80px);
+  }
 }

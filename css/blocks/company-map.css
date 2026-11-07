@@ -8,7 +8,7 @@
   --map-muted: #566269;
 
   padding-bottom: 72px;
-  background: var(--color-white);
+  background: var(--color-gray-light);
 }
 
 .company-map.company-map--viewport-fit {

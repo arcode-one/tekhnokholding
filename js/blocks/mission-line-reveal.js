@@ -25,7 +25,7 @@ function revealLines(paragraph, delay) {
   const original = [...paragraph.childNodes];
   const originalHeight = paragraph.offsetHeight;
   const fragment = document.createDocumentFragment();
-  const stagger = Math.min(64, 360 / Math.max(1, starts.length - 1));
+  const stagger = Math.min(105, 540 / Math.max(1, starts.length - 1));
 
   starts.forEach((start, index) => {
     const end = starts[index + 1];
@@ -63,7 +63,7 @@ function revealLines(paragraph, delay) {
   Promise.allSettled(animations.map((animation) => animation.finished)).then(() => {
     paragraph.replaceChildren(...original);
   });
-  return Math.min(220, starts.length * stagger);
+  return Math.min(320, starts.length * stagger);
 }
 
 export default function initMissionLineReveal(mission) {

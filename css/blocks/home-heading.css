@@ -31,6 +31,11 @@
   color: inherit;
 }
 
+.home-page .home-heading__muted {
+  --home-heading-indent: 2.7em;
+  margin-left: calc(var(--home-heading-indent) - 15px);
+}
+
 .home-page .company-team__intro {
   grid-template-columns: max-content minmax(0, 1fr);
   gap: clamp(32px, 4vw, 80px);

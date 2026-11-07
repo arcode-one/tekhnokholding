@@ -3,9 +3,11 @@ import initMissionLineReveal from './mission-line-reveal.js';
 
 function initValuesOverlap(section) {
   const card = section?.querySelector('.home-values__card');
-  if (!card) return;
+  const photo = card?.querySelector('.home-values__media');
+  if (!photo) return;
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const narrow = matchMedia('(max-width: 767px)');
   let visible = false;
   let frame = 0;
 
@@ -15,9 +17,14 @@ function initValuesOverlap(section) {
     const { top, height } = section.getBoundingClientRect();
     const center = top + height / 2;
     const progress = Math.max(-1, Math.min(1, (innerHeight / 2 - center) / (innerHeight * 0.4)));
-    const travel = Math.max(12, Math.min(innerWidth * 0.0225, 32));
-    const offset = Math.sin(progress * Math.PI / 2) * travel;
+    const travel = narrow.matches ? 6 : Math.min(innerWidth * 0.0225, 22);
+    const easedProgress = Math.sin(progress * Math.PI / 2);
+    const offset = easedProgress * travel;
+    // Cancel the parent's travel, then move the photo frame the other way.
+    const photoOffset = -offset - offset * 0.65;
     card.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
+    photo.style.transform = `translate3d(0, ${photoOffset.toFixed(2)}px, 0)`;
+    photo.style.setProperty('--values-photo-side', (-easedProgress).toFixed(4));
   }
 
   function schedule() {
@@ -35,8 +42,11 @@ function initValuesOverlap(section) {
   reduced.addEventListener('change', () => {
     cancelAnimationFrame(frame);
     frame = 0;
-    if (reduced.matches) card.style.removeProperty('transform');
-    else schedule();
+    if (reduced.matches) {
+      card.style.removeProperty('transform');
+      photo.style.removeProperty('transform');
+      photo.style.removeProperty('--values-photo-side');
+    } else schedule();
   });
 }
 
@@ -57,7 +67,7 @@ export default function init(home) {
 
   add(values, '#home-values-title', 'heading');
   add(values, '.home-values__media', 'photo', 55);
-  add(values, '.home-values__list li', 'text', (index) => 55 + index * 40);
+  add(values, '.home-values__intro, .home-values__link', 'text', (index) => 55 + index * 65);
 
   add(figures, '.company-figures__photo-inner', 'photo');
 
@@ -68,7 +78,7 @@ export default function init(home) {
 
   add(team, '#company-team-title', 'heading');
   add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
-  add(team, '.department-card', 'text', (index) => 55 + (index % 2) * 55);
+  add(team, '.company-team__department-list', 'rail', 110);
 
   add(clients, '#recommendations-title', 'heading');
   add(clients, '.company-recommendations__slider', 'rail', 55);

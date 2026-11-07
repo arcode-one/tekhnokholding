@@ -20,7 +20,7 @@
 
 .company-team__layout {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
   gap: var(--team-layout-gap);
   min-height: 0;
   margin-inline: var(--pad);
@@ -94,18 +94,55 @@
 }
 
 .company-team__departments {
+  --department-gap: clamp(10px, 1vw, 18px);
   display: grid;
-  grid-template-rows: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
   min-width: 0;
   min-height: 0;
 }
 
-.company-team__department-list { min-height: 0; }
+.company-team__department-controls {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 12px;
+}
 
-.company-team__department-grid {
+.company-team__department-controls .icon-btn {
+  width: 44px;
+  height: 44px;
+}
+
+.company-team__department-controls .icon-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+.company-carousel__rail.company-team__department-list {
+  scroll-padding-inline: 0;
+  outline-offset: -2px;
+}
+
+.company-carousel__track.company-team__department-track {
+  width: 100%;
+  min-height: 100%;
+  padding: 0;
+  gap: var(--department-gap);
+}
+
+.company-team__department-page {
   display: grid;
-  grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 18px);
-  height: 100%;
+  flex: 0 0 100%;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: var(--department-gap);
+}
+
+@media (pointer: coarse) {
+  .company-team__department-list { scroll-snap-type: x mandatory; }
+  .company-team__department-page { scroll-snap-align: start; }
 }

@@ -2,6 +2,7 @@ export default function init(container) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const openDuration = Number(container.dataset.accordionOpenMs) || 460;
   const closeDuration = Number(container.dataset.accordionCloseMs) || openDuration;
+  const easing = container.dataset.accordionEasing || 'cubic-bezier(0.22, 1, 0.36, 1)';
   const animateCopy = container.dataset.accordionCopyMotion !== 'none';
   const alignMode = container.dataset.accordionAlign;
   const overview = alignMode === 'overview' ? container.closest('.mission-overview') : null;
@@ -23,8 +24,9 @@ export default function init(container) {
     stopAlign();
     const anchor = expanded ? item.element : overview;
     if (!anchor) return;
+    const scrollMargin = parseFloat(getComputedStyle(item.element).scrollMarginTop) || 0;
     const offset = expanded
-      ? (overview ? parseFloat(getComputedStyle(item.element).scrollMarginTop) || 0 : (innerWidth < 768 ? 80 : 0))
+      ? Math.max(scrollMargin, !overview && innerWidth < 768 ? 80 : 0)
       : 0;
     const destination = () => {
       const top = anchor.getBoundingClientRect().top + scrollY;
@@ -87,18 +89,19 @@ export default function init(container) {
       settle(item);
       return;
     }
+    // Render newly opened content in its collapsed visual state before transitioning it.
+    if (!item.element.open) item.element.setAttribute('data-closing', '');
     item.element.open = true;
-    item.element.toggleAttribute('data-closing', !expanded);
-    item.element.removeAttribute('data-animating');
     const openHeight = item.summary.offsetHeight + item.body.offsetHeight;
     const end = expanded ? openHeight : item.summary.offsetHeight;
     item.element.style.setProperty('--service-open-height', `${openHeight}px`);
     item.element.setAttribute('data-animating', '');
+    item.element.toggleAttribute('data-closing', !expanded);
     item.element.style.height = `${start}px`;
     item.element.style.overflow = 'hidden';
     item.animation = item.element.animate({ height: [`${start}px`, `${end}px`] }, {
       duration: expanded ? openDuration : closeDuration,
-      easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+      easing,
     });
     if (expanded && animateCopy) item.copyAnimation = item.copy.animate({
       opacity: [0, 1], transform: ['translateY(18px)', 'translateY(0)'],

@@ -10,7 +10,7 @@
   border-radius: var(--trust-card-radius);
   overflow: hidden;
   background: color-mix(in srgb, var(--color-paper) 95%, var(--color-ink));
-  box-shadow: 0 1px 3px rgb(27 43 52 / 6%), 0 9px 19px -12px rgb(27 43 52 / 31%);
+  box-shadow: 0 1px 5px rgb(27 43 52 / 10%), 0 2px 13px rgb(27 43 52 / 14%);
   color: var(--color-ink);
   font-family: inherit;
   text-align: left;
@@ -42,13 +42,6 @@
   align-items: flex-start;
   min-width: 0;
   padding: clamp(13px, 1.15vw, 22px);
-}
-
-.advantage-card__icon {
-  flex: none;
-  width: clamp(26px, 2.1vw, 35px);
-  height: clamp(26px, 2.1vw, 35px);
-  margin-bottom: 6px;
 }
 
 .advantage-card__title {
@@ -116,7 +109,7 @@
 
 .advantage-card--quality .advantage-card__title,
 .advantage-card--warranty .advantage-card__title {
-  font-size: clamp(24px, 1.9vw, 34px);
+  font-size: var(--advantages-emphasis-size);
 }
 
 .advantage-card--quality .advantage-card__description { color: inherit; }

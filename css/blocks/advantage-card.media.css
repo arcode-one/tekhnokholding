@@ -5,18 +5,11 @@
   .advantage-card--warranty { min-height: clamp(174px, min(14vw, 28svh), 258px); }
 
   .advantage-card__copy { padding: clamp(11px, 1.5svh, 18px) clamp(13px, 1.15vw, 22px); }
-  .advantage-card__icon { width: clamp(23px, 3.3svh, 31px); height: clamp(23px, 3.3svh, 31px); }
   .advantage-card__description { margin-top: clamp(5px, 1svh, 9px); }
   .advantage-card__arrow { width: clamp(20px, 2.7svh, 25px); height: clamp(20px, 2.7svh, 25px); }
 
   .advantages-layout > .advantage-card:nth-child(n + 3) .advantage-card__copy {
     padding: clamp(10px, 1.4svh, 14px) clamp(12px, 1vw, 20px);
-  }
-
-  .advantages-layout > .advantage-card:nth-child(n + 3) .advantage-card__icon {
-    width: clamp(22px, 2.85svh, 27px);
-    height: clamp(22px, 2.85svh, 27px);
-    margin-bottom: 5px;
   }
 
   .advantages-layout > .advantage-card:nth-child(n + 3) .advantage-card__title {

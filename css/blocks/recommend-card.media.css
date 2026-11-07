@@ -1,14 +1,3 @@
 @media (max-width: 767px) {
   .recommend-card { gap: 12px; }
 }
-@media (max-height: 500px) and (min-width: 600px) {
-  .company-recommendations .company-carousel__track { display: flex; }
-  .recommend-card { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; padding: 8px; }
-  .recommend-card__project { grid-column: 1; grid-row: 1; }
-  .recommend-card__copy { grid-column: 2; grid-row: 1 / -1; padding: 2px; }
-  .recommend-card__letter { grid-column: 1; grid-row: 2; padding: 0 52px 0 0; gap: 8px; }
-  .recommend-card__document { height: min(100cqh, calc(100cqw / 0.72)); }
-  .recommend-card__open { right: 0; }
-  .recommend-card h3 { font-size: 15px; }
-  .recommend-card__copy > p { font-size: 12px; }
-}

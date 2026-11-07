@@ -1,3 +1,22 @@
+.home-photo-zoom {
+  position: absolute;
+  inset: 0;
+}
+
+.company-figures__photo-inner {
+  position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .home-photo-zoom {
+    transition: transform 640ms var(--ease-in-out);
+  }
+
+  :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo-inner):hover > .home-photo-zoom {
+    transform: scale(1.08);
+  }
+}
+
 @media screen and (prefers-reduced-motion: no-preference) {
   .home-page [data-home-enter] {
     --home-duration: 360ms;
@@ -26,7 +45,11 @@
 
   .home-mission__thumbnail { --home-photo-inset: 0 0 100% 0; }
   .home-values__media { --home-photo-inset: 44%; }
-  .company-figures__photo--roof .company-figures__photo-inner { --home-photo-inset: 0 0 0 100%; }
+  .company-figures__photo--roof .company-figures__photo-inner {
+    --home-photo-animation: home-once-photo-fade;
+    --home-photo-duration: 700ms;
+    --home-photo-start-scale: 1.04;
+  }
   .company-figures__photo--office .company-figures__photo-inner { --home-photo-inset: 0 100% 0 0; }
 
   .home-page [data-home-state='waiting'] { opacity: 0; }
@@ -42,7 +65,7 @@
 
   .home-mission__line > span {
     display: block;
-    animation: home-once-mission-line 600ms var(--ease-out) var(--mission-line-delay) both;
+    animation: home-once-mission-line 760ms var(--ease-out) var(--mission-line-delay) both;
   }
 
   .home-page [data-home-state='running'] {
@@ -50,7 +73,7 @@
   }
 
   .home-page [data-home-enter='photo'][data-home-state='running'] {
-    animation: home-once-photo var(--home-photo-duration, 540ms)
+    animation: var(--home-photo-animation, home-once-photo) var(--home-photo-duration, 540ms)
       var(--home-photo-easing, var(--ease-out)) var(--home-delay, 0ms) both;
   }
 
@@ -101,13 +124,18 @@
   to { opacity: 1; clip-path: inset(0); }
 }
 
+@keyframes home-once-photo-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 @keyframes home-once-photo-pullback {
-  from { scale: 1.1; }
+  from { scale: var(--home-photo-start-scale, 1.1); }
   to { scale: 1; }
 }
 
 @keyframes home-once-mission-line {
-  from { opacity: 0; transform: translateY(75%); }
+  from { opacity: 0; transform: translateY(48%); }
   to { opacity: 1; transform: none; }
 }
 
