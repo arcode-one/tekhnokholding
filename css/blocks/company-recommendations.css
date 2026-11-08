@@ -4,13 +4,14 @@
   --recommendation-columns: 5;
   --recommendation-gap: 14px;
   --recommendation-shadow-gutter: min(14px, var(--pad));
+  --recommendation-track-bottom: 26px;
   --recommendation-card-width: calc(
     (100cqw - (var(--recommendation-columns) - 1) * var(--recommendation-gap)) /
       var(--recommendation-columns)
   );
 
   display: grid;
-  gap: clamp(14px, 2.4dvh, 28px);
+  gap: calc((clamp(14px, 2.4dvh, 28px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
   padding-block: calc(var(--recommendation-step) + clamp(24px, 4vw, 56px)) clamp(16px, 3vw, 40px);
   background: var(--color-gray-light);
 }
@@ -93,7 +94,7 @@
   grid-template-rows: clamp(100px, 10vw, 124px) auto auto;
   column-gap: var(--recommendation-gap);
   row-gap: 8px;
-  padding-block: 10px 26px;
+  padding-block: 10px var(--recommendation-track-bottom);
   padding-inline: 0;
 }
 

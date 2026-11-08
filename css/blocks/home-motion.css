@@ -52,6 +52,12 @@
   }
   .company-figures__photo--office .company-figures__photo-inner { --home-photo-inset: 0 100% 0 0; }
 
+  .company-map__stage {
+    --home-photo-inset: 0 0 0 100%;
+    --home-photo-duration: 1000ms;
+    --home-photo-easing: var(--ease-in-out);
+  }
+
   .home-page [data-home-state='waiting'] { opacity: 0; }
 
   .home-mission [data-mission-lines-waiting] { opacity: 0; }
@@ -63,6 +69,8 @@
 
   .home-mission__line + .home-mission__line { text-indent: 0; }
 
+  .home-mission__line br { display: none; }
+
   .home-mission__line > span {
     display: block;
     animation: home-once-mission-line 760ms var(--ease-out) var(--mission-line-delay) both;
@@ -72,7 +80,7 @@
     animation: home-once-rise var(--home-duration) var(--ease-out) var(--home-delay, 0ms) both;
   }
 
-  .home-page [data-home-enter='photo'][data-home-state='running'] {
+  .home-page :is([data-home-enter='photo'], [data-home-enter='map'])[data-home-state='running'] {
     animation: var(--home-photo-animation, home-once-photo) var(--home-photo-duration, 540ms)
       var(--home-photo-easing, var(--ease-out)) var(--home-delay, 0ms) both;
   }

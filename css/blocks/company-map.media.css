@@ -1,3 +1,9 @@
+@media (min-width: 1100px) {
+  .company-map__stage {
+    height: calc(var(--map-stage-height) + 150px);
+  }
+}
+
 @media (min-width: 768px) and (max-width: 1099px) {
   .company-map__card,
   .company-map__list {
@@ -10,17 +16,12 @@
 }
 
 @media (max-width: 767px) {
-  .company-map.company-map--viewport-fit {
-    padding-bottom: 24px;
-  }
-
   .company-map--viewport-fit .company-heading {
-    margin-bottom: 24px;
+    margin-bottom: calc((24px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
   }
 
   .company-map__stage {
-    height: 76svh;
-    min-height: 560px;
+    --map-stage-height: max(560px, 76svh);
     margin-inline: 0;
   }
 

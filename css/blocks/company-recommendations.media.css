@@ -18,5 +18,8 @@
   .company-recommendations { --recommendation-card-width: min(236px, calc(100cqw - 24px)); }
 }
 @media (max-height: 500px) {
-  .company-recommendations { --recommendation-step: 36px; gap: 12px; }
+  .company-recommendations {
+    --recommendation-step: 36px;
+    gap: calc((12px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+  }
 }

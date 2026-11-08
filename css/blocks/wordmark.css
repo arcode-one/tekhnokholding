@@ -50,6 +50,39 @@
   transform: rotateY(-91deg);
 }
 
+.home-page {
+  --brand-strip-heading-offset: 0px;
+}
+
+.home-brand-strip {
+  overflow: clip;
+  padding-block: var(--home-section-space)
+    calc(var(--home-section-space) - var(--team-section-padding) + var(--brand-strip-heading-offset));
+  background: var(--color-gray-light);
+  color: var(--color-ink);
+}
+
+.home-brand-strip__track {
+  display: flex;
+  width: max-content;
+  gap: clamp(28px, 4vw, 72px);
+}
+
+.home-brand-strip__track svg {
+  display: block;
+  flex: none;
+  width: auto;
+  height: clamp(52px, 7.5vw, 148px);
+  fill: currentColor;
+}
+
+@media (max-width: 599px) and (prefers-reduced-motion: no-preference) {
+  .home-page {
+    /* Account for the larger optical offset on the reviews heading. */
+    --brand-strip-heading-offset: 9px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wordmark__l svg {
     transition: none;
@@ -58,4 +91,17 @@
   .wordmark.wordmark--flipped .wordmark__l svg {
     transform: none;
   }
+
+  .home-brand-strip__track {
+    width: auto;
+    justify-content: center;
+    padding-inline: var(--pad);
+  }
+
+  .home-brand-strip__track svg {
+    width: min(100%, 1800px);
+    height: auto;
+  }
+
+  .home-brand-strip__track svg:not(:first-child) { display: none; }
 }

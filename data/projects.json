@@ -1793,7 +1793,7 @@
   {
     "id": "thld-806ec1e3a9e9",
     "title": "Жилой 16 -ти этажный дом по ул. Чичерина",
-    "type": "Коммерческие",
+    "type": "Жилые",
     "yearStart": null,
     "yearEnd": null,
     "yearLabel": "",
@@ -2009,7 +2009,7 @@
   {
     "id": "thld-e4334b089931",
     "title": "Жилые дома по ул. Ш. Руставели, 1Б",
-    "type": "Коммерческие",
+    "type": "Жилые",
     "yearStart": null,
     "yearEnd": null,
     "yearLabel": "",
@@ -2496,7 +2496,7 @@
   {
     "id": "thld-89f9a5bcb81a",
     "title": "Кровля здания Якутской ГРЭС-2",
-    "type": "Коммерческие",
+    "type": "Производственные",
     "yearStart": null,
     "yearEnd": null,
     "yearLabel": "",
@@ -4101,7 +4101,7 @@
   {
     "id": "thld-9d50b071cba6",
     "title": "Таунхаус в п. Карпов пруд",
-    "type": "Коммерческие",
+    "type": "Жилые",
     "yearStart": null,
     "yearEnd": null,
     "yearLabel": "",
@@ -4614,7 +4614,7 @@
   {
     "id": "thld-26f9bf189996",
     "title": "Фасад корпуса №34 Индустриального парка СТАНКОМАШ",
-    "type": "Коммерческие",
+    "type": "Производственные",
     "yearStart": null,
     "yearEnd": null,
     "yearLabel": "",
@@ -4804,7 +4804,6 @@
     "cover": "images/projects/thumb-5b0e1076a42aec92f524.webp",
     "photos": [
       "images/projects/5b0e1076a42aec92f524.webp",
-      "images/projects/4bd114e3352b69c2754a.webp",
       "images/projects/c5bc77cde65c3554f7ac.webp",
       "images/projects/a81047b112424a72ced7.webp",
       "images/projects/0d07317bc10e759cf491.webp",

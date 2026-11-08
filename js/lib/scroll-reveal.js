@@ -7,6 +7,7 @@ export default function createScrollReveal(prefix, options = {}) {
   const enterKey = `${prefix}Enter`;
   const stateKey = `${prefix}State`;
   const delayProperty = `--${prefix}-delay`;
+  const threshold = options.threshold ?? 0;
   let lastScrollY = scrollY;
 
   function add(scope, selector, kind, delay = 0, trigger = null) {
@@ -56,14 +57,14 @@ export default function createScrollReveal(prefix, options = {}) {
     const movingBack = scrollY < lastScrollY;
     lastScrollY = scrollY;
     for (const entry of entries) {
-      if (!entry.isIntersecting) continue;
+      if (!entry.isIntersecting || entry.intersectionRatio < threshold) continue;
       observer.unobserve(entry.target);
       for (const element of groups.get(entry.target) || []) {
         if (pending.has(element))
           reveal(element, !movingBack && entry.boundingClientRect.top >= 0);
       }
     }
-  }, { rootMargin: options.rootMargin ?? '0px 0px -64px 0px', threshold: 0 });
+  }, { rootMargin: options.rootMargin ?? '0px 0px -64px 0px', threshold });
 
   function onAnimationEnd(event) {
     if (targets.has(event.target) && event.animationName.startsWith(`${prefix}-once-`))

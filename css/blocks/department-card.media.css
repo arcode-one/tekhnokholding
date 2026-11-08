@@ -1,13 +1,15 @@
 @media (max-width: 1199px) {
-  .department-card { min-height: 174px; }
+  .department-card { grid-template-columns: 88px minmax(0, 1fr); min-height: 102px; }
+  .department-card:nth-child(4n + 1),
+  .department-card:nth-child(4n + 4) { grid-column: span 7; }
+  .department-card:nth-child(4n + 2),
+  .department-card:nth-child(4n + 3) { grid-column: span 5; }
+  .department-card h3 { font-size: 18px; }
 }
 
 @media (max-width: 599px) {
-  .department-card {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    align-items: start;
-  }
-
-  .department-card__photo { height: auto; max-height: 156px; aspect-ratio: 4 / 3; }
+  .department-card:nth-child(n) { grid-column: 1 / -1; grid-template-columns: 64px minmax(0, 1fr); min-height: 86px; gap: 14px; }
+  .department-card:nth-child(odd) { margin-right: 20px; }
+  .department-card:nth-child(even) { margin-left: 20px; }
+  .department-card h3 { font-size: 16px; }
 }

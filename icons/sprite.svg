@@ -33,4 +33,18 @@
 <symbol id="layers" viewBox="0 0 24 24"><path d="m12 3 10 5-10 5L2 8l10-5Z"/><path d="m2 12 10 5 10-5M2 16l10 5 10-5"/></symbol>
 <symbol id="calendar-check" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 11h18m-12 5 2 2 4-4"/></symbol>
 <symbol id="star" viewBox="0 0 24 24"><path d="m12 3 2.78 5.63L21 9.54l-4.5 4.39 1.06 6.19L12 17.2l-5.56 2.92 1.06-6.19L3 9.54l6.22-.91L12 3Z"/></symbol>
+<symbol id="technoholding-wordmark" viewBox="0 0 1458.1 118">
+  <use href="#custom-0379bd1e7ad8" x="0" width="89.89" height="118" />
+  <use href="#custom-c385eee1723b" x="97.89" width="169.27" height="118" />
+  <use href="#custom-e9fb1fc7a676" x="275.16" width="97.18" height="118" />
+  <use href="#custom-436d0b4d925b" x="380.34" width="116.93" height="118" />
+  <use href="#custom-392268614cc2" x="505.27" width="225.89" height="118" />
+  <use href="#custom-5dfbfbdf04b8" x="739.16" width="95.39" height="118" />
+  <use href="#custom-d5e30afd61bb" x="842.55" width="111.98" height="118" />
+  <use href="#custom-b187c0bd4f64" x="962.53" width="101.08" height="118" />
+  <use href="#custom-54a2c6023249" x="1071.61" width="110.9" height="118" />
+  <use href="#custom-853d1a3589ba" x="1190.51" width="91.79" height="118" />
+  <use href="#custom-402965062cc0" x="1290.3" width="89.04" height="118" />
+  <use href="#custom-164ca6e2fe3e" x="1387.34" width="70.76" height="118" />
+</symbol>
 </svg>

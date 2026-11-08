@@ -1,17 +1,18 @@
 @media (min-width: 768px) and (max-width: 1279px) {
-  .advantages-layout { grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
-  .advantages-layout > .advantage-card { grid-column: span 3; }
-  .advantages-layout > :is(.advantage-card--quality, .advantage-card--warranty, .advantage-card--academy) {
-    grid-column: span 2;
-  }
+  .advantages-layout { gap: 16px; }
+  .advantages-layout__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .advantages-layout__row--featured { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 767px) {
-  .advantages-layout { grid-template-columns: minmax(0, 1fr); gap: 12px; }
-  .advantages-layout > .advantage-card { grid-column: auto; }
+  .advantages-layout { gap: 12px; }
+  .advantages-layout__row { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media (max-width: 420px) {
-  .advantages-rating { gap: 8px 15px; }
+  .advantages-rating { gap: 8px 12px; }
+  .advantages-rating__score { gap: 8px; }
+  .advantages-rating__stars { gap: 3px; }
+  .advantages-rating__star { width: 15px; height: 15px; }
   .advantages-rating__description { flex-basis: 100%; text-align: center; }
 }

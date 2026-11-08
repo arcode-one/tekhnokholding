@@ -1,3 +1,16 @@
+.home-page {
+  --home-heading-space-extra: clamp(8px, .85vw, 12px);
+  --home-heading-gap-scale: 1.44;
+  --home-heading-font-size: clamp(26px, min(5vw, 7dvh), 84px);
+  --home-project-heading-gap: calc((20px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+}
+
+@media (min-width: 1100px) and (min-height: 650px) and (max-height: 800px) {
+  .home-page {
+    --home-project-heading-gap: calc((12px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+  }
+}
+
 .home-page :is(.projects-heading, .company-heading, .company-team__intro) .home-heading,
 .catalog-page .projects-heading .home-heading {
   max-width: none;
@@ -17,7 +30,7 @@
   color: var(--color-ink);
 }
 
-.home-page .home-heading { font-size: clamp(26px, min(5vw, 7dvh), 84px); }
+.home-page .home-heading { font-size: var(--home-heading-font-size); }
 .catalog-page .projects-heading .home-heading { font-size: clamp(72px, 5vw, 96px); }
 
 .home-heading__muted {

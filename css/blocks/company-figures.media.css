@@ -4,7 +4,7 @@
   }
 
   .company-figures__grid {
-    aspect-ratio: 1808 / 1150;
+    --figures-grid-ratio: calc(1808 / 1150);
   }
 
   .company-figures__item--clients {
@@ -12,15 +12,13 @@
   }
 
   .company-figures__item dt {
-    font-size: 32px;
+    font-size: clamp(20px, 2.95cqw, 32px);
   }
 }
 
 @media (max-width: 767px) {
   .company-figures {
     --figures-edge-gap: 32px;
-
-    padding: 96px var(--pad);
   }
 
   .company-figures__title {

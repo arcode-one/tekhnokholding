@@ -15,7 +15,6 @@ export default function init(section) {
   const cameraPitch = () =>
     pitchButton.getAttribute('aria-pressed') === 'true' ? perspectivePitch : 0;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const mouse = matchMedia('(hover: hover) and (pointer: fine)');
   const compact = matchMedia('(max-width: 1099px)');
   const defaultCity = 'Челябинск';
   const defaultCenter = [61.4026, 55.18];
@@ -37,7 +36,6 @@ export default function init(section) {
   let activeGroup = null;
   let opener = null;
   let cardOpener = null;
-  let hoverTimer = 0;
   let gestureHintTimer = 0;
   section.dataset.mapState = 'waiting';
 
@@ -69,7 +67,6 @@ export default function init(section) {
   }
 
   function closePanels(restoreFocus = false) {
-    clearTimeout(hoverTimer);
     selected = '';
     activeGroup = null;
     card.hidden = true;
@@ -104,7 +101,6 @@ export default function init(section) {
   function showProject(id, { fromList = false, trigger = null, focus = false } = {}) {
     const record = records.find((item) => item.id === id);
     if (!record) return;
-    clearTimeout(hoverTimer);
     if (!fromList) {
       activeGroup = null;
       opener = trigger;
@@ -129,7 +125,6 @@ export default function init(section) {
   }
 
   function showGroup(group, focus = false) {
-    clearTimeout(hoverTimer);
     if (activeGroup !== group) {
       listItems.replaceChildren();
       group.records.forEach((record) => {
@@ -221,12 +216,6 @@ export default function init(section) {
         button.append(count);
       }
       const group = { key, button, records: items };
-      button.addEventListener('pointerenter', (event) => {
-        if (!mouse.matches || event.pointerType === 'touch' || map.isMoving()) return;
-        clearTimeout(hoverTimer);
-        hoverTimer = setTimeout(() => openMarker(group), 140);
-      });
-      button.addEventListener('pointerleave', () => clearTimeout(hoverTimer));
       button.addEventListener('click', (event) => {
         event.stopPropagation();
         openMarker(group, event.detail === 0);
@@ -367,7 +356,6 @@ export default function init(section) {
         'bottom-right',
       );
       view.querySelector('.maplibregl-ctrl-compass')?.classList.add('icon-btn');
-      map.on('movestart', () => clearTimeout(hoverTimer));
       map.on('cooperativegestureprevented', () => {
         clearTimeout(gestureHintTimer);
         view.classList.add('company-map__canvas--gesture-hint');
@@ -379,6 +367,7 @@ export default function init(section) {
       map.on('click', () => closePanels());
       map.on('error', (event) => {
         if (!section.dataset.mapReady) {
+          section.dataset.mapState = 'partial';
           status.hidden = false;
           status.textContent = 'Не удалось загрузить часть карты. Выберите объект в списке.';
         }

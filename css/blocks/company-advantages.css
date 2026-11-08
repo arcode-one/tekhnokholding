@@ -1,6 +1,6 @@
 .company-advantages {
   isolation: isolate;
-  padding-block: clamp(24px, 4svh, 48px);
+  padding-block: var(--home-section-space);
   background: var(--color-paper);
   color: var(--color-ink);
 }
@@ -8,7 +8,8 @@
 .company-heading.company-advantages__intro {
   --trust-corner-width: min(31vw, 420px);
   position: relative;
-  margin: 0 var(--pad) clamp(22px, 3svh, 36px);
+  /* Match the visible filter labels, which sit inside their button boxes. */
+  margin: 0 var(--pad) calc(var(--home-project-heading-gap) + 18px);
   padding-inline-end: calc(var(--trust-corner-width) + clamp(16px, 2vw, 40px));
 }
 
@@ -29,17 +30,8 @@
 }
 
 @media (min-width: 1280px) {
-  .company-advantages {
-    display: flex;
-    min-height: 100svh;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-block: clamp(24px, 4.8svh, 52px) clamp(14px, 2.4svh, 24px);
-  }
-
   .company-heading.company-advantages__intro {
     --trust-corner-width: min(46vw, 880px);
-    margin-bottom: clamp(16px, 2.5svh, 24px);
   }
 }
 
@@ -48,7 +40,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
-    margin-bottom: 18px;
     padding-inline-end: 0;
   }
 

@@ -50,11 +50,48 @@ function initValuesOverlap(section) {
   });
 }
 
+function initBrandStrip(strip) {
+  if (!strip) return;
+  const track = strip.querySelector('.home-brand-strip__track');
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let visible = false;
+  let frame = 0;
+
+  function render() {
+    frame = 0;
+    const { top, height, width } = strip.getBoundingClientRect();
+    const progress = Math.max(0, Math.min(1, (innerHeight - top) / (innerHeight + height)));
+    const travel = Math.max(0, Math.min(width * 0.65, track.offsetWidth - width));
+    track.style.transform = `translateX(${(-progress * travel).toFixed(2)}px)`;
+  }
+
+  function schedule() {
+    if (visible && !reduced.matches && !document.hidden && !frame)
+      frame = requestAnimationFrame(render);
+  }
+
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    schedule();
+  }).observe(strip);
+
+  addEventListener('scroll', schedule, { passive: true });
+  addEventListener('resize', schedule);
+  document.addEventListener('visibilitychange', schedule);
+  reduced.addEventListener('change', () => {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    if (reduced.matches) track.style.removeProperty('transform');
+    else schedule();
+  });
+}
+
 export default function init(home) {
   if (!('IntersectionObserver' in window)) return;
   const mission = home.querySelector('#mission');
   const values = home.querySelector('#values');
   const figures = home.querySelector('#figures');
+  const map = home.querySelector('#map-objects');
   const projects = home.querySelector('#objects');
   const team = home.querySelector('#team');
   const clients = home.querySelector('#clients');
@@ -84,6 +121,12 @@ export default function init(home) {
   add(clients, '.company-recommendations__slider', 'rail', 55);
 
   start();
+  if (map) {
+    const mapReveal = createScrollReveal('home', { rootMargin: '0px', threshold: 0.3 });
+    mapReveal.add(map, '.company-map__stage', 'map');
+    mapReveal.start();
+  }
   initMissionLineReveal(mission);
   initValuesOverlap(values);
+  initBrandStrip(home.querySelector('.home-brand-strip'));
 }
