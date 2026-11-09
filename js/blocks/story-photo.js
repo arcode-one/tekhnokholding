@@ -8,12 +8,14 @@ const reduced = matchMedia('(prefers-reduced-motion: reduce)');
 const touchHome = document.body.classList.contains('home-page--touch');
 let frame = 0;
 let geometryDirty = true;
+let viewportHeight = innerHeight;
 
 function render(timestamp) {
   frame = 0;
   if (reduced.matches || document.hidden) return;
   // Read stationary frames together before writing image transforms.
-  const { y, height: viewport } = readMotionViewport(timestamp);
+  const { y, height } = readMotionViewport(timestamp);
+  const viewport = touchHome ? viewportHeight : height;
   const positions = [...visible].map((outer) => {
     const photo = photos.get(outer);
     if (!touchHome || geometryDirty || !photo.rect) {
@@ -39,11 +41,13 @@ function render(timestamp) {
       const contentHeight = Math.min(rect.height, rect.width * naturalHeight / naturalWidth) * scale;
       travel = Math.min(travel, Math.max(0, (rect.height - contentHeight) / 2 - 1));
     }
-    if (!motion.set(photo.image, { transform: [
+    // Keep the same crop underneath the native effect, including its first
+    // pending frame and offscreen cancellation. Never expose scale(1).
+    photo.image.style.transform = `translate3d(0, ${(progress * travel).toFixed(2)}px, 0) scale(${scale})`;
+    motion.set(photo.image, { transform: [
       `translate3d(0,${travel}px,0) scale(${scale})`,
       `translate3d(0,${-travel}px,0) scale(${scale})`,
-    ] }, rect.top - viewport, rect.top + rect.height))
-      photo.image.style.transform = `translate3d(0, ${(progress * travel).toFixed(2)}px, 0) scale(${scale})`;
+    ] }, rect.top - viewport, rect.top + rect.height);
   });
 }
 
@@ -62,10 +66,14 @@ const visibility = new IntersectionObserver((entries) => {
       motion.remove(photos.get(target).image);
     }
   });
-  refresh();
+  // A sibling entering/leaving does not invalidate already visible frames.
+  queueRender();
 }, { rootMargin: '80px' });
 function refresh() {
   geometryDirty = true;
+  queueRender();
+}
+function queueRender() {
   if (visible.size && !reduced.matches && !document.hidden && !frame)
     frame = requestAnimationFrame(render);
 }
@@ -74,7 +82,10 @@ const resize = new ResizeObserver(refresh);
 if (touchHome) resize.observe(document.body);
 
 addEventListener('scroll', schedule, { passive: true });
-onMotionResize(refresh);
+onMotionResize(() => {
+  viewportHeight = innerHeight;
+  refresh();
+});
 addEventListener('pageshow', refresh);
 document.addEventListener('visibilitychange', schedule);
 reduced.addEventListener('change', () => {

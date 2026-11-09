@@ -119,7 +119,7 @@ export default function init() {
   if (!touchHero) window.addEventListener('scroll', updateScrollState, { passive: true });
 
   dockBurger.addEventListener('click', () => {
-    if (!dockMenu.isDesktop()) setMenu(menu.hidden);
+    if (!dockMenu.isDesktop()) setMenu(!menuOpen, { opener: dockBurger });
   });
 
   // ---------- Полноэкранное меню (планшет и телефон) ----------
@@ -129,7 +129,7 @@ export default function init() {
   menu.insertAdjacentHTML('afterbegin', `
     <div class="menu__header">
       <a class="menu__logo" href="${home}" aria-label="Технохолдинг, на главную">
-        <img src="${menuLogo}" alt="" width="1292" height="430" loading="lazy">
+        <img src="${menuLogo}" alt="" width="1292" height="430">
       </a>
       <div class="header__messengers">
         <button class="icon-btn menu__close" type="button" aria-label="Закрыть меню">
@@ -144,18 +144,58 @@ export default function init() {
   });
 
   let menuOpener;
-  function setMenu(open) {
-    if (open) menuOpener = document.activeElement;
-    menu.hidden = !open;
+  let menuOpen = false;
+  let closeTimer = 0;
+  let restoreMenuFocus = true;
+  const reduceMenuMotion = matchMedia('(prefers-reduced-motion: reduce)');
+  menu.querySelectorAll('.menu__nav > a').forEach((link, index) => {
+    link.style.setProperty('--menu-order', index);
+  });
+
+  function finishMenuClose() {
+    if (menuOpen || menu.hidden) return;
+    clearTimeout(closeTimer);
+    menu.hidden = true;
+    root.classList.remove('site--locked');
+    document.dispatchEvent(new Event('site:scroll-lock-change'));
+    if (restoreMenuFocus && menuOpener?.isConnected)
+      menuOpener.focus({ preventScroll: true });
+  }
+
+  function setMenu(open, { restoreFocus = true, opener } = {}) {
+    if (open === menuOpen) return;
+    clearTimeout(closeTimer);
+    menuOpen = open;
+    restoreMenuFocus = restoreFocus;
+    if (open && menu.hidden) {
+      menuOpener = opener || document.activeElement;
+      menu.dataset.menuState = 'closed';
+      menu.hidden = false;
+      menu.scrollTop = 0;
+      // Establish the initial state once; subsequent interruptions reverse the
+      // CSS transition from its current position rather than restarting it.
+      if (!reduceMenuMotion.matches) void menu.offsetWidth;
+    }
+    menu.inert = !open;
+    menu.dataset.menuState = open ? 'open' : 'closed';
     [burger, dockBurger].forEach((btn) => {
       btn.setAttribute('aria-expanded', String(open));
       btn.setAttribute('aria-label', open ? 'Закрыть меню' : 'Открыть меню');
     });
-    root.classList.toggle('site--locked', open);
-    document.dispatchEvent(new Event('site:scroll-lock-change'));
-    if (open) menu.querySelector('.menu__nav a')?.focus({ preventScroll: true });
-    else if (menuOpener?.isConnected) menuOpener.focus({ preventScroll: true });
+    if (open) {
+      root.classList.add('site--locked');
+      document.dispatchEvent(new Event('site:scroll-lock-change'));
+      menu.querySelector('.menu__nav a')?.focus({ preventScroll: true });
+    } else if (reduceMenuMotion.matches) finishMenuClose();
+    else closeTimer = setTimeout(finishMenuClose, 280);
   }
+
+  menu.addEventListener('transitionend', (event) => {
+    if (event.target === menu && event.propertyName === 'opacity') finishMenuClose();
+  });
+  reduceMenuMotion.addEventListener('change', () => {
+    if (reduceMenuMotion.matches) finishMenuClose();
+  });
 
   // The menu is a modal surface on touch widths; keep keyboard focus inside.
   menu.addEventListener('keydown', (event) => {
@@ -172,17 +212,15 @@ export default function init() {
     }
   });
 
-  burger.addEventListener('click', () => setMenu(menu.hidden));
+  burger.addEventListener('click', () => setMenu(!menuOpen, { opener: burger }));
 
   menu.addEventListener('click', (e) => {
-    if (e.target.closest('a, .menu__close')) setMenu(false);
+    if (e.target.closest('a, .menu__close'))
+      setMenu(false, { restoreFocus: !e.target.closest('a') });
   });
 
   document.addEventListener('keydown', (e) => {
     if (e.key !== 'Escape') return;
-    if (!menu.hidden) {
-      setMenu(false);
-      (scrolled ? dockBurger : burger).focus();
-    }
+    if (menuOpen) setMenu(false);
   });
 }

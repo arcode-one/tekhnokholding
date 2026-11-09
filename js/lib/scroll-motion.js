@@ -32,7 +32,20 @@ export function createScrollMotion() {
       if (!element || !motion.enabled || end <= start) return false;
       try {
         timeline ??= new ScrollTimeline({ source: document.scrollingElement, axis: 'block' });
-        animations.get(element)?.cancel();
+        const saved = animations.get(element);
+        const framesKey = JSON.stringify(keyframes);
+        const optionsKey = JSON.stringify(options);
+        if (saved) {
+          // Keep the same animation attached. Cancel + animate briefly exposes
+          // the unscaled image while WebKit resolves the new scroll timeline.
+          if (saved.framesKey !== framesKey) saved.animation.effect.setKeyframes(keyframes);
+          if (saved.start !== start) saved.animation.rangeStart = `${start}px`;
+          if (saved.end !== end) saved.animation.rangeEnd = `${end}px`;
+          if (saved.optionsKey !== optionsKey)
+            saved.animation.effect.updateTiming({ easing: options.easing || 'linear' });
+          Object.assign(saved, { framesKey, optionsKey, start, end });
+          return true;
+        }
         const animation = element.animate(keyframes, {
           timeline, rangeStart: `${start}px`, rangeEnd: `${end}px`,
           fill: 'both', easing: 'linear', ...options,
@@ -41,7 +54,7 @@ export function createScrollMotion() {
           animation.cancel();
           throw new Error('Pseudo-element animation is not supported');
         }
-        animations.set(element, animation);
+        animations.set(element, { animation, framesKey, optionsKey, start, end });
         return true;
       } catch {
         // Older / partial implementations retain the existing rAF renderer.
@@ -51,11 +64,11 @@ export function createScrollMotion() {
       }
     },
     remove(element) {
-      animations.get(element)?.cancel();
+      animations.get(element)?.animation.cancel();
       animations.delete(element);
     },
     clear() {
-      animations.forEach((animation) => animation.cancel());
+      animations.forEach(({ animation }) => animation.cancel());
       animations.clear();
     },
   };
