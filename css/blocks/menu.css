@@ -10,16 +10,51 @@
 .menu {
   position: fixed;
   inset: 0;
-  z-index: 15;
+  z-index: var(--layer-header);
   padding: calc(var(--header-h) + 32px) var(--pad) 40px;
-  background: var(--bg);
+  background: color-mix(in srgb, var(--color-gray-light) 94%, var(--color-ink));
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
+  gap: 32px;
   justify-content: space-between;
 }
 
 .menu[hidden] {
   display: none;
+}
+
+.menu__header {
+  position: absolute;
+  inset: 0 var(--pad) auto;
+  height: var(--header-h);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu__logo img {
+  width: auto;
+  height: 56px;
+}
+
+.menu__close {
+  --button-bg: var(--color-ink);
+  --button-text: var(--color-white);
+  --button-hover-bg: transparent;
+  --button-hover-text: var(--color-ink);
+}
+
+.menu__close svg {
+  fill: none;
+  stroke: currentcolor;
+  stroke-width: 2;
+}
+
+@media (max-width: 767px) {
+  .menu__logo img {
+    height: 42px;
+  }
 }
 
 .menu__nav {

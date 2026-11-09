@@ -41,6 +41,24 @@
   .company-team__department-grid { height: auto; grid-template-rows: repeat(4, auto); }
 }
 
+@media (600px <= width < 1200px) {
+  .company-team__features { align-items: stretch; }
+
+  .company-team__feature > a {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    height: 100%;
+  }
+
+  .company-team__feature .company-team__feature-label {
+    position: static;
+    padding-block: 10px;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    text-shadow: none;
+  }
+}
+
 @media (max-width: 599px) {
   .company-team { gap: calc((20px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale)); }
   .company-team__features { grid-template-columns: minmax(0, 1fr); gap: 12px; }

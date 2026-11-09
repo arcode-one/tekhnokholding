@@ -70,7 +70,7 @@
   .site-footer__documents {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    flex: 1;
+    justify-items: start;
   }
 
   .site-footer__brand {

@@ -227,8 +227,10 @@
   }
 
   .home-values__media {
+    width: min(80%, 380px);
     aspect-ratio: 12 / 5;
-    margin: 16px 0 0 20px;
+    justify-self: end;
+    margin-block-start: 16px;
   }
 }
 

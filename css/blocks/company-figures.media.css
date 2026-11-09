@@ -27,23 +27,29 @@
   }
 
   .company-figures__grid {
+    container-type: inline-size;
     display: grid;
     aspect-ratio: auto;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 52px 20px;
+    grid-template-columns: minmax(0, 58fr) minmax(0, 42fr);
+    grid-template-areas:
+      "area office"
+      "roof projects"
+      "cities clients";
+    gap: clamp(36px, 7vw, 52px) clamp(12px, 3vw, 20px);
+    align-items: start;
   }
 
   .company-figures__item {
     position: static;
     width: auto;
-    gap: 18px;
+    gap: clamp(6px, 2vw, 14px);
     align-items: flex-start;
   }
 
   .company-figures__item dt {
     padding: 0;
     align-self: flex-start;
-    font-size: 24px;
+    font-size: clamp(14px, 3.55cqw, 24px);
   }
 
   .company-figures__photo {
@@ -51,48 +57,49 @@
   }
 
   .company-figures__item--area {
-    grid-column: 1 / -1;
+    grid-area: area;
+    justify-self: start;
+  }
+
+  .company-figures__item--area dt {
+    align-self: flex-end;
   }
 
   .company-figures__item--projects {
-    grid-column: 2;
-    grid-row: 3;
-    padding-top: 0;
+    grid-area: projects;
+    align-self: center;
   }
 
   .company-figures__item--clients {
-    grid-column: 1;
-    grid-row: 4;
+    grid-area: clients;
+    justify-self: end;
   }
 
   .company-figures__item--cities {
-    grid-column: 2;
-    grid-row: 4;
-    padding-top: 40px;
+    grid-area: cities;
+    justify-self: end;
+    margin-block-start: clamp(10px, 3vw, 24px);
   }
 
   .company-figures__photo--roof {
-    grid-column: 1 / -1;
-    grid-row: 2;
-    width: 82%;
+    grid-area: roof;
+    width: 100%;
     max-width: 280px;
-    margin-top: 40px;
   }
 
   .company-figures__photo--office {
-    grid-column: 1;
-    grid-row: 3;
-    width: 90%;
+    grid-area: office;
+    justify-self: end;
+    width: 100%;
     max-width: 140px;
-    margin-top: 0;
   }
 
   .company-figures__item dd {
-    font-size: clamp(44px, 14vw, 96px);
+    font-size: clamp(34px, 11.4cqw, 80px);
   }
 
   .company-figures__item--area dd {
-    font-size: clamp(48px, 12.5vw, 92px);
+    font-size: clamp(26px, 10cqw, 70px);
   }
 
   .company-figures--overlap {

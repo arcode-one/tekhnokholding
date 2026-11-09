@@ -104,6 +104,19 @@ export default function init() {
 
   // ---------- Полноэкранное меню (планшет и телефон) ----------
 
+  const menuLogo = new URL('../../icons/logo-dark-compact.svg', import.meta.url);
+  const home = header.querySelector('.header__logo').href;
+  menu.insertAdjacentHTML('afterbegin', `
+    <div class="menu__header">
+      <a class="menu__logo" href="${home}" aria-label="Технохолдинг, на главную">
+        <img src="${menuLogo}" alt="" width="1292" height="430" loading="lazy">
+      </a>
+      <button class="icon-btn menu__close" type="button" aria-label="Закрыть меню">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+  `);
+
   let menuOpener;
   function setMenu(open) {
     if (open) menuOpener = document.activeElement;
@@ -114,7 +127,7 @@ export default function init() {
     });
     root.classList.toggle('site--locked', open);
     document.dispatchEvent(new Event('site:scroll-lock-change'));
-    if (open) menu.querySelector('a,button')?.focus({ preventScroll: true });
+    if (open) menu.querySelector('.menu__nav a')?.focus({ preventScroll: true });
     else if (menuOpener?.isConnected) menuOpener.focus({ preventScroll: true });
   }
 
@@ -136,7 +149,7 @@ export default function init() {
   burger.addEventListener('click', () => setMenu(menu.hidden));
 
   menu.addEventListener('click', (e) => {
-    if (e.target.closest('a')) setMenu(false);
+    if (e.target.closest('a, .menu__close')) setMenu(false);
   });
 
   document.addEventListener('keydown', (e) => {
