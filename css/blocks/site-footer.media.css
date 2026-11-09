@@ -70,7 +70,10 @@
   .site-footer__documents {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    justify-items: start;
+  }
+
+  .site-footer__documents .pill {
+    min-inline-size: 0;
   }
 
   .site-footer__brand {

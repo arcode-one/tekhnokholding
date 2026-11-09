@@ -16,6 +16,14 @@
 }
 
 @media (max-width: 767px) {
+  .company-map {
+    --map-corner-height: clamp(48px, 10svh, 80px);
+  }
+
+  .company-map:has(> .projects-transition:not([hidden])) {
+    padding-block-start: max(var(--home-section-space), calc(var(--map-corner-height) + 32px));
+  }
+
   .company-map--viewport-fit .company-heading {
     margin-bottom: calc((24px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
   }

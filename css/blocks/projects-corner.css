@@ -39,6 +39,6 @@
 
 @media (max-width: 767px) {
   .projects-transition {
-    --section-overlap: clamp(48px, 10svh, 80px);
+    --section-overlap: var(--map-corner-height);
   }
 }

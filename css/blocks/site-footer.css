@@ -226,6 +226,7 @@
 }
 
 .site-footer__documents .pill {
+  min-inline-size: 13em;
   justify-content: center;
 }
 

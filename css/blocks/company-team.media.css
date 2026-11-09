@@ -8,7 +8,7 @@
     /* Keep the photos and cards sized independently of the section spacing. */
     --team-photo-height: calc((
       100svh - 2 * var(--team-viewport-inset) - clamp(0px, 15svh - 90px, 34px) - 2 * var(--home-heading-font-size) -
-      var(--team-heading-gap) - var(--team-photo-gap) - var(--team-caption-space, 0px) - 2px
+      var(--team-heading-gap) - var(--team-photo-gap) - var(--team-photo-fit-offset, 0px) - 2px
     ) / 2);
     --team-photo-width: max(300px, calc(var(--team-photo-height) * var(--team-photo-ratio)));
 
@@ -22,15 +22,7 @@
 }
 
 @media (width < 1500px) or (height < 740px) {
-  .company-team__layout { --team-caption-space: 72px; }
-
-  .company-team__feature--1 .company-team__feature-label {
-    position: static;
-    padding-block: 10px;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    text-shadow: none;
-  }
+  .company-team__layout { --team-photo-fit-offset: 72px; }
 }
 
 @media (max-width: 1199px) {
@@ -39,24 +31,6 @@
   .company-team__features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .company-team__feature-label { padding: 30px 18px 12px; font-size: 19px; }
   .company-team__department-grid { height: auto; grid-template-rows: repeat(4, auto); }
-}
-
-@media (600px <= width < 1200px) {
-  .company-team__features { align-items: stretch; }
-
-  .company-team__feature > a {
-    display: grid;
-    grid-template-rows: auto 1fr;
-    height: 100%;
-  }
-
-  .company-team__feature .company-team__feature-label {
-    position: static;
-    padding-block: 10px;
-    background: var(--color-paper);
-    color: var(--color-ink);
-    text-shadow: none;
-  }
 }
 
 @media (max-width: 599px) {
