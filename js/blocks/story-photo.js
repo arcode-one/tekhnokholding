@@ -2,20 +2,30 @@
 const photos = new Map();
 const visible = new Set();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+const touchHome = document.body.classList.contains('home-page--touch');
 let frame = 0;
+let geometryDirty = true;
 
 function render() {
   frame = 0;
   if (reduced.matches || document.hidden) return;
   // Read stationary frames together before writing image transforms.
-  const positions = [...visible].map((outer) => ({
-    photo: photos.get(outer),
-    rect: outer.getBoundingClientRect(),
-  }));
-  positions.forEach(({ photo, rect }) => {
+  const y = scrollY;
+  const viewport = innerHeight;
+  const positions = [...visible].map((outer) => {
+    const photo = photos.get(outer);
+    if (!touchHome || geometryDirty || !photo.rect) {
+      const { top, width, height } = outer.getBoundingClientRect();
+      photo.rect = { top: top + y, width, height };
+    }
+    return photo;
+  });
+  geometryDirty = false;
+  positions.forEach((photo) => {
+    const { rect } = photo;
     if (!rect.height) return;
     const progress = Math.max(-1, Math.min(1,
-      (rect.top + rect.height / 2 - innerHeight / 2) / ((innerHeight + rect.height) / 2),
+      (rect.top - y + rect.height / 2 - viewport / 2) / ((viewport + rect.height) / 2),
     ));
     let travel = rect.height * photo.travel;
     let scale = 1 + photo.travel * 2 + 0.007;
@@ -38,16 +48,24 @@ function schedule() {
 
 const visibility = new IntersectionObserver((entries) => {
   entries.forEach(({ target, isIntersecting }) => {
-    if (isIntersecting) visible.add(target);
-    else visible.delete(target);
+    if (isIntersecting) {
+      visible.add(target);
+      photos.get(target).rect = null;
+    } else visible.delete(target);
   });
   schedule();
 }, { rootMargin: '80px' });
-const resize = new ResizeObserver(schedule);
+function refresh() {
+  geometryDirty = true;
+  schedule();
+}
+
+const resize = new ResizeObserver(refresh);
+if (touchHome) resize.observe(document.body);
 
 addEventListener('scroll', schedule, { passive: true });
-addEventListener('resize', schedule, { passive: true });
-addEventListener('pageshow', schedule);
+addEventListener('resize', refresh, { passive: true });
+addEventListener('pageshow', refresh);
 document.addEventListener('visibilitychange', schedule);
 reduced.addEventListener('change', () => {
   cancelAnimationFrame(frame);
@@ -55,7 +73,7 @@ reduced.addEventListener('change', () => {
   photos.forEach(({ image }) => image.style.removeProperty('transform'));
   schedule();
 });
-document.fonts?.ready.then(schedule);
+document.fonts?.ready.then(refresh);
 
 export default function init(outer) {
   const image = outer.querySelector('img');

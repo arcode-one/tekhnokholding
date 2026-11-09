@@ -212,6 +212,11 @@
   filter: blur(clamp(12px, 1.5vw, 28px));
 }
 
+.home-page--touch .hero-gold__ring::after {
+  /* The radial gradient already has a soft edge. */
+  filter: none;
+}
+
 .hero-gold__ring svg {
   position: relative;
   z-index: 1;

@@ -137,6 +137,11 @@
   to { opacity: 1; }
 }
 
+.home-page--touch :is([data-home-enter='photo'], [data-home-enter='map']) {
+  --home-photo-animation: home-once-photo-fade;
+  --home-photo-duration: 420ms;
+}
+
 @keyframes home-once-photo-pullback {
   from { scale: var(--home-photo-start-scale, 1.1); }
   to { scale: 1; }

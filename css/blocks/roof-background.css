@@ -1,8 +1,9 @@
 .roof-background {
+  --roof-fallback: #333b43;
   position: relative;
   isolation: isolate;
   overflow: clip;
-  background: #333b43;
+  background: var(--roof-fallback);
 }
 
 .roof-background__media {

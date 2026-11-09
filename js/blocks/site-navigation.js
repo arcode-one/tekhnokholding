@@ -4,7 +4,7 @@ import restoreReloadPosition from '../lib/reload-position.js';
 export default function init() {
   const root = document.documentElement;
   const header = document.querySelector('.header');
-  const wordmark = document.querySelector('body:not(.home-page--static) [data-ui~=wordmark]');
+  const wordmark = document.querySelector('[data-ui~=wordmark]');
   const burger = document.querySelector('[data-ui~=header__burger]');
   const menu = document.querySelector('[data-mobile-menu]');
   const dock = document.querySelector('[data-ui~=dock]');

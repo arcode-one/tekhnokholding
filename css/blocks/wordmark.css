@@ -87,7 +87,7 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse) {
+@media (prefers-reduced-motion: reduce) {
   .home-brand-strip__track {
     width: auto;
     justify-content: center;

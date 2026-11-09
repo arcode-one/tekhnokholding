@@ -6,7 +6,7 @@ export default function init(section) {
   const cards = [...group.children];
   const headings = cards.map((card) => card.querySelector('.project-card__heading'));
   const photoFirst = section.classList.contains('projects-section--photo-first');
-  const staticHome = section.closest('.home-page--static') !== null;
+  const touchHome = section.closest('.home-page--touch') !== null;
   const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
   const types = [...section.querySelectorAll('[data-project-type]')];
   const count = section.querySelector('[data-projects-count]');
@@ -41,7 +41,7 @@ export default function init(section) {
     moved = false,
     manualUntil = 0;
   let cardSizeKey = '';
-  const refreshPhotoParallax = staticHome ? () => {} : initProjectPhotoParallax(section);
+  const refreshPhotoParallax = initProjectPhotoParallax(section);
 
   function syncCardHeights(force = false) {
     if (!rail.clientWidth) return;
@@ -114,7 +114,7 @@ export default function init(section) {
   }
   function wake() {
     clearTimeout(resumeTimer);
-    if (!frame && !catalog && !staticHome) frame = requestAnimationFrame(tick);
+    if (!frame && !catalog) frame = requestAnimationFrame(tick);
   }
   function updateArrows() {
     const room = rail.scrollWidth - rail.clientWidth;
@@ -161,7 +161,6 @@ export default function init(section) {
     loopDistance = 0;
     if (
       !catalog &&
-      !staticHome &&
       !reduce.matches &&
       filtered.length > 1 &&
       rail.clientWidth > 0 &&
@@ -262,6 +261,14 @@ export default function init(section) {
   prev?.addEventListener('click', () => nudge(-1));
   next?.addEventListener('click', () => nudge(1));
   if (!catalog) {
+    if (touchHome) addEventListener('scroll', () => {
+      if (!visible || document.hidden || reduce.matches) return;
+      cancelAnimationFrame(frame);
+      frame = lastTime = speed = 0;
+      manualUntil = Math.max(manualUntil, performance.now() + 220);
+      clearTimeout(resumeTimer);
+      resumeTimer = setTimeout(wake, manualUntil - performance.now());
+    }, { passive: true });
     rail.addEventListener('pointerenter', () => {
       if (hover.matches) {
         hovered = true;

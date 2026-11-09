@@ -56,13 +56,19 @@ function initBrandStrip(strip) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let visible = false;
   let frame = 0;
+  let geometry;
 
   function render() {
     frame = 0;
-    const { top, height, width } = strip.getBoundingClientRect();
-    const progress = Math.max(0, Math.min(1, (innerHeight - top) / (innerHeight + height)));
-    const travel = Math.max(0, Math.min(width * 0.65, track.offsetWidth - width));
-    track.style.transform = `translateX(${(-progress * travel).toFixed(2)}px)`;
+    const y = scrollY;
+    if (!geometry) {
+      const { top, height, width } = strip.getBoundingClientRect();
+      const travel = Math.max(0, Math.min(width * 0.65, track.offsetWidth - width));
+      geometry = { top: top + y, height, travel };
+    }
+    const { top, height, travel } = geometry;
+    const progress = Math.max(0, Math.min(1, (innerHeight - top + y) / (innerHeight + height)));
+    track.style.transform = `translate3d(${(-progress * travel).toFixed(2)}px, 0, 0)`;
   }
 
   function schedule() {
@@ -70,13 +76,23 @@ function initBrandStrip(strip) {
       frame = requestAnimationFrame(render);
   }
 
+  function refresh() {
+    geometry = undefined;
+    schedule();
+  }
+
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    schedule();
+    if (visible) refresh();
   }).observe(strip);
 
+  const sizes = new ResizeObserver(refresh);
+  sizes.observe(strip);
+  sizes.observe(track);
+  sizes.observe(document.body);
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', schedule);
+  addEventListener('resize', refresh, { passive: true });
+  addEventListener('pageshow', refresh);
   document.addEventListener('visibilitychange', schedule);
   reduced.addEventListener('change', () => {
     cancelAnimationFrame(frame);

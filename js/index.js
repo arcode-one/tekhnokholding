@@ -4,32 +4,31 @@ import textRoll from './blocks/text-roll.js';
 
 const enhancements = [];
 const enhance = (...args) => enhancements.push(loadBlocks(...args));
-const staticHome = document.body.matches('.home-page') &&
+const touchHome = document.body.matches('.home-page') &&
   matchMedia('(hover: none) and (pointer: coarse)').matches;
-if (staticHome) document.body.classList.add('home-page--static');
-const enhanceMotion = (...args) => {
-  if (!staticHome) enhance(...args);
-};
+if (touchHome) document.body.classList.add('home-page--touch');
 mount(document.documentElement, 'navigation', navigation);
 mount(document.documentElement, 'text-roll', textRoll);
-enhanceMotion('html', 'wheel-scroll', () => import('./blocks/wheel-scroll.js'));
-enhanceMotion('html', 'scrollbar', () => import('./blocks/site-scrollbar.js'));
-enhanceMotion('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
-enhanceMotion('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
+if (!touchHome) {
+  enhance('html', 'wheel-scroll', () => import('./blocks/wheel-scroll.js'));
+  enhance('html', 'scrollbar', () => import('./blocks/site-scrollbar.js'));
+}
+enhance('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
+enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
 enhance('[data-projects]', 'projects', () => import('./blocks/projects-section.js'));
 enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js'));
 enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-carousel.js'));
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
-enhanceMotion('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
-enhanceMotion('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
-enhanceMotion('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
-enhanceMotion('[data-architecture-parallax]', 'architecture-parallax', () => import('./blocks/architecture-parallax.js'));
+enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
+enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
+enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
+enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('./blocks/architecture-parallax.js'));
 
-enhanceMotion('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
+enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
 enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.js'));
 enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
-enhanceMotion('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
+enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 
 enhance('[data-ui~="quality-page"]', 'quality', () => import('./blocks/quality.js'));
 enhance('[data-privacy-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));

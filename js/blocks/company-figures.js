@@ -17,6 +17,7 @@ export default function init(section) {
     coverSection.prepend(transition);
   }
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const touchHome = section.closest('.home-page--touch') !== null;
   const COUNT_DURATION = 2000;
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
@@ -51,9 +52,14 @@ export default function init(section) {
     if (!counter || counter.started) return;
     counter.started = true;
     const start = performance.now();
+    let lastPaint = -Infinity;
     const tick = (now) => {
       const t = Math.min(1, (now - start) / COUNT_DURATION);
-      counter.num.textContent = counter.format(Math.round(counter.target * easeOutCubic(t)));
+      if (t === 1 || !touchHome || now - lastPaint >= 32) {
+        const value = counter.format(Math.round(counter.target * easeOutCubic(t)));
+        if (counter.num.textContent !== value) counter.num.textContent = value;
+        lastPaint = now;
+      }
       counter.frame = t < 1 ? requestAnimationFrame(tick) : 0;
     };
     counter.frame = requestAnimationFrame(tick);
@@ -93,7 +99,10 @@ export default function init(section) {
     // Каждый пиксель прохода границы через окно сразу меняет положение угла.
     // Без стартового порога, easing и дополнительного сглаживания после скролла.
     const progress = clamp((y - coverTop + viewport) / viewport, 0, 1);
-    corner.style.transform = `translate3d(0, ${(-coverDistance * progress).toFixed(2)}px, 0)`;
+    const offset = -coverDistance * progress;
+    const ratio = devicePixelRatio || 1;
+    const aligned = touchHome ? Math.round(offset * ratio) / ratio : offset;
+    corner.style.transform = `translate3d(0, ${aligned.toFixed(2)}px, 0)`;
   }
 
   function update() {
@@ -108,7 +117,11 @@ export default function init(section) {
         const triggerLine = Math.max(viewport - item.revealInset, reachableLine);
         if (top < triggerLine) {
           item.revealed = true;
-          startCount(item.counter);
+          if (touchHome && item.counter && top + item.height <= 0) {
+            item.counter.num.textContent = item.counter.format(item.counter.target);
+          } else {
+            startCount(item.counter);
+          }
         }
       }
     });

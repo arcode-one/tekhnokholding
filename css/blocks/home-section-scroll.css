@@ -71,39 +71,21 @@
   background: var(--color-gray-light);
 }
 
-.home-page--static main {
+.home-page--touch main,
+.home-page--touch .roof-background {
   background: var(--color-white);
 }
 
-.home-page--static .home-section-step {
-  display: none;
+.home-page--touch .roof-background__media {
+  background: var(--roof-fallback);
 }
 
-/* Paint each step with its section background to avoid a composited seam. */
-.home-page--static #map-objects {
-  background: linear-gradient(var(--color-white), var(--color-white))
-    top right / 50% clamp(48px, 10svh, 80px) no-repeat var(--color-gray-light);
-}
-
-.home-page--static #objects {
-  background: linear-gradient(var(--color-paper), var(--color-paper))
-    bottom right / 66% var(--home-trust-step-height) no-repeat var(--projects-surface);
-}
-
-.home-page--static #team {
-  background: linear-gradient(var(--color-paper), var(--color-paper))
-    top right / 47% var(--home-team-step-height) no-repeat var(--color-white);
-}
-
-.home-page--static .roof-background__viewport {
+.home-page--touch .roof-background__viewport {
   position: absolute;
   inset: 0;
   height: 100%;
 }
 
-.home-page--static :is(
-  .roof-background__image, .hero-gold__flare, .hero-gold__divider, .hero-gold__divider-glow,
-  .hero-gold__ring, .hero-gold__ring svg, .company-figures__photo, .company-figures__photo img
-) {
-  will-change: auto;
+.home-page--touch .home-section-step::before {
+  transform: translateY(var(--section-step-offset, 0px));
 }
