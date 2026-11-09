@@ -1,4 +1,7 @@
+import { createScrollMotion, readMotionViewport, sampleMotion } from '../lib/scroll-motion.js';
+
 export default function init(scene) {
+  const motion = createScrollMotion();
   const hero = scene.querySelector('[data-ui~=hero]') ?? scene;
   const image = scene.querySelector('[data-ui~=roof-background__image]');
   const copy = scene.querySelector('[data-ui~=hero__content]');
@@ -27,10 +30,10 @@ export default function init(scene) {
   let lastSplitProgress;
   let zeroOrbit;
 
-  function update() {
+  function update(timestamp) {
     frame = 0;
-    if (reducedMotion.matches || !geometry) return;
-    const y = window.scrollY;
+    if (reducedMotion.matches || !geometry || motion.enabled) return;
+    const { y } = readMotionViewport(timestamp);
     const { top, imageHeight, viewport, leftShift, rightShift, useTransform } = geometry;
     // Фото не увеличено: при скролле оно отстаёт от экрана на 30% (уходит медленнее текста).
     // Освобождающийся верх при этом уже за пределами экрана, а низ обрезает слой хиро
@@ -81,12 +84,13 @@ export default function init(scene) {
   }
 
   function scheduleUpdate() {
-    if (!frame && visible && !document.hidden && !reducedMotion.matches)
+    if (!motion.enabled && !frame && visible && !document.hidden && !reducedMotion.matches)
       frame = requestAnimationFrame(update);
   }
 
   function measure() {
     measureFrame = 0;
+    motion.clear();
     lastSplitProgress = undefined;
     image.style.removeProperty('transform');
     if (dividerGlow) dividerGlow.style.removeProperty('transform');
@@ -142,6 +146,26 @@ export default function init(scene) {
         0,
         box.right + mobileInset - Math.max(right.right, buttonRight?.right ?? right.right),
       );
+    }
+    if (motion.enabled) {
+      const { top, viewport, imageHeight, leftShift, rightShift } = geometry;
+      const end = top + viewport * SPLIT_DISTANCE;
+      motion.set(image, { transform: ['translate3d(0,0,0)', `translate3d(0,${imageHeight * .3}px,0)`] }, top, top + imageHeight);
+      [split.left, split.buttonLeft].forEach((el) => motion.set(el,
+        sampleMotion((p) => ({ transform: `translate3d(${leftShift * sineInOut(p)}px,0,0)` })), top, end));
+      [split.right, split.buttonRight].forEach((el) => motion.set(el,
+        sampleMotion((p) => ({ transform: `translate3d(${rightShift * sineInOut(p)}px,0,0)` })), top, end));
+      motion.set(split.divider, sampleMotion((p) => ({ opacity: 1 - sineInOut(p) })), top, end);
+      motion.set(split.ring, sampleMotion((p) => ({
+        transform: `scale(${1 + sineInOut(p) * .35},${1 + sineInOut(p) * .1})`,
+        opacity: 1 - sineInOut(p),
+      })), top, end);
+      motion.set(sideArcs, sampleMotion((p) => ({ opacity: (1 - p) ** 2 })), top, top + Math.min(64, viewport * .08));
+      motion.set(oneSpark, { transform: ['translate3d(0,0,0)', `translate3d(0,${-geometry.oneSparkTravel}px,0)`] }, top, end);
+      motion.set(dividerGlow, { transform: ['translate3d(0,0,0)', `translate3d(0,${-geometry.glowTravel}px,0)`] }, top, end);
+      if (zeroOrbit.length) motion.set(zeroSpark, zeroOrbit.map(({ x, y }) => ({
+        transform: `translate3d(${(x - 182) * geometry.zeroScale}px,${(y - 160) * geometry.zeroScale}px,0)`,
+      })), top, end);
     }
     update();
   }

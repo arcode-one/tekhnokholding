@@ -37,16 +37,36 @@ export default function init() {
   const hero = wordmark?.closest('[data-ui~=hero]');
   let heroBottom = 0;
   let heroHeight = 0;
+  let heroTop = 0;
+  let viewportHeight = window.innerHeight;
+  let heroScrollObserver;
+  const touchHero = hero && document.body.classList.contains('home-page--touch');
 
   function measureHero() {
     if (!hero) return;
     heroHeight = hero.offsetHeight;
     heroBottom = hero.getBoundingClientRect().bottom + window.scrollY;
+    heroTop = heroBottom - heroHeight;
+    viewportHeight = window.innerHeight;
+    if (touchHero) {
+      heroScrollObserver?.disconnect();
+      // Observer geometry arrives from layout without synchronous scroll reads.
+      // Outside the hero the header needs no per-frame work at all.
+      const steps = Math.max(1, Math.ceil(heroHeight / 12));
+      heroScrollObserver = new IntersectionObserver(([entry]) => {
+        updateScrollState(heroTop - entry.boundingClientRect.top);
+      }, {
+        rootMargin: `0px 0px ${heroHeight}px 0px`,
+        threshold: Array.from({ length: steps + 1 }, (_, index) => index / steps),
+      });
+      heroScrollObserver.observe(hero);
+    }
   }
   measureHero();
   if (hero) new ResizeObserver(measureHero).observe(hero);
 
   function updateWordmark(y) {
+    const wasHidden = wordmarkHidden;
     const delta = y - previousScrollY;
     previousScrollY = y;
     if (Math.abs(delta) < 0.1) return;
@@ -59,20 +79,21 @@ export default function init() {
     // Вниз даём сначала немного пройти по хиро. Вверх раскрываем буквы,
     // когда нижняя часть хиро уже заняла четверть экрана, а не только у верха.
     const hideAfter = Math.max(90, heroHeight * 0.12);
-    const returningToHero = heroBottom - y >= window.innerHeight * 0.25;
+    const returningToHero = heroBottom - y >= viewportHeight * 0.25;
     if (!wordmarkHidden && direction > 0 && y > hideAfter && travel > 70) {
       wordmarkHidden = true;
     } else if (wordmarkHidden && ((direction < 0 && travel > 16 && returningToHero) || y <= 10)) {
       wordmarkHidden = false;
     }
-    wordmark.classList.toggle('wordmark--flipped', wordmarkHidden);
+    if (wasHidden !== wordmarkHidden)
+      wordmark.classList.toggle('wordmark--flipped', wordmarkHidden);
   }
 
   // Буквы и шапка имеют независимые пороги. Ориентируемся на реальный
   // сглаженный скролл, а не на первый импульс колёсика.
-  function updateScrollState() {
+  function updateScrollState(position) {
     if (!root.classList.contains('site--loaded')) return;
-    const y = window.scrollY;
+    const y = typeof position === 'number' ? position : window.scrollY;
     updateWordmark(y);
     let isScrolled = scrolled;
     if (scrolled) {
@@ -95,7 +116,7 @@ export default function init() {
     root.classList.toggle('site--scrolled', scrolled);
   }
 
-  window.addEventListener('scroll', updateScrollState, { passive: true });
+  if (!touchHero) window.addEventListener('scroll', updateScrollState, { passive: true });
 
   dockBurger.addEventListener('click', () => {
     if (!dockMenu.isDesktop()) setMenu(menu.hidden);

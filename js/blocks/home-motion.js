@@ -1,5 +1,6 @@
 import createScrollReveal from '../lib/scroll-reveal.js';
 import initMissionLineReveal from './mission-line-reveal.js';
+import { createScrollMotion, onMotionResize, readMotionViewport, sampleMotion } from '../lib/scroll-motion.js';
 
 function initValuesOverlap(section) {
   const card = section?.querySelector('.home-values__card');
@@ -8,37 +9,59 @@ function initValuesOverlap(section) {
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const narrow = matchMedia('(max-width: 767px)');
+  const motion = createScrollMotion();
+  let geometry;
   let visible = false;
   let frame = 0;
 
-  function render() {
+  function render(timestamp) {
     frame = 0;
+    const { y, height: viewport } = readMotionViewport(timestamp);
     // The stationary section keeps the scroll progress independent of the card's offset.
-    const { top, height } = section.getBoundingClientRect();
+    if (!geometry) {
+      const { top, height } = section.getBoundingClientRect();
+      geometry = { top: top + y, height };
+    }
+    const { height } = geometry;
+    const top = geometry.top - y;
     const center = top + height / 2;
-    const progress = Math.max(-1, Math.min(1, (innerHeight / 2 - center) / (innerHeight * 0.4)));
+    const progress = Math.max(-1, Math.min(1, (viewport / 2 - center) / (viewport * 0.4)));
     const travel = narrow.matches ? 6 : Math.min(innerWidth * 0.0225, 22);
     const easedProgress = Math.sin(progress * Math.PI / 2);
     const offset = easedProgress * travel;
+    if (motion.enabled && narrow.matches) {
+      const start = geometry.top + height / 2 - viewport * .9;
+      const end = start + viewport * .8;
+      motion.set(card, sampleMotion((p) => ({ transform: `translate3d(0,${-Math.cos(p * Math.PI) * travel}px,0)` })), start, end);
+      motion.set(photo, sampleMotion((p) => ({ transform: `translate3d(0,${Math.cos(p * Math.PI) * travel * 1.65}px,0)` })), start, end);
+      return;
+    }
     // Cancel the parent's travel, then move the photo frame the other way.
     const photoOffset = -offset - offset * 0.65;
     card.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
     photo.style.transform = `translate3d(0, ${photoOffset.toFixed(2)}px, 0)`;
-    photo.style.setProperty('--values-photo-side', (-easedProgress).toFixed(4));
+    if (!narrow.matches) photo.style.setProperty('--values-photo-side', (-easedProgress).toFixed(4));
   }
 
   function schedule() {
-    if (visible && !reduced.matches && !frame) frame = requestAnimationFrame(render);
+    if (!(motion.enabled && narrow.matches) && visible && !reduced.matches && !frame) frame = requestAnimationFrame(render);
+  }
+
+  function refresh() {
+    geometry = undefined;
+    motion.clear();
+    if (!reduced.matches) render();
   }
 
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
-    schedule();
+    if (visible) refresh();
   }, { rootMargin: '64px 0px' }).observe(section);
 
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', schedule);
-  addEventListener('pageshow', schedule);
+  onMotionResize(refresh);
+  new ResizeObserver(refresh).observe(section);
+  addEventListener('pageshow', refresh);
   reduced.addEventListener('change', () => {
     cancelAnimationFrame(frame);
     frame = 0;
@@ -46,7 +69,7 @@ function initValuesOverlap(section) {
       card.style.removeProperty('transform');
       photo.style.removeProperty('transform');
       photo.style.removeProperty('--values-photo-side');
-    } else schedule();
+    } else refresh();
   });
 }
 
@@ -54,31 +77,33 @@ function initBrandStrip(strip) {
   if (!strip) return;
   const track = strip.querySelector('.home-brand-strip__track');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const motion = createScrollMotion();
   let visible = false;
   let frame = 0;
   let geometry;
 
-  function render() {
+  function render(timestamp) {
     frame = 0;
-    const y = scrollY;
+    const { y, height: viewport } = readMotionViewport(timestamp);
     if (!geometry) {
       const { top, height, width } = strip.getBoundingClientRect();
       const travel = Math.max(0, Math.min(width * 0.65, track.offsetWidth - width));
       geometry = { top: top + y, height, travel };
     }
     const { top, height, travel } = geometry;
-    const progress = Math.max(0, Math.min(1, (innerHeight - top + y) / (innerHeight + height)));
+    if (motion.set(track, { transform: ['translate3d(0,0,0)', `translate3d(${-travel}px,0,0)`] }, top - viewport, top + height)) return;
+    const progress = Math.max(0, Math.min(1, (viewport - top + y) / (viewport + height)));
     track.style.transform = `translate3d(${(-progress * travel).toFixed(2)}px, 0, 0)`;
   }
 
   function schedule() {
-    if (visible && !reduced.matches && !document.hidden && !frame)
+    if (!motion.enabled && visible && !reduced.matches && !document.hidden && !frame)
       frame = requestAnimationFrame(render);
   }
 
   function refresh() {
     geometry = undefined;
-    schedule();
+    if (visible && !reduced.matches && !frame) frame = requestAnimationFrame(render);
   }
 
   new IntersectionObserver(([entry]) => {
@@ -91,14 +116,14 @@ function initBrandStrip(strip) {
   sizes.observe(track);
   sizes.observe(document.body);
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', refresh, { passive: true });
+  onMotionResize(refresh);
   addEventListener('pageshow', refresh);
   document.addEventListener('visibilitychange', schedule);
   reduced.addEventListener('change', () => {
     cancelAnimationFrame(frame);
     frame = 0;
     if (reduced.matches) track.style.removeProperty('transform');
-    else schedule();
+    else refresh();
   });
 }
 

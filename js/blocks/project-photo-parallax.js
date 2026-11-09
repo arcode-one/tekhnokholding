@@ -1,4 +1,7 @@
+import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
+
 export default function initProjectPhotoParallax(section) {
+  const motion = createScrollMotion();
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const photos = new Map();
   const visible = new Set();
@@ -6,23 +9,28 @@ export default function initProjectPhotoParallax(section) {
   let measureFrame = 0;
   let viewport = window.innerHeight;
 
-  function paint(photo) {
+  function paint(photo, y = scrollY) {
+    const travel = photo.height * .16;
+    if (motion.set(photo.image, { transform: [
+      `translate3d(0,${-travel}px,0) scale(1.34)`, `translate3d(0,${travel}px,0) scale(1.34)`,
+    ] }, photo.top - viewport, photo.top + photo.height)) return;
     const progress = Math.max(0, Math.min(
-      1, (viewport - photo.top + window.scrollY) / (viewport + photo.height),
+      1, (viewport - photo.top + y) / (viewport + photo.height),
     ));
     // Тот же внутренний ход и запас изображения, что в company-figures.
     const offset = (progress - 0.5) * photo.height * 0.32;
     photo.image.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0) scale(1.34)`;
   }
 
-  function update() {
+  function update(timestamp) {
     frame = 0;
     if (reducedMotion.matches) return;
-    visible.forEach((element) => paint(photos.get(element)));
+    const { y } = readMotionViewport(timestamp);
+    visible.forEach((element) => paint(photos.get(element), y));
   }
 
   function schedule() {
-    if (!frame && visible.size && !reducedMotion.matches) frame = requestAnimationFrame(update);
+    if (!motion.enabled && !frame && visible.size && !reducedMotion.matches) frame = requestAnimationFrame(update);
   }
 
   const observer = new IntersectionObserver((entries) => {
@@ -35,6 +43,7 @@ export default function initProjectPhotoParallax(section) {
         paint(photo);
       } else {
         visible.delete(target);
+        motion.remove(photo.image);
         target.classList.remove('project-card__photo--parallax-visible');
         photo.image.style.removeProperty('transform');
       }
@@ -43,6 +52,7 @@ export default function initProjectPhotoParallax(section) {
 
   function measure() {
     measureFrame = 0;
+    motion.clear();
     observer.disconnect();
     photos.forEach(({ image }, element) => {
       element.classList.remove('project-card__photo--parallax', 'project-card__photo--parallax-visible');
@@ -71,7 +81,7 @@ export default function initProjectPhotoParallax(section) {
   }
 
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', refresh, { passive: true });
+  onMotionResize(refresh);
   reducedMotion.addEventListener('change', refresh);
   new ResizeObserver(refresh).observe(section);
   document.fonts.ready.then(refresh);

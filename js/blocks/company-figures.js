@@ -1,6 +1,8 @@
 import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
+import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 export default function init(section) {
+  const motion = createScrollMotion();
   const grid = section.querySelector('[data-ui~=company-figures__grid]');
   const nextSection = section.closest('[data-ui~=roof-background]')?.nextElementSibling;
   const coverSection = nextSection?.matches('[data-company-map]') ? nextSection : null;
@@ -85,6 +87,7 @@ export default function init(section) {
     image: outer.querySelector('img'),
   }));
   let frame = 0;
+  let measureFrame = 0;
   const visibleSections = new Set();
   let viewport = 0;
   let maxScroll = 0;
@@ -105,10 +108,10 @@ export default function init(section) {
     corner.style.transform = `translate3d(0, ${aligned.toFixed(2)}px, 0)`;
   }
 
-  function update() {
+  function update(timestamp) {
     frame = 0;
     if (reducedMotion.matches) return;
-    const y = window.scrollY;
+    const { y } = readMotionViewport(timestamp);
     reveals.forEach((item) => {
       const top = item.top - y;
       if (!item.revealed) {
@@ -126,6 +129,7 @@ export default function init(section) {
       }
     });
     // Рамки сближаются со своими цифрами, внутренний параллакс сохраняется.
+    if (motion.enabled) return;
     photos.forEach((photo) => {
       const frameProgress = clamp(
         (y - photo.scrollStart) / (photo.scrollEnd - photo.scrollStart),
@@ -140,11 +144,14 @@ export default function init(section) {
   }
 
   function schedule() {
+    if (motion.enabled && reveals.every((item) => item.revealed)) return;
     if (!frame && visibleSections.size && !document.hidden && !reducedMotion.matches)
       frame = requestAnimationFrame(update);
   }
 
   function measure() {
+    measureFrame = 0;
+    motion.clear();
     const overlapEnabled = !!transition && !reducedMotion.matches;
     grid.style.removeProperty('transform');
     if (transition) {
@@ -242,7 +249,24 @@ export default function init(section) {
         : clamp(photo.endOffset, 0, travel);
       photo.startOffset = clamp(photo.startOffset, mobile ? -24 : -64, 0);
     });
+    if (motion.enabled) {
+      photos.forEach((photo) => {
+        motion.set(photo.outer, { transform: [
+          `translate3d(0,${photo.startOffset}px,0)`, `translate3d(0,${photo.endOffset}px,0)`,
+        ] }, photo.scrollStart, photo.scrollEnd);
+        motion.set(photo.image, { transform: [
+          `translate3d(0,${-photo.height * .16}px,0) scale(1.34)`,
+          `translate3d(0,${photo.height * .16}px,0) scale(1.34)`,
+        ] }, photo.top - viewport, photo.top + photo.height);
+      });
+      if (coverDistance) motion.set(corner, { transform: ['translate3d(0,0,0)', `translate3d(0,${-coverDistance}px,0)`] },
+        coverTop - viewport, coverTop, { easing: `steps(${Math.max(1, Math.round(coverDistance * (devicePixelRatio || 1)))}, end)` });
+    }
     update();
+  }
+
+  function scheduleMeasure() {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
   }
 
   measure();
@@ -256,10 +280,10 @@ export default function init(section) {
   visibility.observe(section);
   if (coverSection) visibility.observe(coverSection);
   window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', measure, { passive: true });
-  reducedMotion.addEventListener('change', measure);
-  const sizes = new ResizeObserver(measure);
+  onMotionResize(scheduleMeasure);
+  reducedMotion.addEventListener('change', scheduleMeasure);
+  const sizes = new ResizeObserver(scheduleMeasure);
   sizes.observe(section);
   if (coverSection) sizes.observe(coverSection);
-  if (document.fonts) document.fonts.ready.then(measure);
+  if (document.fonts) document.fonts.ready.then(scheduleMeasure);
 }

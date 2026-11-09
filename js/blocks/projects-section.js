@@ -34,6 +34,7 @@ export default function init(section) {
     lastWrittenScroll = 0;
   let loopGroup = null,
     loopDistance = 0;
+  let scrollRoom = 0;
   let visible = false,
     hovered = false,
     focused = false;
@@ -41,6 +42,7 @@ export default function init(section) {
     moved = false,
     manualUntil = 0;
   let cardSizeKey = '';
+  let resizeFrame = 0;
   const refreshPhotoParallax = initProjectPhotoParallax(section);
 
   function syncCardHeights(force = false) {
@@ -93,7 +95,7 @@ export default function init(section) {
       if (Math.abs(rail.scrollLeft - lastWrittenScroll) > 1) autoPosition = rail.scrollLeft;
       autoPosition += speed * dt;
       if (target && autoPosition >= loopDistance) autoPosition %= loopDistance;
-      autoPosition = Math.max(0, Math.min(rail.scrollWidth - rail.clientWidth, autoPosition));
+      autoPosition = Math.max(0, Math.min(scrollRoom, autoPosition));
       rail.scrollLeft = autoPosition;
       lastWrittenScroll = rail.scrollLeft;
     }
@@ -190,6 +192,7 @@ export default function init(section) {
       watchPhotos(loopGroup);
     }
     rail.scrollLeft = position;
+    scrollRoom = Math.max(0, rail.scrollWidth - rail.clientWidth);
     autoPosition = rail.scrollLeft;
     lastWrittenScroll = rail.scrollLeft;
     refreshPhotoParallax();
@@ -366,9 +369,13 @@ export default function init(section) {
     wake();
   });
   new ResizeObserver(() => {
-    syncCardHeights();
-    syncLoop();
-    wake();
+    if (resizeFrame) return;
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = 0;
+      syncCardHeights();
+      syncLoop();
+      wake();
+    });
   }).observe(rail);
   syncCardHeights();
   document.fonts.ready.then(() => {

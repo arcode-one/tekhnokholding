@@ -16,6 +16,7 @@ export default function init(section) {
     pitchButton.getAttribute('aria-pressed') === 'true' ? perspectivePitch : 0;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const compact = matchMedia('(max-width: 1099px)');
+  const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
   const defaultCity = 'Челябинск';
   const defaultCenter = [61.4026, 55.18];
   const overviewZoom = () => (view.clientWidth < 600 ? 9.2 : view.clientWidth < 900 ? 10 : 10.4);
@@ -319,10 +320,19 @@ export default function init(section) {
         };
       });
       section.dataset.mapState = 'assets';
+      if (touch) {
+        // Download first, execute only after a pause. Otherwise a slow response
+        // can parse MapLibre in the middle of the next swipe.
+        const script = await fetch(section.dataset.mapScript, { cache: 'force-cache' });
+        if (!script.ok) throw new Error('Map library unavailable');
+        await script.arrayBuffer();
+        await new Promise(whenScrollRests);
+      }
       await Promise.all([
         load(section.dataset.mapStyle, 'css'),
         load(section.dataset.mapScript, 'js'),
       ]);
+      if (touch) await new Promise(whenScrollRests);
       const initialBounds = boundsFor(records.filter((record) => record.city === defaultCity));
       map = new maplibregl.Map({
         container: view,
@@ -374,7 +384,7 @@ export default function init(section) {
         }
         if (event.error?.message) console.warn('Map resource:', event.error.message);
       });
-      map.on('load', () => {
+      map.on('load', () => whenScrollRests(() => {
         const layers = map.getStyle().layers;
         layers
           .filter(
@@ -429,9 +439,10 @@ export default function init(section) {
         status.hidden = true;
         section.dataset.mapReady = 'true';
         section.dataset.mapState = 'ready';
-      });
+      }));
       renderMarkers();
-      new ResizeObserver(() => map.resize()).observe(view);
+      // MapLibre already observes its container. A second synchronous resize
+      // observer creates a feedback loop in WebKit when the viewport changes.
     } catch (error) {
       section.dataset.mapState = 'error';
       status.hidden = false;
@@ -446,14 +457,34 @@ export default function init(section) {
 
   function whenScrollRests(callback) {
     let timer = 0;
+    let visible = !touch;
+    let held = false;
+    const events = ['scroll', 'touchmove', 'touchend', 'touchcancel'];
+    const hold = () => { held = true; clearTimeout(timer); };
+    const release = () => { held = false; settle(); };
     const settle = () => {
       clearTimeout(timer);
+      if (!visible || held || document.hidden) return;
       timer = setTimeout(() => {
-        removeEventListener('scroll', settle);
+        events.forEach((event) => removeEventListener(event, settle));
+        removeEventListener('touchstart', hold);
+        removeEventListener('touchend', release);
+        removeEventListener('touchcancel', release);
+        document.removeEventListener('visibilitychange', settle);
+        visibility?.disconnect();
         callback();
-      }, 220);
+      }, touch ? 350 : 220);
     };
-    addEventListener('scroll', settle, { passive: true });
+    const visibility = touch ? new IntersectionObserver(([entry]) => {
+      visible = entry.isIntersecting;
+      settle();
+    }) : null;
+    visibility?.observe(section);
+    events.forEach((event) => addEventListener(event, settle, { passive: true }));
+    addEventListener('touchstart', hold, { passive: true });
+    addEventListener('touchend', release, { passive: true });
+    addEventListener('touchcancel', release, { passive: true });
+    document.addEventListener('visibilitychange', settle);
     settle();
   }
   const observer = new IntersectionObserver(
@@ -462,7 +493,7 @@ export default function init(section) {
       observer.disconnect();
       whenScrollRests(start);
     },
-    { rootMargin: '300px 0px' },
+    { rootMargin: touch ? '0px' : '300px 0px' },
   );
   observer.observe(section);
 }

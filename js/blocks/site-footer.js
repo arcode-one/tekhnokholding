@@ -1,3 +1,5 @@
+import { onMotionResize } from '../lib/scroll-motion.js';
+
 export default function init(footer) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const image = footer.querySelector('.site-footer__visual img');
@@ -42,7 +44,7 @@ export default function init(footer) {
     { rootMargin: '100px' },
   ).observe(footer);
   addEventListener('scroll', schedule, { passive: true });
-  addEventListener('resize', measure, { passive: true });
+  onMotionResize(measure);
   reduced.addEventListener('change', measure);
   desktop.addEventListener('change', measure);
   const resizeObserver = new ResizeObserver(measure);

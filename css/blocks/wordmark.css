@@ -46,6 +46,10 @@
   perspective: 1000px;
 }
 
+@media (hover: none) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  .wordmark__l svg { will-change: transform; }
+}
+
 .wordmark.wordmark--flipped .wordmark__l svg {
   transform: rotateY(-91deg);
 }
