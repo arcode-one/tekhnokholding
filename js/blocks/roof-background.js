@@ -1,4 +1,5 @@
 export default function init(scene) {
+  const hero = scene.querySelector('[data-ui~=hero]') ?? scene;
   const image = scene.querySelector('[data-ui~=roof-background__image]');
   const copy = scene.querySelector('[data-ui~=hero__content]');
   const split = {
@@ -10,6 +11,7 @@ export default function init(scene) {
     buttonRight: scene.querySelector('[data-hero-split="button-right"]'),
   };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const touch = window.matchMedia('(hover: none) and (pointer: coarse)');
   const dividerGlow = scene.querySelector('[data-ui~=hero-gold__divider-glow]');
   const sideArcs = split.ring?.querySelector('svg');
   const oneSpark = scene.querySelector('[data-ui~=hero-gold__flare--one]');
@@ -20,13 +22,16 @@ export default function init(scene) {
   const SPLIT_DISTANCE = 0.6; // доля высоты экрана, за которую композиция раскрывается полностью
   let geometry = null;
   let frame = 0;
+  let measureFrame = 0;
   let visible = false;
+  let lastSplitProgress;
+  let zeroOrbit;
 
   function update() {
     frame = 0;
     if (reducedMotion.matches || !geometry) return;
     const y = window.scrollY;
-    const { top, imageHeight, viewport, leftShift, rightShift } = geometry;
+    const { top, imageHeight, viewport, leftShift, rightShift, useTransform } = geometry;
     // Фото не увеличено: при скролле оно отстаёт от экрана на 30% (уходит медленнее текста).
     // Освобождающийся верх при этом уже за пределами экрана, а низ обрезает слой хиро
     const imageY = Math.min(Math.max(0, y - top), imageHeight) * 0.3;
@@ -34,24 +39,27 @@ export default function init(scene) {
 
     if (!split.divider) return;
     const progress = clamp((y - top) / (viewport * SPLIT_DISTANCE));
+    if (progress === lastSplitProgress) return;
+    lastSplitProgress = progress;
     const p = sineInOut(progress);
-    // Возвращаем прежние траектории без дробных transform на текстовых слоях.
+    // Keep whole-pixel positions. On touch screens, avoid laying out the text on each frame.
     const left = `${Math.round(leftShift * p)}px`;
     const right = `${Math.round(rightShift * p)}px`;
+    const property = useTransform ? 'transform' : 'left';
     [split.left, split.buttonLeft].forEach((el) => {
-      if (el) el.style.left = left;
+      if (el) el.style[property] = useTransform ? `translate3d(${left},0,0)` : left;
     });
     [split.right, split.buttonRight].forEach((el) => {
-      if (el) el.style.left = right;
+      if (el) el.style[property] = useTransform ? `translate3d(${right},0,0)` : right;
     });
     if (oneSpark)
       oneSpark.style.transform = `translate3d(0,${(-geometry.oneSparkTravel * progress).toFixed(2)}px,0)`;
-    if (zeroSpark && geometry.zeroOrbit.length) {
+    if (zeroSpark && zeroOrbit.length) {
       // Контур начинается внизу нуля и идёт по часовой стрелке.
-      const position = progress * (geometry.zeroOrbit.length - 1);
+      const position = progress * (zeroOrbit.length - 1);
       const index = Math.floor(position);
-      const a = geometry.zeroOrbit[index];
-      const b = geometry.zeroOrbit[Math.min(index + 1, geometry.zeroOrbit.length - 1)];
+      const a = zeroOrbit[index];
+      const b = zeroOrbit[Math.min(index + 1, zeroOrbit.length - 1)];
       const fraction = position - index;
       const x = (a.x + (b.x - a.x) * fraction - 182) * geometry.zeroScale;
       const sparkY = (a.y + (b.y - a.y) * fraction - 160) * geometry.zeroScale;
@@ -78,6 +86,8 @@ export default function init(scene) {
   }
 
   function measure() {
+    measureFrame = 0;
+    lastSplitProgress = undefined;
     image.style.removeProperty('transform');
     if (dividerGlow) dividerGlow.style.removeProperty('transform');
     if (sideArcs) sideArcs.style.removeProperty('opacity');
@@ -93,12 +103,19 @@ export default function init(scene) {
       return;
     }
     const y = window.scrollY;
-    const zeroTrackLength = zeroTrack?.getTotalLength() || 0;
+    if (!zeroOrbit) {
+      const length = zeroTrack?.getTotalLength() || 0;
+      // The SVG path is fixed in viewBox coordinates, including after resizing.
+      zeroOrbit = zeroTrack ? Array.from({ length: 181 }, (_, index) => {
+        const { x, y } = zeroTrack.getPointAtLength((length * index) / 180);
+        return { x, y };
+      }) : [];
+    }
     geometry = {
       top: scene.getBoundingClientRect().top + y,
-      height: scene.offsetHeight,
       imageHeight: image.offsetHeight,
-      viewport: window.innerHeight,
+      viewport: touch.matches ? hero.offsetHeight : window.innerHeight,
+      useTransform: touch.matches,
       leftShift: 0,
       rightShift: 0,
       glowTravel: split.divider ? split.divider.offsetHeight * 0.53 : 0,
@@ -109,13 +126,6 @@ export default function init(scene) {
             zeroSpark.parentElement.offsetHeight / 164,
           )
         : 0,
-      // Вычисляем SVG-траекторию только при измерении, не во время скролла.
-      zeroOrbit: zeroTrack
-        ? Array.from({ length: 181 }, (_, index) => {
-            const point = zeroTrack.getPointAtLength((zeroTrackLength * index) / 180);
-            return { x: point.x, y: point.y };
-          })
-        : [],
     };
     if (copy && split.left && split.right) {
       const box = copy.getBoundingClientRect();
@@ -136,15 +146,23 @@ export default function init(scene) {
     update();
   }
 
+  function scheduleMeasure() {
+    if (!measureFrame) measureFrame = requestAnimationFrame(measure);
+  }
+
   measure();
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     if (visible) scheduleUpdate();
-  }, { rootMargin: '100px' }).observe(scene);
-  new ResizeObserver(measure).observe(scene);
-  if (copy) new ResizeObserver(measure).observe(copy);
-  window.addEventListener('resize', measure, { passive: true });
+  }, { rootMargin: '100px' }).observe(hero);
+  const sizes = new ResizeObserver(scheduleMeasure);
+  sizes.observe(hero);
+  if (copy) sizes.observe(copy);
+  window.addEventListener('resize', () => {
+    if (!touch.matches) scheduleMeasure();
+  }, { passive: true });
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
-  reducedMotion.addEventListener('change', measure);
-  if (document.fonts) document.fonts.ready.then(measure);
+  reducedMotion.addEventListener('change', scheduleMeasure);
+  touch.addEventListener('change', scheduleMeasure);
+  document.fonts?.ready.then(scheduleMeasure);
 }

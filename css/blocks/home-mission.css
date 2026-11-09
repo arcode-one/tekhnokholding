@@ -194,6 +194,14 @@
   object-position: 52% 54%;
 }
 
+.home-mission__thumbnail img {
+  object-position: right center;
+}
+
+.home-mission__thumbnail .home-photo-zoom {
+  transform-origin: right center;
+}
+
 .home-mission__thumbnail[data-parallax-active] img {
   top: -16px;
   height: calc(100% + 32px);

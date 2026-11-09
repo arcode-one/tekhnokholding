@@ -4,7 +4,7 @@ import restoreReloadPosition from '../lib/reload-position.js';
 export default function init() {
   const root = document.documentElement;
   const header = document.querySelector('.header');
-  const wordmark = document.querySelector('[data-ui~=wordmark]');
+  const wordmark = document.querySelector('body:not(.home-page--static) [data-ui~=wordmark]');
   const burger = document.querySelector('[data-ui~=header__burger]');
   const menu = document.querySelector('[data-mobile-menu]');
   const dock = document.querySelector('[data-ui~=dock]');
@@ -72,9 +72,8 @@ export default function init() {
   // сглаженный скролл, а не на первый импульс колёсика.
   function updateScrollState() {
     if (!root.classList.contains('site--loaded')) return;
-    updateWordmark(window.scrollY);
-
     const y = window.scrollY;
+    updateWordmark(y);
     let isScrolled = scrolled;
     if (scrolled) {
       // Не ждём последних пикселей затухающего скролла. Небольшой ход вверх
@@ -111,11 +110,17 @@ export default function init() {
       <a class="menu__logo" href="${home}" aria-label="Технохолдинг, на главную">
         <img src="${menuLogo}" alt="" width="1292" height="430" loading="lazy">
       </a>
-      <button class="icon-btn menu__close" type="button" aria-label="Закрыть меню">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
-      </button>
+      <div class="header__messengers">
+        <button class="icon-btn menu__close" type="button" aria-label="Закрыть меню">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>
+        </button>
+      </div>
     </div>
   `);
+  const menuClose = menu.querySelector('.menu__close');
+  header.querySelectorAll('.header__messengers > a').forEach((link) => {
+    menuClose.before(link.cloneNode(true));
+  });
 
   let menuOpener;
   function setMenu(open) {

@@ -6,6 +6,7 @@ export default function init(section) {
   const cards = [...group.children];
   const headings = cards.map((card) => card.querySelector('.project-card__heading'));
   const photoFirst = section.classList.contains('projects-section--photo-first');
+  const staticHome = section.closest('.home-page--static') !== null;
   const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
   const types = [...section.querySelectorAll('[data-project-type]')];
   const count = section.querySelector('[data-projects-count]');
@@ -40,7 +41,7 @@ export default function init(section) {
     moved = false,
     manualUntil = 0;
   let cardSizeKey = '';
-  const refreshPhotoParallax = initProjectPhotoParallax(section);
+  const refreshPhotoParallax = staticHome ? () => {} : initProjectPhotoParallax(section);
 
   function syncCardHeights(force = false) {
     if (!rail.clientWidth) return;
@@ -113,7 +114,7 @@ export default function init(section) {
   }
   function wake() {
     clearTimeout(resumeTimer);
-    if (!frame && !catalog) frame = requestAnimationFrame(tick);
+    if (!frame && !catalog && !staticHome) frame = requestAnimationFrame(tick);
   }
   function updateArrows() {
     const room = rail.scrollWidth - rail.clientWidth;
@@ -160,6 +161,7 @@ export default function init(section) {
     loopDistance = 0;
     if (
       !catalog &&
+      !staticHome &&
       !reduce.matches &&
       filtered.length > 1 &&
       rail.clientWidth > 0 &&

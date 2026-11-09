@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 767px) {
-  .home-page { --home-heading-font-size: clamp(24px, min(7vw, 6dvh), 48px); }
+  .home-page { --home-heading-font-size: clamp(24px, min(7vw, 6svh), 48px); }
   .home-page .home-heading__muted { --home-heading-indent: 1.5em; }
 }
 

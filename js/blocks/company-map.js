@@ -46,7 +46,8 @@ export default function init(section) {
   const preloadObserver = new IntersectionObserver(([entry]) => {
     if (!entry.isIntersecting) return;
     preloadObserver.disconnect();
-    preload();
+    // On touch screens, let the idle-start path load and execute MapLibre after the swipe.
+    if (!matchMedia('(hover: none) and (pointer: coarse)').matches) preload();
   }, { rootMargin: '1000px 0px' });
   preloadObserver.observe(section);
 

@@ -1,7 +1,7 @@
 .home-page {
   --home-heading-space-extra: clamp(8px, .85vw, 12px);
   --home-heading-gap-scale: 1.44;
-  --home-heading-font-size: clamp(26px, min(5vw, 7dvh), 84px);
+  --home-heading-font-size: clamp(26px, min(5vw, 7svh), 84px);
   --home-project-heading-gap: calc((20px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
 }
 

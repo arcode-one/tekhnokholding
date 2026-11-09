@@ -1,6 +1,8 @@
 .home-page {
   --home-section-space: clamp(64px, min(7vw, 16svh), 136px);
   --home-reviews-surface: var(--color-white);
+  --home-trust-step-height: min(clamp(28px, 4.4vw, 80px), calc(var(--home-section-space) * .65));
+  --home-team-step-height: min(clamp(34px, 5vw, 82px), calc(var(--home-section-space) * .8));
 }
 
 .home-section-step {
@@ -24,7 +26,7 @@
 }
 
 .home-section-step--trust {
-  --section-step-height: min(clamp(28px, 4.4vw, 80px), calc(var(--home-section-space) * .65));
+  --section-step-height: var(--home-trust-step-height);
   --section-step-start: 34%;
   --section-step-width: 66%;
   --section-step-color: var(--color-paper);
@@ -33,7 +35,7 @@
 }
 
 .home-section-step--team {
-  --section-step-height: min(clamp(34px, 5vw, 82px), calc(var(--home-section-space) * .8));
+  --section-step-height: var(--home-team-step-height);
   --section-step-start: 53%;
   --section-step-width: 47%;
   --section-step-color: var(--color-paper);
@@ -67,4 +69,41 @@
 
 .home-page .company-recommendations .recommend-card {
   background: var(--color-gray-light);
+}
+
+.home-page--static main {
+  background: var(--color-white);
+}
+
+.home-page--static .home-section-step {
+  display: none;
+}
+
+/* Paint each step with its section background to avoid a composited seam. */
+.home-page--static #map-objects {
+  background: linear-gradient(var(--color-white), var(--color-white))
+    top right / 50% clamp(48px, 10svh, 80px) no-repeat var(--color-gray-light);
+}
+
+.home-page--static #objects {
+  background: linear-gradient(var(--color-paper), var(--color-paper))
+    bottom right / 66% var(--home-trust-step-height) no-repeat var(--projects-surface);
+}
+
+.home-page--static #team {
+  background: linear-gradient(var(--color-paper), var(--color-paper))
+    top right / 47% var(--home-team-step-height) no-repeat var(--color-white);
+}
+
+.home-page--static .roof-background__viewport {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+}
+
+.home-page--static :is(
+  .roof-background__image, .hero-gold__flare, .hero-gold__divider, .hero-gold__divider-glow,
+  .hero-gold__ring, .hero-gold__ring svg, .company-figures__photo, .company-figures__photo img
+) {
+  will-change: auto;
 }

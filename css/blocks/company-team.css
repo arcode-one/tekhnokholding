@@ -3,7 +3,7 @@
 }
 
 .company-team {
-  --team-heading-gap: calc((clamp(16px, 3dvh, 32px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+  --team-heading-gap: calc((clamp(16px, 3svh, 32px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
   --team-photo-ratio: 1.9;
   --team-photo-gap: 20px;
 

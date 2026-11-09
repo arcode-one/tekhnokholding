@@ -85,7 +85,9 @@
   .wordmark.wordmark--flipped .wordmark__l svg {
     transform: none;
   }
+}
 
+@media (prefers-reduced-motion: reduce), (hover: none) and (pointer: coarse) {
   .home-brand-strip__track {
     width: auto;
     justify-content: center;

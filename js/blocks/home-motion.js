@@ -88,6 +88,7 @@ function initBrandStrip(strip) {
 
 export default function init(home) {
   if (!('IntersectionObserver' in window)) return;
+  const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
   const mission = home.querySelector('#mission');
   const values = home.querySelector('#values');
   const figures = home.querySelector('#figures');
@@ -99,6 +100,7 @@ export default function init(home) {
 
   add(mission, '#home-mission-title', 'heading');
   add(mission, '.home-mission__thumbnail', 'photo', 80);
+  if (touch) add(mission, '.home-mission__statement p', 'text', (index) => index * 65);
   add(mission, '#home-mission-talents-title', 'heading');
   add(mission, '.home-mission__talent', 'talent', (index) => 80 + index * 80);
 
@@ -126,7 +128,7 @@ export default function init(home) {
     mapReveal.add(map, '.company-map__stage', 'map');
     mapReveal.start();
   }
-  initMissionLineReveal(mission);
+  if (!touch) initMissionLineReveal(mission);
   initValuesOverlap(values);
   initBrandStrip(home.querySelector('.home-brand-strip'));
 }

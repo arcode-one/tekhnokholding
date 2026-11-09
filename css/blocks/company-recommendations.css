@@ -11,7 +11,7 @@
   );
 
   display: grid;
-  gap: calc((clamp(14px, 2.4dvh, 28px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+  gap: calc((clamp(14px, 2.4svh, 28px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
   padding-block: calc(var(--recommendation-step) + clamp(24px, 4vw, 56px)) clamp(16px, 3vw, 40px);
   background: var(--color-gray-light);
 }
