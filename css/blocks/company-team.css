@@ -1,6 +1,5 @@
 .home-page {
   --team-layout-gap: clamp(28px, 3vw, 56px);
-  --team-section-padding: clamp(20px, 4dvh, 48px);
 }
 
 .company-team {

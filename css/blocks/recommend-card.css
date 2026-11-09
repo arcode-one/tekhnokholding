@@ -8,11 +8,9 @@
   min-width: 0;
   min-height: 0;
   padding: 8px 8px 14px;
-  border: 1px solid transparent;
+  border: 1px solid rgb(52 69 78 / 8%);
   border-radius: 16px;
   background: var(--color-white);
-  box-shadow: 0 7px 18px -7px rgb(22 35 46 / 11%);
-  transition: box-shadow 220ms ease-out;
 }
 
 .recommend-card__project {
@@ -76,10 +74,7 @@
 .recommend-card__open svg { position: relative; z-index: 1; width: 15px; height: 15px; }
 .recommend-card__letter:focus-visible { outline: 2px solid var(--color-ink); outline-offset: 3px; border-radius: 6px; }
 .recommend-card__letter:focus-visible .recommend-card__open { background: var(--color-ink); color: white; }
-.recommend-card:focus-within { box-shadow: 0 8px 20px -7px rgb(22 35 46 / 16%); }
-
 @media (hover: hover) and (pointer: fine) {
-  .recommend-card:hover { box-shadow: 0 8px 20px -7px rgb(22 35 46 / 16%); }
   .recommend-card__letter:hover .recommend-card__open { background: var(--color-ink); color: white; }
 }
 
@@ -94,5 +89,5 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .recommend-card, .recommend-card__open { transition: none; }
+  .recommend-card__open { transition: none; }
 }

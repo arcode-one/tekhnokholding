@@ -85,6 +85,7 @@ html.site--scrolled .header {
 
 .header__burger {
   display: none;
+  border: var(--theme-border-width) solid var(--button-border);
 }
 
 .header__burger svg {

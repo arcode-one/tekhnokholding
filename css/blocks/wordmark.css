@@ -50,16 +50,11 @@
   transform: rotateY(-91deg);
 }
 
-.home-page {
-  --brand-strip-heading-offset: 0px;
-}
-
 .home-brand-strip {
   --brand-strip-word-height: clamp(35px, 5vw, max(99px, 3.2vw));
 
   overflow: clip;
-  padding-block: var(--home-section-space)
-    calc(var(--home-section-space) - var(--team-section-padding) + var(--brand-strip-heading-offset));
+  padding-block: var(--home-section-space);
   background: var(--color-gray-light);
   color: var(--color-ink);
 }
@@ -80,13 +75,6 @@
 
 .home-brand-strip__track use {
   filter: url('#brand-strip-weight');
-}
-
-@media (max-width: 599px) and (prefers-reduced-motion: no-preference) {
-  .home-page {
-    /* Account for the larger optical offset on the reviews heading. */
-    --brand-strip-heading-offset: 9px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

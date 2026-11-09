@@ -24,7 +24,6 @@ enhance('[data-services-accordion]', 'services-accordion', () => import('./block
 enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.js'));
 enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
-enhance('[data-ui~="mission-story"]', 'mission', () => import('./blocks/mission.js'));
 
 enhance('[data-ui~="quality-page"]', 'quality', () => import('./blocks/quality.js'));
 enhance('[data-privacy-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));

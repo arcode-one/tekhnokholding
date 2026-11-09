@@ -1,13 +1,13 @@
 @media (min-width: 1200px) {
   .company-team {
-    --home-section-space: clamp(28px, 7svh, 72px);
+    --team-viewport-inset: clamp(28px, 7svh, 72px);
     --team-heading-gap: clamp(24px, 4svh, 44px);
   }
 
   .company-team__layout {
-    /* Leave room for the two title lines, the outer padding and the photo gaps. */
+    /* Keep the photos and cards sized independently of the section spacing. */
     --team-photo-height: calc((
-      100svh - 2 * var(--home-section-space) - 2 * var(--home-heading-font-size) -
+      100svh - 2 * var(--team-viewport-inset) - clamp(0px, 15svh - 90px, 34px) - 2 * var(--home-heading-font-size) -
       var(--team-heading-gap) - var(--team-photo-gap) - var(--team-caption-space, 0px) - 2px
     ) / 2);
     --team-photo-width: max(300px, calc(var(--team-photo-height) * var(--team-photo-ratio)));
@@ -34,7 +34,6 @@
 }
 
 @media (max-width: 1199px) {
-  .home-page { --team-section-padding: 32px; }
   .company-team { gap: calc((24px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale)); }
   .company-team__layout { grid-template-columns: minmax(0, 1fr); gap: 28px; }
   .company-team__features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
@@ -43,7 +42,6 @@
 }
 
 @media (max-width: 599px) {
-  .home-page { --team-section-padding: 24px; }
   .company-team { gap: calc((20px + var(--home-heading-space-extra)) * var(--home-heading-gap-scale)); }
   .company-team__features { grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .company-team__feature-label { gap: 8px; padding: 24px 12px 10px; font-size: 18px; }

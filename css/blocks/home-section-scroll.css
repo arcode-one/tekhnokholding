@@ -47,7 +47,7 @@
   }
 
   .home-section-step--team {
-    --section-step-height: calc(var(--home-section-space) + var(--home-heading-font-size) * 1.45);
+    --section-step-height: calc(var(--team-viewport-inset) + var(--home-heading-font-size) * 1.45);
     --section-step-start: 0%;
     --section-step-width: 100%;
 
@@ -67,21 +67,4 @@
 
 .home-page .company-recommendations .recommend-card {
   background: var(--color-gray-light);
-}
-
-.home-page .home-brand-strip + .company-recommendations {
-  /* The two paddings together keep one gap from the wordmark to the reviews heading. */
-  padding-block-start: var(--team-section-padding);
-}
-
-.home-page .home-brand-strip + .company-recommendations #recommendations-title {
-  /* Match the visible letters rather than the top of the heading's line box. */
-  margin-block-start: -0.15em;
-}
-
-@media (max-width: 599px) and (prefers-reduced-motion: no-preference) {
-  .home-page .home-brand-strip + .company-recommendations #recommendations-title {
-    /* The descending letter in the wordmark can be outside the narrow crop. */
-    margin-block-start: -12px;
-  }
 }
