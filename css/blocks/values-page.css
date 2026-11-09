@@ -156,7 +156,6 @@
 }
 
 .values-accordion__body {
-  --values-detail-width: clamp(116px, 12vw, 220px);
   display: grid;
   grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
   min-height: clamp(340px, 32vw, 590px);
@@ -182,12 +181,6 @@
   color: var(--color-white);
 }
 
-.values-accordion__principle-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 700;
-}
-
 .values-accordion__copy strong {
   font-weight: 650;
 }
@@ -200,20 +193,6 @@
 .values-accordion__photo-main {
   position: absolute;
   inset: 0;
-}
-
-.values-accordion__photo-detail {
-  position: absolute;
-  top: 65%;
-  left: 0;
-  width: var(--values-detail-width);
-  aspect-ratio: 4 / 5;
-  border: clamp(2px, .15vw, 3px) solid var(--color-white);
-  transform: translate(-82%, -50%);
-}
-
-.values-accordion__photo-main,
-.values-accordion__photo-detail {
   overflow: hidden;
   background: #cdd2d1;
 }
@@ -221,11 +200,6 @@
 .values-accordion__photo img {
   position: absolute;
   inset: 0;
-}
-
-.values-accordion__photo-detail[data-parallax-active] img {
-  top: -16px;
-  height: calc(100% + 32px);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -241,21 +215,9 @@
     transition: clip-path 460ms ease 80ms;
   }
 
-  .values-accordion__item[data-animating] .values-accordion__photo-detail {
-    transition: transform 540ms ease;
-  }
-
   .values-accordion__item[data-closing] .values-accordion__photo-main {
     clip-path: inset(0 100% 0 0);
     transition-delay: 0s;
-  }
-
-  .values-accordion__item[data-closing] .values-accordion__photo-detail {
-    transform: translate(-82%, 50%);
-  }
-
-  .values-accordion__item[data-animating][data-closing] .values-accordion__photo-detail {
-    transition-duration: 460ms;
   }
 }
 
@@ -268,8 +230,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 0 calc(var(--values-detail-width) * .82 + 24px)
-      clamp(48px, 7vw, 136px) var(--pad);
+    padding: 0 var(--pad) clamp(48px, 7vw, 136px);
   }
 
   .values-accordion__copy > p:first-child {
@@ -309,13 +270,12 @@
   }
 
   .values-accordion__body {
-    --values-detail-width: clamp(80px, 23vw, 136px);
     grid-template-columns: minmax(0, 1fr);
   }
 
   .values-accordion__photo {
     aspect-ratio: 4 / 3;
-    margin-left: calc(var(--values-detail-width) * .72 + var(--pad));
+    margin-left: var(--pad);
   }
 
   .values-accordion__icon {

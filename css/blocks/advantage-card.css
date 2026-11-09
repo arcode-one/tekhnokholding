@@ -2,7 +2,7 @@
   --trust-card-radius: 16px;
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, .68fr) minmax(0, 1fr);
+  grid-template-columns: minmax(0, calc(100% * var(--advantages-proof-photo-share))) minmax(0, 1fr);
   min-width: 0;
   min-height: clamp(190px, 13.2vw, 230px);
   padding: 0;

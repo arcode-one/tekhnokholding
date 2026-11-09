@@ -240,29 +240,29 @@
       {
         "title": "Корпоративная жизнь",
         "alt": "Команда ТехноХолдинг на корпоративном турнире по кёрлингу",
-        "photo": "images/company/team/team-corporate-curling.webp"
+        "photo": "images/company/team/team-home-curling.webp"
       },
       {
         "title": "Наша команда",
         "alt": "Команда ТехноХолдинг",
-        "photo": "images/company/team/team-main-office-20261002-960w.webp"
+        "photo": "images/company/team/team-home-group.webp"
       }
     ],
     "departments": [
       {
-        "title": "Производственно-технический отдел",
+        "title": "Технический отдел",
         "photo": "images/company/departments/production-technical.webp"
       },
       {
-        "title": "Контроль качества и заботы о клиенте",
+        "title": "Контроль качества",
         "photo": "images/company/departments/quality-service.webp"
       },
       {
-        "title": "Финансово-экономический отдел",
+        "title": "Финансовый отдел",
         "photo": "images/company/departments/finance.webp"
       },
       {
-        "title": "Строительно-монтажный отдел",
+        "title": "Строительный отдел",
         "photo": "images/company/departments/construction.webp"
       },
       {
@@ -274,7 +274,7 @@
         "photo": "images/company/departments/management.webp"
       },
       {
-        "title": "Отдел снабжения и логистики",
+        "title": "Отдел снабжения",
         "photo": "images/company/departments/supply-logistics.webp"
       },
       {

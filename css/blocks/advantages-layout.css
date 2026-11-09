@@ -1,8 +1,10 @@
 .advantages-layout {
   --advantages-emphasis-size: clamp(24px, 1.9vw, 34px);
+  --advantages-card-gap: clamp(14px, 1.25vw, 22px);
+  --advantages-proof-photo-share: calc(.68 / 1.68);
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(14px, 1.25vw, 22px);
+  gap: var(--advantages-card-gap);
   margin-inline: var(--pad);
 }
 
@@ -12,8 +14,15 @@
   gap: inherit;
 }
 
-.advantages-layout__row--featured {
-  grid-template-columns: minmax(0, 529fr) minmax(0, 301fr) minmax(0, 462fr);
+@media (min-width: 1280px) {
+  .advantages-layout__row--featured {
+    --advantages-proof-width: calc((100% - 3 * var(--advantages-card-gap)) / 4);
+    /* End the first two featured cards at the photo edges of the second and third proofs. */
+    grid-template-columns:
+      minmax(0, calc(var(--advantages-proof-width) * (1 + var(--advantages-proof-photo-share)) + var(--advantages-card-gap)))
+      minmax(0, var(--advantages-proof-width))
+      minmax(0, 1fr);
+  }
 }
 
 .advantages-rating {

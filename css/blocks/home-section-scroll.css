@@ -1,15 +1,76 @@
 .home-page {
   --home-section-space: clamp(64px, min(7vw, 16svh), 136px);
+  --home-reviews-surface: var(--color-white);
+}
+
+.home-section-step {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: 2;
+  height: var(--section-step-height);
+  overflow: clip;
+  pointer-events: none;
+}
+
+.home-section-step::before {
+  content: '';
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: var(--section-step-start, 0%);
+  width: var(--section-step-width);
+  background: var(--section-step-color);
+  transform: translateY(calc(var(--section-step-progress, 0) * var(--section-step-travel, -100%)));
+}
+
+.home-section-step--trust {
+  --section-step-height: min(clamp(28px, 4.4vw, 80px), calc(var(--home-section-space) * .65));
+  --section-step-start: 34%;
+  --section-step-width: 66%;
+  --section-step-color: var(--color-paper);
+  --section-step-travel: 100%;
+  inset-block: auto 0;
+}
+
+.home-section-step--team {
+  --section-step-height: min(clamp(34px, 5vw, 82px), calc(var(--home-section-space) * .8));
+  --section-step-start: 53%;
+  --section-step-width: 47%;
+  --section-step-color: var(--color-paper);
+}
+
+@media (min-width: 1200px) {
+  .home-page .company-team__intro {
+    display: grid;
+    grid-template-columns: minmax(calc(53% - 28px), max-content) minmax(0, 1fr);
+    gap: 28px;
+  }
+
+  .home-section-step--team {
+    --section-step-height: calc(var(--home-section-space) + var(--home-heading-font-size) * 1.45);
+    --section-step-start: 0%;
+    --section-step-width: 100%;
+
+    position: relative;
+    align-self: start;
+    margin-block-start: calc(-1 * var(--home-section-space));
+    margin-inline-end: calc(-1 * var(--pad));
+  }
 }
 
 .home-page .company-recommendations {
   --recommendation-step: 0px;
   padding-block: var(--home-section-space)
     calc(var(--home-section-space) - var(--recommendation-track-bottom));
+  background: var(--home-reviews-surface);
+}
+
+.home-page .company-recommendations .recommend-card {
+  background: var(--color-gray-light);
 }
 
 .home-page .home-brand-strip + .company-recommendations {
-  /* The strip and reviews share a background and one gap between their content. */
+  /* The two paddings together keep one gap from the wordmark to the reviews heading. */
   padding-block-start: var(--team-section-padding);
 }
 

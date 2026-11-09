@@ -1,18 +1,21 @@
 export default function init(corner) {
-  const section = corner.closest('section');
-  if (!section) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const bottomEdge = corner.dataset.sectionCorner === 'bottom';
   let visible = false;
   let frame = 0;
 
   function render() {
     frame = 0;
     if (reduced.matches || document.hidden) return;
-    // Same travel as the figures/projects corner, measured from the fixed section.
+    // Measure the fixed edge so the same progress works above or below a seam.
+    const bounds = corner.getBoundingClientRect();
+    const seam = bottomEdge ? bounds.bottom : bounds.top;
+    const start = innerHeight * .78;
+    const end = Math.min(48, innerHeight * .12);
     const progress = Math.max(0, Math.min(1,
-      (innerHeight - section.getBoundingClientRect().top) / innerHeight,
+      (start - seam) / (start - end),
     ));
-    corner.style.transform = `translate3d(0, ${(-corner.offsetHeight * progress).toFixed(2)}px, 0)`;
+    corner.style.setProperty('--section-step-progress', progress.toFixed(4));
   }
 
   function schedule() {
@@ -23,7 +26,7 @@ export default function init(corner) {
   function updatePreference() {
     cancelAnimationFrame(frame);
     frame = 0;
-    corner.style.removeProperty('transform');
+    corner.style.removeProperty('--section-step-progress');
     if (!reduced.matches) render();
   }
 
@@ -34,7 +37,7 @@ export default function init(corner) {
       cancelAnimationFrame(frame);
       frame = 0;
     }
-  }, { rootMargin: '100px' }).observe(section);
+  }, { rootMargin: '100px' }).observe(corner);
   new ResizeObserver(schedule).observe(corner);
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('resize', schedule, { passive: true });

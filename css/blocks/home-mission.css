@@ -44,7 +44,8 @@
 }
 
 .home-mission__statement {
-  max-width: 48rem;
+  max-width: 51rem;
+  word-spacing: 0.2em;
 }
 
 .home-mission__statement p,

@@ -55,6 +55,8 @@
 }
 
 .home-brand-strip {
+  --brand-strip-word-height: clamp(35px, 5vw, max(99px, 3.2vw));
+
   overflow: clip;
   padding-block: var(--home-section-space)
     calc(var(--home-section-space) - var(--team-section-padding) + var(--brand-strip-heading-offset));
@@ -65,15 +67,19 @@
 .home-brand-strip__track {
   display: flex;
   width: max-content;
-  gap: clamp(28px, 4vw, 72px);
+  gap: clamp(19px, 2.67vw, 48px);
 }
 
 .home-brand-strip__track svg {
   display: block;
   flex: none;
   width: auto;
-  height: clamp(52px, 7.5vw, 148px);
+  height: var(--brand-strip-word-height);
   fill: currentColor;
+}
+
+.home-brand-strip__track use {
+  filter: url('#brand-strip-weight');
 }
 
 @media (max-width: 599px) and (prefers-reduced-motion: no-preference) {
@@ -99,7 +105,7 @@
   }
 
   .home-brand-strip__track svg {
-    width: min(100%, 1800px);
+    width: min(100%, calc(var(--brand-strip-word-height) * 1458.1 / 118));
     height: auto;
   }
 

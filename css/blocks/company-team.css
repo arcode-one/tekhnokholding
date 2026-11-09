@@ -5,6 +5,8 @@
 
 .company-team {
   --team-heading-gap: calc((clamp(16px, 3dvh, 32px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
+  --team-photo-ratio: 1.9;
+  --team-photo-gap: 20px;
 
   width: 100%;
   max-width: none;
@@ -19,20 +21,7 @@
 .company-team__intro { margin: 0 var(--pad); }
 
 .company-team__layout {
-  --team-feature-gap: 20px;
-  --team-feature-width: .77;
-  --team-feature-height: .8925;
-  /* Keep the viewport-based card height independent of the outer section spacing. */
-  --team-card-space: calc(
-    max(640px, 100dvh) - 2 * var(--team-section-padding) - var(--team-heading-gap) -
-    2 * var(--home-heading-font-size) - var(--team-feature-gap)
-  );
-
   display: grid;
-  grid-template-columns:
-    minmax(0, calc((100% - var(--team-layout-gap)) * .425 * var(--team-feature-width)))
-    minmax(0, 1fr);
-  grid-template-rows: minmax(0, calc(var(--team-card-space) * var(--team-feature-height) + var(--team-feature-gap)));
   gap: var(--team-layout-gap);
   min-height: 0;
   margin-inline: var(--pad);
@@ -40,8 +29,9 @@
 
 .company-team__features {
   display: grid;
-  grid-template-rows: repeat(2, minmax(0, 1fr));
-  gap: var(--team-feature-gap);
+  align-content: start;
+  align-items: start;
+  gap: var(--team-photo-gap);
   min-width: 0;
   min-height: 0;
 }
@@ -57,40 +47,81 @@
 .company-team__feature > a {
   position: relative;
   display: block;
-  height: 100%;
   color: var(--color-white);
 }
 
 .company-team__feature img {
+  display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: var(--team-photo-ratio);
   object-fit: cover;
   object-position: center 42%;
-  transition: scale 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.company-team__feature--1 img {
+  object-position: center 90%;
 }
 
 .company-team__feature-label {
+  --team-label-scrim: linear-gradient(0deg, rgb(17 27 34 / 82%), rgb(17 27 34 / 63%) 44%, transparent);
+
   position: absolute;
   inset: auto 0 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 16px 24px;
-  border-top: 1px solid rgb(255 255 255 / 24%);
-  background: color-mix(in srgb, var(--color-ink) 88%, transparent);
+  padding: clamp(32px, 3vw, 48px) 24px 16px;
+  background: var(--team-label-scrim);
   font-size: clamp(19px, 1.4vw, 26px);
   line-height: 1.25;
-  font-weight: 500;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 60%);
+}
+
+@media (min-width: 1500px) and (min-height: 740px) {
+  .company-team__feature--1 .company-team__feature-label {
+    isolation: isolate;
+    background: none;
+  }
+
+  .company-team__feature--1 .company-team__feature-label::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: var(--team-label-scrim);
+    mask-image: linear-gradient(90deg, #000 35%, transparent 49%);
+  }
 }
 
 .company-team__feature-arrow {
+  --button-bg: var(--color-white);
+  --button-text: var(--color-ink);
+  --button-border: rgb(52 69 78 / 28%);
+  --button-hover-bg: var(--color-ink);
+  --button-hover-text: var(--color-white);
+  --button-hover-border: var(--color-ink);
+
+  width: 42px;
+  height: 42px;
+}
+
+.company-team__feature-arrow svg {
   width: 24px;
   height: 24px;
-  flex: none;
+  fill: none;
   rotate: 90deg;
 }
+
 .company-team__feature > a:focus-visible { outline: 2px solid white; outline-offset: -6px; }
+
+.company-team__feature > a:focus-visible .company-team__feature-arrow {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-text);
+  border-color: var(--button-hover-border);
+}
 
 .company-team__feature:has(> a:focus-visible) {
   box-shadow: 0 14px 32px -12px rgb(22 35 46 / 32%);
@@ -100,14 +131,10 @@
   .company-team__feature:hover {
     box-shadow: 0 14px 32px -12px rgb(22 35 46 / 32%);
   }
-
-  .company-team__feature:hover img { scale: 1.035; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .company-team__feature,
-  .company-team__feature img { transition: none; }
-  .company-team__feature:hover img { scale: none; }
+  .company-team__feature { transition: none; }
 }
 
 .company-team__departments {
@@ -122,7 +149,7 @@
 .company-team__department-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   gap: clamp(10px, 1vw, 18px);
   height: 100%;
 }
