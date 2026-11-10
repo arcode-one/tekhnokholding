@@ -1,6 +1,8 @@
-.values-page {
+.values-page,
+.quality-overview {
   --values-row-height: clamp(94px, min(7.1vw, 16svh), 136px);
   --values-row-padding: 18px;
+  --values-number-font-size: clamp(34px, min(4vw, calc(var(--values-row-height) - 2 * var(--values-row-padding))), 76px);
 }
 
 .values-hero {
@@ -117,10 +119,14 @@
   outline-offset: -5px;
 }
 
+.values-accordion__number,
+.quality-step__number {
+  font-size: var(--values-number-font-size);
+}
+
 .values-accordion__number {
   justify-self: start;
   font-family: var(--font-figures);
-  font-size: clamp(34px, min(4vw, calc(var(--values-row-height) - 2 * var(--values-row-padding))), 76px);
   font-weight: 350;
   line-height: 1;
   letter-spacing: -.065em;
@@ -132,9 +138,13 @@
   transform: var(--values-number-enlarged);
 }
 
+.values-accordion__title,
+.quality-step__title {
+  font-size: clamp(18px, 1.9vw, 36px);
+}
+
 .values-accordion__title {
   padding-right: 20px;
-  font-size: clamp(18px, 1.9vw, 36px);
   line-height: 1.24;
   letter-spacing: -.035em;
   text-wrap: balance;
@@ -172,9 +182,13 @@
   min-height: clamp(340px, 32vw, 590px);
 }
 
+.values-accordion__copy,
+.quality-step__body p {
+  font-size: clamp(16px, 1.15vw, 22px);
+}
+
 .values-accordion__copy {
   padding: 4px var(--pad) clamp(26px, 4vw, 74px);
-  font-size: clamp(16px, 1.15vw, 22px);
   line-height: 1.55;
 }
 
@@ -267,7 +281,8 @@
 }
 
 @media (max-width: 767px) {
-  .values-page {
+  .values-page,
+  .quality-overview {
     --values-row-padding: 12px;
   }
 
