@@ -7,6 +7,7 @@
 
 .home-mission {
   padding: var(--home-section-space) var(--pad);
+  padding-block-end: calc(var(--home-section-space) * 0.25);
   background: var(--mission-surface);
 }
 

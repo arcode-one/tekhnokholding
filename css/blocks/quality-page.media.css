@@ -1,37 +1,19 @@
-@media (max-width: 999px) {
-  .quality-feature__copy { width: 56%; }
-  .quality-heading h1 { font-size: clamp(29px, 4.2vw, 44px); }
-  .quality-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1100px) {
+  .quality-content { gap: 36px; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+  .quality-step > summary { grid-template-columns: 50px minmax(0, 1fr) 18px; gap: 14px; padding-inline: 20px; }
+  .quality-step__body { padding-inline: 20px; }
+  .quality-step__body p { margin-left: 64px; }
+  .quality-step__icon { width: 18px; height: 18px; }
 }
-
-@media (max-width: 699px) {
-  .quality-feature {
-    min-height: 0;
-    padding: calc(var(--header-h) + 58px + 46vw) var(--pad) 24px;
-  }
-
-  .quality-feature__photo {
-    inset: calc(var(--header-h) + 55px) 0 auto;
-    height: 56vw;
-  }
-
-  .quality-feature__photo img { object-position: 86% 28%; }
-  .quality-feature__photo::after {
-    background: linear-gradient(0deg, var(--quality-surface) 0%, #efefec00 36%);
-  }
-
-  .quality-feature__copy { width: auto; }
-  .quality-heading h1 { font-size: clamp(27px, 7vw, 44px); }
-
-  .quality-explanation { grid-template-columns: minmax(0, 1fr); gap: 16px; }
-  .quality-explanation__item { gap: 10px; }
-  .quality-explanation__item:first-child { padding-right: 0; }
-  .quality-explanation__item + .quality-explanation__item {
-    padding: 16px 0 0;
-    border: 0;
-    border-top: 1px solid var(--quality-explanation-divider);
-  }
-
-  .quality-stages { grid-template-columns: minmax(0, 1fr); }
-  .quality-stages summary { min-height: 54px; }
+@media (max-width: 800px) {
+  .quality-content { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .quality-intro h1 { font-size: clamp(34px, 6.6vw, 54px); }
+  .quality-step > summary { min-height: 76px; }
+}
+@media (max-width: 399px) {
+  .quality-step > summary { padding: 20px 16px; gap: 10px; grid-template-columns: 44px minmax(0, 1fr) 18px; }
+  .quality-step__title { font-size: 18px; }
+  .quality-step__number { font-size: 40px; }
+  .quality-step__body { padding: 0 16px 24px; }
+  .quality-step__body p { margin-left: 0; }
 }

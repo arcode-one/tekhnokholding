@@ -113,15 +113,15 @@
 }
 
 .advantage-card--quality .advantage-card__description { color: inherit; }
-.advantage-card--quality .advantage-card__arrow { align-self: flex-start; }
+.advantage-card--quality .advantage-card__arrow,
+.advantage-card--warranty .advantage-card__arrow { align-self: flex-start; }
 
 .advantage-card--warranty .advantage-card__photo img {
   inset: auto 12px 12px auto;
-  width: 66%;
-  height: 78%;
+  width: 47%;
+  height: 86%;
   object-fit: contain;
   object-position: right bottom;
-  opacity: .63;
 }
 
 .advantage-card--granat .advantage-card__photo { background: #101012; }

@@ -28,6 +28,12 @@ a {
   text-decoration: none;
 }
 
+.contact-email {
+  cursor: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 img,
 svg {
   display: block;

@@ -7,6 +7,10 @@
   position: relative;
 }
 
+.home-page :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo) img {
+  filter: saturate(0.75) contrast(0.96);
+}
+
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .home-photo-zoom {
     transition: transform 640ms var(--ease-in-out);
@@ -38,13 +42,12 @@
     --home-offset: 26px;
   }
 
-  :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo-inner) {
+  :is(.home-mission__thumbnail, .company-figures__photo-inner) {
     --home-photo-duration: 1220ms;
     --home-photo-easing: var(--ease-in-out);
   }
 
   .home-mission__thumbnail { --home-photo-inset: 0 0 100% 0; }
-  .home-values__media { --home-photo-inset: 44%; }
   .company-figures__photo--roof .company-figures__photo-inner {
     --home-photo-animation: home-once-photo-fade;
     --home-photo-duration: 700ms;
@@ -85,7 +88,7 @@
       var(--home-photo-easing, var(--ease-out)) var(--home-delay, 0ms) both;
   }
 
-  :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo-inner)[data-home-state='running'] img {
+  :is(.home-mission__thumbnail, .company-figures__photo-inner)[data-home-state='running'] img {
     animation: home-once-photo-pullback var(--home-photo-duration) var(--home-photo-easing)
       var(--home-delay, 0ms) both;
   }

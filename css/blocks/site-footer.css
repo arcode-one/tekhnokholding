@@ -9,6 +9,14 @@
   text-transform: uppercase;
 }
 
+.site-footer__title-part {
+  display: block;
+}
+
+.site-footer__title-part + .site-footer__title-part {
+  margin-top: 0.65em;
+}
+
 .site-footer {
   position: relative;
   min-height: 100svh;
@@ -195,7 +203,7 @@
   margin-top: calc((1lh - 24px) / 2);
 }
 
-.site-footer__office a {
+.site-footer__office-text {
   grid-area: 2 / 2;
   display: block;
   max-width: 42ch;
@@ -208,11 +216,45 @@
 .site-footer__office small {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font: inherit;
+}
+
+.contact-selectable {
+  cursor: text;
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+.site-footer__contact-action {
+  grid-area: 2 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  min-height: 44px;
+  margin-inline: -10px;
+}
+
+.site-footer__office .site-footer__contact-action {
+  align-self: start;
+  margin-top: calc((1lh - 44px) / 2);
+}
+
+.site-footer__office .site-footer__contact-action .site-footer__contact-icon {
+  align-self: auto;
+  margin-top: 0;
+}
+
+.site-footer__phone-touch { display: none; }
+
+@media (hover: none) and (pointer: coarse) {
+  .site-footer__phone-desktop { display: none; }
+  .site-footer__phone-touch { display: inline; cursor: pointer; }
 }
 
 .site-footer__bottom {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-4);
   margin-top: 40px;
@@ -223,6 +265,12 @@
   flex-wrap: wrap;
   gap: 12px;
   min-width: 0;
+}
+
+.site-footer__messengers {
+  display: flex;
+  flex-shrink: 0;
+  gap: 12px;
 }
 
 .site-footer__documents .pill {
@@ -241,7 +289,7 @@
 @media (prefers-reduced-motion: reduce) {
   .site-footer__nav a,
   .site-footer__contact-link,
-  .site-footer__office a {
+  .site-footer__office-text {
     transition: none;
   }
 

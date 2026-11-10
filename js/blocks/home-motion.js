@@ -146,7 +146,6 @@ export default function init(home) {
   add(mission, '.home-mission__talent', 'talent', (index) => 80 + index * 80);
 
   add(values, '#home-values-title', 'heading');
-  add(values, '.home-values__media', 'photo', 55);
   add(values, '.home-values__intro, .home-values__link', 'text', (index) => 55 + index * 65);
 
   add(figures, '.company-figures__photo-inner', 'photo');

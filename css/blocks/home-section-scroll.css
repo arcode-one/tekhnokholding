@@ -34,6 +34,11 @@
   inset-block: auto 0;
 }
 
+.home-page #objects.projects-section--photo-first {
+  /* Reserve the step's height so its upper edge keeps the full section gap. */
+  padding-bottom: calc(var(--home-section-space) + var(--home-trust-step-height));
+}
+
 .home-section-step--team {
   --section-step-height: var(--home-team-step-height);
   --section-step-start: 53%;

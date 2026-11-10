@@ -4,7 +4,6 @@ export default function init() {
     '.nav a', '.dock__nav a', '.menu__nav a',
     '.header__contacts a', '.dock__contacts a', '.menu__contacts a',
     '.site-footer__nav a', '.site-footer__privacy',
-    '.site-footer__contact-value',
     '.projects-filters .projects-types__button',
   ].join(','));
 

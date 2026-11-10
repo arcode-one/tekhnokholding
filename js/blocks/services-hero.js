@@ -1,20 +1,28 @@
 import createScrollReveal from '../lib/scroll-reveal.js';
 
 export default function init(hero) {
+  const page = hero.closest('.services-page');
+  if (!page) return;
   const { add, start } = createScrollReveal('services', { rootMargin: '0px' });
-  hero.closest('.services-page')?.querySelectorAll('.services-screen').forEach((screen) => {
+  page.querySelectorAll('.services-screen').forEach((screen) => {
     add(screen, '[data-service-reveal]', 'text', (index) => index * 60, screen);
   });
   start();
-  let visible = true;
+  const photos = page.querySelectorAll('.services-hero__ambient');
+  const visible = new Set();
   const sync = () => {
-    hero.toggleAttribute('data-ambient-paused', !visible || document.hidden);
+    for (const photo of photos) {
+      photo.toggleAttribute('data-ambient-paused', document.hidden || !visible.has(photo.parentElement));
+    }
   };
-  const observer = new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
+  const observer = new IntersectionObserver((entries) => {
+    for (const { target, isIntersecting } of entries) {
+      if (isIntersecting) visible.add(target);
+      else visible.delete(target);
+    }
     sync();
   });
-  observer.observe(hero);
+  for (const photo of photos) observer.observe(photo.parentElement);
   document.addEventListener('visibilitychange', sync);
   sync();
 }

@@ -30,7 +30,6 @@ enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.
 enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 
-enhance('[data-ui~="quality-page"]', 'quality', () => import('./blocks/quality.js'));
 enhance('[data-privacy-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
 enhance(
   '[data-ui~="object-page--motion"]',
