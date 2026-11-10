@@ -23,7 +23,8 @@
   cursor: pointer;
 }
 
-.projects-filters .projects-types__button[aria-pressed='true'] {
+.projects-filters .projects-types__button[aria-pressed='true'],
+.projects-filters a.projects-types__button {
   font-weight: 600;
 }
 

@@ -243,7 +243,7 @@ export default function init(section) {
   );
   section.querySelector('[data-projects-reset]').addEventListener('click', () => {
     selectedType = '';
-    types.forEach((b, i) => b.setAttribute('aria-pressed', String(i === 0)));
+    types.forEach((button) => button.setAttribute('aria-pressed', String(button.dataset.projectType === selectedType)));
     manualUntil = performance.now() + 3000;
     applyFilters();
   });
