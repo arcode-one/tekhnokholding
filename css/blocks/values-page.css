@@ -240,6 +240,10 @@
     transition: clip-path 460ms ease 80ms;
   }
 
+  .values-accordion__item[data-hover-preview] .values-accordion__photo-main {
+    transition: clip-path 200ms var(--ease-out);
+  }
+
   .values-accordion__item[data-closing] .values-accordion__photo-main {
     clip-path: inset(0 100% 0 0);
     transition-delay: 0s;
