@@ -41,7 +41,7 @@
   margin-top: clamp(30px, 3.7vw, 58px);
 }
 
-.privacy-page__nav {
+.section-toc {
   position: sticky;
   top: calc(var(--header-h) + 24px);
   max-height: calc(100svh - var(--header-h) - 48px);
@@ -51,7 +51,7 @@
   line-height: 1.4;
 }
 
-.privacy-page__nav h2 {
+.section-toc h2 {
   margin: 0 0 12px;
   font-size: clamp(20px, 1.75vw, 30px);
   font-weight: 700;
@@ -59,16 +59,16 @@
   letter-spacing: -.025em;
 }
 
-.privacy-page__nav ol {
+.section-toc ol {
   margin: 0;
   padding: 0;
   list-style: none;
-  counter-reset: privacy-section;
+  counter-reset: toc-section;
 }
 
-.privacy-page__nav li { counter-increment: privacy-section; }
+.section-toc li { counter-increment: toc-section; }
 
-.privacy-page__nav a {
+.section-toc a {
   display: grid;
   grid-template-columns: 2.1em minmax(0, 1fr);
   align-items: center;
@@ -81,27 +81,27 @@
   text-decoration: none;
 }
 
-.privacy-page__nav a::before {
-  content: counter(privacy-section, decimal-leading-zero) / '';
+.section-toc a::before {
+  content: counter(toc-section, decimal-leading-zero) / '';
   border-inline-end: 1px solid currentColor;
   color: #53666f;
   font-variant-numeric: tabular-nums;
 }
 
-.privacy-page__nav a:focus-visible {
+.section-toc a:focus-visible {
   outline: 2px solid var(--color-ink);
   outline-offset: 1px;
 }
 
-.privacy-page__nav a[aria-current='location'] {
+.section-toc a[aria-current='location'] {
   background: var(--color-ink);
   color: var(--color-white);
 }
 
-.privacy-page__nav a[aria-current='location']::before { color: #e0e5e6; }
+.section-toc a[aria-current='location']::before { color: #e0e5e6; }
 
 @media (hover: hover) and (pointer: fine) {
-  .privacy-page__nav a:not([aria-current='location']):hover { background: var(--color-white); }
+  .section-toc a:not([aria-current='location']):hover { background: var(--color-white); }
 }
 
 .privacy-page__text {

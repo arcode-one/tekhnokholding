@@ -8,6 +8,22 @@ export default function init(nav) {
     .filter(({ heading }) => heading);
   if (!entries.length) return;
 
+  if (document.querySelector('[data-return-to-source]')) {
+    for (const { link, heading } of entries) {
+      link.addEventListener('click', (event) => {
+        if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+        // Keep the source page as the preceding history entry after a section jump.
+        history.replaceState(history.state, '', link.hash);
+        if (event.detail === 0) {
+          heading.tabIndex = -1;
+          heading.focus({ preventScroll: true });
+        }
+        heading.scrollIntoView();
+      });
+    }
+  }
+
   let active = -1;
   let margin = 0;
   let frame = 0;
@@ -56,7 +72,7 @@ export default function init(nav) {
   addEventListener('pageshow', measure);
   addEventListener('hashchange', schedule);
   document.fonts?.ready.then(measure);
-  const text = nav.closest('.privacy-page')?.querySelector('.privacy-page__text');
-  if (text) new ResizeObserver(measure).observe(text);
+  const content = nav.parentElement.querySelector('.privacy-page__text, [data-section-toc-content]');
+  if (content) new ResizeObserver(measure).observe(content);
   measure();
 }

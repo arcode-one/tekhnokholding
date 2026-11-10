@@ -27,13 +27,14 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/values-page.css" />
   </head>
-  <body id="top" class="object-page services-page-body">
-    <header class="header" data-control-theme="light">
+  <body id="top" class="services-page-body">
+    <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
-            src="icons/logo-dark-compact.svg"
+            src="icons/logo-light-compact.svg"
             alt="Технохолдинг"
             width="1292"
             height="430"
@@ -175,19 +176,32 @@
 
     <main>
       <article class="services-page">
-        <section class="services-screen services-hero" aria-labelledby="services-title">
-          <nav class="page-back" aria-label="Навигация" data-ui="page-back">
+        <section class="values-hero services-hero" aria-labelledby="services-title" data-control-theme="dark">
+          <picture class="values-hero__image" aria-hidden="true">
+            <img
+              src="images/projects/metran-roof-aerial-view.webp"
+              srcset="images/projects/metran-roof-aerial-view-480w.webp 480w, images/projects/metran-roof-aerial-view-960w.webp 960w, images/projects/metran-roof-aerial-view.webp 1672w"
+              sizes="(max-width: 767px) 720px, 100vw"
+              width="1672"
+              height="941"
+              alt=""
+              fetchpriority="high"
+            />
+          </picture>
+          <nav class="page-back page-back--inverse" aria-label="Навигация" data-ui="page-back">
             <a class="pill page-back__button" href="index.html" aria-label="На главную" title="На главную">
               <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
             </a>
           </nav>
-          <div class="services-heading" data-service-reveal>
+          <div class="values-hero__title">
             <h1 id="services-title">Сильная инженерия. <span>Мастерство в деталях.</span></h1>
           </div>
+        </section>
+        <section class="services-screen services-roof-types" aria-label="Виды кровель">
           <div class="services-roofs" data-service-reveal>
             <div class="services-roofs__grid">
               <div class="services-roof">
-                <figure class="services-roof__photo"><div class="services-hero__ambient"><img src="images/services/membrane-metran-v1.webp" srcset="images/services/membrane-metran-v1-480w.webp 480w, images/services/membrane-metran-v1-960w.webp 960w, images/services/membrane-metran-v1.webp 1600w" sizes="(max-width: 699px) 100vw, 48vw" alt="Мембранная кровля производственного корпуса «Метран»" fetchpriority="high" decoding="async"></div></figure>
+                <figure class="services-roof__photo"><div class="services-hero__ambient"><img src="images/services/membrane-metran-v1.webp" srcset="images/services/membrane-metran-v1-480w.webp 480w, images/services/membrane-metran-v1-960w.webp 960w, images/services/membrane-metran-v1.webp 1600w" sizes="(max-width: 699px) 100vw, 48vw" alt="Мембранная кровля производственного корпуса «Метран»" decoding="async"></div></figure>
                 <div class="services-accordion" data-services-accordion data-accordion-align="none" data-accordion-open-ms="260" data-accordion-close-ms="200" data-accordion-copy-motion="none"><details class="services-accordion__item" id="service-3" open><summary><h2>Мембранные кровли</h2><span class="services-accordion__icon" aria-hidden="true"></span></summary><div class="services-accordion__body"><div class="services-accordion__copy"><p>Продумываем каждый метр и каждое примыкание. Создаём кровли с ПВХ-мембраной под особенности вашего здания: от основания и утепления до герметичного покрытия.</p></div></div></details></div>
               </div>
               <div class="services-roof">

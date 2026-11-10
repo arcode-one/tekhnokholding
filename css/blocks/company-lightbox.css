@@ -89,6 +89,10 @@
   height: auto;
 }
 
+.company-lightbox__image[data-lightbox-swipe] {
+  touch-action: pan-y pinch-zoom;
+}
+
 .company-lightbox__image--rotated {
   position: relative;
   container-type: size;

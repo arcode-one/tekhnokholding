@@ -1,4 +1,103 @@
+.company-story__events {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(28px, 4vw, 64px);
+  width: var(--corporate-media-width);
+  margin: clamp(32px, 4vw, 64px) auto 0;
+}
+
+.company-story__events-list {
+  display: grid;
+  min-width: 0;
+  gap: clamp(32px, 4vw, 64px);
+}
+
 .company-event {
-  margin: 0 var(--pad) 112px;
-  scroll-margin-top: 32px;
+  min-width: 0;
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.company-event__intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 20px;
+  margin-bottom: 16px;
+}
+
+.company-story--corporate .company-event h2 {
+  margin-bottom: 0;
+}
+
+.company-event__controls {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.company-event__controls .icon-btn {
+  width: 44px;
+  height: 44px;
+}
+
+.company-event__controls .projects-sign {
+  stroke: currentColor;
+}
+
+.company-event__count {
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.company-event .company-carousel__rail {
+  min-width: 0;
+  border-radius: 14px;
+  scroll-padding-inline: 0;
+  background: #e2e5e6;
+}
+
+.company-event .company-carousel__track {
+  width: 100%;
+  gap: 0;
+  padding: 0;
+}
+
+.company-event .company-story__photo {
+  flex: 0 0 100%;
+}
+
+.company-event .company-story__photo button {
+  position: relative;
+  color: var(--color-ink);
+}
+
+.company-event .company-story__photo button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
+}
+
+.company-event__frame {
+  display: block;
+  height: clamp(260px, 25vw, 390px);
+}
+
+.company-event__frame img {
+  object-fit: contain;
+}
+
+.company-event__open {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  padding: 7px 12px;
+  border-radius: 100px;
+  background: var(--color-white);
+  font: 500 13px var(--font-body);
+}
+
+@media (pointer: coarse) {
+  .company-event .company-carousel__rail { scroll-snap-type: x mandatory; }
+  .company-event .company-story__photo { scroll-snap-align: start; }
 }

@@ -24,7 +24,7 @@
 }
 
 .company-story h1,
-.company-story h2 {
+.company-story h2:where(:not(.section-toc h2)) {
   font-family: var(--font-display);
   font-weight: 300;
   line-height: 1.06;
@@ -38,10 +38,6 @@
   font-size: clamp(56px, 7.5vw, 136px);
 }
 
-.company-story--corporate h1 {
-  font-size: clamp(40px, 5vw, 96px);
-}
-
 :is(.company-story--team, .company-story--services) {
   min-height: calc(100svh - var(--header-h));
 }
@@ -50,11 +46,30 @@
   margin-bottom: 0;
 }
 
-:is(.company-story--team, .company-story--services) .company-story__intro h1 {
-  font-size: 80px;
+:is(.company-story--team, .company-story--services, .company-story--corporate) .company-story__intro h1,
+.company-story--corporate .company-event h2 {
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
+}
+
+:is(.company-story--team, .company-story--services) .company-story__intro h1 {
+  font-size: 80px;
+}
+
+.company-story--corporate {
+  --corporate-media-width: min(900px, calc(100% - 2 * var(--pad)));
+}
+
+.company-story--corporate .company-story__intro > div {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  justify-items: center;
+  text-align: center;
+}
+
+.company-story--corporate .company-story__intro h1 {
+  font-size: clamp(28px, 7vw, 80px);
 }
 
 .company-story--services .company-story__intro > div {
@@ -101,6 +116,11 @@
   aspect-ratio: 16/9;
 }
 
+.company-story--corporate .company-story__hero {
+  width: var(--corporate-media-width);
+  margin-inline: auto;
+}
+
 .company-story__text {
   max-width: 74ch;
   margin: 80px var(--pad) 112px auto;
@@ -113,9 +133,13 @@
   margin: 0 0 24px;
 }
 
-.company-story h2 {
+.company-story h2:where(:not(.section-toc h2)) {
   margin: 0 0 48px;
   font-size: clamp(40px, 4.3vw, 78px);
+}
+
+.company-story--corporate .company-event h2 {
+  font-size: clamp(26px, 3.1vw, 56px);
 }
 
 .company-story__gallery,
@@ -170,24 +194,6 @@
   aspect-ratio: 2.15;
 }
 
-.company-story__next {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--space-8);
-  margin: 0 var(--pad);
-  padding-top: 32px;
-  border-top: 1px solid #34454e55;
-  font-size: clamp(24px, 3vw, 48px);
-  line-height: 1.3;
-}
-
-.company-story__next svg {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
-}
-
 .company-story__departments {
   margin-top: 112px;
 }
@@ -220,40 +226,4 @@
   line-height: 1.4;
   font-weight: 400;
   letter-spacing: -0.02em;
-}
-
-.company-story__events-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px 32px;
-  margin: 56px var(--pad) 112px;
-}
-
-.company-story__events-nav a {
-  padding: 12px 0;
-  border-bottom: 1px solid #34454e55;
-  font-size: 13px;
-  line-height: 1.4;
-}
-
-.company-story__photo--event-lead {
-  grid-row: span 2;
-}
-
-.company-story__photo--event-lead [data-story-photo] {
-  aspect-ratio: 3/4;
-}
-
-.company-story--corporate .company-story__photo [data-story-photo] {
-  aspect-ratio: auto;
-}
-
-.company-story--corporate .company-story__photo img {
-  height: auto;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .company-story__events-nav a:hover {
-    border-color: var(--color-ink);
-  }
 }

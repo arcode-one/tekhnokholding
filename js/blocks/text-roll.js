@@ -5,6 +5,7 @@ export default function init() {
     '.header__contacts a', '.dock__contacts a', '.menu__contacts a',
     '.site-footer__nav a', '.site-footer__privacy',
     '.projects-filters .projects-types__button',
+    '.section-toc a',
   ].join(','));
 
   for (const label of labels) {

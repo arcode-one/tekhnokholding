@@ -17,6 +17,7 @@ export default function init(dialog) {
   let collection = [];
   let index = 0;
   let academy = false;
+  let swipe = null;
   function open() {
     if (dialog.open) return;
     if (!document.documentElement.classList.contains('site--locked')) ownsLock = true;
@@ -25,6 +26,7 @@ export default function init(dialog) {
     dialog.showModal();
   }
   function show(button) {
+    swipe = null;
     const fromGallery = gallery && !gallery.hidden;
     const documentPages = button.dataset.companyPages?.split(' ').filter(Boolean);
     image.hidden = !!documentPages;
@@ -46,6 +48,7 @@ export default function init(dialog) {
     title.textContent = button.dataset.imageTitle;
     if (gallery) gallery.hidden = true;
     if (view) view.hidden = false;
+    view?.toggleAttribute('data-lightbox-swipe', collection.length > 1 && !documentPages);
     view?.classList.toggle(
       'company-lightbox__image--rotated',
       button.dataset.imageRotation === '90',
@@ -92,6 +95,25 @@ export default function init(dialog) {
     index = (index + direction + collection.length) % collection.length;
     show(collection[index]);
   }
+  view?.addEventListener('pointerdown', (event) => {
+    swipe = null;
+    if (!view.hasAttribute('data-lightbox-swipe') || !event.isPrimary || event.button !== 0) return;
+    swipe = { id: event.pointerId, x: event.clientX, y: event.clientY };
+    if (event.pointerType !== 'touch') view.setPointerCapture(event.pointerId);
+  });
+  view?.addEventListener('pointerup', (event) => {
+    if (swipe?.id !== event.pointerId) return;
+    const dx = event.clientX - swipe.x;
+    const dy = event.clientY - swipe.y;
+    swipe = null;
+    if (Math.abs(dx) >= 48 && Math.abs(dx) > Math.abs(dy) * 1.4) step(dx < 0 ? 1 : -1);
+  });
+  view?.addEventListener('lostpointercapture', (event) => {
+    if (swipe?.id === event.pointerId) swipe = null;
+  });
+  view?.addEventListener('dragstart', (event) => {
+    if (view.hasAttribute('data-lightbox-swipe')) event.preventDefault();
+  });
   dialog
     .querySelectorAll('[data-lightbox-step]')
     .forEach((button) =>
@@ -135,6 +157,7 @@ export default function init(dialog) {
     // Событие close приходит асинхронно. Старое закрытие не снимает блокировку
     // у уже открытого следующего документа и не теряет владение блокировкой.
     if (dialog.open) return;
+    swipe = null;
     if (ownsLock) document.documentElement.classList.remove('site--locked');
     ownsLock = false;
     if (opener?.isConnected) opener.focus({ preventScroll: true });

@@ -19,6 +19,16 @@ export default function init() {
   if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
   restoreReloadPosition(root);
 
+  const returnLink = document.querySelector('[data-return-to-source]');
+  const source = new URL(document.referrer || location.href);
+  if (returnLink && history.length > 1 && source.origin === location.origin && source.pathname !== location.pathname) {
+    returnLink.addEventListener('click', (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      history.back();
+    });
+  }
+
   root.classList.add('site--loaded');
   requestAnimationFrame(() => {
     if (entryAnchor && navigationType !== 'reload' && navigationType !== 'back_forward')
