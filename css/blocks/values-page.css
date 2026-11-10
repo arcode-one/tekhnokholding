@@ -1,4 +1,5 @@
 .values-page,
+.services-page,
 .quality-overview {
   --values-row-height: clamp(94px, min(7.1vw, 16svh), 136px);
   --values-row-padding: 18px;
@@ -282,6 +283,7 @@
 
 @media (max-width: 767px) {
   .values-page,
+  .services-page,
   .quality-overview {
     --values-row-padding: 12px;
   }

@@ -26,7 +26,6 @@ enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('.
 
 enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
-enhance('.services-hero', 'services-hero', () => import('./blocks/services-hero.js'));
 enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 

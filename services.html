@@ -29,12 +29,12 @@
     <link rel="stylesheet" href="css/index.css" />
     <link rel="stylesheet" href="css/blocks/values-page.css" />
   </head>
-  <body id="top" class="object-page services-page-body">
+  <body id="top">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
-            src="icons/logo-dark-compact.svg"
+            src="icons/logo-light-compact.svg"
             alt="Технохолдинг"
             width="1292"
             height="430"
@@ -176,8 +176,19 @@
 
     <main>
       <article class="services-page">
-        <section class="values-hero services-hero" aria-labelledby="services-title" data-control-theme="light">
-          <nav class="page-back" aria-label="Навигация" data-ui="page-back">
+        <section class="values-hero services-hero" aria-labelledby="services-title" data-control-theme="dark">
+          <picture class="values-hero__image" aria-hidden="true">
+            <img
+              src="images/services/hero-roof-v8.webp"
+              srcset="images/services/hero-roof-v8-480w.webp 480w, images/services/hero-roof-v8-960w.webp 960w, images/services/hero-roof-v8.webp 1672w"
+              sizes="(max-width: 767px) max(100vw, 90svh), 100vw"
+              width="1672"
+              height="941"
+              alt=""
+              fetchpriority="high"
+            />
+          </picture>
+          <nav class="page-back page-back--inverse" aria-label="Навигация" data-ui="page-back">
             <a class="pill page-back__button" href="index.html" aria-label="На главную" title="На главную">
               <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
             </a>
@@ -186,51 +197,93 @@
             <h1 id="services-title">Сильная инженерия. <span>Мастерство в деталях.</span></h1>
           </div>
         </section>
-        <section class="services-screen services-roof-types" aria-label="Виды кровель">
-          <div class="services-roofs" data-service-reveal>
-            <div class="services-roofs__grid">
-              <div class="services-roof">
-                <figure class="services-roof__photo"><div class="services-hero__ambient"><img src="images/services/membrane-metran-v1.webp" srcset="images/services/membrane-metran-v1-480w.webp 480w, images/services/membrane-metran-v1-960w.webp 960w, images/services/membrane-metran-v1.webp 1600w" sizes="(max-width: 699px) 100vw, 48vw" alt="Мембранная кровля производственного корпуса «Метран»" decoding="async"></div></figure>
-                <div class="services-accordion" data-services-accordion data-accordion-align="none" data-accordion-open-ms="260" data-accordion-close-ms="200" data-accordion-copy-motion="none"><details class="services-accordion__item" id="service-3" open><summary><h2>Мембранные кровли</h2><span class="services-accordion__icon" aria-hidden="true"></span></summary><div class="services-accordion__body"><div class="services-accordion__copy"><p>Продумываем каждый метр и каждое примыкание. Создаём кровли с ПВХ-мембраной под особенности вашего здания: от основания и утепления до герметичного покрытия.</p></div></div></details></div>
+        <section class="values-accordion" aria-labelledby="services-title" data-services-accordion data-accordion-align="center" data-accordion-open-ms="540" data-accordion-close-ms="460" data-accordion-easing="ease">
+          <details class="values-accordion__item" id="service-3">
+            <summary>
+              <span class="values-accordion__number" aria-hidden="true">01</span>
+              <span class="values-accordion__title">Мембранные кровли</span>
+              <span class="values-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body values-accordion__body">
+              <div class="services-accordion__copy values-accordion__copy">
+                <p>Продумываем каждый метр и каждое примыкание. Создаём кровли с ПВХ-мембраной под особенности вашего здания: от основания и утепления до герметичного покрытия.</p>
               </div>
-              <div class="services-roof">
-                <figure class="services-roof__photo">
-                  <div class="services-hero__ambient">
-                    <img src="images/services/bitumen-v2.webp" srcset="images/services/bitumen-v2-480w.webp 480w, images/services/bitumen-v2-960w.webp 960w, images/services/bitumen-v2.webp 1122w" sizes="(max-width: 699px) 100vw, 48vw" alt="Монтаж наплавляемой кровли из битумно-полимерного материала" loading="lazy" decoding="async">
-                  </div>
-                </figure>
-                <div class="services-accordion" data-services-accordion data-accordion-align="none" data-accordion-open-ms="260" data-accordion-close-ms="200" data-accordion-copy-motion="none"><details class="services-accordion__item" id="service-4" open><summary><h2>Наплавляемые кровли</h2><span class="services-accordion__icon" aria-hidden="true"></span></summary><div class="services-accordion__body"><div class="services-accordion__copy"><p>Новая кровля или обновление существующей — берём на себя весь комплекс работ с битумно-полимерными материалами.</p></div></div></details></div>
+              <div class="values-accordion__photo">
+                <div class="values-accordion__photo-main" data-architecture-parallax="figures">
+                  <img src="images/services/membrane-metran-v1.webp" srcset="images/services/membrane-metran-v1-480w.webp 480w, images/services/membrane-metran-v1-960w.webp 960w, images/services/membrane-metran-v1.webp 1600w" alt="Мембранная кровля производственного корпуса «Метран»" sizes="(max-width: 767px) 100vw, 40vw" loading="lazy" decoding="async" />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-        <section class="services-screen services-work" aria-label="Инженерный подход и сложные объекты">
-          <div class="services-intro">
-            <div class="services-statement" data-service-reveal>
-              <div class="services-statement__copy" id="service-1">
-                <h2>Инженерия на объекте</h2>
+          </details>
+          <details class="values-accordion__item" id="service-4">
+            <summary>
+              <span class="values-accordion__number" aria-hidden="true">02</span>
+              <span class="values-accordion__title">Наплавляемые кровли</span>
+              <span class="values-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body values-accordion__body">
+              <div class="services-accordion__copy values-accordion__copy">
+                <p>Новая кровля или обновление существующей — берём на себя весь комплекс работ с битумно-полимерными материалами.</p>
+              </div>
+              <div class="values-accordion__photo">
+                <div class="values-accordion__photo-main" data-architecture-parallax="figures">
+                  <img src="images/services/bitumen-v2.webp" srcset="images/services/bitumen-v2-480w.webp 480w, images/services/bitumen-v2-960w.webp 960w, images/services/bitumen-v2.webp 1122w" alt="Монтаж наплавляемой кровли из битумно-полимерного материала" sizes="(max-width: 767px) 100vw, 40vw" loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="values-accordion__item" id="service-1">
+            <summary>
+              <span class="values-accordion__number" aria-hidden="true">03</span>
+              <span class="values-accordion__title">Инженерия на объекте</span>
+              <span class="values-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body values-accordion__body">
+              <div class="services-accordion__copy values-accordion__copy">
                 <p>Мы умеем работать там, где готового решения недостаточно: сложная геометрия, нестандартные примыкания, действующее производство, ограничения существующих конструкций. Для таких задач у нас есть опытные инженеры и мастера, которые умеют воплощать технические решения на объекте.</p>
               </div>
-            </div>
-            <figure class="services-intro__photo" data-service-reveal>
-              <div class="services-hero__ambient">
-                <img src="images/services/engineering-reduktor.webp" srcset="images/services/engineering-reduktor-480w.webp 480w, images/services/engineering-reduktor-960w.webp 960w, images/services/engineering-reduktor.webp 1600w" sizes="(max-width: 699px) 100vw, 48vw" alt="Кровля Редукторного завода со световым фонарём" loading="lazy" decoding="async">
+              <div class="values-accordion__photo">
+                <div class="values-accordion__photo-main" data-architecture-parallax="figures">
+                  <img src="images/services/engineering-reduktor.webp" srcset="images/services/engineering-reduktor-480w.webp 480w, images/services/engineering-reduktor-960w.webp 960w, images/services/engineering-reduktor.webp 1600w" alt="Кровля Редукторного завода со световым фонарём" sizes="(max-width: 767px) 100vw, 40vw" loading="lazy" decoding="async" />
+                </div>
               </div>
-            </figure>
-          </div>
-          <div class="services-solution" data-service-reveal><div class="services-accordion" data-services-accordion data-accordion-align="none" data-accordion-open-ms="260" data-accordion-close-ms="200" data-accordion-copy-motion="none"><details class="services-accordion__item" id="service-2" open><summary><h2>Решение под ваш объект</h2><span class="services-accordion__icon" aria-hidden="true"></span></summary><div class="services-accordion__body"><div class="services-accordion__copy"><p>На чертежах всё может выглядеть иначе, чем на объекте. Наши инженеры доработают решение и подготовят обоснование изменений.</p></div></div></details></div></div>
-          <div class="services-complex" data-service-reveal>
-            <div class="services-complex__copy">
-              <h2>Сложный объект?<br>Подключайте нас.</h2>
-              <p>Реконструкция без остановки производства. Нестандартные узлы. Сложная логистика. Проект, который нужно доработать, прежде чем приступить к монтажу.</p>
-              <p class="services-complex__closing">Мы можем всё.</p>
             </div>
-            <figure class="services-complex__photo">
-              <div class="services-hero__ambient">
-                <img src="images/services/complex-parkovy-960w.webp" srcset="images/services/complex-parkovy-480w.webp 480w, images/services/complex-parkovy-960w.webp 960w, images/services/complex-parkovy.webp 1600w" sizes="(max-width: 699px) 100vw, 48vw" alt="Кровля и фасады жилого комплекса «Парковый» с высоты" loading="lazy" decoding="async">
+          </details>
+          <details class="values-accordion__item" id="service-2">
+            <summary>
+              <span class="values-accordion__number" aria-hidden="true">04</span>
+              <span class="values-accordion__title">Решение под ваш объект</span>
+              <span class="values-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body values-accordion__body">
+              <div class="services-accordion__copy values-accordion__copy">
+                <p>На чертежах всё может выглядеть иначе, чем на объекте. Наши инженеры доработают решение и подготовят обоснование изменений.</p>
               </div>
-            </figure>
-          </div>
+              <div class="values-accordion__photo">
+                <div class="values-accordion__photo-main" data-architecture-parallax="figures">
+                  <img src="images/services/solution-v1.webp" srcset="images/services/solution-v1-480w.webp 480w, images/services/solution-v1-960w.webp 960w, images/services/solution-v1.webp 1122w" alt="Рабочие чертежи кровли" sizes="(max-width: 767px) 100vw, 40vw" loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </details>
+          <details class="values-accordion__item" id="service-5">
+            <summary>
+              <span class="values-accordion__number" aria-hidden="true">05</span>
+              <span class="values-accordion__title">Сложный объект? Подключайте нас.</span>
+              <span class="values-accordion__icon" aria-hidden="true"></span>
+            </summary>
+            <div class="services-accordion__body values-accordion__body">
+              <div class="services-accordion__copy values-accordion__copy">
+                <p>Реконструкция без остановки производства. Нестандартные узлы. Сложная логистика. Проект, который нужно доработать, прежде чем приступить к монтажу.</p>
+                <p class="values-accordion__principle">Мы можем всё.</p>
+              </div>
+              <div class="values-accordion__photo">
+                <div class="values-accordion__photo-main" data-architecture-parallax="figures">
+                  <img src="images/services/complex-parkovy-960w.webp" srcset="images/services/complex-parkovy-480w.webp 480w, images/services/complex-parkovy-960w.webp 960w, images/services/complex-parkovy.webp 1600w" alt="Кровля и фасады жилого комплекса «Парковый» с высоты" sizes="(max-width: 767px) 100vw, 40vw" loading="lazy" decoding="async" />
+                </div>
+              </div>
+            </div>
+          </details>
         </section>
       </article>
     </main>

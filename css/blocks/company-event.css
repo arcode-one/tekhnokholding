@@ -6,6 +6,16 @@
   margin-inline: var(--pad);
 }
 
+.company-story__events-overview ol {
+  display: grid;
+  gap: 6px;
+}
+
+.company-story__events-overview .section-toc__label {
+  border: 1px solid var(--color-white);
+  background: var(--color-white);
+}
+
 .company-story__events-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
