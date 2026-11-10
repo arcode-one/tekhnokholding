@@ -15,7 +15,6 @@ export default function init(nav) {
         event.preventDefault();
         // Keep the source page as the preceding history entry after a section jump.
         history.replaceState(history.state, '', link.hash);
-        syncAnchor();
         if (event.detail === 0) {
           heading.tabIndex = -1;
           heading.focus({ preventScroll: true });
@@ -23,23 +22,6 @@ export default function init(nav) {
         heading.scrollIntoView();
       });
     }
-  }
-
-  function syncAnchor() {
-    if (nav.dataset.sectionToc !== 'anchors') return;
-    const selected = entries.find(({ link }) => link.hash === location.hash) ?? entries[0];
-    for (const entry of entries) {
-      if (entry === selected) entry.link.setAttribute('aria-current', 'location');
-      else entry.link.removeAttribute('aria-current');
-      entry.heading.toggleAttribute('data-toc-target', entry.link.hash === location.hash);
-    }
-  }
-
-  if (nav.dataset.sectionToc === 'anchors') {
-    addEventListener('hashchange', syncAnchor);
-    addEventListener('pageshow', syncAnchor);
-    syncAnchor();
-    return;
   }
 
   let active = -1;

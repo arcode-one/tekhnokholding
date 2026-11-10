@@ -68,10 +68,6 @@
   color: #52616a;
 }
 
-.company-event[data-toc-target] .company-event__card {
-  border-color: var(--color-ink);
-}
-
 @media (hover: hover) and (pointer: fine) {
   .company-event__card:hover { border-color: var(--color-ink); }
 }

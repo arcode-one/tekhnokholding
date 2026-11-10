@@ -68,7 +68,7 @@
 
 .section-toc li { counter-increment: toc-section; }
 
-.section-toc a {
+.section-toc :is(a, .section-toc__label) {
   display: grid;
   grid-template-columns: 2.1em minmax(0, 1fr);
   align-items: center;
@@ -81,7 +81,7 @@
   text-decoration: none;
 }
 
-.section-toc a::before {
+.section-toc :is(a, .section-toc__label)::before {
   content: counter(toc-section, decimal-leading-zero) / '';
   border-inline-end: 1px solid currentColor;
   color: #53666f;

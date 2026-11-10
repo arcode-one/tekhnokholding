@@ -5,12 +5,12 @@ export default function init() {
     '.header__contacts a', '.dock__contacts a', '.menu__contacts a',
     '.site-footer__nav a', '.site-footer__privacy',
     '.projects-filters .projects-types__button',
-    '.section-toc a',
+    '.section-toc a', '.section-toc__label',
   ].join(','));
 
   for (const label of labels) {
-    const link = label.closest('a, button');
-    if (!link) continue;
+    const trigger = label.closest('a, button, .section-toc__label');
+    if (!trigger) continue;
     for (const node of [...label.childNodes]) {
       if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
       const viewport = document.createElement('span');
@@ -27,6 +27,6 @@ export default function init() {
       viewport.append(track);
       node.replaceWith(viewport);
     }
-    link.classList.add('text-roll-link');
+    trigger.classList.add('text-roll-link');
   }
 }
