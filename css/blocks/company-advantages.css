@@ -32,6 +32,10 @@
   .company-heading.company-advantages__intro {
     --trust-corner-width: min(48vw, 920px);
   }
+
+  .company-advantages__corner {
+    clip-path: polygon(27% 0, 100% 0, 100% 100%, 14% 100%);
+  }
 }
 
 @media (max-width: 599px) {

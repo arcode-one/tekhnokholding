@@ -6,12 +6,13 @@
     <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
     <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180" />
-    <title>Собственная служба качества | Технохолдинг</title>
+    <title>Служба качества и заботы о клиенте | Технохолдинг</title>
     <meta
       name="description"
-      content="Собственная служба качества. Контроль качества и забота о клиенте на каждом этапе кровельных работ."
+      content="Служба качества и заботы о клиенте Технохолдинга. Независимый контроль кровельных работ от проверки материалов до итоговой приёмки."
     />
     <meta name="theme-color" content="#34454e" />
+    <meta property="og:image" content="images/values/hero.webp" />
     <link
       rel="preload"
       href="fonts/manrope/manrope-latin-wght-normal.woff2"
@@ -27,13 +28,14 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/values-page.css" />
   </head>
   <body id="top" class="quality-page-body" data-site-footer="off">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
-            src="icons/logo-dark-compact.svg"
+            src="icons/logo-light-compact.svg"
             alt="Технохолдинг"
             width="1292"
             height="430"
@@ -173,51 +175,52 @@
       </div>
     </div>
 
-<main>
+    <main>
       <article class="quality-overview" aria-labelledby="quality-title">
-        <nav class="page-back" aria-label="Навигация"><a class="pill page-back__button" href="index.html#advantages" aria-label="Вернуться к преимуществам"><svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg></a></nav>
-        <div class="quality-content">
-          <section class="quality-intro" aria-labelledby="quality-intro-title">
-            <h1 id="quality-title">Собственная<br>служба качества</h1>
-            <p class="quality-intro__lead">Контроль качества и забота о клиенте на каждом этапе кровельных работ</p>
-            <h2 id="quality-intro-title">Независимый контроль на каждом этапе</h2>
-            <p>Независимая служба качества ТехноХОЛДИНГ контролирует все этапы: от входного контроля материалов до итоговой приёмки. Проверяем соответствие проекту и технологии, фиксируем каждый этап, контролируем устранение замечаний и держим клиента в курсе.</p>
+        <section class="values-hero quality-hero" aria-labelledby="quality-title" data-control-theme="dark">
+          <picture class="values-hero__image" aria-hidden="true">
+            <source media="(max-width: 767px)" srcset="images/values/hero-mobile.webp" />
+            <img src="images/values/hero.webp" width="1672" height="941" alt="" fetchpriority="high" />
+          </picture>
+          <nav class="page-back page-back--inverse" aria-label="Навигация">
+            <a class="pill page-back__button" href="index.html#advantages" aria-label="Вернуться к преимуществам">
+              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+            </a>
+          </nav>
+          <div class="values-hero__title quality-intro">
+            <h1 id="quality-title">Служба качества и заботы о клиенте</h1>
+            <h2>Независимый контроль на каждом этапе:<br>от входного контроля материалов до итоговой приёмки.</h2>
             <p class="quality-intro__goal">Наша цель: обеспечить качество, которое <strong>не требует компромиссов и исправлений после сдачи</strong>.</p>
-            <div class="quality-intro__result">
-              <h3>Что получает заказчик</h3>
-              <p>Прозрачный процесс, предсказуемое качество и уверенность в надёжности объекта.</p>
-            </div>
-          </section>
-          <section class="quality-approach" id="quality-control" aria-labelledby="quality-stages-title">
-            <h2 id="quality-stages-title">Как мы контролируем качество</h2>
-            <div class="quality-stages" data-services-accordion data-accordion-align="none" data-accordion-open-ms="540" data-accordion-close-ms="460" data-accordion-easing="ease">
-            <details class="quality-step" id="quality-step-1" open>
-              <summary><span class="quality-step__number" aria-hidden="true">01</span><span class="quality-step__title">Входной контроль материалов</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
+          </div>
+        </section>
+        <section class="quality-approach" id="quality-control" aria-label="Этапы контроля качества">
+          <div class="quality-stages" data-services-accordion data-accordion-align="reveal" data-accordion-open-ms="540" data-accordion-close-ms="460" data-accordion-easing="ease">
+            <details class="quality-step" id="quality-step-1">
+              <summary><span class="quality-step__number" aria-hidden="true"><span>01</span></span><span class="quality-step__title">Входной контроль материалов</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
               <div class="services-accordion__body quality-step__body">
                 <div class="services-accordion__copy"><p>Проверяем маркировку, комплектность, состояние и соответствие материалов проектной документации. Фиксируем результаты входного осмотра до начала работ.</p></div>
               </div>
             </details>
             <details class="quality-step" id="quality-step-2">
-              <summary><span class="quality-step__number" aria-hidden="true">02</span><span class="quality-step__title">Контроль в процессе работ</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
+              <summary><span class="quality-step__number" aria-hidden="true"><span>02</span></span><span class="quality-step__title">Контроль в процессе работ</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
               <div class="services-accordion__body quality-step__body">
                 <div class="services-accordion__copy"><p>Контролируем соблюдение технологии монтажа, качество узлов, примыканий и сварных соединений. Выявляем замечания и контролируем их устранение.</p></div>
               </div>
             </details>
             <details class="quality-step" id="quality-step-3">
-              <summary><span class="quality-step__number" aria-hidden="true">03</span><span class="quality-step__title">Итоговая приёмка</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
+              <summary><span class="quality-step__number" aria-hidden="true"><span>03</span></span><span class="quality-step__title">Итоговая приёмка</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
               <div class="services-accordion__body quality-step__body">
                 <div class="services-accordion__copy"><p>Проводим комплексный финальный осмотр, повторно проверяем ключевые участки и подтверждаем готовность объекта к сдаче.</p></div>
               </div>
             </details>
             <details class="quality-step" id="quality-step-4">
-              <summary><span class="quality-step__number" aria-hidden="true">04</span><span class="quality-step__title">Обратная связь и сопровождение клиента</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
+              <summary><span class="quality-step__number" aria-hidden="true"><span>04</span></span><span class="quality-step__title">Обратная связь и сопровождение клиента</span><span class="quality-step__icon" aria-hidden="true"></span></summary>
               <div class="services-accordion__body quality-step__body">
                 <div class="services-accordion__copy"><p>Оперативно информируем о ходе контроля, фиксируем результаты и предоставляем понятную отчётность. Сопровождаем клиента до полного завершения работ.</p></div>
               </div>
             </details>
-            </div>
-          </section>
-        </div>
+          </div>
+        </section>
       </article>
     </main>
     <script type="module" src="js/index.js"></script>

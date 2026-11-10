@@ -5,6 +5,7 @@ export default function init(container) {
   const easing = container.dataset.accordionEasing || 'cubic-bezier(0.22, 1, 0.36, 1)';
   const animateCopy = container.dataset.accordionCopyMotion !== 'none';
   const alignMode = container.dataset.accordionAlign;
+  const reveal = alignMode === 'reveal';
   const overview = alignMode === 'overview' ? container.closest('.mission-overview') : null;
   const items = [...container.querySelectorAll('details')].map((element) => ({
     element,
@@ -28,18 +29,21 @@ export default function init(container) {
     const offset = expanded
       ? Math.max(scrollMargin, !overview && innerWidth < 768 ? 80 : 0)
       : 0;
+    const startY = scrollY;
     const destination = () => {
       const top = anchor.getBoundingClientRect().top + scrollY;
-      if (!overview || !expanded) return Math.max(0, top - offset);
+      if (!expanded || (!overview && !reveal)) return Math.max(0, top - offset);
 
-      const section = overview.getBoundingClientRect();
-      const sectionTop = section.top + scrollY;
       // Read the natural panel height, not its partially revealed animation frame.
       const panelHeight = item.summary.offsetHeight + item.body.offsetHeight;
       const bottomGap = 24;
       const target = panelHeight <= innerHeight - offset - bottomGap
         ? top + panelHeight + bottomGap - innerHeight
         : top - offset;
+      if (reveal) return Math.max(0, Math.min(top - offset, Math.max(startY, target)));
+
+      const section = overview.getBoundingClientRect();
+      const sectionTop = section.top + scrollY;
       // Keep as much introduction as possible and never pull the footer into view.
       return Math.max(sectionTop, Math.min(target, section.bottom + scrollY - innerHeight));
     };
@@ -47,7 +51,6 @@ export default function init(container) {
       scrollTo({ top: destination(), behavior: 'instant' });
       return;
     }
-    const startY = scrollY;
     const startTime = performance.now();
     // Finish after both panels settle, including the overview's vertical centering.
     const duration = overview ? Math.max(openDuration, closeDuration) + 100 : openDuration;
