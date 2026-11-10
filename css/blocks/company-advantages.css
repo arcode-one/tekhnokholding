@@ -15,13 +15,13 @@
 
 .company-advantages__corner {
   position: absolute;
-  inset: 0 0 0 auto;
+  inset: auto 0 0 auto;
   display: block;
   width: var(--trust-corner-width);
-  height: 100%;
+  height: calc(100% + clamp(12px, 1.15vw, 22px));
   object-fit: cover;
-  object-position: center 62%;
-  border-radius: 14px;
+  border-radius: 0 14px 14px 0;
+  clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
 }
 
 @media (min-width: 768px) and (max-width: 879px) {
@@ -30,10 +30,8 @@
 
 @media (min-width: 1280px) {
   .company-heading.company-advantages__intro {
-    --trust-corner-width: min(46vw, 880px);
+    --trust-corner-width: min(48vw, 920px);
   }
-
-  .company-advantages__corner { object-position: center 48%; }
 }
 
 @media (max-width: 599px) {
@@ -47,9 +45,9 @@
   .company-advantages__corner {
     position: static;
     width: min(52vw, 240px);
-    height: clamp(64px, 19vw, 92px);
+    height: clamp(74px, 21vw, 102px);
     align-self: flex-end;
-    border-radius: 10px;
+    border-radius: 0 10px 10px 0;
   }
 }
 
