@@ -50,13 +50,6 @@
   text-wrap: balance;
 }
 
-.values-hero__wordmark {
-  display: block;
-  width: 144px;
-  height: 12px;
-  margin: 18px auto 0;
-}
-
 .account-page .values-hero {
   min-height: 100svh;
   padding-bottom: calc(var(--header-h) + 24px);
@@ -67,7 +60,7 @@
 }
 
 .account-hero__status {
-  margin: 18px 0 26px;
+  margin: 18px 0 0;
   font-size: clamp(19px, 2vw, 30px);
   line-height: 1.35;
 }
