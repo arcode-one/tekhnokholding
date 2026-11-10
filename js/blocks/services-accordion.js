@@ -1,3 +1,5 @@
+const HOVER_OPEN_MS = 220;
+
 export default function init(container) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const openDuration = Number(container.dataset.accordionOpenMs) || 460;
@@ -6,6 +8,7 @@ export default function init(container) {
   const animateCopy = container.dataset.accordionCopyMotion !== 'none';
   const alignMode = container.dataset.accordionAlign;
   const reveal = alignMode === 'reveal';
+  const center = reveal || alignMode === 'center';
   const overview = alignMode === 'overview' ? container.closest('.mission-overview') : null;
   const hover = container.hasAttribute('data-accordion-hover')
     ? matchMedia('(hover: hover) and (pointer: fine)')
@@ -27,7 +30,7 @@ export default function init(container) {
     cancelAnimationFrame(alignFrame);
     alignFrame = 0;
   }
-  function align(item, animate, expanded = true) {
+  function align(item, animate, expanded = true, byHover = false) {
     stopAlign();
     const anchor = expanded ? item.element : overview;
     if (!anchor) return;
@@ -39,16 +42,20 @@ export default function init(container) {
     const nextSummary = reveal ? item.element.nextElementSibling?.querySelector('summary') : null;
     const destination = () => {
       const top = anchor.getBoundingClientRect().top + scrollY;
-      if (!expanded || (!overview && !reveal)) return Math.max(0, top - offset);
+      if (!expanded || (!overview && !center)) return Math.max(0, top - offset);
 
       // Read the natural panel height, not its partially revealed animation frame.
       const panelHeight = item.summary.offsetHeight + item.body.offsetHeight;
-      const bottomGap = nextSummary ? nextSummary.offsetHeight + 1 : 24;
+      if (center) {
+        const centered = top + (panelHeight - innerHeight) / 2;
+        const withNext = nextSummary ? top + panelHeight + nextSummary.offsetHeight + 1 - innerHeight : centered;
+        return Math.max(0, Math.min(top - offset, Math.max(centered, withNext)));
+      }
+
+      const bottomGap = 24;
       const target = panelHeight <= innerHeight - offset - bottomGap
         ? top + panelHeight + bottomGap - innerHeight
         : top - offset;
-      if (reveal) return Math.max(0, Math.min(top - offset, Math.max(startY, target)));
-
       const section = overview.getBoundingClientRect();
       const sectionTop = section.top + scrollY;
       // Keep as much introduction as possible and never pull the footer into view.
@@ -60,7 +67,8 @@ export default function init(container) {
     }
     const startTime = performance.now();
     // Finish after both panels settle, including the overview's vertical centering.
-    const duration = overview ? Math.max(openDuration, closeDuration) + 100 : openDuration;
+    const duration = byHover ? HOVER_OPEN_MS
+      : overview ? Math.max(openDuration, closeDuration) + 100 : openDuration;
     function step(now) {
       const progress = Math.min(1, (now - startTime) / duration);
       const eased = 1 - Math.pow(1 - progress, 3);
@@ -112,7 +120,7 @@ export default function init(container) {
     item.element.style.height = `${start}px`;
     item.element.style.overflow = 'hidden';
     item.animation = item.element.animate({ height: [`${start}px`, `${end}px`] }, {
-      duration: byHover ? (expanded ? 220 : 200) : (expanded ? openDuration : closeDuration),
+      duration: byHover ? (expanded ? HOVER_OPEN_MS : 200) : (expanded ? openDuration : closeDuration),
       easing,
     });
     if (expanded && animateCopy && !byHover) item.copyAnimation = item.copy.animate({
@@ -131,7 +139,10 @@ export default function init(container) {
 
   function endPreview() {
     clearTimeout(hoverTimer);
-    if (preview) toggle(preview, false, true, true);
+    if (preview) {
+      stopAlign();
+      toggle(preview, false, true, true);
+    }
     preview = null;
   }
 
@@ -152,6 +163,7 @@ export default function init(container) {
         stopAlign();
         setExpanded(item, true, true, true);
         preview = item;
+        if (alignMode !== 'none') align(item, true, true, true);
       }, 125);
     }, { passive: true });
     document.documentElement.addEventListener('pointerleave', (event) => {
