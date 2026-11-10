@@ -29,8 +29,7 @@
 
   .advantage-card--academy .advantage-card__title { max-inline-size: 24ch; }
 
-  .advantage-card--quality .advantage-card__copy,
-  .advantage-card--warranty .advantage-card__copy { padding: clamp(16px, 2.65svh, 30px); }
+  .advantage-card--quality .advantage-card__copy { padding: clamp(16px, 2.65svh, 30px); }
 
   .advantage-card--quality .advantage-card__description {
     margin-top: clamp(5px, 1svh, 9px);
@@ -46,22 +45,37 @@
   .advantage-card--authorized { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
 }
 
+@media (min-width: 768px) and (max-width: 1179px) {
+  .advantage-card--academy {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(80px, 1fr) auto;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 899px) {
+  .advantage-card--warranty { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
+  .advantage-card--warranty .advantage-card__copy { padding-inline: 10px; }
+}
+
 @media (max-width: 767px) {
   .advantage-card { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); min-height: 154px; }
-  .advantage-card--quality,
-  .advantage-card--warranty { grid-template-columns: minmax(0, 1fr); }
-  .advantage-card--quality { min-height: 210px; }
+  .advantage-card--quality { grid-template-columns: minmax(0, 1fr); min-height: 210px; }
   .advantage-card--quality .advantage-card__photo img { object-position: 91% center; }
-  .advantage-card--warranty { min-height: 154px; }
   .advantage-card__copy { padding: 14px; }
   .advantage-card__description { margin-top: 7px; }
   .advantage-card__arrow { width: 21px; height: 21px; }
 }
 
 @media (max-width: 359px) {
-  .advantage-card:not(.advantage-card--quality, .advantage-card--warranty) {
+  .advantage-card:not(.advantage-card--quality) {
     grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
   }
 
   .advantage-card__copy { padding: 12px; }
+}
+
+@media (max-width: 389px) {
+  .advantage-card.advantage-card--academy {
+    grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
+  }
 }

@@ -1,8 +1,4 @@
 @media (max-width: 1199px) {
-  .catalog-page .projects-heading .home-heading {
-    font-size: clamp(24px, 7.5vw, 64px);
-  }
-
   .home-page .company-team__intro {
     grid-template-columns: minmax(0, 1fr);
     gap: 24px;
@@ -16,6 +12,7 @@
 @media (max-width: 767px) {
   .home-page { --home-heading-font-size: clamp(24px, min(7vw, 6svh), 48px); }
   .home-page .home-heading__muted { --home-heading-indent: 1.5em; }
+  .catalog-page .projects-heading .home-heading { font-size: min(42px, 8vw); }
 }
 
 @media (max-height: 500px) {

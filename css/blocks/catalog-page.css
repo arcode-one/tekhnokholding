@@ -1,5 +1,5 @@
 .catalog-page {
-  background: var(--color-gray-light);
+  background: var(--color-white);
 }
 
 .catalog-page > main {
@@ -7,8 +7,8 @@
 }
 
 .catalog-page .projects-section {
-  --projects-surface: var(--color-gray-light);
-  --projects-paper: #fff;
+  --projects-surface: var(--color-white);
+  --projects-paper: var(--color-gray-light);
   --projects-ink: var(--color-ink);
   --projects-secondary: var(--theme-text-secondary);
   --projects-gap: 32px;

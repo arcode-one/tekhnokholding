@@ -69,12 +69,14 @@
   rotate: 90deg;
 }
 
-.advantage-card--quality,
-.advantage-card--warranty {
+.advantage-card--quality {
   grid-template-columns: minmax(0, 1fr);
 }
 
 .advantage-card--plastfoil .advantage-card__photo img { object-position: 88% center; }
+
+.advantage-card--warranty .advantage-card__photo { background: #adb0b5; }
+.advantage-card--warranty .advantage-card__photo img { object-fit: contain; }
 
 .advantage-card--quality,
 .advantage-card--warranty {
@@ -86,8 +88,7 @@
   color: var(--color-white);
 }
 
-.advantage-card--quality > .advantage-card__photo,
-.advantage-card--warranty > .advantage-card__photo {
+.advantage-card--quality > .advantage-card__photo {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -102,27 +103,20 @@
   background: linear-gradient(90deg, rgb(17 29 39 / 89%), rgb(17 29 39 / 67%) 47%, rgb(17 29 39 / 12%) 85%);
 }
 
-.advantage-card--quality .advantage-card__copy,
-.advantage-card--warranty .advantage-card__copy {
+.advantage-card--quality .advantage-card__copy {
   padding: clamp(20px, 2.1vw, 38px);
 }
 
+.advantage-card--academy .advantage-card__copy { gap: 8px; }
+
 .advantage-card--quality .advantage-card__title,
-.advantage-card--warranty .advantage-card__title {
+.advantage-card--warranty .advantage-card__title,
+.advantage-card--academy .advantage-card__title {
   font-size: var(--advantages-emphasis-size);
 }
 
 .advantage-card--quality .advantage-card__description { color: inherit; }
-.advantage-card--quality .advantage-card__arrow,
-.advantage-card--warranty .advantage-card__arrow { align-self: flex-start; }
-
-.advantage-card--warranty .advantage-card__photo img {
-  inset: auto 12px 12px auto;
-  width: 47%;
-  height: 86%;
-  object-fit: contain;
-  object-position: right bottom;
-}
+.advantage-card--quality .advantage-card__arrow { align-self: flex-start; }
 
 .advantage-card--granat .advantage-card__photo { background: #101012; }
 .advantage-card--granat .advantage-card__photo img { object-fit: contain; }

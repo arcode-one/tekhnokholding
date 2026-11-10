@@ -44,10 +44,6 @@
 
 .values-hero__title h1 {
   margin: 0;
-  font-size: clamp(42px, 5vw, 94px);
-  font-weight: 400;
-  line-height: 1;
-  letter-spacing: -.06em;
   text-wrap: balance;
 }
 
@@ -56,6 +52,21 @@
   width: 144px;
   height: 12px;
   margin: 18px auto 0;
+}
+
+.account-page .values-hero {
+  min-height: 100svh;
+  padding-bottom: calc(var(--header-h) + 24px);
+}
+
+.account-page .values-hero::after {
+  background: linear-gradient(180deg, #151d24b3, #151d247d 45%, #151d24a6);
+}
+
+.account-hero__status {
+  margin: 18px 0 26px;
+  font-size: clamp(19px, 2vw, 30px);
+  line-height: 1.35;
 }
 
 .values-accordion {

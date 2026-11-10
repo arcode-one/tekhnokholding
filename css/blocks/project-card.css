@@ -183,7 +183,7 @@
 
   .projects-rail:not(.projects-rail--dragging) .project-card:hover {
     translate: 0 -6px;
-    box-shadow: 0 12px 24px -10px #16232e55;
+    box-shadow: var(--project-card-hover-shadow, 0 12px 24px -10px #16232e55);
   }
 }
 

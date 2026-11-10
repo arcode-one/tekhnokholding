@@ -31,22 +31,25 @@
 }
 
 .home-page .home-heading { font-size: var(--home-heading-font-size); }
-.catalog-page .projects-heading .home-heading { font-size: clamp(72px, 5vw, 96px); }
+
+.catalog-page .projects-heading .home-heading,
+.values-hero__title h1 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 5vw, 94px);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: -0.06em;
+}
 
 .home-heading__muted {
   display: block;
   color: var(--color-slate);
 }
 
-.home-page .home-heading__muted,
-.catalog-page .home-heading__muted {
-  margin-left: 1.2em;
-  color: inherit;
-}
-
 .home-page .home-heading__muted {
   --home-heading-indent: 2.7em;
   margin-left: calc(var(--home-heading-indent) - 15px);
+  color: inherit;
 }
 
 .home-page .company-team__intro {

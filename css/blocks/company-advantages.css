@@ -21,8 +21,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center 62%;
-  border-radius: 0 14px 14px 0;
-  clip-path: polygon(17% 0, 100% 0, 100% 100%, 0 100%);
+  border-radius: 14px;
 }
 
 @media (min-width: 768px) and (max-width: 879px) {
@@ -33,6 +32,8 @@
   .company-heading.company-advantages__intro {
     --trust-corner-width: min(46vw, 880px);
   }
+
+  .company-advantages__corner { object-position: center 48%; }
 }
 
 @media (max-width: 599px) {
@@ -48,7 +49,7 @@
     width: min(52vw, 240px);
     height: clamp(64px, 19vw, 92px);
     align-self: flex-end;
-    border-radius: 0 10px 10px 0;
+    border-radius: 10px;
   }
 }
 
