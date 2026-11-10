@@ -11,30 +11,28 @@
 
 .quality-intro { max-width: 100%; }
 
+.quality-intro h1 { word-spacing: 0.2em; }
+
 .quality-intro__subtitles {
   display: grid;
-  gap: clamp(18px, 3.5svh, 44px);
-  width: max-content;
-  max-width: 100%;
-  margin: clamp(24px, 3.8svh, 52px) auto 0;
+  gap: clamp(6px, 0.75vw, 12px);
+  margin-top: clamp(24px, 3.8svh, 52px);
+  border-inline-start: 3px solid var(--brand-logo-yellow);
+  padding-inline-start: clamp(12px, 1.6vw, 28px);
+  text-align: left;
 }
 
 .quality-intro h2,
 .quality-intro__goal {
   margin: 0;
-  font-size: clamp(18px, calc(14px + 1.65vw), 35px);
-  line-height: 1.18;
-  text-align: left;
+  font-size: clamp(15px, 1.45vw, 28px);
+  line-height: 1.3;
   word-spacing: 0.2em;
-  text-wrap: balance;
+  letter-spacing: -.025em;
 }
 
-.quality-intro h2 {
-  font-weight: 450;
-  letter-spacing: -.035em;
-}
-
-.quality-intro__goal strong { font-weight: 650; }
+.quality-intro h2 { font-weight: 650; }
+.quality-intro__goal { color: rgb(255 255 255 / 80%); }
 
 .quality-stages {
   --quality-number-width: clamp(52px, 6.8vw, 130px);
