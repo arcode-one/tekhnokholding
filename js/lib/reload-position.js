@@ -1,33 +1,48 @@
-// Native restoration handles history; settle reloads after fonts and blocks are ready.
-export default function restoreReloadPosition(root) {
-  const key = `site:scroll:${location.pathname}${location.search}${location.hash}`;
-  addEventListener('pagehide', () => {
-    try { sessionStorage.setItem(key, String(scrollY)); } catch {}
-  });
-  if (performance.getEntriesByType('navigation')[0]?.type !== 'reload') return;
+// Runs in the head so a reload cannot paint the top before restoring the scroll.
+(() => {
+  const root = document.documentElement;
+  const scrollKey = () => `site:scroll:${location.pathname}${location.search}${location.hash}`;
+  const key = scrollKey();
+  let pending = false;
   let saved;
-  try { saved = sessionStorage.getItem(key); } catch { return; }
-  if (saved === null || !Number.isFinite(Number(saved))) return;
-  let interrupted = false;
+  addEventListener('pagehide', () => {
+    const currentKey = scrollKey();
+    if (pending && currentKey === key) return;
+    try { sessionStorage.setItem(currentKey, String(scrollY)); } catch {}
+  });
+
+  if (performance.getEntriesByType('navigation')[0]?.type !== 'reload') return;
+  try { saved = Number(sessionStorage.getItem(key)); } catch { return; }
+  if (!Number.isFinite(saved) || saved <= 0) return;
+
+  pending = true;
+  root.classList.add('site--restoring-scroll');
   const controller = new AbortController();
-  const cancel = () => { interrupted = true; controller.abort(); };
-  for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown'])
-    addEventListener(event, cancel, { passive: true, signal: controller.signal });
-  const ready = new Promise((resolve) => {
-    if (root.dataset.blocksReady === 'true') { resolve(); return; }
-    const observer = new MutationObserver(() => {
-      if (root.dataset.blocksReady !== 'true') return;
-      observer.disconnect();
-      resolve();
+  const observer = new MutationObserver(() => {
+    if (root.dataset.blocksReady !== 'true') return;
+    observer.disconnect();
+    (document.fonts?.ready ?? Promise.resolve()).then(() => {
+      if (!pending) return;
+      scrollTo({ top: saved, behavior: 'instant' });
+      requestAnimationFrame(finish);
     });
-    observer.observe(root, { attributes: true, attributeFilter: ['data-blocks-ready'] });
   });
-  const loaded = new Promise((resolve) => {
-    if (document.readyState === 'complete') resolve();
-    else addEventListener('load', resolve, { once: true });
-  });
-  Promise.all([ready, loaded, document.fonts.ready]).then(() => requestAnimationFrame(() => {
-    if (!interrupted) scrollTo({ top: Number(saved), behavior: 'instant' });
+  observer.observe(root, { attributes: true, attributeFilter: ['data-blocks-ready'] });
+
+  // A slow or failed enhancement must not keep the page hidden.
+  const timeout = setTimeout(() => {
+    scrollTo({ top: saved, behavior: 'instant' });
+    finish();
+  }, 1800);
+
+  function finish() {
+    pending = false;
+    clearTimeout(timeout);
+    observer.disconnect();
     controller.abort();
-  }));
-}
+    root.classList.remove('site--restoring-scroll');
+  }
+
+  for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown', 'pagehide'])
+    addEventListener(event, finish, { passive: true, signal: controller.signal });
+})();

@@ -1,5 +1,4 @@
 import initDock from './dock.js';
-import restoreReloadPosition from '../lib/reload-position.js';
 
 export default function init() {
   const root = document.documentElement;
@@ -17,7 +16,6 @@ export default function init() {
 
   // Let the browser restore the reading position on reload and history navigation.
   if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
-  restoreReloadPosition(root);
 
   const returnLink = document.querySelector('[data-return-to-source]');
   const source = new URL(document.referrer || location.href);

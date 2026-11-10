@@ -108,9 +108,16 @@
   display: none;
 }
 
-.values-accordion__item > summary:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: -5px;
+.values-accordion__item > summary:focus-visible,
+.quality-step > summary:focus-visible {
+  outline: none;
+}
+
+.values-accordion__item > summary:focus-visible .values-accordion__title,
+.quality-step > summary:focus-visible .quality-step__title {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.18em;
 }
 
 .values-accordion__number,

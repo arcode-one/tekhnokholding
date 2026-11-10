@@ -26,13 +26,6 @@
   text-transform: uppercase;
 }
 
-.privacy-page__status {
-  margin: 14px 0 0;
-  color: #52616a;
-  font-size: 14px;
-  line-height: 1.55;
-}
-
 .privacy-page__body {
   display: grid;
   grid-template-columns: minmax(240px, .3fr) minmax(0, 1fr);

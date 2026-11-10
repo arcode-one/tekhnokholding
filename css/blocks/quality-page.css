@@ -57,7 +57,6 @@
   transition: background-color 220ms ease;
 }
 .quality-step > summary::-webkit-details-marker { display: none; }
-.quality-step > summary:focus-visible { outline: 2px solid currentColor; outline-offset: -5px; }
 .quality-step__number {
   font-family: var(--font-figures);
   font-weight: 350;

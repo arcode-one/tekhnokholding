@@ -80,6 +80,13 @@
   background: #adb0b5;
 }
 
+.advantage-card--warranty .advantage-card__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../../images/company/trust/warranty-certificate-angled.webp') left center / max(265%, 178cqh) auto no-repeat;
+}
+
 .advantage-card--warranty .advantage-card__photo img {
   inset: 50% auto auto 50%;
   width: min(178cqw, 177cqh);

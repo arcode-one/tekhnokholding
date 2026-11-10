@@ -2,6 +2,11 @@
 .services-hero .values-hero__title { translate: 0 calc(-1 * clamp(18px, 5svh, 52px)); }
 .services-hero h1 span { display: block; }
 
+.services-accordion__lead {
+  font-size: clamp(18px, 1.4vw, 27px);
+  line-height: 1.35;
+}
+
 @media (max-width: 767px) {
   .services-hero .values-hero__image img { object-position: 57% center; }
   .services-hero .values-hero__title h1 { font-size: clamp(28px, 8.6vw, 42px); }
