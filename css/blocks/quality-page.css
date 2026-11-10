@@ -85,12 +85,14 @@
   padding-inline-start: calc(var(--pad) + var(--quality-number-width) + var(--quality-step-gap));
 }
 .quality-step__body p { margin: 0; line-height: 1.5; max-width: 82ch; }
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
   .quality-step:not([open]) > summary:hover { background: #34454e0d; }
 }
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
-  .quality-step:not([open]) > summary { overflow: clip; }
   .quality-step__number > span { transition: transform 400ms ease; }
+}
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .quality-step:not([open]) > summary { overflow: clip; }
   .quality-step:not([open]) > summary:hover .quality-step__number > span {
     transform: var(--quality-number-enlarged);
   }

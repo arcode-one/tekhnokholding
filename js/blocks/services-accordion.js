@@ -11,7 +11,7 @@ export default function init(container) {
   const center = reveal || alignMode === 'center';
   const overview = alignMode === 'overview' ? container.closest('.mission-overview') : null;
   const hover = container.hasAttribute('data-accordion-hover')
-    ? matchMedia('(hover: hover) and (pointer: fine)')
+    ? matchMedia('(min-width: 1200px) and (hover: hover) and (pointer: fine)')
     : null;
   const items = [...container.querySelectorAll('details')].map((element) => ({
     element,

@@ -268,13 +268,13 @@
   }
 }
 
-@media (hover: hover) and (pointer: fine) {
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) {
   .values-accordion__item:not([open]) > summary:hover {
     background-color: color-mix(in srgb, currentColor 5%, transparent);
   }
 }
 
-@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+@media (min-width: 1200px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
   .values-accordion__item:not([open]) > summary {
     overflow: clip;
   }
