@@ -9,21 +9,6 @@
     padding-block: calc(var(--header-h) + 24px) clamp(16px, 2svh, 32px);
   }
 
-  .quality-intro__columns {
-    --quality-goal-shift: clamp(0px, (100vw - 1780px) * .37, 37px);
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-    column-gap: clamp(20px, 3vw, 56px);
-    margin-top: 60px;
-  }
-  .quality-intro__columns::before {
-    grid-area: 1 / 2;
-    width: 3px;
-    height: 48px;
-    /* Center in the visible gap between the two text blocks. */
-    translate: calc(12px + var(--quality-goal-shift) / 2);
-  }
-  .quality-intro__goal { translate: var(--quality-goal-shift); }
-
   .quality-stages {
     --quality-number-width: clamp(64px, 11vw, 212px);
   }
@@ -31,12 +16,14 @@
   .quality-step__body { padding-block-end: clamp(14px, 2.2svh, 28px); }
 }
 
+@media (min-width: 1300px) and (min-height: 700px) {
+  .quality-intro h1 { translate: 0 calc(-1 * min(1.1vw, 20px)); }
+}
+
 @media (min-width: 768px) and (max-height: 895px) {
   .values-hero.quality-hero {
     padding-block: calc(var(--header-h) + 16px) 8px;
   }
-
-  .quality-intro__columns { margin-top: 44px; }
 }
 
 @media (min-width: 768px) and (max-height: 680px) {

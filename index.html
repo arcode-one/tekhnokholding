@@ -47,7 +47,7 @@
         <div class="header__right">
           <nav class="nav" aria-label="Основное меню">
             <a href="services.html">Услуги</a>
-            <a href="#objects">Объекты</a>
+            <a href="objects.html">Объекты</a>
             <a href="#contacts">Контакты</a>
             <a href="account.html">Личный кабинет</a>
           </nav>
@@ -118,7 +118,7 @@
         </a>
         <nav class="dock__nav" aria-label="Меню">
           <a href="services.html">Услуги</a>
-          <a href="#objects">Объекты</a>
+          <a href="objects.html">Объекты</a>
           <a href="#contacts">Контакты</a>
           <a href="account.html">Личный кабинет</a>
         </nav>
@@ -162,7 +162,7 @@
     >
       <nav class="menu__nav" aria-label="Мобильное меню">
         <a href="services.html">Услуги</a>
-        <a href="#objects">Объекты</a>
+        <a href="objects.html">Объекты</a>
         <a href="#contacts">Контакты</a>
         <a href="account.html">Личный кабинет</a>
       </nav>
@@ -176,17 +176,24 @@
       <div class="roof-background" data-ui="roof-background">
         <div class="roof-background__media" aria-hidden="true">
           <div class="roof-background__viewport">
-            <img
-              class="roof-background__image"
-              src="images/hero-city-roof.webp"
-              srcset="images/hero-city-roof-960w.webp 960w, images/hero-city-roof.webp 1672w"
-              sizes="(max-width: 767px) 960px, max(100vw, 1137px, 177.7svh)"
-              alt=""
-              width="1672"
-              height="941"
-              fetchpriority="high"
-              data-ui="roof-background__image"
-            />
+            <div class="roof-background__visual">
+              <video
+                class="roof-background__image roof-background__video"
+                data-src="images/hero-roof-work.mp4"
+                muted
+                loop
+                playsinline
+                preload="none"
+              ></video>
+              <img
+                class="roof-background__image"
+                src="images/hero-roof-work-poster.webp"
+                alt=""
+                width="1280"
+                height="720"
+                fetchpriority="high"
+              />
+            </div>
           </div>
         </div>
         <section class="hero" aria-labelledby="hero-title" data-ui="hero">

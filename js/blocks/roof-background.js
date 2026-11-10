@@ -3,7 +3,8 @@ import { createScrollMotion, readMotionViewport, sampleMotion } from '../lib/scr
 export default function init(scene) {
   const motion = createScrollMotion();
   const hero = scene.querySelector('[data-ui~=hero]') ?? scene;
-  const image = scene.querySelector('[data-ui~=roof-background__image]');
+  const visual = scene.querySelector('.roof-background__visual');
+  const video = visual.querySelector('video');
   const copy = scene.querySelector('[data-ui~=hero__content]');
   const split = {
     left: scene.querySelector('[data-hero-split="left"]'),
@@ -30,6 +31,18 @@ export default function init(scene) {
   let lastSplitProgress;
   let zeroOrbit;
 
+  function syncVideo() {
+    if (!visible || document.hidden || reducedMotion.matches) {
+      video.pause();
+      return;
+    }
+    if (!video.hasAttribute('src')) video.src = video.dataset.src;
+    video.play().catch(() => {});
+  }
+
+  video.addEventListener('playing', () => video.setAttribute('data-playing', ''));
+  video.addEventListener('error', () => video.removeAttribute('data-playing'));
+
   function update(timestamp) {
     frame = 0;
     if (reducedMotion.matches || !geometry || motion.enabled) return;
@@ -38,7 +51,7 @@ export default function init(scene) {
     // Фото не увеличено: при скролле оно отстаёт от экрана на 30% (уходит медленнее текста).
     // Освобождающийся верх при этом уже за пределами экрана, а низ обрезает слой хиро
     const imageY = Math.min(Math.max(0, y - top), imageHeight) * 0.3;
-    image.style.transform = `translate3d(0,${imageY.toFixed(2)}px,0)`;
+    visual.style.transform = `translate3d(0,${imageY.toFixed(2)}px,0)`;
 
     if (!split.divider) return;
     const progress = clamp((y - top) / (viewport * SPLIT_DISTANCE));
@@ -92,7 +105,7 @@ export default function init(scene) {
     measureFrame = 0;
     motion.clear();
     lastSplitProgress = undefined;
-    image.style.removeProperty('transform');
+    visual.style.removeProperty('transform');
     if (dividerGlow) dividerGlow.style.removeProperty('transform');
     if (sideArcs) sideArcs.style.removeProperty('opacity');
     [oneSpark, zeroSpark].forEach((spark) => spark?.style.removeProperty('transform'));
@@ -117,7 +130,7 @@ export default function init(scene) {
     }
     geometry = {
       top: scene.getBoundingClientRect().top + y,
-      imageHeight: image.offsetHeight,
+      imageHeight: visual.offsetHeight,
       viewport: touch.matches ? hero.offsetHeight : window.innerHeight,
       useTransform: touch.matches,
       leftShift: 0,
@@ -150,7 +163,7 @@ export default function init(scene) {
     if (motion.enabled) {
       const { top, viewport, imageHeight, leftShift, rightShift } = geometry;
       const end = top + viewport * SPLIT_DISTANCE;
-      motion.set(image, { transform: ['translate3d(0,0,0)', `translate3d(0,${imageHeight * .3}px,0)`] }, top, top + imageHeight);
+      motion.set(visual, { transform: ['translate3d(0,0,0)', `translate3d(0,${imageHeight * .3}px,0)`] }, top, top + imageHeight);
       [split.left, split.buttonLeft].forEach((el) => motion.set(el,
         sampleMotion((p) => ({ transform: `translate3d(${leftShift * sineInOut(p)}px,0,0)` })), top, end));
       [split.right, split.buttonRight].forEach((el) => motion.set(el,
@@ -178,6 +191,7 @@ export default function init(scene) {
   new IntersectionObserver(([entry]) => {
     visible = entry.isIntersecting;
     if (visible) scheduleUpdate();
+    syncVideo();
   }, { rootMargin: '100px' }).observe(hero);
   const sizes = new ResizeObserver(scheduleMeasure);
   sizes.observe(hero);
@@ -187,6 +201,8 @@ export default function init(scene) {
   }, { passive: true });
   window.addEventListener('scroll', scheduleUpdate, { passive: true });
   reducedMotion.addEventListener('change', scheduleMeasure);
+  reducedMotion.addEventListener('change', syncVideo);
+  document.addEventListener('visibilitychange', syncVideo);
   touch.addEventListener('change', scheduleMeasure);
   document.fonts?.ready.then(scheduleMeasure);
 }

@@ -27,7 +27,7 @@
   --nav-hover: var(--theme-nav-on-dark-hover);
 }
 
-.object-page:not(.mission-page):not(.services-page-body) .header {
+.object-page:not(.mission-page) .header {
   --button-bg: var(--theme-button-on-light-bg);
   --button-text: var(--theme-button-on-light-text);
   --button-border: var(--theme-button-on-light-border);

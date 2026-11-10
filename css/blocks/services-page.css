@@ -1,9 +1,14 @@
 /* Two content screens in the approved mission palette and type hierarchy. */
+.object-page.services-page-body > main { padding-top: 0; }
 .services-page { --service-ease: cubic-bezier(.23, 1, .32, 1); --service-gap: clamp(24px, 3vw, 56px); background: #efefec; color: var(--color-ink); }
 .services-page :is(h1, h2, h3, p, figure) { margin: 0; }
 .services-screen { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 34px; padding: 48px var(--pad); }
-.values-hero.services-hero { min-height: clamp(360px, 55svh, 560px); }
-.values-hero.services-hero::after { background: linear-gradient(180deg, #151d24bd, #151d24a6 52%, #151d2466); }
+.values-hero.services-hero {
+  min-height: clamp(360px, 55svh, 560px);
+  background: inherit;
+  color: var(--color-ink);
+}
+.values-hero.services-hero::after { content: none; }
 .services-hero h1 span { display: block; }
 .services-roof-types { min-height: 0; }
 .services-intro { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); align-items: stretch; gap: var(--service-gap); }

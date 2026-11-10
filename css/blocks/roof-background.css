@@ -37,9 +37,13 @@
   );
 }
 
+.roof-background__visual,
 .roof-background__image {
   position: absolute;
   inset: 0;
+}
+
+.roof-background__image {
   width: 100%;
   height: 100%;
   pointer-events: none;
@@ -53,9 +57,11 @@
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .roof-background__image {
+  .roof-background__visual {
     will-change: transform;
   }
+
+  .roof-background__video[data-playing] + img { visibility: hidden; }
 }
 
 @media (prefers-reduced-motion: reduce) {

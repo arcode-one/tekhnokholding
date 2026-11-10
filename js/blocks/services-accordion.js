@@ -30,13 +30,14 @@ export default function init(container) {
       ? Math.max(scrollMargin, !overview && innerWidth < 768 ? 80 : 0)
       : 0;
     const startY = scrollY;
+    const nextSummary = reveal ? item.element.nextElementSibling?.querySelector('summary') : null;
     const destination = () => {
       const top = anchor.getBoundingClientRect().top + scrollY;
       if (!expanded || (!overview && !reveal)) return Math.max(0, top - offset);
 
       // Read the natural panel height, not its partially revealed animation frame.
       const panelHeight = item.summary.offsetHeight + item.body.offsetHeight;
-      const bottomGap = 24;
+      const bottomGap = nextSummary ? nextSummary.offsetHeight + 1 : 24;
       const target = panelHeight <= innerHeight - offset - bottomGap
         ? top + panelHeight + bottomGap - innerHeight
         : top - offset;

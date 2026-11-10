@@ -1,5 +1,6 @@
 export default function init(hero) {
   const image = hero.querySelector('.values-hero__image');
+  if (!image) return;
   const title = hero.querySelector('.values-hero__title');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let top = 0;
