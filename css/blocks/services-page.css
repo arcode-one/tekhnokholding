@@ -1,7 +1,9 @@
-.services-hero .values-hero__image img { object-position: center 72%; }
+.values-hero.services-hero::after {
+  background: linear-gradient(180deg, #151d24b3, #151d2466 35%, #151d247a 68%, #151d2466);
+}
 .services-hero h1 span { display: block; }
 
 @media (max-width: 767px) {
-  .services-hero .values-hero__image img { object-position: 68% center; }
+  .services-hero .values-hero__image img { object-position: 33% center; }
   .services-hero .values-hero__title h1 { font-size: clamp(28px, 8.6vw, 42px); }
 }

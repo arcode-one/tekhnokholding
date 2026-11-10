@@ -75,8 +75,19 @@
 
 .advantage-card--plastfoil .advantage-card__photo img { object-position: 88% center; }
 
-.advantage-card--warranty .advantage-card__photo { background: #adb0b5; }
-.advantage-card--warranty .advantage-card__photo img { object-fit: contain; }
+.advantage-card--warranty .advantage-card__photo {
+  container-type: size;
+  background: #adb0b5;
+}
+
+.advantage-card--warranty .advantage-card__photo img {
+  inset: 50% auto auto 50%;
+  width: min(178cqw, 177cqh);
+  height: auto;
+  max-width: none;
+  transform: translate(-66%, -50%);
+  mask-image: linear-gradient(transparent, #000 2% 98%, transparent);
+}
 
 .advantage-card--quality,
 .advantage-card--warranty {

@@ -17,7 +17,7 @@ function footerFor(file, newline) {
   const prefix = path.relative(path.dirname(file), root).split(path.sep).filter(Boolean).join('/');
   const base = prefix ? `${prefix}/` : '';
   const localUrl = (url) => {
-    if (!url || /^[a-z][\w+.-]*:|^\//i.test(url) || url === '#contacts') return url;
+    if (!url || /^[a-z][\w+.-]*:|^\//i.test(url) || url === '#' || url === '#contacts') return url;
     return url.startsWith('#') ? `${base}index.html${url}` : `${base}${url}`;
   };
   const block = file === home ? canonical : canonical.replace(
