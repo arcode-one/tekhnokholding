@@ -32,6 +32,8 @@ const types = {
   '.pdf': 'application/pdf',
   '.mp4': 'video/mp4',
   '.webm': 'video/webm',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
 };
 const server = http.createServer(async (request, response) => {
   let url, pathname;
@@ -63,7 +65,8 @@ const server = http.createServer(async (request, response) => {
   const relative = pathname.replace(/^\/+/, '');
   const file = path.resolve(root, relative);
   const contained = path.relative(root, file);
-  const topLevel = !relative.includes('/') && relative.endsWith('.html');
+  const topLevel = !relative.includes('/') &&
+    (relative.endsWith('.html') || relative === 'robots.txt' || relative === 'sitemap.xml');
   if (
     contained.startsWith('..') ||
     path.isAbsolute(contained) ||
@@ -81,6 +84,12 @@ const server = http.createServer(async (request, response) => {
     });
     response.end(request.method === 'HEAD' ? undefined : bytes);
   } catch {
+    if (request.headers.accept?.includes('text/html')) {
+      const notFound = await fs.readFile(path.join(root, '404.html'));
+      response.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+      response.end(request.method === 'HEAD' ? undefined : notFound);
+      return;
+    }
     response.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
     response.end('Not found');
   }

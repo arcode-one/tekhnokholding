@@ -28,6 +28,7 @@ enhance('[data-section-corner]', 'section-corner', () => import('./blocks/sectio
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
 enhance('.values-hero, .services-comparison__hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
+enhance('[data-not-found-redirect]', 'not-found', () => import('./blocks/not-found.js'));
 
 enhance('[data-privacy-toc], [data-section-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
 enhance('[data-object-gallery]', 'object-gallery', () => import('./blocks/object-gallery.js'));
@@ -47,7 +48,7 @@ function fallbackImage(image) {
 }
 document.addEventListener('error', (event) => fallbackImage(event.target), true);
 for (const image of document.images)
-  if (image.complete && !image.naturalWidth) fallbackImage(image);
+  if (image.currentSrc && image.complete && !image.naturalWidth) fallbackImage(image);
 
 Promise.allSettled(enhancements).then(() =>
   requestAnimationFrame(() => {

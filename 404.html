@@ -1,40 +1,18 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="ru" class="site site--loaded">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#34454e" />
     <title>Страница не найдена | Технохолдинг</title>
+    <base href="/" />
     <script>
-      // GitHub Pages сохраняет запрошенный URL при показе 404.html.
-      // Старые закладки hero-test ведут на соответствующие страницы нового сайта.
+      // GitHub Pages сохраняет неизвестный URL, включая вложенные пути.
+      // Общая база держит стили, изображения и навигацию в корне сайта.
       const siteRoot = location.hostname === 'arcode-one.github.io' ? '/tekhnokholding/' : '/';
-      for (const attributes of [
-        { rel: 'icon', type: 'image/x-icon', href: 'icons/favicon.ico', sizes: '16x16 32x32 48x48' },
-        { rel: 'icon', type: 'image/svg+xml', href: 'icons/favicon.svg', sizes: 'any' },
-        { rel: 'apple-touch-icon', href: 'icons/apple-touch-icon.png', sizes: '180x180' },
-      ]) {
-        const icon = document.createElement('link');
-        for (const [name, value] of Object.entries(attributes))
-          icon.setAttribute(name, name === 'href' ? siteRoot + value : value);
-        document.head.append(icon);
-      }
-      // Абсолютный путь нужен и для неизвестных вложенных адресов GitHub Pages.
-      for (const stylesheet of ['fonts', 'palette']) {
-        const styles = document.createElement('link');
-        styles.rel = 'stylesheet';
-        styles.href = siteRoot + 'css/base/' + stylesheet + '.css';
-        document.head.append(styles);
-      }
-      for (const subset of ['cyrillic', 'latin']) {
-        const fontPreload = document.createElement('link');
-        fontPreload.rel = 'preload';
-        fontPreload.as = 'font';
-        fontPreload.type = 'font/woff2';
-        fontPreload.crossOrigin = '';
-        fontPreload.href = siteRoot + 'fonts/manrope/manrope-' + subset + '-wght-normal.woff2';
-        document.head.append(fontPreload);
-      }
+      document.querySelector('base').href = siteRoot;
+      // Старые закладки hero-test ведут на соответствующие страницы нового сайта.
       const oldRoot = siteRoot + 'hero-test';
       const oldPage = location.pathname === oldRoot
         ? ''
@@ -48,31 +26,181 @@
         || /^objects\/(?:obj-\d{2}|thld-[a-f0-9]{12})\.html$/.test(destination))) {
         location.replace(siteRoot + destination + location.search + location.hash);
       }
+
     </script>
-    <style>
-      html { color-scheme: dark; background: #2a2c2f; color: #fff; }
-      body { margin: 0; font: 18px/1.5 'Manrope', sans-serif; }
-      main { box-sizing: border-box; min-height: 100svh; display: grid; align-content: center; padding: clamp(24px, 8vw, 120px); }
-      h1 { margin: 0 0 24px; font-size: clamp(32px, 6vw, 72px); line-height: 1.1; }
-      p { margin: 0 0 32px; }
-      a { justify-self: start; padding: 14px 24px; border: var(--theme-border-width) solid var(--theme-button-on-dark-border); border-radius: 32px; background: var(--theme-button-on-dark-bg); color: var(--theme-button-on-dark-text); text-decoration: none; transition: background-color var(--theme-hover-duration) var(--theme-hover-easing), color var(--theme-hover-duration) var(--theme-hover-easing); }
-      a:focus-visible { background: var(--theme-button-on-dark-hover-bg); color: var(--theme-button-on-dark-hover-text); outline: 2px solid var(--theme-text-inverse); outline-offset: 4px; }
-      @media (hover: hover) and (pointer: fine) {
-        a:hover { background: var(--theme-button-on-dark-hover-bg); color: var(--theme-button-on-dark-hover-text); }
-      }
-      @media (prefers-reduced-motion: reduce) {
-        a { transition: none; }
-      }
-    </style>
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180" />
+    <link rel="preload" href="fonts/manrope/manrope-cyrillic-wght-normal.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="preload" href="fonts/manrope/manrope-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin="" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/not-found.css" />
+    <noscript><style>.not-found__countdown { display: none; }</style></noscript>
   </head>
-  <body>
-    <main>
-      <h1>Страница не найдена</h1>
-      <p>Проверь адрес или перейди на главную.</p>
-      <a id="home-link" href="/tekhnokholding/index.html">На главную</a>
+  <body id="top" class="not-found-page" data-site-footer="off">
+    <header class="header">
+      <div class="header__inner">
+        <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            decoding="async"
+          />
+        </a>
+
+        <div class="header__right">
+          <nav class="nav" aria-label="Основное меню">
+            <a href="services.html">Услуги</a>
+            <a href="objects.html">Объекты</a>
+            <a href="index.html#contacts">Контакты</a>
+            <a href="account.html">Личный кабинет</a>
+          </nav>
+          <span class="header__divider" aria-hidden="true"></span>
+          <div class="header__contacts">
+            <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+            <span class="header__mail contact-email">info@thld.su</span>
+          </div>
+          <div class="header__messengers">
+            <a
+              class="icon-btn"
+              href="https://t.me/Thld74"
+              aria-label="Написать в Telegram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+              </svg>
+            </a>
+            <a class="icon-btn" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" aria-label="Написать в MAX">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+              </svg>
+            </a>
+            <button
+              class="icon-btn burger-btn header__burger"
+              type="button"
+              data-menu-toggle=""
+              aria-label="Открыть меню"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              data-ui="header__burger"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="burger-btn__line burger-btn__line--hide" d="M4 8h16"></path>
+                <path class="burger-btn__line burger-btn__line--keep" d="M4 16h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
+    <div class="dock" data-ui="dock">
+      <button
+        class="icon-btn dock__burger burger-btn"
+        type="button"
+        data-menu-toggle=""
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="dock-panel"
+        data-ui="dock__burger"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="burger-btn__line burger-btn__line--hide" d="M4 8h16"></path>
+          <path class="burger-btn__line burger-btn__line--keep" d="M4 16h16"></path>
+        </svg>
+      </button>
+      <div class="dock__panel" id="dock-panel" inert aria-hidden="true">
+        <a
+          class="dock__logo"
+          href="index.html"
+          aria-label="Технохолдинг, на главную"
+        >
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+        <nav class="dock__nav" aria-label="Меню">
+          <a href="services.html">Услуги</a>
+          <a href="objects.html">Объекты</a>
+          <a href="index.html#contacts">Контакты</a>
+          <a href="account.html">Личный кабинет</a>
+        </nav>
+        <span class="dock__divider" aria-hidden="true"></span>
+        <div class="dock__contacts">
+          <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+          <span class="header__mail contact-email">info@thld.su</span>
+        </div>
+        <div class="dock__icons">
+          <a
+            class="icon-btn"
+            href="https://t.me/Thld74"
+            aria-label="Написать в Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+            </svg>
+          </a>
+          <a
+            class="icon-btn"
+            href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E"
+            aria-label="Написать в MAX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="menu"
+      id="mobile-menu"
+      hidden=""
+      data-ui="menu"
+      data-mobile-menu=""
+      role="dialog"
+      aria-modal="true"
+      aria-label="Меню сайта"
+    >
+      <nav class="menu__nav" aria-label="Мобильное меню">
+        <a href="services.html">Услуги</a>
+        <a href="objects.html">Объекты</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="account.html">Личный кабинет</a>
+      </nav>
+      <div class="menu__contacts">
+        <a href="tel:+73512253040">8 (351) 225-30-40</a>
+        <span class="contact-email">info@thld.su</span>
+      </div>
+    </div>
+
+    <main class="not-found" aria-labelledby="not-found-title" data-control-theme="dark" data-not-found-redirect>
+      <img class="not-found__image"
+        src="images/figures-roof-metran.webp"
+        srcset="images/figures-roof-metran-960w.webp 960w, images/figures-roof-metran.webp 1486w"
+        sizes="max(100vw, 158svh)" width="1486" height="940" alt=""
+        fetchpriority="high" decoding="async" />
+      <div class="not-found__content">
+        <p class="not-found__code"><span class="not-found__code-label">Ошибка</span> <span class="not-found__code-number">404</span></p>
+        <h1 class="not-found__title" id="not-found-title">Страница не найдена</h1>
+        <p class="not-found__description">Проверьте адрес или перейдите на главную.</p>
+        <div class="not-found__actions">
+          <a class="pill not-found__button" id="home-link" href="index.html"><span class="pill__label">На главную</span></a>
+          <div class="not-found__countdown" data-not-found-countdown role="timer" aria-live="off" aria-label="Автоматический переход на главную через 7 с">
+            <span class="not-found__seconds" aria-hidden="true"><span data-not-found-seconds>7</span><span class="not-found__unit">с</span></span>
+            <span class="not-found__countdown-label" aria-hidden="true">Автоматический переход<br>на главную</span>
+          </div>
+        </div>
+      </div>
     </main>
-    <script>
-      document.getElementById('home-link').href = siteRoot + 'index.html';
-    </script>
+    <script type="module" src="js/index.js"></script>
   </body>
 </html>

@@ -22,12 +22,12 @@
     color: var(--nav-hover);
   }
 
-  .burger-btn:not(.dock__burger):hover .burger__line--hide {
+  .burger-btn:not(.dock__burger):hover .burger-btn__line--hide {
     opacity: 0;
     transform: scaleX(0);
   }
 
-  .burger-btn:not(.dock__burger):hover .burger__line--keep {
+  .burger-btn:not(.dock__burger):hover .burger-btn__line--keep {
     transform: translateY(-4px);
   }
 }
