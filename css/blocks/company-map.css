@@ -4,7 +4,7 @@
   --button-border: var(--color-white);
   --button-hover-bg: var(--color-white);
   --button-hover-text: var(--color-ink);
-  --button-hover-border: var(--color-white);
+  --button-hover-border: var(--color-ink);
   --map-muted: #566269;
 
   padding-block: var(--home-section-space);
@@ -111,6 +111,7 @@
 }
 
 .company-map__tools button[aria-pressed='true'] {
+  --button-border: var(--button-hover-border);
   background: var(--button-hover-bg);
   color: var(--button-hover-text);
 }

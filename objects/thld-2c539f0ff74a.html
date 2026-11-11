@@ -183,29 +183,33 @@
     </div>
 
     <main>
-      <article class="object-detail object-detail--overview" aria-labelledby="object-title">
-        <header class="object-detail__intro">
-          <a class="pill object-detail__back" href="../objects.html">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
-            <span class="pill__label">К объектам</span>
-          </a>
-          <h1 id="object-title">Метран</h1>
-          <p class="object-detail__subtitle">Капитальный ремонт кровли<br />нежилого производственного корпуса</p>
-        </header>
-
+      <article class="object-detail" aria-labelledby="object-title">
         <div class="object-detail__summary">
-          <section class="object-detail__description" aria-labelledby="about-object">
-            <h2 id="about-object">Об объекте</h2>
-            <p>Капитальный ремонт кровли нежилого здания (производственный корпус) АО ПГ «Метран». Материал рулонный кровельный и гидроизоляционный полимерный PLASTFOIL Polar RAL 7035 1,8&nbsp;мм</p>
-          </section>
+          <header class="object-detail__intro">
+            <a class="pill object-detail__back" href="../objects.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
+              <span class="pill__label">К объектам</span>
+            </a>
+            <h1 id="object-title">Метран</h1>
+            <p class="object-detail__subtitle">Капитальный ремонт кровли<br />нежилого производственного корпуса</p>
+          </header>
+          <div class="object-detail__description">
+            <div class="object-detail__description-copy" id="object-description">
+              <p>Капитальный ремонт кровли нежилого здания (производственный корпус) АО ПГ «Метран». Материал рулонный кровельный и гидроизоляционный полимерный PLASTFOIL Polar RAL 7035 1,8&nbsp;мм</p>
+            </div>
+            <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false" hidden>
+              <span class="pill__label">Подробнее</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
+            </button>
+          </div>
           <dl class="object-detail__facts">
             <div>
               <dt>Площадь работ</dt>
               <dd>15 246 м²</dd>
             </div>
             <div>
-              <dt>Сроки работ</dt>
-              <dd>Сентябрь 2024 г. – август 2025 г.</dd>
+              <dt>Год реализации</dt>
+              <dd>2025</dd>
             </div>
             <div>
               <dt>Заказчик</dt>
@@ -216,12 +220,12 @@
               <dd>г. Челябинск, Новоградский пр., 15</dd>
             </div>
             <div>
-              <dt>Год реализации</dt>
-              <dd>2025</dd>
-            </div>
-            <div>
               <dt>Тип объекта</dt>
               <dd>Производственный</dd>
+            </div>
+            <div>
+              <dt>Сроки работ</dt>
+              <dd>Сентябрь 2024 г. – август 2025 г.</dd>
             </div>
           </dl>
 

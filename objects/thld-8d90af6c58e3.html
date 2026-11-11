@@ -183,7 +183,7 @@
     </div>
 
     <main>
-      <article class="object-detail object-detail--compact" aria-labelledby="object-title">
+      <article class="object-detail" aria-labelledby="object-title">
         <div class="object-detail__summary">
           <header class="object-detail__intro">
             <a class="pill object-detail__back" href="../objects.html" aria-label="К объектам" title="К объектам">
@@ -193,6 +193,17 @@
             <h1 id="object-title">Дилерский центр Škoda</h1>
             <p>Гидроизоляция автопарковки</p>
           </header>
+          <div class="object-detail__description">
+            <div class="object-detail__description-copy" id="object-description">
+              <p>Общая площадь дилерского центра SKODA составляет 2 768,2 кв.м. Площадь демонстрационного зала, равная 391,56 кв.м., позволяет представить полный модельный ряд автомобилей SKODA. Сервисная зона занимает 735,8 кв.м. и оборудована 9 постами для обслуживания автомобилей.</p>
+              <p>Центр оснащён самым современным оборудованием, позволяющим осуществлять техническое обслуживание, диагностику и все виды работ по ремонту двигателей, электрики, ходовой части, а также сложный кузовной ремонт. Автоцентр осуществляет полный спектр услуг по продаже и сервисному обслуживанию автомобилей SKODA, включая гарантийный и постгарантийный ремонт. В центре возможно приобрести оригинальные запасные части и аксессуары к автомобилям SKODA, а также дополнительное оборудование.</p>
+              <p>В автоцентре «Яромир Авто» работает линия прямой приемки, которая позволяет клиенту пообщаться с мастером-приемщиком и лично убедиться в необходимости ремонта. Команда специалистов центра постоянно повышает свой профессиональный уровень, подтверждая квалификацию на соответствие мировым стандартам марки SKODA.</p>
+            </div>
+            <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false">
+              <span class="pill__label">Подробнее</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
+            </button>
+          </div>
           <dl class="object-detail__facts">
             <div>
               <dt>Площадь работ</dt>
@@ -261,7 +272,7 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
             </button>
           </div>
-          <ul class="object-detail__thumbnails" style="--detail-thumbnail-count: 5" role="list">
+          <ul class="object-detail__thumbnails" role="list">
             <li>
               <a class="object-detail__photo" href="../images/projects/4740027c876d1c5665af.webp" data-object-gallery-photo="Дилерский центр Škoda" aria-label="Показать фото 1 из 5" aria-current="true">
                 <img
@@ -329,19 +340,6 @@
             </li>
           </ul>
           <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 5</p>
-        </section>
-
-        <section class="object-detail__description object-detail__description--preview" aria-labelledby="about-object">
-          <h2 id="about-object">Об объекте</h2>
-          <div class="object-detail__description-copy" id="object-description">
-            <p>Общая площадь дилерского центра SKODA составляет 2 768,2 кв.м. Площадь демонстрационного зала, равная 391,56 кв.м., позволяет представить полный модельный ряд автомобилей SKODA. Сервисная зона занимает 735,8 кв.м. и оборудована 9 постами для обслуживания автомобилей.</p>
-            <p>Центр оснащён самым современным оборудованием, позволяющим осуществлять техническое обслуживание, диагностику и все виды работ по ремонту двигателей, электрики, ходовой части, а также сложный кузовной ремонт. Автоцентр осуществляет полный спектр услуг по продаже и сервисному обслуживанию автомобилей SKODA, включая гарантийный и постгарантийный ремонт. В центре возможно приобрести оригинальные запасные части и аксессуары к автомобилям SKODA, а также дополнительное оборудование.</p>
-            <p>В автоцентре «Яромир Авто» работает линия прямой приемки, которая позволяет клиенту пообщаться с мастером-приемщиком и лично убедиться в необходимости ремонта. Команда специалистов центра постоянно повышает свой профессиональный уровень, подтверждая квалификацию на соответствие мировым стандартам марки SKODA.</p>
-          </div>
-          <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false">
-            <span class="pill__label">Подробнее</span>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
-          </button>
         </section>
       </article>
     </main>
