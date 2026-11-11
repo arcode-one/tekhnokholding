@@ -220,7 +220,6 @@
 }
 
 .object-detail__description-copy {
-  max-width: 70ch;
   scroll-margin-top: var(--header-h);
   font-size: 15px;
 }
