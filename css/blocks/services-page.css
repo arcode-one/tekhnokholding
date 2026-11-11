@@ -43,3 +43,112 @@
   .services-hero .values-hero__image img { object-position: 57% center; }
   .services-hero .values-hero__title h1 { font-size: clamp(28px, 8.6vw, 42px); }
 }
+
+.services-comparison {
+  --comparison-gap: clamp(24px, 5vw, 88px);
+  background: var(--color-reading-bg);
+  color: var(--color-ink);
+}
+
+.services-comparison__hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  min-height: min(72svh, 720px);
+  padding: clamp(24px, 5svh, 56px) var(--pad);
+  background: var(--color-ink);
+  color: var(--color-white);
+  text-align: center;
+}
+
+.services-comparison__cover,
+.services-comparison__hero::before {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.services-comparison__cover {
+  z-index: -2;
+  object-fit: cover;
+  object-position: center 33%;
+}
+
+.services-comparison__hero::before {
+  content: "";
+  z-index: -1;
+  background: #151d247d;
+}
+
+.services-comparison__hero h2 {
+  margin: 0;
+  font-size: clamp(32px, 5.1vw, 88px);
+  font-weight: 400;
+  line-height: 1.05;
+  letter-spacing: -.045em;
+}
+
+.services-comparison__hero h2 span {
+  display: block;
+}
+
+.services-comparison__content {
+  padding: clamp(36px, 5vw, 88px) var(--pad);
+}
+
+.services-comparison__types,
+.services-comparison__engineering {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--comparison-gap);
+}
+
+.services-comparison__engineering {
+  align-items: start;
+  border-top: 1px solid var(--color-mist);
+  margin-top: var(--comparison-gap);
+  padding-top: var(--comparison-gap);
+}
+
+.services-comparison__notes {
+  display: grid;
+  gap: clamp(24px, 3vw, 48px);
+}
+
+.services-comparison__engineering img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.services-comparison__content h3 {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(23px, 2.2vw, 38px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -.035em;
+}
+
+.services-comparison__content p {
+  max-width: 62ch;
+  margin: 0;
+  font-size: clamp(16px, 1.15vw, 20px);
+  line-height: 1.55;
+}
+
+@media (max-width: 767px) {
+  .services-comparison__cover {
+    object-position: 57% center;
+  }
+
+  .services-comparison__hero h2 {
+    font-size: clamp(27px, 7.6vw, 48px);
+  }
+
+  .services-comparison__types,
+  .services-comparison__engineering {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
