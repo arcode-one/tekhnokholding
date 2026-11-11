@@ -138,10 +138,6 @@
   overflow: hidden;
 }
 
-.company-figures__photo--roof .company-figures__photo-inner {
-  aspect-ratio: 4 / 3;
-}
-
 .company-figures__photo--office .company-figures__photo-inner {
   aspect-ratio: 4 / 5;
 }
@@ -149,6 +145,10 @@
 .company-figures__photo img {
   display: block;
   width: 100%;
+  height: auto;
+}
+
+.company-figures__photo--office img {
   height: 100%;
   object-fit: cover;
 }
@@ -173,7 +173,7 @@
     will-change: transform;
   }
 
-  .company-figures__photo img {
+  .company-figures__photo--office img {
     will-change: transform;
   }
 }

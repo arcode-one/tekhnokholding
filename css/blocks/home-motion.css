@@ -51,7 +51,6 @@
   .company-figures__photo--roof .company-figures__photo-inner {
     --home-photo-animation: home-once-photo-fade;
     --home-photo-duration: 700ms;
-    --home-photo-start-scale: 1.04;
   }
   .company-figures__photo--office .company-figures__photo-inner { --home-photo-inset: 0 100% 0 0; }
 
@@ -88,7 +87,7 @@
       var(--home-photo-easing, var(--ease-out)) var(--home-delay, 0ms) both;
   }
 
-  :is(.home-mission__thumbnail, .company-figures__photo-inner)[data-home-state='running'] img {
+  :is(.home-mission__thumbnail, .company-figures__photo-inner)[data-home-state='running'] > .home-photo-zoom img {
     animation: home-once-photo-pullback var(--home-photo-duration) var(--home-photo-easing)
       var(--home-delay, 0ms) both;
   }

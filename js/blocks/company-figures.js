@@ -84,7 +84,7 @@ export default function init(section) {
   ].filter(Boolean).map((outer) => ({ outer }));
   const photos = Array.from(section.querySelectorAll('[data-figures-image]'), (outer) => ({
     outer,
-    image: outer.querySelector('img'),
+    parallaxImage: outer.querySelector('.home-photo-zoom img'),
   }));
   let frame = 0;
   let measureFrame = 0;
@@ -128,7 +128,7 @@ export default function init(section) {
         }
       }
     });
-    // Рамки сближаются со своими цифрами, внутренний параллакс сохраняется.
+    // Смещение рамок привязано к прокрутке.
     if (motion.enabled) return;
     photos.forEach((photo) => {
       const frameProgress = clamp(
@@ -138,7 +138,9 @@ export default function init(section) {
       );
       const frameOffset = photo.startOffset + frameProgress * (photo.endOffset - photo.startOffset);
       photo.outer.style.transform = `translate3d(0, ${frameOffset.toFixed(2)}px, 0)`;
-      setFiguresPhotoParallax(photo.image, photo.top - y, photo.height, viewport);
+      if (photo.parallaxImage) {
+        setFiguresPhotoParallax(photo.parallaxImage, photo.top - y, photo.height, viewport);
+      }
     });
     updateCorner(y);
   }
@@ -162,6 +164,7 @@ export default function init(section) {
     maxScroll = Math.max(0, document.documentElement.scrollHeight - viewport);
     const sectionRect = section.getBoundingClientRect();
     sectionTop = sectionRect.top + window.scrollY;
+    const sectionBottom = sectionRect.bottom + window.scrollY;
     coverTop = coverSection ? coverSection.getBoundingClientRect().top + window.scrollY : 0;
     coverDistance = overlapEnabled ? corner.offsetHeight : 0;
     reveals.forEach((item) => {
@@ -187,7 +190,7 @@ export default function init(section) {
       photo.bottom = photo.top + photo.height;
       photo.left = rect.left;
       photo.right = rect.right;
-      if (reducedMotion.matches) photo.image.style.removeProperty('transform');
+      if (reducedMotion.matches) photo.parallaxImage?.style.removeProperty('transform');
     });
     const mobile = window.innerWidth <= 767;
     // Текст неподвижен. Его границы нужны только для безопасного хода фотографий.
@@ -203,30 +206,22 @@ export default function init(section) {
       const roof = photo.outer.classList.contains('company-figures__photo--roof');
       const travel = mobile ? 56 : 140;
       const clearance = mobile ? 20 : 24;
-      photo.startOffset = 0;
-      photo.endOffset = roof ? -travel : travel;
+      const upwardTravel = roof ? travel : mobile ? 24 : 64;
+      // Кадр кровли отстаёт от прокрутки целиком, в пределах свободного места.
+      photo.startOffset = Math.max(-upwardTravel, sectionTop + clearance - photo.top);
+      photo.endOffset = roof ? Math.min(travel, sectionBottom - clearance - photo.bottom) : travel;
       photo.scrollStart = photo.top - viewport * (roof ? 0.9 : 0.8);
       photo.scrollEnd = roof
-        ? photo.top - viewport * 0.35
+        ? photo.bottom - viewport * 0.35
         : Math.max(photo.scrollStart + 1, Math.min(maxScroll, photo.top + photo.height * 0.35));
-      if (!roof) {
-        // Офис начинает чуть выше исходной позиции и продолжает двигаться,
-        // пока секция видна, а не заканчивает ход до появления цифры.
-        photo.startOffset = Math.max(mobile ? -24 : -64, sectionTop + clearance - photo.top);
-      }
       groups.forEach((group) => {
         if (!overlapsHorizontally(photo, group)) return;
-        if (roof && group.top < photo.top) {
-          photo.endOffset = Math.max(
-            photo.endOffset,
-            group.bottom + clearance - photo.top,
-          );
-        } else if (!roof && group.top > photo.top) {
+        if (group.top > photo.top) {
           photo.endOffset = Math.min(
             photo.endOffset,
             group.top - clearance - photo.bottom,
           );
-        } else if (!roof) {
+        } else {
           photo.startOffset = Math.max(
             photo.startOffset,
             group.bottom + clearance - photo.top,
@@ -236,28 +231,26 @@ export default function init(section) {
       // Две фотографии тоже резервируют друг другу место на узких экранах.
       photos.forEach((other) => {
         if (photo === other || !overlapsHorizontally(photo, other)) return;
-        if (roof && other.top < photo.top) {
-          photo.endOffset = Math.max(photo.endOffset, other.bottom + clearance - photo.top);
-        } else if (!roof && other.top > photo.top) {
+        if (other.top > photo.top) {
           photo.endOffset = Math.min(photo.endOffset, other.top - clearance - photo.bottom);
-        } else if (!roof) {
+        } else {
           photo.startOffset = Math.max(photo.startOffset, other.bottom + clearance - photo.top);
         }
       });
-      photo.endOffset = roof
-        ? clamp(photo.endOffset, -travel, 0)
-        : clamp(photo.endOffset, 0, travel);
-      photo.startOffset = clamp(photo.startOffset, mobile ? -24 : -64, 0);
+      photo.endOffset = clamp(photo.endOffset, 0, travel);
+      photo.startOffset = clamp(photo.startOffset, -upwardTravel, 0);
     });
     if (motion.enabled) {
       photos.forEach((photo) => {
         motion.set(photo.outer, { transform: [
           `translate3d(0,${photo.startOffset}px,0)`, `translate3d(0,${photo.endOffset}px,0)`,
         ] }, photo.scrollStart, photo.scrollEnd);
-        motion.set(photo.image, { transform: [
-          `translate3d(0,${-photo.height * .16}px,0) scale(1.34)`,
-          `translate3d(0,${photo.height * .16}px,0) scale(1.34)`,
-        ] }, photo.top - viewport, photo.top + photo.height);
+        if (photo.parallaxImage) {
+          motion.set(photo.parallaxImage, { transform: [
+            `translate3d(0,${-photo.height * .16}px,0) scale(1.34)`,
+            `translate3d(0,${photo.height * .16}px,0) scale(1.34)`,
+          ] }, photo.top - viewport, photo.top + photo.height);
+        }
       });
       if (coverDistance) motion.set(corner, { transform: ['translate3d(0,0,0)', `translate3d(0,${-coverDistance}px,0)`] },
         coverTop - viewport, coverTop, { easing: `steps(${Math.max(1, Math.round(coverDistance * (devicePixelRatio || 1)))}, end)` });
