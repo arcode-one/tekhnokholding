@@ -22,14 +22,18 @@
   grid-area: intro;
 }
 
-.object-detail__back {
+.object-detail__back,
+.object-detail__more {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 44px;
-  margin-bottom: var(--space-4);
+  height: 44px;
   padding-inline: 14px;
   font-size: 14px;
+}
+
+.object-detail__back {
+  margin-bottom: var(--space-4);
 }
 
 .object-detail__back svg {
@@ -39,7 +43,7 @@
 
 .object-detail__intro h1 {
   margin: 0;
-  font-size: clamp(48px, 5.6vw, 96px);
+  font-size: clamp(34px, 3.4vw, 58px);
   font-weight: 400;
   letter-spacing: -0.04em;
   line-height: 1;
@@ -221,14 +225,17 @@
   gap: var(--detail-section-gap);
 }
 
-.object-detail--compact .object-detail__summary > :is(.object-detail__intro, .object-detail__materials) {
+.object-detail--compact .object-detail__summary > .object-detail__intro {
   grid-area: auto;
+}
+
+:is(.object-detail--overview, .object-detail--work) {
+  --detail-gallery-width: calc((100% - var(--detail-column-gap)) * 0.53);
 }
 
 .object-detail--work {
   --detail-padding-block: var(--space-4);
   --detail-thumbnail-max-height: 80px;
-  --detail-gallery-width: calc((100% - var(--detail-column-gap)) * 0.53);
   --detail-work-gap: clamp(16px, 2.5svh, 24px);
   row-gap: var(--detail-work-gap);
 }
@@ -245,23 +252,18 @@
   grid-area: auto;
 }
 
-.object-detail__summary > .object-detail__facts,
+:is(.object-detail--compact, .object-detail--work) .object-detail__summary > .object-detail__facts,
 .object-detail--work .object-detail__materials .object-detail__facts {
   grid-template-columns: repeat(3, minmax(0, 1fr));
   column-gap: var(--space-4);
 }
 
+.object-detail--overview .object-detail__summary {
+  gap: var(--space-2);
+}
+
 .object-detail--work .object-detail__summary {
   gap: var(--detail-work-gap);
-}
-
-:is(.object-detail--compact, .object-detail--work) .object-detail__intro h1 {
-  font-size: clamp(34px, 3.4vw, 58px);
-}
-
-.object-detail--compact .object-detail__back {
-  height: 44px;
-  margin-bottom: var(--detail-section-gap);
 }
 
 .object-detail--compact .object-detail__intro p {
@@ -294,14 +296,13 @@
   scroll-margin-top: var(--header-h);
 }
 
-.object-detail--compact .object-detail__description {
+.object-detail__description--preview {
   padding-top: var(--detail-section-gap);
   border-top: 1px solid var(--color-mist);
 }
 
 .object-detail__description-copy {
-  columns: 2;
-  column-gap: var(--detail-column-gap);
+  scroll-margin-top: var(--header-h);
 }
 
 .object-detail__materials {
@@ -331,8 +332,38 @@
   margin-bottom: 0;
 }
 
+.object-detail__description-copy:has(+ .object-detail__more[aria-expanded="false"]) {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--detail-preview-lines, 6);
+  overflow: hidden;
+}
+
 .object-detail__description-copy p {
-  line-height: 1.6;
+  max-width: none;
+}
+
+.object-detail__more {
+  margin-top: var(--space-2);
+}
+
+.object-detail__more svg {
+  width: 16px;
+  height: 16px;
+}
+
+@media (scripting: none) {
+  .object-detail__description--preview {
+    --detail-preview-lines: none;
+  }
+
+  .object-detail__more {
+    display: none;
+  }
+}
+
+.object-detail__more[aria-expanded="true"] svg {
+  rotate: 180deg;
 }
 
 .object-detail--work .object-detail__description p {
@@ -340,8 +371,13 @@
 }
 
 @media (min-width: 900px) {
+  .object-detail--overview .object-detail__summary > .object-detail__facts {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-gap: var(--space-4);
+  }
+
   .object-detail--compact {
-    padding-bottom: var(--space-2);
+    padding-bottom: clamp(16px, 3svh, 32px);
   }
 
   .object-detail--compact h2 {
@@ -353,24 +389,72 @@
     grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr) minmax(0, 1fr);
   }
 
-  .object-detail__description-copy p {
-    max-width: none;
+  .object-detail__description--preview {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: end;
+    column-gap: var(--detail-column-gap);
+  }
+
+  .object-detail__description--preview h2 {
+    grid-column: 1 / -1;
+  }
+
+  .object-detail__more {
+    justify-self: start;
+    margin-top: 0;
   }
 }
 
-@media (min-width: 900px) and (max-height: 800px) {
-  .object-detail--work {
+@media (min-width: 900px) and (max-height: 880px) {
+  .object-detail--overview {
+    --detail-padding-block: var(--space-4);
     padding-bottom: var(--space-2);
+    row-gap: var(--space-4);
   }
 
-  .object-detail h2 {
+  .object-detail--overview h2 {
     margin-bottom: 4px;
     padding-block: 2px;
   }
 
-  .object-detail--overview {
-    --detail-padding-block: var(--space-4);
-    row-gap: var(--space-4);
+  .object-detail--overview .object-detail__facts > div {
+    padding-block: 5px;
+  }
+
+  .object-detail--overview .object-detail__facts dd {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 840px) {
+  .object-detail--compact {
+    --detail-preview-lines: 5;
+  }
+}
+
+@media (min-width: 900px) and (max-height: 800px) {
+  .object-detail__back {
+    margin-bottom: var(--space-2);
+  }
+
+  .object-detail__intro h1 {
+    font-size: clamp(32px, 2.9vw, 52px);
+  }
+
+  .object-detail--work {
+    --detail-padding-block: 12px;
+    --detail-work-gap: 12px;
+    padding-bottom: var(--space-2);
+  }
+
+  .object-detail--work .object-detail__facts > div {
+    padding-block: 5px;
+  }
+
+  :is(.object-detail--work, .object-detail--compact) h2 {
+    margin-bottom: 4px;
+    padding-block: 2px;
   }
 
   .object-detail--compact {
@@ -379,21 +463,12 @@
     row-gap: 12px;
   }
 
-  .object-detail--compact .object-detail__intro h1 {
-    font-size: clamp(32px, 2.9vw, 52px);
-  }
-
   .object-detail--compact .object-detail__facts > div {
     padding-block: 3px;
   }
 
-  .object-detail--compact .object-detail__facts dd {
+  :is(.object-detail--work, .object-detail--compact) .object-detail__facts dd {
     font-size: 14px;
-  }
-
-  .object-detail__description-copy p {
-    font-size: 14px;
-    line-height: 1.4;
   }
 }
 
@@ -405,8 +480,9 @@
 
 @media (max-width: 899px) {
   .object-detail {
+    --detail-preview-lines: 6;
     grid-template-columns: minmax(0, 1fr);
-    grid-template-areas: "intro" "gallery" "facts";
+    grid-template-areas: "intro" "description" "gallery" "facts" "materials";
     grid-template-rows: auto;
     row-gap: 12px;
     padding-block: var(--space-4) var(--space-6);
@@ -421,11 +497,10 @@
   }
 
   .object-detail--compact {
-    grid-template-areas: "intro" "gallery" "facts" "materials" "description";
-    row-gap: var(--space-4);
+    grid-template-areas: "intro" "gallery" "description" "facts" "materials";
   }
 
-  .object-detail--compact .object-detail__summary {
+  .object-detail__summary {
     display: contents;
   }
 
@@ -433,19 +508,22 @@
     grid-area: intro;
   }
 
-  .object-detail--compact .object-detail__summary > .object-detail__facts {
+  .object-detail__summary > .object-detail__description {
+    grid-area: description;
+  }
+
+  :is(.object-detail--compact, .object-detail--work) .object-detail__summary > .object-detail__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .object-detail__summary > .object-detail__facts {
     grid-area: facts;
   }
 
-  .object-detail--compact .object-detail__summary > .object-detail__materials {
+  .object-detail__summary > .object-detail__materials {
     grid-area: materials;
   }
 
-  .object-detail__description-copy {
-    columns: 1;
-  }
-
-  .object-detail__summary > .object-detail__facts,
   .object-detail--work .object-detail__materials .object-detail__facts {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -467,12 +545,30 @@
 }
 
 @media (max-width: 363px) {
+  .object-detail--compact {
+    --detail-preview-lines: 5;
+    --detail-section-gap: var(--space-2);
+    row-gap: var(--space-2);
+  }
+
+  .object-detail__description--preview h2 {
+    margin-bottom: 4px;
+  }
+
+  .object-detail__more {
+    margin-top: 4px;
+  }
+
   .object-detail__intro .object-detail__subtitle {
     font-size: 15px;
   }
 
   .object-detail__facts {
     column-gap: var(--space-2);
+  }
+
+  .object-detail__description p {
+    font-size: 14px;
   }
 
   .object-detail__thumbnails {

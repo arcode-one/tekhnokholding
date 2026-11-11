@@ -331,13 +331,17 @@
           <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 5</p>
         </section>
 
-        <section class="object-detail__description" id="object-description" aria-labelledby="about-object">
+        <section class="object-detail__description object-detail__description--preview" aria-labelledby="about-object">
           <h2 id="about-object">Об объекте</h2>
-          <div class="object-detail__description-copy">
+          <div class="object-detail__description-copy" id="object-description">
             <p>Общая площадь дилерского центра SKODA составляет 2 768,2 кв.м. Площадь демонстрационного зала, равная 391,56 кв.м., позволяет представить полный модельный ряд автомобилей SKODA. Сервисная зона занимает 735,8 кв.м. и оборудована 9 постами для обслуживания автомобилей.</p>
             <p>Центр оснащён самым современным оборудованием, позволяющим осуществлять техническое обслуживание, диагностику и все виды работ по ремонту двигателей, электрики, ходовой части, а также сложный кузовной ремонт. Автоцентр осуществляет полный спектр услуг по продаже и сервисному обслуживанию автомобилей SKODA, включая гарантийный и постгарантийный ремонт. В центре возможно приобрести оригинальные запасные части и аксессуары к автомобилям SKODA, а также дополнительное оборудование.</p>
             <p>В автоцентре «Яромир Авто» работает линия прямой приемки, которая позволяет клиенту пообщаться с мастером-приемщиком и лично убедиться в необходимости ремонта. Команда специалистов центра постоянно повышает свой профессиональный уровень, подтверждая квалификацию на соответствие мировым стандартам марки SKODA.</p>
           </div>
+          <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false">
+            <span class="pill__label">Подробнее</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
+          </button>
         </section>
       </article>
     </main>
