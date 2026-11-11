@@ -30,6 +30,7 @@ enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 
 enhance('[data-privacy-toc], [data-section-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
+enhance('[data-object-gallery]', 'object-gallery', () => import('./blocks/object-gallery.js'));
 enhance(
   '[data-ui~="object-page--motion"]',
   'object-motion',

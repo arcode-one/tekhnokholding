@@ -183,227 +183,168 @@
     </div>
 
     <main>
-      <article class="object-detail" aria-labelledby="object-title">
+      <article class="object-detail object-detail--overview" aria-labelledby="object-title">
         <header class="object-detail__intro">
           <a class="pill object-detail__back" href="../objects.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
             <span>К объектам</span>
           </a>
           <h1 id="object-title">Метран</h1>
-          <p>Капитальный ремонт кровли нежилого производственного корпуса</p>
+          <p class="object-detail__subtitle">Капитальный ремонт кровли<br />нежилого производственного корпуса</p>
         </header>
 
-        <section class="object-detail__gallery" aria-label="Фотографии объекта">
-            <a
-              class="object-detail__photo object-detail__photo--cover"
-              href="../images/projects/b3e22231009c3a79e6a4.webp"
-              target="_blank"
-              rel="noopener"
-              data-company-image="../images/projects/b3e22231009c3a79e6a4.webp"
-              data-image-group="metran"
-              data-image-title="Метран, фото 1"
-              aria-label="Увеличить фото 1 из 7"
-            >
-              <img
-                src="../images/projects/b3e22231009c3a79e6a4.webp"
-                srcset="../images/projects/thumb-b3e22231009c3a79e6a4-480w.webp 480w, ../images/projects/thumb-b3e22231009c3a79e6a4.webp 960w, ../images/projects/b3e22231009c3a79e6a4.webp 1600w"
-                sizes="(max-width: 899px) 100vw, 58vw"
-                width="1600"
-                height="900"
-                alt=""
-                fetchpriority="high"
-                decoding="async"
-              />
-              <span class="object-detail__photo-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4" /></svg>
-              </span>
-            </a>
+        <section class="object-detail__gallery" aria-label="Фотографии объекта" data-object-gallery>
+          <div class="object-detail__photo object-detail__photo--cover" data-control-theme="light">
+            <img id="metran-gallery-image" data-object-gallery-image
+              src="../images/projects/b3e22231009c3a79e6a4.webp"
+              srcset="../images/projects/thumb-b3e22231009c3a79e6a4-480w.webp 480w, ../images/projects/thumb-b3e22231009c3a79e6a4.webp 960w, ../images/projects/b3e22231009c3a79e6a4.webp 1600w"
+              sizes="(max-width: 899px) 100vw, 58vw"
+              width="1600"
+              height="900"
+              alt="Общий вид производственного корпуса «Метран»"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <button class="icon-btn object-detail__step object-detail__step--previous" type="button" data-object-gallery-step="-1" aria-controls="metran-gallery-image" aria-label="Предыдущее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+            <button class="icon-btn object-detail__step object-detail__step--next" type="button" data-object-gallery-step="1" aria-controls="metran-gallery-image" aria-label="Следующее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+          </div>
           <ul class="object-detail__thumbnails" role="list">
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/52d95c437d7bce071571.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/52d95c437d7bce071571.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 2"
-                  aria-label="Увеличить фото 2 из 7"
-                >
-                  <img
-                    src="../images/projects/52d95c437d7bce071571-480w.webp"
-                    srcset="../images/projects/52d95c437d7bce071571-480w.webp 480w, ../images/projects/52d95c437d7bce071571-960w.webp 960w, ../images/projects/52d95c437d7bce071571.webp 1600w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1600"
-                    height="900"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/42d1742acbf02665d671.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/42d1742acbf02665d671.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 3"
-                  aria-label="Увеличить фото 3 из 7"
-                >
-                  <img
-                    src="../images/projects/42d1742acbf02665d671-480w.webp"
-                    srcset="../images/projects/42d1742acbf02665d671-480w.webp 480w, ../images/projects/42d1742acbf02665d671-960w.webp 960w, ../images/projects/42d1742acbf02665d671.webp 1600w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1600"
-                    height="900"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/944b201391fdf348d140.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/944b201391fdf348d140.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 4"
-                  aria-label="Увеличить фото 4 из 7"
-                >
-                  <img
-                    src="../images/projects/944b201391fdf348d140-480w.webp"
-                    srcset="../images/projects/944b201391fdf348d140-480w.webp 480w, ../images/projects/944b201391fdf348d140-960w.webp 960w, ../images/projects/944b201391fdf348d140.webp 1600w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1600"
-                    height="1200"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/metran-roof-insulation.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/metran-roof-insulation.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 5"
-                  aria-label="Увеличить фото 5 из 7"
-                >
-                  <img
-                    src="../images/projects/metran-roof-insulation-480w.webp"
-                    srcset="../images/projects/metran-roof-insulation-480w.webp 480w, ../images/projects/metran-roof-insulation-960w.webp 960w, ../images/projects/metran-roof-insulation.webp 1448w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1448"
-                    height="1086"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/metran-roof-panorama.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/metran-roof-panorama.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 6"
-                  aria-label="Увеличить фото 6 из 7"
-                >
-                  <img
-                    src="../images/projects/metran-roof-panorama-480w.webp"
-                    srcset="../images/projects/metran-roof-panorama-480w.webp 480w, ../images/projects/metran-roof-panorama-960w.webp 960w, ../images/projects/metran-roof-panorama.webp 1871w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1871"
-                    height="840"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
-              <li>
-                <a
-                  class="object-detail__photo"
-                  href="../images/projects/metran-roof-aerial-view.webp"
-                  target="_blank"
-                  rel="noopener"
-                  data-company-image="../images/projects/metran-roof-aerial-view.webp"
-                  data-image-group="metran"
-                  data-image-title="Метран, фото 7"
-                  aria-label="Увеличить фото 7 из 7"
-                >
-                  <img
-                    src="../images/projects/metran-roof-aerial-view-480w.webp"
-                    srcset="../images/projects/metran-roof-aerial-view-480w.webp 480w, ../images/projects/metran-roof-aerial-view-960w.webp 960w, ../images/projects/metran-roof-aerial-view.webp 1672w"
-                    sizes="(max-width: 899px) 16vw, 10vw"
-                    width="1672"
-                    height="941"
-                    alt=""
-                    decoding="async"
-                  />
-                </a>
-              </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/b3e22231009c3a79e6a4.webp" data-object-gallery-photo="Общий вид производственного корпуса «Метран»" aria-label="Показать фото 1 из 7" aria-current="true">
+                <img
+                  src="../images/projects/thumb-b3e22231009c3a79e6a4-480w.webp"
+                  srcset="../images/projects/thumb-b3e22231009c3a79e6a4-480w.webp 480w, ../images/projects/thumb-b3e22231009c3a79e6a4.webp 960w, ../images/projects/b3e22231009c3a79e6a4.webp 1600w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1600"
+                  height="900"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/52d95c437d7bce071571.webp" data-object-gallery-photo="Производственный корпус «Метран» со стороны фасада" aria-label="Показать фото 2 из 7">
+                <img
+                  src="../images/projects/52d95c437d7bce071571-480w.webp"
+                  srcset="../images/projects/52d95c437d7bce071571-480w.webp 480w, ../images/projects/52d95c437d7bce071571-960w.webp 960w, ../images/projects/52d95c437d7bce071571.webp 1600w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1600"
+                  height="900"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/42d1742acbf02665d671.webp" data-object-gallery-photo="Кровля и фасад производственного корпуса" aria-label="Показать фото 3 из 7">
+                <img
+                  src="../images/projects/42d1742acbf02665d671-480w.webp"
+                  srcset="../images/projects/42d1742acbf02665d671-480w.webp 480w, ../images/projects/42d1742acbf02665d671-960w.webp 960w, ../images/projects/42d1742acbf02665d671.webp 1600w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1600"
+                  height="900"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/944b201391fdf348d140.webp" data-object-gallery-photo="Уложенная мембрана на плоской кровле" aria-label="Показать фото 4 из 7">
+                <img
+                  src="../images/projects/944b201391fdf348d140-480w.webp"
+                  srcset="../images/projects/944b201391fdf348d140-480w.webp 480w, ../images/projects/944b201391fdf348d140-960w.webp 960w, ../images/projects/944b201391fdf348d140.webp 1600w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1600"
+                  height="1200"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/metran-roof-insulation.webp" data-object-gallery-photo="Теплоизоляция на кровле" aria-label="Показать фото 5 из 7">
+                <img
+                  src="../images/projects/metran-roof-insulation-480w.webp"
+                  srcset="../images/projects/metran-roof-insulation-480w.webp 480w, ../images/projects/metran-roof-insulation-960w.webp 960w, ../images/projects/metran-roof-insulation.webp 1448w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1448"
+                  height="1086"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/metran-roof-panorama.webp" data-object-gallery-photo="Панорама кровли" aria-label="Показать фото 6 из 7">
+                <img
+                  src="../images/projects/metran-roof-panorama-480w.webp"
+                  srcset="../images/projects/metran-roof-panorama-480w.webp 480w, ../images/projects/metran-roof-panorama-960w.webp 960w, ../images/projects/metran-roof-panorama.webp 1871w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1871"
+                  height="840"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/metran-roof-aerial-view.webp" data-object-gallery-photo="Вид кровли с высоты" aria-label="Показать фото 7 из 7">
+                <img
+                  src="../images/projects/metran-roof-aerial-view-480w.webp"
+                  srcset="../images/projects/metran-roof-aerial-view-480w.webp 480w, ../images/projects/metran-roof-aerial-view-960w.webp 960w, ../images/projects/metran-roof-aerial-view.webp 1672w"
+                  sizes="(max-width: 363px) 25vw, (max-width: 899px) 15vw, 9vw"
+                  width="1672"
+                  height="941"
+                  alt=""
+                  decoding="async"
+                />
+              </a>
+            </li>
           </ul>
+          <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 7</p>
         </section>
 
-        <dl class="object-detail__facts">
-          <div>
-            <dt>Площадь работ</dt>
-            <dd>15 246 м²</dd>
-          </div>
-          <div>
-            <dt>Сроки работ</dt>
-            <dd>Сентябрь 2024 – август 2025</dd>
-          </div>
-          <div>
-            <dt>Заказчик</dt>
-            <dd>АО «ПГ Метран»</dd>
-          </div>
-          <div>
-            <dt>Расположение</dt>
-            <dd>Челябинск, Новоградский пр., 15</dd>
-          </div>
-          <div>
-            <dt>Конструкция кровли</dt>
-            <dd>ПВХ-мембрана по стальному профилированному листу</dd>
-          </div>
-          <div>
-            <dt>Гидроизоляция</dt>
-            <dd>PLASTFOIL Polar RAL 7035, 1,8&nbsp;мм</dd>
-          </div>
-        </dl>
+        <div class="object-detail__summary">
+          <section aria-labelledby="about-object">
+            <h2 id="about-object">Об объекте</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Площадь работ</dt>
+                <dd>15 246 м²</dd>
+              </div>
+              <div>
+                <dt>Сроки работ</dt>
+                <dd>Сентябрь 2024 – август 2025</dd>
+              </div>
+              <div>
+                <dt>Заказчик</dt>
+                <dd>АО «ПГ Метран»</dd>
+              </div>
+              <div>
+                <dt>Расположение</dt>
+                <dd>Челябинск, Новоградский пр., 15</dd>
+              </div>
+            </dl>
+          </section>
+          <section class="object-detail__materials" aria-labelledby="object-materials-title">
+            <h2 id="object-materials-title">Решения и материалы</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Конструкция кровли</dt>
+                <dd>ПВХ-мембрана по стальному профилированному листу</dd>
+              </div>
+              <div>
+                <dt>Гидроизоляция</dt>
+                <dd>PLASTFOIL Polar RAL 7035, 1,8&nbsp;мм</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
       </article>
-
-      <dialog class="company-lightbox" aria-labelledby="metran-photo-title" data-company-lightbox>
-        <div class="company-lightbox__head">
-          <h2 id="metran-photo-title">Фотографии объекта «Метран»</h2>
-          <button class="icon-btn" type="button" data-lightbox-close aria-label="Закрыть фото" autofocus>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><use href="../icons/sprite.svg#x"></use></svg>
-          </button>
-        </div>
-        <div class="company-lightbox__image" data-lightbox-view>
-          <img src="../images/projects/thumb-b3e22231009c3a79e6a4.webp" alt="" data-lightbox-image />
-        </div>
-        <div class="company-lightbox__bottom" data-lightbox-bottom>
-          <div class="company-lightbox__steps" data-lightbox-steps>
-            <button class="icon-btn" type="button" data-lightbox-step="-1" aria-label="Предыдущее фото">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
-            </button>
-            <span data-lightbox-count aria-live="polite"></span>
-            <button class="icon-btn" type="button" data-lightbox-step="1" aria-label="Следующее фото">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-right"></use></svg>
-            </button>
-          </div>
-        </div>
-      </dialog>
     </main>
     <script type="module" src="../js/index.js"></script>
   </body>
