@@ -1,7 +1,7 @@
 export default function init(hero) {
-  const image = hero.querySelector('.values-hero__image');
+  const image = hero.querySelector('.values-hero__image, .services-comparison__cover');
   if (!image) return;
-  const title = hero.querySelector('.values-hero__title');
+  const title = hero.querySelector('.values-hero__title, :scope > h2');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let top = 0;
   let height = 0;

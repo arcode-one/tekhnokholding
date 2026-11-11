@@ -19,7 +19,7 @@
 }
 
 .catalog-page .header,
-.catalog-page .header__mail {
+.catalog-page .header .header__mail {
   color: var(--color-ink);
 }
 

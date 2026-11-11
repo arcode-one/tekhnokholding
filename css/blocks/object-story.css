@@ -16,7 +16,7 @@
   color: var(--color-ink);
 }
 
-:where(.object-page:not(.catalog-page)) .header__mail {
+:where(.object-page:not(.catalog-page) .header) .header__mail {
   color: inherit;
 }
 

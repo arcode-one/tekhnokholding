@@ -26,7 +26,7 @@ enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('.
 
 enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
-enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
+enhance('.values-hero, .services-comparison__hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 
 enhance('[data-privacy-toc], [data-section-toc]', 'privacy-toc', () => import('./blocks/privacy-toc.js'));
