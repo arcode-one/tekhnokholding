@@ -1,0 +1,185 @@
+.object-detail {
+  --detail-column-gap: clamp(24px, 4vw, 72px);
+  --detail-padding-block: clamp(20px, 4svh, 48px);
+  --detail-thumbnail-max-height: 104px;
+  --detail-cover-height: calc(100svh - var(--header-h) - 2 * var(--detail-padding-block) - var(--detail-thumbnail-max-height) - var(--space-2));
+  --detail-gallery-width: calc((100% - var(--detail-column-gap)) * 8 / 13);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(46%, calc(var(--detail-cover-height) * 16 / 9), var(--detail-gallery-width));
+  grid-template-areas:
+    "intro gallery"
+    "facts gallery";
+  grid-template-rows: auto 1fr;
+  align-content: center;
+  align-items: start;
+  column-gap: var(--detail-column-gap);
+  row-gap: var(--space-6);
+  min-height: calc(100svh - var(--header-h));
+  padding: var(--detail-padding-block) var(--pad);
+}
+
+.object-detail__intro {
+  grid-area: intro;
+}
+
+.object-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: 44px;
+  margin-bottom: var(--space-4);
+  padding-inline: 14px;
+  font-size: 14px;
+}
+
+.object-detail__back svg {
+  width: 18px;
+  height: 18px;
+}
+
+.object-detail__intro h1 {
+  margin: 0;
+  font-size: clamp(48px, 5.6vw, 96px);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.object-detail__intro p {
+  max-width: 30ch;
+  margin: var(--space-2) 0 0;
+  font-size: clamp(17px, 1.45vw, 24px);
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.object-detail__facts {
+  grid-area: facts;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: var(--space-6);
+  margin: 0;
+}
+
+.object-detail__facts > div {
+  border-top: 1px solid var(--color-mist);
+  padding-block: 10px;
+}
+
+.object-detail__facts dt {
+  margin-bottom: 4px;
+  color: var(--color-slate-alt);
+  font-size: 13px;
+  line-height: 1.35;
+}
+
+.object-detail__facts dd {
+  margin: 0;
+  font-size: clamp(14px, 1.15vw, 18px);
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
+.object-detail__gallery {
+  grid-area: gallery;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.object-detail__photo {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: var(--color-mist);
+}
+
+.object-detail__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.object-detail__photo--cover {
+  aspect-ratio: 16 / 9;
+}
+
+.object-detail__photo-icon {
+  position: absolute;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 50%;
+  background: var(--color-ink);
+  color: var(--color-white);
+}
+
+.object-detail__photo-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.object-detail__thumbnails {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.object-detail__thumbnails .object-detail__photo {
+  aspect-ratio: 4 / 3;
+  min-height: 44px;
+  max-height: var(--detail-thumbnail-max-height);
+}
+
+.object-detail__photo:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 2px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .object-detail__photo:hover .object-detail__photo-icon {
+    background: var(--color-white);
+    color: var(--color-ink);
+  }
+
+  .object-detail__thumbnails .object-detail__photo:hover {
+    outline: 2px solid var(--color-ink);
+    outline-offset: -2px;
+  }
+}
+
+@media (max-width: 899px) {
+  .object-detail {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: "intro" "gallery" "facts";
+    grid-template-rows: auto;
+    row-gap: 12px;
+    padding-block: var(--space-4) var(--space-6);
+  }
+
+  .object-detail__back {
+    margin-bottom: var(--space-2);
+  }
+
+  .object-detail__facts > div {
+    padding-block: var(--space-2);
+  }
+
+  .object-detail__thumbnails {
+    gap: 4px;
+  }
+}
+
+@media (max-width: 350px) {
+  .object-detail__facts {
+    column-gap: var(--space-2);
+  }
+}
