@@ -29,8 +29,9 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/blocks/object-detail.css" />
   </head>
-  <body id="top" class="object-page">
+  <body id="top" class="object-page" data-site-footer="off">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="../index.html" aria-label="Технохолдинг, на главную">
@@ -182,473 +183,256 @@
     </div>
 
     <main>
-      <article class="object-story">
-        <nav class="page-back" aria-label="Навигация" data-ui="page-back">
-            <a class="pill page-back__button" href="../objects.html" aria-label="Ко всем объектам" title="Ко всем объектам">
-              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+      <article class="object-detail" aria-labelledby="object-title">
+        <div class="object-detail__summary">
+          <header class="object-detail__intro">
+            <a class="pill object-detail__back" href="../objects.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
+              <span class="pill__label">К объектам</span>
             </a>
-          </nav>
-        <div class="object-intro">
-          <h1>Производственный комплекс ООО «Егоза»</h1>
-          <p>Производственные</p>
-        </div>
-        <figure class="object-cover" data-ui="object-cover">
-          <img
-            class=""
-            src="../images/projects/7700953b1bc04f408134.webp"
-            alt="Производственный комплекс ООО «Егоза»"
-            fetchpriority="high"
-            decoding="async"
-            width="762"
-            height="1024"
-          />
-        </figure>
-        <section class="object-overview" aria-labelledby="about-object">
-          <h2 id="about-object">Об объекте</h2>
-          <div>
-            <p class="object-scope">Лёгкие ограждающие конструкции</p>
-            <p class="object-description">
-              ООО "ТехноХолдинг" выполнило следующий комплекс строительно монтажных работ:
-              Подготовка несущего металлокаркаса под монтаж сэндвич-панелей стенового ограждения.
-              Монтаж стенового ограждения из сэндвич-панелей с применением вакуумного подъемника
-              MIK-500SP. Монтаж несущего настила из профилированного стального лиса H75-0,8.
-              Устройство плоской кровли с утеплением и гидроизоляцией из ПВХ мембраны. ООО «Егоза»
-              на данный момент является самым узнаваемым отечественным брендом, под которым
-              выпускаются средства защиты периметра. Компании удается оставаться конкурентоспособной
-              за счет высочайшего качества своей продукции и разумным ценам на нее. Изделия призваны
-              обеспечить эффективную защиту объектов от недоброжелателей и несанкционированного
-              проникновения на территорию. Эти средства широко используются на государственных и
-              гражданских объектах.
-            </p>
-            <dl class="object-facts">
-              <div>
-                <dt>Объект</dt>
-                <dd>Производственные</dd>
-              </div>
-              <div>
-                <dt>Расположение</dt>
-                <dd>Миасс</dd>
-              </div>
-              <div>
-                <dt>Площадь работ</dt>
-                <dd>2 400 м²</dd>
-              </div>
-              <div>
-                <dt>Заказчик</dt>
-                <dd>ООО «Егоза»</dd>
-              </div>
-              <div>
-                <dt>Сроки работ</dt>
-                <dd>Не указан</dd>
-              </div>
-            </dl>
+            <h1 id="object-title">Производственный комплекс ООО «Егоза»</h1>
+            <p class="object-detail__subtitle">Лёгкие ограждающие конструкции</p>
+          </header>
+          <div class="object-detail__description" id="about-object">
+            <div class="object-detail__description-copy" id="object-description">
+              <p>ООО "ТехноХолдинг" выполнило следующий комплекс строительно монтажных работ: Подготовка несущего металлокаркаса под монтаж сэндвич-панелей стенового ограждения. Монтаж стенового ограждения из сэндвич-панелей с применением вакуумного подъемника MIK-500SP. Монтаж несущего настила из профилированного стального лиса H75-0,8. Устройство плоской кровли с утеплением и гидроизоляцией из ПВХ мембраны. ООО «Егоза» на данный момент является самым узнаваемым отечественным брендом, под которым выпускаются средства защиты периметра. Компании удается оставаться конкурентоспособной за счет высочайшего качества своей продукции и разумным ценам на нее. Изделия призваны обеспечить эффективную защиту объектов от недоброжелателей и несанкционированного проникновения на территорию. Эти средства широко используются на государственных и гражданских объектах.</p>
+            </div>
+            <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false" hidden>
+              <span class="pill__label">Подробнее</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
+            </button>
           </div>
-        </section>
-        <section class="object-gallery" aria-label="Фотографии объекта">
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/fd93c9388a215bc3f26d.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 2 целиком"
-              ><img
-                class=""
-                src="../images/projects/fd93c9388a215bc3f26d.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 2"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="768"
-                srcset="
-                  ../images/projects/fd93c9388a215bc3f26d-480w.webp  480w,
-                  ../images/projects/fd93c9388a215bc3f26d-960w.webp  960w,
-                  ../images/projects/fd93c9388a215bc3f26d.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>02 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/8d0f14d367259b295f3b.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 3 целиком"
-              ><img
-                class=""
-                src="../images/projects/8d0f14d367259b295f3b.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 3"
-                loading="lazy"
-                decoding="async"
-                width="921"
-                height="1024"
-                srcset="
-                  ../images/projects/8d0f14d367259b295f3b-480w.webp 480w,
-                  ../images/projects/8d0f14d367259b295f3b.webp      921w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>03 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/51ece8366790ecb7d7de.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 4 целиком"
-              ><img
-                class=""
-                src="../images/projects/51ece8366790ecb7d7de.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 4"
-                loading="lazy"
-                decoding="async"
-                width="582"
-                height="1024"
-                srcset="
-                  ../images/projects/51ece8366790ecb7d7de-480w.webp 480w,
-                  ../images/projects/51ece8366790ecb7d7de.webp      582w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>04 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--3">
-            <a
-              href="../images/projects/013df36f05bc8b95df22.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 5 целиком"
-              ><img
-                class=""
-                src="../images/projects/013df36f05bc8b95df22.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 5"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="475"
-                srcset="
-                  ../images/projects/013df36f05bc8b95df22-480w.webp  480w,
-                  ../images/projects/013df36f05bc8b95df22-960w.webp  960w,
-                  ../images/projects/013df36f05bc8b95df22.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>05 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--4">
-            <a
-              href="../images/projects/0f99f62acd1ef7e3373b.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 6 целиком"
-              ><img
-                class=""
-                src="../images/projects/0f99f62acd1ef7e3373b.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 6"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/0f99f62acd1ef7e3373b-480w.webp  480w,
-                  ../images/projects/0f99f62acd1ef7e3373b-960w.webp  960w,
-                  ../images/projects/0f99f62acd1ef7e3373b.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>06 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/213ffed3d6f496cc1347.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 7 целиком"
-              ><img
-                class=""
-                src="../images/projects/213ffed3d6f496cc1347.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 7"
-                loading="lazy"
-                decoding="async"
-                width="813"
-                height="1024"
-                srcset="
-                  ../images/projects/213ffed3d6f496cc1347-480w.webp 480w,
-                  ../images/projects/213ffed3d6f496cc1347.webp      813w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>07 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/c7671c54294a85d292ed.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 8 целиком"
-              ><img
-                class=""
-                src="../images/projects/c7671c54294a85d292ed.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 8"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/c7671c54294a85d292ed-480w.webp  480w,
-                  ../images/projects/c7671c54294a85d292ed-960w.webp  960w,
-                  ../images/projects/c7671c54294a85d292ed.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>08 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/742210e3c360a0bea8ad.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 9 целиком"
-              ><img
-                class=""
-                src="../images/projects/742210e3c360a0bea8ad.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 9"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/742210e3c360a0bea8ad-480w.webp  480w,
-                  ../images/projects/742210e3c360a0bea8ad-960w.webp  960w,
-                  ../images/projects/742210e3c360a0bea8ad.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>09 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--3">
-            <a
-              href="../images/projects/3422de437dc81b7f2513.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 10 целиком"
-              ><img
-                class=""
-                src="../images/projects/3422de437dc81b7f2513.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 10"
-                loading="lazy"
-                decoding="async"
-                width="576"
-                height="1024"
-                srcset="
-                  ../images/projects/3422de437dc81b7f2513-480w.webp 480w,
-                  ../images/projects/3422de437dc81b7f2513.webp      576w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>10 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--4">
-            <a
-              href="../images/projects/2c0df9f73c6c99313875.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 11 целиком"
-              ><img
-                class=""
-                src="../images/projects/2c0df9f73c6c99313875.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 11"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="768"
-                srcset="
-                  ../images/projects/2c0df9f73c6c99313875-480w.webp  480w,
-                  ../images/projects/2c0df9f73c6c99313875-960w.webp  960w,
-                  ../images/projects/2c0df9f73c6c99313875.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>11 / 12</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/d8a8bfb8ce0796b8d749.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 12 целиком"
-              ><img
-                class=""
-                src="../images/projects/d8a8bfb8ce0796b8d749.webp"
-                alt="Производственный комплекс ООО «Егоза», фотография 12"
-                loading="lazy"
-                decoding="async"
-                width="960"
-                height="720"
-                srcset="
-                  ../images/projects/d8a8bfb8ce0796b8d749-480w.webp 480w,
-                  ../images/projects/d8a8bfb8ce0796b8d749.webp      960w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>12 / 12</figcaption>
-          </figure>
-        </section>
-        <section class="object-specs" aria-labelledby="object-specs-title">
-          <h2 id="object-specs-title">Решения<br />и материалы</h2>
-          <dl>
+          <dl class="object-detail__facts">
+            <div>
+              <dt>Площадь работ</dt>
+              <dd>2 400 м²</dd>
+            </div>
             <div>
               <dt>Дата сдачи</dt>
               <dd>2014</dd>
             </div>
             <div>
-              <dt>Площадь</dt>
-              <dd>2400 кв.м.</dd>
+              <dt>Заказчик</dt>
+              <dd>ООО «Егоза»</dd>
             </div>
             <div>
-              <dt>Несущий каркас</dt>
-              <dd>Подготовка металлокаркаса</dd>
+              <dt>Расположение</dt>
+              <dd>Миасс</dd>
             </div>
             <div>
-              <dt>Ограждающие конструкции</dt>
-              <dd>Стеновые сэндвич-панели (120мм) производства ЗАО «ЭЛЕКТОЩИТ»</dd>
+              <dt>Тип объекта</dt>
+              <dd>Производственные</dd>
+            </div>
+            <div>
+              <dt>Сроки работ</dt>
+              <dd>Не указан</dd>
             </div>
           </dl>
+
+          <section class="object-detail__materials" id="object-specs-title" aria-labelledby="object-materials-title">
+            <h2 id="object-materials-title">Решения и материалы</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Несущий каркас</dt>
+                <dd>Подготовка металлокаркаса</dd>
+              </div>
+              <div>
+                <dt>Ограждающие конструкции</dt>
+                <dd>Стеновые сэндвич-панели (120мм) производства ЗАО «ЭЛЕКТОЩИТ»</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="object-detail__gallery" aria-label="Фотографии объекта" data-object-gallery>
+          <div class="object-detail__photo object-detail__photo--cover" data-control-theme="light">
+            <img id="object-gallery-image" data-object-gallery-image
+              src="../images/projects/7700953b1bc04f408134.webp"
+              width="762"
+              height="1024"
+              alt="Производственный комплекс ООО «Егоза»"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <button class="icon-btn object-detail__step object-detail__step--previous" type="button" data-object-gallery-step="-1" aria-controls="object-gallery-image" aria-label="Предыдущее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+            <button class="icon-btn object-detail__step object-detail__step--next" type="button" data-object-gallery-step="1" aria-controls="object-gallery-image" aria-label="Следующее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+          </div>
+          <ul class="object-detail__thumbnails" role="list">
+            <li>
+              <a class="object-detail__photo" href="../images/projects/7700953b1bc04f408134.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза»" aria-label="Показать фото 1 из 12" aria-current="true">
+                <img
+                  src="../images/projects/7700953b1bc04f408134.webp"
+                  width="762"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/fd93c9388a215bc3f26d.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 2" aria-label="Показать фото 2 из 12">
+                <img
+                  src="../images/projects/fd93c9388a215bc3f26d-480w.webp"
+                  srcset="../images/projects/fd93c9388a215bc3f26d-480w.webp 480w, ../images/projects/fd93c9388a215bc3f26d-960w.webp 960w, ../images/projects/fd93c9388a215bc3f26d.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="768"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/8d0f14d367259b295f3b.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 3" aria-label="Показать фото 3 из 12">
+                <img
+                  src="../images/projects/8d0f14d367259b295f3b-480w.webp"
+                  srcset="../images/projects/8d0f14d367259b295f3b-480w.webp 480w, ../images/projects/8d0f14d367259b295f3b.webp 921w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="921"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/51ece8366790ecb7d7de.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 4" aria-label="Показать фото 4 из 12">
+                <img
+                  src="../images/projects/51ece8366790ecb7d7de-480w.webp"
+                  srcset="../images/projects/51ece8366790ecb7d7de-480w.webp 480w, ../images/projects/51ece8366790ecb7d7de.webp 582w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="582"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/013df36f05bc8b95df22.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 5" aria-label="Показать фото 5 из 12">
+                <img
+                  src="../images/projects/013df36f05bc8b95df22-480w.webp"
+                  srcset="../images/projects/013df36f05bc8b95df22-480w.webp 480w, ../images/projects/013df36f05bc8b95df22-960w.webp 960w, ../images/projects/013df36f05bc8b95df22.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="475"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/0f99f62acd1ef7e3373b.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 6" aria-label="Показать фото 6 из 12">
+                <img
+                  src="../images/projects/0f99f62acd1ef7e3373b-480w.webp"
+                  srcset="../images/projects/0f99f62acd1ef7e3373b-480w.webp 480w, ../images/projects/0f99f62acd1ef7e3373b-960w.webp 960w, ../images/projects/0f99f62acd1ef7e3373b.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/213ffed3d6f496cc1347.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 7" aria-label="Показать фото 7 из 12">
+                <img
+                  src="../images/projects/213ffed3d6f496cc1347-480w.webp"
+                  srcset="../images/projects/213ffed3d6f496cc1347-480w.webp 480w, ../images/projects/213ffed3d6f496cc1347.webp 813w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="813"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/c7671c54294a85d292ed.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 8" aria-label="Показать фото 8 из 12">
+                <img
+                  src="../images/projects/c7671c54294a85d292ed-480w.webp"
+                  srcset="../images/projects/c7671c54294a85d292ed-480w.webp 480w, ../images/projects/c7671c54294a85d292ed-960w.webp 960w, ../images/projects/c7671c54294a85d292ed.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/742210e3c360a0bea8ad.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 9" aria-label="Показать фото 9 из 12">
+                <img
+                  src="../images/projects/742210e3c360a0bea8ad-480w.webp"
+                  srcset="../images/projects/742210e3c360a0bea8ad-480w.webp 480w, ../images/projects/742210e3c360a0bea8ad-960w.webp 960w, ../images/projects/742210e3c360a0bea8ad.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/3422de437dc81b7f2513.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 10" aria-label="Показать фото 10 из 12">
+                <img
+                  src="../images/projects/3422de437dc81b7f2513-480w.webp"
+                  srcset="../images/projects/3422de437dc81b7f2513-480w.webp 480w, ../images/projects/3422de437dc81b7f2513.webp 576w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="576"
+                  height="1024"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/2c0df9f73c6c99313875.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 11" aria-label="Показать фото 11 из 12">
+                <img
+                  src="../images/projects/2c0df9f73c6c99313875-480w.webp"
+                  srcset="../images/projects/2c0df9f73c6c99313875-480w.webp 480w, ../images/projects/2c0df9f73c6c99313875-960w.webp 960w, ../images/projects/2c0df9f73c6c99313875.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="768"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/d8a8bfb8ce0796b8d749.webp" data-object-gallery-photo="Производственный комплекс ООО «Егоза», фотография 12" aria-label="Показать фото 12 из 12">
+                <img
+                  src="../images/projects/d8a8bfb8ce0796b8d749-480w.webp"
+                  srcset="../images/projects/d8a8bfb8ce0796b8d749-480w.webp 480w, ../images/projects/d8a8bfb8ce0796b8d749.webp 960w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="960"
+                  height="720"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+          </ul>
+          <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 12</p>
         </section>
       </article>
     </main>
-    <!-- FOOTER:START -->
-    <footer
-      class="site-footer"
-      id="contacts"
-      aria-labelledby="site-footer-title"
-      data-footer-motion=""
-    >
-      <div class="site-footer__scene" data-footer-scene="">
-        <div class="site-footer__visual" aria-hidden="true">
-          <img
-            class=""
-            src="../images/company/footer-roof-day-v3.webp"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="1672"
-            height="941"
-            srcset="
-              ../images/company/footer-roof-day-v3-480w.webp  480w,
-              ../images/company/footer-roof-day-v3-960w.webp  960w,
-              ../images/company/footer-roof-day-v3.webp      1672w
-            "
-            sizes="(max-width: 767px) 100vw, 100vw"
-          />
-        </div>
-        <div class="site-footer__layout" data-ui="site-footer__layout">
-          <div class="site-footer__left">
-            <nav class="site-footer__nav" aria-label="Разделы сайта">
-              <a href="../index.html#figures">О компании</a><a href="../index.html#mission">Миссия компании</a
-              ><a href="../index.html#objects">Наши объекты</a
-              ><a href="../index.html#map-objects">Карта объектов</a
-              ><a href="../index.html#advantages">Преимущества</a
-              ><a href="../index.html#clients">Нас рекомендуют</a><a href="../team.html">Наша команда</a>
-            </nav>
-            <a class="site-footer__brand" href="../index.html" aria-label="Технохолдинг, на главную"
-              ><img
-                src="../icons/logo-footer.svg"
-                alt="Технохолдинг"
-                width="1353"
-                height="430"
-                loading="lazy"
-            /></a>
-            <p class="site-footer__copyright">
-              © 2026 ООО «Технохолдинг».<br />Все права защищены.
-            </p>
-            <a class="site-footer__privacy" href="../privacy.html">Политика конфиденциальности</a>
-          </div>
-          <div class="site-footer__right">
-            <h2 id="site-footer-title"><span class="site-footer__title-part">У каждого проекта<br />есть точка старта</span><span class="site-footer__title-part">Давайте обсудим ваш</span></h2>
-            <div class="site-footer__contacts">
-              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
-                <h3 id="footer-general-title">Общие контакты</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+73512253040" aria-label="Позвонить 8 (351) 225-30-40"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 (351) 225-30-40</span><a class="site-footer__phone-touch" href="tel:+73512253040">8 (351) 225-30-40</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">info@thld.su</span>
-                  </span>
-                </span>
-              </section>
-              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
-                <h3 id="footer-sales-title">Отдел продаж</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+79058320078" aria-label="Позвонить 8 905 832-00-78"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 905 832-00-78</span><a class="site-footer__phone-touch" href="tel:+79058320078">8 905 832-00-78</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">op@thld.su</span>
-                  </span>
-                </span>
-              </section>
-            </div>
-            <div class="site-footer__office">
-              <a class="site-footer__contact-action" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener" aria-label="Открыть адрес офиса на карте"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <use href="../icons/sprite.svg#map-pin"></use>
-              </svg></a>
-              <div>
-                <span class="site-footer__contact-label">Адрес офиса</span>
-                <a class="site-footer__office-text" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener">
-                  г. Челябинск, ул. Труда, д. 174, 2 этаж
-                  <small>ТК «Манхэттен», вход «С»</small>
-                </a>
-              </div>
-            </div>
-            <div class="site-footer__bottom">
-              <div class="site-footer__documents">
-                <a class="pill" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">Скачать реквизиты</span>
-                </a>
-                <a class="pill" href="#">
-                  <span class="pill__label">Скачать каталог</span>
-                </a>
-              </div>
-              <div class="site-footer__messengers">
-                <a class="icon-btn site-footer__telegram" href="https://t.me/Thld74" target="_blank" rel="noopener" aria-label="Написать в Telegram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
-                  </svg>
-                </a>
-                <a class="icon-btn site-footer__max" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" target="_blank" rel="noopener" aria-label="Написать в MAX">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- FOOTER:END -->
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>

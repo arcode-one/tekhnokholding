@@ -29,8 +29,9 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/blocks/object-detail.css" />
   </head>
-  <body id="top" class="object-page">
+  <body id="top" class="object-page" data-site-footer="off">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="../index.html" aria-label="Технохолдинг, на главную">
@@ -182,414 +183,222 @@
     </div>
 
     <main>
-      <article class="object-story">
-        <nav class="page-back" aria-label="Навигация" data-ui="page-back">
-            <a class="pill page-back__button" href="../objects.html" aria-label="Ко всем объектам" title="Ко всем объектам">
-              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+      <article class="object-detail" aria-labelledby="object-title">
+        <div class="object-detail__summary">
+          <header class="object-detail__intro">
+            <a class="pill object-detail__back" href="../objects.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
+              <span class="pill__label">К объектам</span>
             </a>
-          </nav>
-        <div class="object-intro">
-          <h1>Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим</h1>
-          <p>Производственные</p>
-        </div>
-        <figure class="object-cover" data-ui="object-cover">
-          <img
-            class=""
-            src="../images/projects/9062dcd0a41dae504b6e.webp"
-            alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим'
-            fetchpriority="high"
-            decoding="async"
-            width="1024"
-            height="768"
-          />
-        </figure>
-        <section class="object-overview" aria-labelledby="about-object">
-          <h2 id="about-object">Об объекте</h2>
-          <div>
-            <p class="object-scope">Скатная кровля</p>
-            <p class="object-description">
-              Компания ТехноХолдинг выполнила работы по реконструкции скатной кровли корпуса №33
-              завода ОАО «Агрегат» г. Сим. Специалисты компании провели работы по замене кровельного
-              покрытия. Работы выполнялись в условиях действующего производства, без остановки
-              технических процессов предприятия. В ходе строительного производства были проведены
-              следующие работы: Демонтаж старого кровельного покрытия; Замена стропильной системы из
-              деревянного бруса; Устройство теплоизоляции кровли по принципу "холодный чердак";
-              Монтаж покрытия скатной кровли из профнастила окрашенного в RAL H40*0,8; Устройство
-              ходовых трапов; Подшивка карнизного свеса и устройство слуховых окон.
-            </p>
-            <dl class="object-facts">
-              <div>
-                <dt>Объект</dt>
-                <dd>Производственные</dd>
-              </div>
-              <div>
-                <dt>Расположение</dt>
-                <dd>Сим Челябинская область</dd>
-              </div>
-              <div>
-                <dt>Площадь работ</dt>
-                <dd>4 800 м²</dd>
-              </div>
-              <div>
-                <dt>Заказчик</dt>
-                <dd>ОАО "Агрегат"</dd>
-              </div>
-              <div>
-                <dt>Сроки работ</dt>
-                <dd>Не указан</dd>
-              </div>
-            </dl>
+            <h1 id="object-title">Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим</h1>
+            <p class="object-detail__subtitle">Скатная кровля</p>
+          </header>
+          <div class="object-detail__description" id="about-object">
+            <div class="object-detail__description-copy" id="object-description">
+              <p>Компания ТехноХолдинг выполнила работы по реконструкции скатной кровли корпуса №33 завода ОАО «Агрегат» г. Сим. Специалисты компании провели работы по замене кровельного покрытия. Работы выполнялись в условиях действующего производства, без остановки технических процессов предприятия. В ходе строительного производства были проведены следующие работы: Демонтаж старого кровельного покрытия; Замена стропильной системы из деревянного бруса; Устройство теплоизоляции кровли по принципу "холодный чердак"; Монтаж покрытия скатной кровли из профнастила окрашенного в RAL H40*0,8; Устройство ходовых трапов; Подшивка карнизного свеса и устройство слуховых окон.</p>
+            </div>
+            <button class="pill object-detail__more" type="button" data-object-description-toggle aria-controls="object-description" aria-expanded="false" hidden>
+              <span class="pill__label">Подробнее</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-down"></use></svg>
+            </button>
           </div>
-        </section>
-        <section class="object-gallery" aria-label="Фотографии объекта">
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/cdba3ddc24c76d1d5050.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 2 целиком"
-              ><img
-                class=""
-                src="../images/projects/cdba3ddc24c76d1d5050.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 2'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="771"
-                srcset="
-                  ../images/projects/cdba3ddc24c76d1d5050-480w.webp  480w,
-                  ../images/projects/cdba3ddc24c76d1d5050-960w.webp  960w,
-                  ../images/projects/cdba3ddc24c76d1d5050.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>02 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/2c3a5b06bc5d5e5af360.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 3 целиком"
-              ><img
-                class=""
-                src="../images/projects/2c3a5b06bc5d5e5af360.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 3'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/2c3a5b06bc5d5e5af360-480w.webp  480w,
-                  ../images/projects/2c3a5b06bc5d5e5af360-960w.webp  960w,
-                  ../images/projects/2c3a5b06bc5d5e5af360.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>03 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/21d3cafd4293a4bea41d.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 4 целиком"
-              ><img
-                class=""
-                src="../images/projects/21d3cafd4293a4bea41d.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 4'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="764"
-                srcset="
-                  ../images/projects/21d3cafd4293a4bea41d-480w.webp  480w,
-                  ../images/projects/21d3cafd4293a4bea41d-960w.webp  960w,
-                  ../images/projects/21d3cafd4293a4bea41d.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>04 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--3">
-            <a
-              href="../images/projects/d1dff0c12bc29892c3dc.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 5 целиком"
-              ><img
-                class=""
-                src="../images/projects/d1dff0c12bc29892c3dc.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 5'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/d1dff0c12bc29892c3dc-480w.webp  480w,
-                  ../images/projects/d1dff0c12bc29892c3dc-960w.webp  960w,
-                  ../images/projects/d1dff0c12bc29892c3dc.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>05 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--4">
-            <a
-              href="../images/projects/3d5f985a7ec62fda38f9.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 6 целиком"
-              ><img
-                class=""
-                src="../images/projects/3d5f985a7ec62fda38f9.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 6'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/3d5f985a7ec62fda38f9-480w.webp  480w,
-                  ../images/projects/3d5f985a7ec62fda38f9-960w.webp  960w,
-                  ../images/projects/3d5f985a7ec62fda38f9.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>06 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/52f96479a27723891b47.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 7 целиком"
-              ><img
-                class=""
-                src="../images/projects/52f96479a27723891b47.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 7'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/52f96479a27723891b47-480w.webp  480w,
-                  ../images/projects/52f96479a27723891b47-960w.webp  960w,
-                  ../images/projects/52f96479a27723891b47.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>07 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/175a91765acf83f972d9.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 8 целиком"
-              ><img
-                class=""
-                src="../images/projects/175a91765acf83f972d9.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 8'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/175a91765acf83f972d9-480w.webp  480w,
-                  ../images/projects/175a91765acf83f972d9-960w.webp  960w,
-                  ../images/projects/175a91765acf83f972d9.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>08 / 09</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/6375c9f874868a42f64a.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 9 целиком"
-              ><img
-                class=""
-                src="../images/projects/6375c9f874868a42f64a.webp"
-                alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим, фотография 9'
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="765"
-                srcset="
-                  ../images/projects/6375c9f874868a42f64a-480w.webp  480w,
-                  ../images/projects/6375c9f874868a42f64a-960w.webp  960w,
-                  ../images/projects/6375c9f874868a42f64a.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>09 / 09</figcaption>
-          </figure>
-        </section>
-        <section class="object-specs" aria-labelledby="object-specs-title">
-          <h2 id="object-specs-title">Решения<br />и материалы</h2>
-          <dl>
+          <dl class="object-detail__facts">
+            <div>
+              <dt>Площадь работ</dt>
+              <dd>4 800 м²</dd>
+            </div>
             <div>
               <dt>Дата сдачи</dt>
               <dd>2014 год</dd>
             </div>
             <div>
-              <dt>Площадь</dt>
-              <dd>4 800 кв.м.</dd>
+              <dt>Заказчик</dt>
+              <dd>ОАО "Агрегат"</dd>
             </div>
             <div>
-              <dt>Пароизоляция</dt>
-              <dd>Пленка для плоской кровли ТН</dd>
+              <dt>Расположение</dt>
+              <dd>Сим Челябинская область</dd>
             </div>
             <div>
-              <dt>Утеплитель</dt>
-              <dd>Техно Ру Н и Руф В (100мм)</dd>
+              <dt>Тип объекта</dt>
+              <dd>Производственные</dd>
             </div>
             <div>
-              <dt>Гидро-ветрозащитная мембрана</dt>
-              <dd>Tyvek</dd>
-            </div>
-            <div>
-              <dt>Верхний слой (гидроизоляция)</dt>
-              <dd>Профнастил окрашенный в RAL Н40х0,8</dd>
+              <dt>Сроки работ</dt>
+              <dd>Не указан</dd>
             </div>
           </dl>
+
+          <section class="object-detail__materials" id="object-specs-title" aria-labelledby="object-materials-title">
+            <h2 id="object-materials-title">Решения и материалы</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Пароизоляция</dt>
+                <dd>Пленка для плоской кровли ТН</dd>
+              </div>
+              <div>
+                <dt>Утеплитель</dt>
+                <dd>Техно Ру Н и Руф В (100мм)</dd>
+              </div>
+              <div>
+                <dt>Гидро-ветрозащитная мембрана</dt>
+                <dd>Tyvek</dd>
+              </div>
+              <div>
+                <dt>Верхний слой (гидроизоляция)</dt>
+                <dd>Профнастил окрашенный в RAL Н40х0,8</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="object-detail__gallery" aria-label="Фотографии объекта" data-object-gallery>
+          <div class="object-detail__photo object-detail__photo--cover" data-control-theme="light">
+            <img id="object-gallery-image" data-object-gallery-image
+              src="../images/projects/9062dcd0a41dae504b6e.webp"
+              width="1024"
+              height="768"
+              alt="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <button class="icon-btn object-detail__step object-detail__step--previous" type="button" data-object-gallery-step="-1" aria-controls="object-gallery-image" aria-label="Предыдущее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+            <button class="icon-btn object-detail__step object-detail__step--next" type="button" data-object-gallery-step="1" aria-controls="object-gallery-image" aria-label="Следующее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+          </div>
+          <ul class="object-detail__thumbnails" role="list">
+            <li>
+              <a class="object-detail__photo" href="../images/projects/9062dcd0a41dae504b6e.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим" aria-label="Показать фото 1 из 9" aria-current="true">
+                <img
+                  src="../images/projects/9062dcd0a41dae504b6e.webp"
+                  width="1024"
+                  height="768"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/cdba3ddc24c76d1d5050.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 2" aria-label="Показать фото 2 из 9">
+                <img
+                  src="../images/projects/cdba3ddc24c76d1d5050-480w.webp"
+                  srcset="../images/projects/cdba3ddc24c76d1d5050-480w.webp 480w, ../images/projects/cdba3ddc24c76d1d5050-960w.webp 960w, ../images/projects/cdba3ddc24c76d1d5050.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="771"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/2c3a5b06bc5d5e5af360.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 3" aria-label="Показать фото 3 из 9">
+                <img
+                  src="../images/projects/2c3a5b06bc5d5e5af360-480w.webp"
+                  srcset="../images/projects/2c3a5b06bc5d5e5af360-480w.webp 480w, ../images/projects/2c3a5b06bc5d5e5af360-960w.webp 960w, ../images/projects/2c3a5b06bc5d5e5af360.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/21d3cafd4293a4bea41d.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 4" aria-label="Показать фото 4 из 9">
+                <img
+                  src="../images/projects/21d3cafd4293a4bea41d-480w.webp"
+                  srcset="../images/projects/21d3cafd4293a4bea41d-480w.webp 480w, ../images/projects/21d3cafd4293a4bea41d-960w.webp 960w, ../images/projects/21d3cafd4293a4bea41d.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="764"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/d1dff0c12bc29892c3dc.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 5" aria-label="Показать фото 5 из 9">
+                <img
+                  src="../images/projects/d1dff0c12bc29892c3dc-480w.webp"
+                  srcset="../images/projects/d1dff0c12bc29892c3dc-480w.webp 480w, ../images/projects/d1dff0c12bc29892c3dc-960w.webp 960w, ../images/projects/d1dff0c12bc29892c3dc.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/3d5f985a7ec62fda38f9.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 6" aria-label="Показать фото 6 из 9">
+                <img
+                  src="../images/projects/3d5f985a7ec62fda38f9-480w.webp"
+                  srcset="../images/projects/3d5f985a7ec62fda38f9-480w.webp 480w, ../images/projects/3d5f985a7ec62fda38f9-960w.webp 960w, ../images/projects/3d5f985a7ec62fda38f9.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/52f96479a27723891b47.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 7" aria-label="Показать фото 7 из 9">
+                <img
+                  src="../images/projects/52f96479a27723891b47-480w.webp"
+                  srcset="../images/projects/52f96479a27723891b47-480w.webp 480w, ../images/projects/52f96479a27723891b47-960w.webp 960w, ../images/projects/52f96479a27723891b47.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/175a91765acf83f972d9.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 8" aria-label="Показать фото 8 из 9">
+                <img
+                  src="../images/projects/175a91765acf83f972d9-480w.webp"
+                  srcset="../images/projects/175a91765acf83f972d9-480w.webp 480w, ../images/projects/175a91765acf83f972d9-960w.webp 960w, ../images/projects/175a91765acf83f972d9.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/6375c9f874868a42f64a.webp" data-object-gallery-photo="Реконструкция скатной кровли корпуса №33 ОАО &quot;Агрегат&quot; г. Сим, фотография 9" aria-label="Показать фото 9 из 9">
+                <img
+                  src="../images/projects/6375c9f874868a42f64a-480w.webp"
+                  srcset="../images/projects/6375c9f874868a42f64a-480w.webp 480w, ../images/projects/6375c9f874868a42f64a-960w.webp 960w, ../images/projects/6375c9f874868a42f64a.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="765"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+          </ul>
+          <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 9</p>
         </section>
       </article>
     </main>
-    <!-- FOOTER:START -->
-    <footer
-      class="site-footer"
-      id="contacts"
-      aria-labelledby="site-footer-title"
-      data-footer-motion=""
-    >
-      <div class="site-footer__scene" data-footer-scene="">
-        <div class="site-footer__visual" aria-hidden="true">
-          <img
-            class=""
-            src="../images/company/footer-roof-day-v3.webp"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="1672"
-            height="941"
-            srcset="
-              ../images/company/footer-roof-day-v3-480w.webp  480w,
-              ../images/company/footer-roof-day-v3-960w.webp  960w,
-              ../images/company/footer-roof-day-v3.webp      1672w
-            "
-            sizes="(max-width: 767px) 100vw, 100vw"
-          />
-        </div>
-        <div class="site-footer__layout" data-ui="site-footer__layout">
-          <div class="site-footer__left">
-            <nav class="site-footer__nav" aria-label="Разделы сайта">
-              <a href="../index.html#figures">О компании</a><a href="../index.html#mission">Миссия компании</a
-              ><a href="../index.html#objects">Наши объекты</a
-              ><a href="../index.html#map-objects">Карта объектов</a
-              ><a href="../index.html#advantages">Преимущества</a
-              ><a href="../index.html#clients">Нас рекомендуют</a><a href="../team.html">Наша команда</a>
-            </nav>
-            <a class="site-footer__brand" href="../index.html" aria-label="Технохолдинг, на главную"
-              ><img
-                src="../icons/logo-footer.svg"
-                alt="Технохолдинг"
-                width="1353"
-                height="430"
-                loading="lazy"
-            /></a>
-            <p class="site-footer__copyright">
-              © 2026 ООО «Технохолдинг».<br />Все права защищены.
-            </p>
-            <a class="site-footer__privacy" href="../privacy.html">Политика конфиденциальности</a>
-          </div>
-          <div class="site-footer__right">
-            <h2 id="site-footer-title"><span class="site-footer__title-part">У каждого проекта<br />есть точка старта</span><span class="site-footer__title-part">Давайте обсудим ваш</span></h2>
-            <div class="site-footer__contacts">
-              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
-                <h3 id="footer-general-title">Общие контакты</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+73512253040" aria-label="Позвонить 8 (351) 225-30-40"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 (351) 225-30-40</span><a class="site-footer__phone-touch" href="tel:+73512253040">8 (351) 225-30-40</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">info@thld.su</span>
-                  </span>
-                </span>
-              </section>
-              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
-                <h3 id="footer-sales-title">Отдел продаж</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+79058320078" aria-label="Позвонить 8 905 832-00-78"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 905 832-00-78</span><a class="site-footer__phone-touch" href="tel:+79058320078">8 905 832-00-78</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">op@thld.su</span>
-                  </span>
-                </span>
-              </section>
-            </div>
-            <div class="site-footer__office">
-              <a class="site-footer__contact-action" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener" aria-label="Открыть адрес офиса на карте"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <use href="../icons/sprite.svg#map-pin"></use>
-              </svg></a>
-              <div>
-                <span class="site-footer__contact-label">Адрес офиса</span>
-                <a class="site-footer__office-text" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener">
-                  г. Челябинск, ул. Труда, д. 174, 2 этаж
-                  <small>ТК «Манхэттен», вход «С»</small>
-                </a>
-              </div>
-            </div>
-            <div class="site-footer__bottom">
-              <div class="site-footer__documents">
-                <a class="pill" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">Скачать реквизиты</span>
-                </a>
-                <a class="pill" href="#">
-                  <span class="pill__label">Скачать каталог</span>
-                </a>
-              </div>
-              <div class="site-footer__messengers">
-                <a class="icon-btn site-footer__telegram" href="https://t.me/Thld74" target="_blank" rel="noopener" aria-label="Написать в Telegram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
-                  </svg>
-                </a>
-                <a class="icon-btn site-footer__max" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" target="_blank" rel="noopener" aria-label="Написать в MAX">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- FOOTER:END -->
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>

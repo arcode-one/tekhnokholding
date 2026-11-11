@@ -9,6 +9,7 @@
   column-gap: var(--detail-column-gap);
   min-height: calc(100svh - var(--header-h));
   padding: var(--space-4) var(--pad);
+  overflow-wrap: anywhere;
 }
 
 .object-detail__intro {
@@ -72,7 +73,6 @@
   font-size: 15px;
   font-weight: 600;
   line-height: 1.45;
-  overflow-wrap: anywhere;
 }
 
 .object-detail__gallery {

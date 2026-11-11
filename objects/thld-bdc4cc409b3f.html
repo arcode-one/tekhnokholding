@@ -29,8 +29,9 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/blocks/object-detail.css" />
   </head>
-  <body id="top" class="object-page">
+  <body id="top" class="object-page" data-site-footer="off">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="../index.html" aria-label="Технохолдинг, на главную">
@@ -182,260 +183,131 @@
     </div>
 
     <main>
-      <article class="object-story">
-        <nav class="page-back" aria-label="Навигация" data-ui="page-back">
-            <a class="pill page-back__button" href="../objects.html" aria-label="Ко всем объектам" title="Ко всем объектам">
-              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+      <article class="object-detail" aria-labelledby="object-title">
+        <div class="object-detail__summary">
+          <header class="object-detail__intro">
+            <a class="pill object-detail__back" href="../objects.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
+              <span class="pill__label">К объектам</span>
             </a>
-          </nav>
-        <div class="object-intro">
-          <h1>Кровля больницы ЧКПЗ</h1>
-          <p>Социальные<span>2005</span></p>
-        </div>
-        <figure class="object-cover" data-ui="object-cover">
-          <img
-            class=""
-            src="../images/projects/da8d8c1b0076f49ea853.webp"
-            alt="Кровля больницы ЧКПЗ"
-            fetchpriority="high"
-            decoding="async"
-            width="1600"
-            height="1200"
-          />
-        </figure>
-        <section class="object-overview" aria-labelledby="about-object">
-          <h2 id="about-object">Об объекте</h2>
-          <div>
-            <p class="object-scope">Балластная или инверсионная плоская кровля</p>
-            <dl class="object-facts">
-              <div>
-                <dt>Год реализации</dt>
-                <dd>2005</dd>
-              </div>
-              <div>
-                <dt>Объект</dt>
-                <dd>Социальные</dd>
-              </div>
-              <div>
-                <dt>Расположение</dt>
-                <dd>Челябинск</dd>
-              </div>
-              <div>
-                <dt>Площадь работ</dt>
-                <dd>450 м²</dd>
-              </div>
-              <div>
-                <dt>Заказчик</dt>
-                <dd>ОАО ЧКПЗ</dd>
-              </div>
-              <div>
-                <dt>Сроки работ</dt>
-                <dd>август 2005</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-        <section class="object-gallery" aria-label="Фотографии объекта">
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/28e96ac252cf0c22c4be.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 2 целиком"
-              ><img
-                class=""
-                src="../images/projects/28e96ac252cf0c22c4be.webp"
-                alt="Кровля больницы ЧКПЗ, фотография 2"
-                loading="lazy"
-                decoding="async"
-                width="1448"
-                height="1086"
-                srcset="
-                  ../images/projects/28e96ac252cf0c22c4be-480w.webp  480w,
-                  ../images/projects/28e96ac252cf0c22c4be-960w.webp  960w,
-                  ../images/projects/28e96ac252cf0c22c4be.webp      1448w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>02 / 03</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/438d84cb4c561c90d54c.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 3 целиком"
-              ><img
-                class=""
-                src="../images/projects/438d84cb4c561c90d54c.webp"
-                alt="Кровля больницы ЧКПЗ, фотография 3"
-                loading="lazy"
-                decoding="async"
-                width="417"
-                height="265"
-            /></a>
-            <figcaption>03 / 03</figcaption>
-          </figure>
-        </section>
-        <section class="object-specs" aria-labelledby="object-specs-title">
-          <h2 id="object-specs-title">Решения<br />и материалы</h2>
-          <dl>
+            <h1 id="object-title">Кровля больницы ЧКПЗ</h1>
+            <p class="object-detail__subtitle">Балластная или инверсионная плоская кровля</p>
+          </header>
+          <dl class="object-detail__facts" id="about-object">
             <div>
-              <dt>Пароизоляционный слой</dt>
-              <dd>Бикрост ТПП</dd>
+              <dt>Площадь работ</dt>
+              <dd>450 м²</dd>
             </div>
             <div>
-              <dt>Теплоизоляционный слой</dt>
-              <dd>ПСБ-С-35 (200 мм)</dd>
+              <dt>Год реализации</dt>
+              <dd>2005</dd>
             </div>
             <div>
-              <dt>Разделительный слой</dt>
-              <dd>полиэстер -300г/м2</dd>
+              <dt>Заказчик</dt>
+              <dd>ОАО ЧКПЗ</dd>
             </div>
             <div>
-              <dt>Гидроизоляционный слой</dt>
-              <dd>Мембрана ПВХ Logicroof RP 1,2 мм</dd>
+              <dt>Расположение</dt>
+              <dd>Челябинск</dd>
             </div>
             <div>
-              <dt>Балластный слой</dt>
-              <dd>щебень фр.20..40</dd>
+              <dt>Тип объекта</dt>
+              <dd>Социальные</dd>
+            </div>
+            <div>
+              <dt>Сроки работ</dt>
+              <dd>август 2005</dd>
             </div>
           </dl>
+
+          <section class="object-detail__materials" id="object-specs-title" aria-labelledby="object-materials-title">
+            <h2 id="object-materials-title">Решения и материалы</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Пароизоляционный слой</dt>
+                <dd>Бикрост ТПП</dd>
+              </div>
+              <div>
+                <dt>Теплоизоляционный слой</dt>
+                <dd>ПСБ-С-35 (200 мм)</dd>
+              </div>
+              <div>
+                <dt>Разделительный слой</dt>
+                <dd>полиэстер -300г/м2</dd>
+              </div>
+              <div>
+                <dt>Гидроизоляционный слой</dt>
+                <dd>Мембрана ПВХ Logicroof RP 1,2 мм</dd>
+              </div>
+              <div>
+                <dt>Балластный слой</dt>
+                <dd>щебень фр.20..40</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="object-detail__gallery" aria-label="Фотографии объекта" data-object-gallery>
+          <div class="object-detail__photo object-detail__photo--cover" data-control-theme="light">
+            <img id="object-gallery-image" data-object-gallery-image
+              src="../images/projects/da8d8c1b0076f49ea853.webp"
+              width="1600"
+              height="1200"
+              alt="Кровля больницы ЧКПЗ"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <button class="icon-btn object-detail__step object-detail__step--previous" type="button" data-object-gallery-step="-1" aria-controls="object-gallery-image" aria-label="Предыдущее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+            <button class="icon-btn object-detail__step object-detail__step--next" type="button" data-object-gallery-step="1" aria-controls="object-gallery-image" aria-label="Следующее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+          </div>
+          <ul class="object-detail__thumbnails" role="list">
+            <li>
+              <a class="object-detail__photo" href="../images/projects/da8d8c1b0076f49ea853.webp" data-object-gallery-photo="Кровля больницы ЧКПЗ" aria-label="Показать фото 1 из 3" aria-current="true">
+                <img
+                  src="../images/projects/da8d8c1b0076f49ea853.webp"
+                  width="1600"
+                  height="1200"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/28e96ac252cf0c22c4be.webp" data-object-gallery-photo="Кровля больницы ЧКПЗ, фотография 2" aria-label="Показать фото 2 из 3">
+                <img
+                  src="../images/projects/28e96ac252cf0c22c4be-480w.webp"
+                  srcset="../images/projects/28e96ac252cf0c22c4be-480w.webp 480w, ../images/projects/28e96ac252cf0c22c4be-960w.webp 960w, ../images/projects/28e96ac252cf0c22c4be.webp 1448w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1448"
+                  height="1086"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/438d84cb4c561c90d54c.webp" data-object-gallery-photo="Кровля больницы ЧКПЗ, фотография 3" aria-label="Показать фото 3 из 3">
+                <img
+                  src="../images/projects/438d84cb4c561c90d54c.webp"
+                  width="417"
+                  height="265"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+          </ul>
+          <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 3</p>
         </section>
       </article>
     </main>
-    <!-- FOOTER:START -->
-    <footer
-      class="site-footer"
-      id="contacts"
-      aria-labelledby="site-footer-title"
-      data-footer-motion=""
-    >
-      <div class="site-footer__scene" data-footer-scene="">
-        <div class="site-footer__visual" aria-hidden="true">
-          <img
-            class=""
-            src="../images/company/footer-roof-day-v3.webp"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="1672"
-            height="941"
-            srcset="
-              ../images/company/footer-roof-day-v3-480w.webp  480w,
-              ../images/company/footer-roof-day-v3-960w.webp  960w,
-              ../images/company/footer-roof-day-v3.webp      1672w
-            "
-            sizes="(max-width: 767px) 100vw, 100vw"
-          />
-        </div>
-        <div class="site-footer__layout" data-ui="site-footer__layout">
-          <div class="site-footer__left">
-            <nav class="site-footer__nav" aria-label="Разделы сайта">
-              <a href="../index.html#figures">О компании</a><a href="../index.html#mission">Миссия компании</a
-              ><a href="../index.html#objects">Наши объекты</a
-              ><a href="../index.html#map-objects">Карта объектов</a
-              ><a href="../index.html#advantages">Преимущества</a
-              ><a href="../index.html#clients">Нас рекомендуют</a><a href="../team.html">Наша команда</a>
-            </nav>
-            <a class="site-footer__brand" href="../index.html" aria-label="Технохолдинг, на главную"
-              ><img
-                src="../icons/logo-footer.svg"
-                alt="Технохолдинг"
-                width="1353"
-                height="430"
-                loading="lazy"
-            /></a>
-            <p class="site-footer__copyright">
-              © 2026 ООО «Технохолдинг».<br />Все права защищены.
-            </p>
-            <a class="site-footer__privacy" href="../privacy.html">Политика конфиденциальности</a>
-          </div>
-          <div class="site-footer__right">
-            <h2 id="site-footer-title"><span class="site-footer__title-part">У каждого проекта<br />есть точка старта</span><span class="site-footer__title-part">Давайте обсудим ваш</span></h2>
-            <div class="site-footer__contacts">
-              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
-                <h3 id="footer-general-title">Общие контакты</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+73512253040" aria-label="Позвонить 8 (351) 225-30-40"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 (351) 225-30-40</span><a class="site-footer__phone-touch" href="tel:+73512253040">8 (351) 225-30-40</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">info@thld.su</span>
-                  </span>
-                </span>
-              </section>
-              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
-                <h3 id="footer-sales-title">Отдел продаж</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+79058320078" aria-label="Позвонить 8 905 832-00-78"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 905 832-00-78</span><a class="site-footer__phone-touch" href="tel:+79058320078">8 905 832-00-78</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">op@thld.su</span>
-                  </span>
-                </span>
-              </section>
-            </div>
-            <div class="site-footer__office">
-              <a class="site-footer__contact-action" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener" aria-label="Открыть адрес офиса на карте"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <use href="../icons/sprite.svg#map-pin"></use>
-              </svg></a>
-              <div>
-                <span class="site-footer__contact-label">Адрес офиса</span>
-                <a class="site-footer__office-text" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener">
-                  г. Челябинск, ул. Труда, д. 174, 2 этаж
-                  <small>ТК «Манхэттен», вход «С»</small>
-                </a>
-              </div>
-            </div>
-            <div class="site-footer__bottom">
-              <div class="site-footer__documents">
-                <a class="pill" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">Скачать реквизиты</span>
-                </a>
-                <a class="pill" href="#">
-                  <span class="pill__label">Скачать каталог</span>
-                </a>
-              </div>
-              <div class="site-footer__messengers">
-                <a class="icon-btn site-footer__telegram" href="https://t.me/Thld74" target="_blank" rel="noopener" aria-label="Написать в Telegram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
-                  </svg>
-                </a>
-                <a class="icon-btn site-footer__max" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" target="_blank" rel="noopener" aria-label="Написать в MAX">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- FOOTER:END -->
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>

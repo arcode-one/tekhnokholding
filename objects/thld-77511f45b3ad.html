@@ -29,8 +29,9 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="../css/index.css" />
+    <link rel="stylesheet" href="../css/blocks/object-detail.css" />
   </head>
-  <body id="top" class="object-page">
+  <body id="top" class="object-page" data-site-footer="off">
     <header class="header">
       <div class="header__inner">
         <a class="header__logo" href="../index.html" aria-label="Технохолдинг, на главную">
@@ -182,428 +183,231 @@
     </div>
 
     <main>
-      <article class="object-story">
-        <nav class="page-back" aria-label="Навигация" data-ui="page-back">
-            <a class="pill page-back__button" href="../objects.html" aria-label="Ко всем объектам" title="Ко всем объектам">
-              <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+      <article class="object-detail" aria-labelledby="object-title">
+        <div class="object-detail__summary">
+          <header class="object-detail__intro">
+            <a class="pill object-detail__back" href="../objects.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#chevron-left"></use></svg>
+              <span class="pill__label">К объектам</span>
             </a>
-          </nav>
-        <div class="object-intro">
-          <h1>Офисное здание и склад компании ПЕПЛОС</h1>
-          <p>Коммерческие</p>
-        </div>
-        <figure class="object-cover" data-ui="object-cover">
-          <img
-            class=""
-            src="../images/projects/719796bd4c5eaaa3ee43.webp"
-            alt="Офисное здание и склад компании ПЕПЛОС"
-            fetchpriority="high"
-            decoding="async"
-            width="1024"
-            height="707"
-          />
-        </figure>
-        <section class="object-overview" aria-labelledby="about-object">
-          <h2 id="about-object">Об объекте</h2>
-          <div>
-            <p class="object-scope">ПВХ-мембрана по железобетонному основанию</p>
-            <dl class="object-facts">
-              <div>
-                <dt>Объект</dt>
-                <dd>Коммерческие</dd>
-              </div>
-              <div>
-                <dt>Расположение</dt>
-                <dd>п. Кременкуль, Челябинская область</dd>
-              </div>
-              <div>
-                <dt>Площадь работ</dt>
-                <dd>3 500 м²</dd>
-              </div>
-              <div>
-                <dt>Заказчик</dt>
-                <dd>ООО "Пеплос"</dd>
-              </div>
-              <div>
-                <dt>Сроки работ</dt>
-                <dd>Не указан</dd>
-              </div>
-            </dl>
-          </div>
-        </section>
-        <section class="object-gallery" aria-label="Фотографии объекта">
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/ac7b6ed37aec974356be.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 2 целиком"
-              ><img
-                class=""
-                src="../images/projects/ac7b6ed37aec974356be.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 2"
-                loading="lazy"
-                decoding="async"
-                width="1496"
-                height="1051"
-                srcset="
-                  ../images/projects/ac7b6ed37aec974356be-480w.webp  480w,
-                  ../images/projects/ac7b6ed37aec974356be-960w.webp  960w,
-                  ../images/projects/ac7b6ed37aec974356be.webp      1496w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>02 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/f31de07288e285a55771.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 3 целиком"
-              ><img
-                class=""
-                src="../images/projects/f31de07288e285a55771.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 3"
-                loading="lazy"
-                decoding="async"
-                width="762"
-                height="627"
-                srcset="
-                  ../images/projects/f31de07288e285a55771-480w.webp 480w,
-                  ../images/projects/f31de07288e285a55771.webp      762w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>03 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/93779dd7d3fb6e3e2eb1.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 4 целиком"
-              ><img
-                class=""
-                src="../images/projects/93779dd7d3fb6e3e2eb1.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 4"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="764"
-                srcset="
-                  ../images/projects/93779dd7d3fb6e3e2eb1-480w.webp  480w,
-                  ../images/projects/93779dd7d3fb6e3e2eb1-960w.webp  960w,
-                  ../images/projects/93779dd7d3fb6e3e2eb1.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>04 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--3">
-            <a
-              href="../images/projects/afe22298fc5aff8ac8e0.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 5 целиком"
-              ><img
-                class=""
-                src="../images/projects/afe22298fc5aff8ac8e0.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 5"
-                loading="lazy"
-                decoding="async"
-                width="1450"
-                height="1085"
-                srcset="
-                  ../images/projects/afe22298fc5aff8ac8e0-480w.webp  480w,
-                  ../images/projects/afe22298fc5aff8ac8e0-960w.webp  960w,
-                  ../images/projects/afe22298fc5aff8ac8e0.webp      1450w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>05 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--4">
-            <a
-              href="../images/projects/65f3e3a31d95b4284b16.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 6 целиком"
-              ><img
-                class=""
-                src="../images/projects/65f3e3a31d95b4284b16.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 6"
-                loading="lazy"
-                decoding="async"
-                width="958"
-                height="694"
-                srcset="
-                  ../images/projects/65f3e3a31d95b4284b16-480w.webp 480w,
-                  ../images/projects/65f3e3a31d95b4284b16.webp      958w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>06 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--0">
-            <a
-              href="../images/projects/b45946d9ae7fc3a8c1af.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 7 целиком"
-              ><img
-                class=""
-                src="../images/projects/b45946d9ae7fc3a8c1af.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 7"
-                loading="lazy"
-                decoding="async"
-                width="981"
-                height="703"
-                srcset="
-                  ../images/projects/b45946d9ae7fc3a8c1af-480w.webp 480w,
-                  ../images/projects/b45946d9ae7fc3a8c1af-960w.webp 960w,
-                  ../images/projects/b45946d9ae7fc3a8c1af.webp      981w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>07 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--1">
-            <a
-              href="../images/projects/c0028da2e3f2e7f9bdca.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 8 целиком"
-              ><img
-                class=""
-                src="../images/projects/c0028da2e3f2e7f9bdca.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 8"
-                loading="lazy"
-                decoding="async"
-                width="925"
-                height="695"
-                srcset="
-                  ../images/projects/c0028da2e3f2e7f9bdca-480w.webp 480w,
-                  ../images/projects/c0028da2e3f2e7f9bdca.webp      925w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>08 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--2">
-            <a
-              href="../images/projects/946c32b031d3f8546cf8.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 9 целиком"
-              ><img
-                class=""
-                src="../images/projects/946c32b031d3f8546cf8.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 9"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="683"
-                srcset="
-                  ../images/projects/946c32b031d3f8546cf8-480w.webp  480w,
-                  ../images/projects/946c32b031d3f8546cf8-960w.webp  960w,
-                  ../images/projects/946c32b031d3f8546cf8.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>09 / 10</figcaption>
-          </figure>
-          <figure class="object-gallery__frame object-gallery__frame--3">
-            <a
-              href="../images/projects/890a1c72d11588fab778.webp"
-              target="_blank"
-              rel="noopener"
-              aria-label="Открыть фотографию 10 целиком"
-              ><img
-                class=""
-                src="../images/projects/890a1c72d11588fab778.webp"
-                alt="Офисное здание и склад компании ПЕПЛОС, фотография 10"
-                loading="lazy"
-                decoding="async"
-                width="1024"
-                height="768"
-                srcset="
-                  ../images/projects/890a1c72d11588fab778-480w.webp  480w,
-                  ../images/projects/890a1c72d11588fab778-960w.webp  960w,
-                  ../images/projects/890a1c72d11588fab778.webp      1024w
-                "
-                sizes="(max-width: 767px) 100vw, 100vw"
-            /></a>
-            <figcaption>10 / 10</figcaption>
-          </figure>
-        </section>
-        <section class="object-specs" aria-labelledby="object-specs-title">
-          <h2 id="object-specs-title">Решения<br />и материалы</h2>
-          <dl>
+            <h1 id="object-title">Офисное здание и склад компании ПЕПЛОС</h1>
+            <p class="object-detail__subtitle">ПВХ-мембрана по железобетонному основанию</p>
+          </header>
+          <dl class="object-detail__facts" id="about-object">
+            <div>
+              <dt>Площадь работ</dt>
+              <dd>3 500 м²</dd>
+            </div>
             <div>
               <dt>Дата сдачи</dt>
               <dd>апрель 2015 года</dd>
             </div>
             <div>
-              <dt>Площадь</dt>
-              <dd>3500 кв.м.</dd>
+              <dt>Заказчик</dt>
+              <dd>ООО "Пеплос"</dd>
             </div>
             <div>
-              <dt>Пароизоляция</dt>
-              <dd>Унифлекс ЭПП</dd>
+              <dt>Расположение</dt>
+              <dd>п. Кременкуль, Челябинская область</dd>
             </div>
             <div>
-              <dt>Теплоизоляция</dt>
-              <dd>ТехноРуф Н(100мм) + XPS Carbon(50мм)</dd>
+              <dt>Тип объекта</dt>
+              <dd>Коммерческие</dd>
             </div>
             <div>
-              <dt>Раздели-ный слой</dt>
-              <dd>Геотекстиль 150 г/м2 и 500г/м2</dd>
-            </div>
-            <div>
-              <dt>Гидроизоляция</dt>
-              <dd>ПВХ мембрана Экопласт V-RP 1,2мм</dd>
-            </div>
-            <div>
-              <dt>Финишный слой</dt>
-              <dd>Тротуарная плитка</dd>
+              <dt>Сроки работ</dt>
+              <dd>Не указан</dd>
             </div>
           </dl>
+
+          <section class="object-detail__materials" id="object-specs-title" aria-labelledby="object-materials-title">
+            <h2 id="object-materials-title">Решения и материалы</h2>
+            <dl class="object-detail__facts">
+              <div>
+                <dt>Пароизоляция</dt>
+                <dd>Унифлекс ЭПП</dd>
+              </div>
+              <div>
+                <dt>Теплоизоляция</dt>
+                <dd>ТехноРуф Н(100мм) + XPS Carbon(50мм)</dd>
+              </div>
+              <div>
+                <dt>Раздели-ный слой</dt>
+                <dd>Геотекстиль 150 г/м2 и 500г/м2</dd>
+              </div>
+              <div>
+                <dt>Гидроизоляция</dt>
+                <dd>ПВХ мембрана Экопласт V-RP 1,2мм</dd>
+              </div>
+              <div>
+                <dt>Финишный слой</dt>
+                <dd>Тротуарная плитка</dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+
+        <section class="object-detail__gallery" aria-label="Фотографии объекта" data-object-gallery>
+          <div class="object-detail__photo object-detail__photo--cover" data-control-theme="light">
+            <img id="object-gallery-image" data-object-gallery-image
+              src="../images/projects/719796bd4c5eaaa3ee43.webp"
+              width="1024"
+              height="707"
+              alt="Офисное здание и склад компании ПЕПЛОС"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <button class="icon-btn object-detail__step object-detail__step--previous" type="button" data-object-gallery-step="-1" aria-controls="object-gallery-image" aria-label="Предыдущее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+            <button class="icon-btn object-detail__step object-detail__step--next" type="button" data-object-gallery-step="1" aria-controls="object-gallery-image" aria-label="Следующее фото" hidden>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="../icons/sprite.svg#arrow-up"></use></svg>
+            </button>
+          </div>
+          <ul class="object-detail__thumbnails" role="list">
+            <li>
+              <a class="object-detail__photo" href="../images/projects/719796bd4c5eaaa3ee43.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС" aria-label="Показать фото 1 из 10" aria-current="true">
+                <img
+                  src="../images/projects/719796bd4c5eaaa3ee43.webp"
+                  width="1024"
+                  height="707"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/ac7b6ed37aec974356be.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 2" aria-label="Показать фото 2 из 10">
+                <img
+                  src="../images/projects/ac7b6ed37aec974356be-480w.webp"
+                  srcset="../images/projects/ac7b6ed37aec974356be-480w.webp 480w, ../images/projects/ac7b6ed37aec974356be-960w.webp 960w, ../images/projects/ac7b6ed37aec974356be.webp 1496w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1496"
+                  height="1051"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/f31de07288e285a55771.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 3" aria-label="Показать фото 3 из 10">
+                <img
+                  src="../images/projects/f31de07288e285a55771-480w.webp"
+                  srcset="../images/projects/f31de07288e285a55771-480w.webp 480w, ../images/projects/f31de07288e285a55771.webp 762w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="762"
+                  height="627"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/93779dd7d3fb6e3e2eb1.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 4" aria-label="Показать фото 4 из 10">
+                <img
+                  src="../images/projects/93779dd7d3fb6e3e2eb1-480w.webp"
+                  srcset="../images/projects/93779dd7d3fb6e3e2eb1-480w.webp 480w, ../images/projects/93779dd7d3fb6e3e2eb1-960w.webp 960w, ../images/projects/93779dd7d3fb6e3e2eb1.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="764"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/afe22298fc5aff8ac8e0.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 5" aria-label="Показать фото 5 из 10">
+                <img
+                  src="../images/projects/afe22298fc5aff8ac8e0-480w.webp"
+                  srcset="../images/projects/afe22298fc5aff8ac8e0-480w.webp 480w, ../images/projects/afe22298fc5aff8ac8e0-960w.webp 960w, ../images/projects/afe22298fc5aff8ac8e0.webp 1450w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1450"
+                  height="1085"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/65f3e3a31d95b4284b16.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 6" aria-label="Показать фото 6 из 10">
+                <img
+                  src="../images/projects/65f3e3a31d95b4284b16-480w.webp"
+                  srcset="../images/projects/65f3e3a31d95b4284b16-480w.webp 480w, ../images/projects/65f3e3a31d95b4284b16.webp 958w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="958"
+                  height="694"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/b45946d9ae7fc3a8c1af.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 7" aria-label="Показать фото 7 из 10">
+                <img
+                  src="../images/projects/b45946d9ae7fc3a8c1af-480w.webp"
+                  srcset="../images/projects/b45946d9ae7fc3a8c1af-480w.webp 480w, ../images/projects/b45946d9ae7fc3a8c1af-960w.webp 960w, ../images/projects/b45946d9ae7fc3a8c1af.webp 981w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="981"
+                  height="703"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/c0028da2e3f2e7f9bdca.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 8" aria-label="Показать фото 8 из 10">
+                <img
+                  src="../images/projects/c0028da2e3f2e7f9bdca-480w.webp"
+                  srcset="../images/projects/c0028da2e3f2e7f9bdca-480w.webp 480w, ../images/projects/c0028da2e3f2e7f9bdca.webp 925w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="925"
+                  height="695"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/946c32b031d3f8546cf8.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 9" aria-label="Показать фото 9 из 10">
+                <img
+                  src="../images/projects/946c32b031d3f8546cf8-480w.webp"
+                  srcset="../images/projects/946c32b031d3f8546cf8-480w.webp 480w, ../images/projects/946c32b031d3f8546cf8-960w.webp 960w, ../images/projects/946c32b031d3f8546cf8.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="683"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+            <li>
+              <a class="object-detail__photo" href="../images/projects/890a1c72d11588fab778.webp" data-object-gallery-photo="Офисное здание и склад компании ПЕПЛОС, фотография 10" aria-label="Показать фото 10 из 10">
+                <img
+                  src="../images/projects/890a1c72d11588fab778-480w.webp"
+                  srcset="../images/projects/890a1c72d11588fab778-480w.webp 480w, ../images/projects/890a1c72d11588fab778-960w.webp 960w, ../images/projects/890a1c72d11588fab778.webp 1024w"
+                  sizes="(max-width: 363px) 20vw, (max-width: 899px) 15vw, 8vw"
+                  width="1024"
+                  height="768"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </a>
+            </li>
+          </ul>
+          <p class="object-detail__status" role="status" data-object-gallery-status>Фото 1 из 10</p>
         </section>
       </article>
     </main>
-    <!-- FOOTER:START -->
-    <footer
-      class="site-footer"
-      id="contacts"
-      aria-labelledby="site-footer-title"
-      data-footer-motion=""
-    >
-      <div class="site-footer__scene" data-footer-scene="">
-        <div class="site-footer__visual" aria-hidden="true">
-          <img
-            class=""
-            src="../images/company/footer-roof-day-v3.webp"
-            alt=""
-            loading="lazy"
-            decoding="async"
-            width="1672"
-            height="941"
-            srcset="
-              ../images/company/footer-roof-day-v3-480w.webp  480w,
-              ../images/company/footer-roof-day-v3-960w.webp  960w,
-              ../images/company/footer-roof-day-v3.webp      1672w
-            "
-            sizes="(max-width: 767px) 100vw, 100vw"
-          />
-        </div>
-        <div class="site-footer__layout" data-ui="site-footer__layout">
-          <div class="site-footer__left">
-            <nav class="site-footer__nav" aria-label="Разделы сайта">
-              <a href="../index.html#figures">О компании</a><a href="../index.html#mission">Миссия компании</a
-              ><a href="../index.html#objects">Наши объекты</a
-              ><a href="../index.html#map-objects">Карта объектов</a
-              ><a href="../index.html#advantages">Преимущества</a
-              ><a href="../index.html#clients">Нас рекомендуют</a><a href="../team.html">Наша команда</a>
-            </nav>
-            <a class="site-footer__brand" href="../index.html" aria-label="Технохолдинг, на главную"
-              ><img
-                src="../icons/logo-footer.svg"
-                alt="Технохолдинг"
-                width="1353"
-                height="430"
-                loading="lazy"
-            /></a>
-            <p class="site-footer__copyright">
-              © 2026 ООО «Технохолдинг».<br />Все права защищены.
-            </p>
-            <a class="site-footer__privacy" href="../privacy.html">Политика конфиденциальности</a>
-          </div>
-          <div class="site-footer__right">
-            <h2 id="site-footer-title"><span class="site-footer__title-part">У каждого проекта<br />есть точка старта</span><span class="site-footer__title-part">Давайте обсудим ваш</span></h2>
-            <div class="site-footer__contacts">
-              <section class="site-footer__contact-group" aria-labelledby="footer-general-title">
-                <h3 id="footer-general-title">Общие контакты</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+73512253040" aria-label="Позвонить 8 (351) 225-30-40"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 (351) 225-30-40</span><a class="site-footer__phone-touch" href="tel:+73512253040">8 (351) 225-30-40</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">info@thld.su</span>
-                  </span>
-                </span>
-              </section>
-              <section class="site-footer__contact-group" aria-labelledby="footer-sales-title">
-                <h3 id="footer-sales-title">Отдел продаж</h3>
-                <span class="site-footer__contact-link contact-selectable">
-                  <a class="site-footer__contact-action" href="tel:+79058320078" aria-label="Позвонить 8 905 832-00-78"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#phone"></use>
-                  </svg></a>
-                  <span>
-                    <span class="site-footer__contact-label">Телефон</span>
-                    <span class="site-footer__contact-value"><span class="site-footer__phone-desktop">8 905 832-00-78</span><a class="site-footer__phone-touch" href="tel:+79058320078">8 905 832-00-78</a></span>
-                  </span>
-                </span>
-                <span class="site-footer__contact-link contact-email">
-                  <svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#mail"></use>
-                  </svg>
-                  <span>
-                    <span class="site-footer__contact-label">Электронная почта</span>
-                    <span class="site-footer__contact-value">op@thld.su</span>
-                  </span>
-                </span>
-              </section>
-            </div>
-            <div class="site-footer__office">
-              <a class="site-footer__contact-action" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener" aria-label="Открыть адрес офиса на карте"><svg class="site-footer__contact-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <use href="../icons/sprite.svg#map-pin"></use>
-              </svg></a>
-              <div>
-                <span class="site-footer__contact-label">Адрес офиса</span>
-                <a class="site-footer__office-text" href="https://yandex.ru/maps/?text=%D0%A7%D0%B5%D0%BB%D1%8F%D0%B1%D0%B8%D0%BD%D1%81%D0%BA%2C%20%D1%83%D0%BB%D0%B8%D1%86%D0%B0%20%D0%A2%D1%80%D1%83%D0%B4%D0%B0%2C%20174%2C%20%D0%A2%D0%9A%20%D0%9C%D0%B0%D0%BD%D1%85%D1%8D%D1%82%D1%82%D0%B5%D0%BD" target="_blank" rel="noopener">
-                  г. Челябинск, ул. Труда, д. 174, 2 этаж
-                  <small>ТК «Манхэттен», вход «С»</small>
-                </a>
-              </div>
-            </div>
-            <div class="site-footer__bottom">
-              <div class="site-footer__documents">
-                <a class="pill" href="../docs/rekvizity-tekhnokholding.pdf" target="_blank" rel="noopener">
-                  <span class="pill__label">Скачать реквизиты</span>
-                </a>
-                <a class="pill" href="#">
-                  <span class="pill__label">Скачать каталог</span>
-                </a>
-              </div>
-              <div class="site-footer__messengers">
-                <a class="icon-btn site-footer__telegram" href="https://t.me/Thld74" target="_blank" rel="noopener" aria-label="Написать в Telegram">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-de910d2ed695"></use>
-                  </svg>
-                </a>
-                <a class="icon-btn site-footer__max" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" target="_blank" rel="noopener" aria-label="Написать в MAX">
-                  <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                    <use href="../icons/sprite.svg#custom-5cf53abd5ed3"></use>
-                  </svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-    <!-- FOOTER:END -->
     <script type="module" src="../js/index.js"></script>
   </body>
 </html>
