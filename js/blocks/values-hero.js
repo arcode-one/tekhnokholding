@@ -3,6 +3,10 @@ export default function init(hero) {
   if (!image) return;
   const title = hero.querySelector('.values-hero__title, :scope > h2');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const touch = matchMedia('(hover: none) and (pointer: coarse)');
+  const stableTouchHero = hero.matches('.services-hero, .services-comparison__hero, [aria-labelledby="values-title"]');
+  // Native touch scrolling is asynchronous; keep these covers stable on phones.
+  const motionDisabled = () => reduced.matches || (stableTouchHero && touch.matches);
   let top = 0;
   let height = 0;
   let previous = 0;
@@ -31,7 +35,7 @@ export default function init(hero) {
   }
 
   function schedule() {
-    if (!frame && !reduced.matches && scrollDistance() !== previous) {
+    if (!frame && !motionDisabled() && scrollDistance() !== previous) {
       frame = requestAnimationFrame(render);
     }
   }
@@ -44,12 +48,14 @@ export default function init(hero) {
     schedule();
   }
 
-  reduced.addEventListener('change', () => {
+  function updateMotion() {
     cancelAnimationFrame(frame);
     frame = 0;
-    if (reduced.matches) clearTransforms();
+    if (motionDisabled()) clearTransforms();
     else measure();
-  });
+  }
+  reduced.addEventListener('change', updateMotion);
+  touch.addEventListener('change', updateMotion);
   new ResizeObserver(measure).observe(hero);
   addEventListener('scroll', schedule, { passive: true });
   addEventListener('pageshow', measure);

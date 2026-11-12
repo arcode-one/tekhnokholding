@@ -77,6 +77,20 @@ function initBrandStrip(strip) {
   if (!strip) return;
   const track = strip.querySelector('.home-brand-strip__track');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  if (matchMedia('(hover: none) and (pointer: coarse)').matches) {
+    const measure = () => {
+      const word = track.querySelector('svg');
+      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+      track.style.setProperty('--brand-loop-distance', `${-(word.getBoundingClientRect().width + gap)}px`);
+    };
+    track.classList.add('home-brand-strip__track--loop');
+    new ResizeObserver(measure).observe(strip);
+    new IntersectionObserver(([entry]) => {
+      track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+    }).observe(strip);
+    measure();
+    return;
+  }
   const motion = createScrollMotion();
   let visible = false;
   let frame = 0;

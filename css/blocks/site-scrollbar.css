@@ -12,7 +12,8 @@
   touch-action: none;
 }
 
-.site-scrollbar[hidden] {
+.site-scrollbar[hidden],
+.site--preloading .site-scrollbar {
   display: none;
 }
 

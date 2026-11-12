@@ -97,6 +97,7 @@ reduced.addEventListener('change', () => {
 document.fonts?.ready.then(refresh);
 
 export default function init(outer) {
+  if (touchHome && outer.closest('#team, #clients')) return;
   const image = outer.querySelector('img');
   if (!image || photos.has(outer)) return;
   const requestedTravel = Number(outer.dataset.storyTravel);

@@ -27,7 +27,7 @@ export default function init() {
     });
   }
 
-  root.classList.add('site--loaded');
+  if (!root.classList.contains('site--preloading')) root.classList.add('site--loaded');
   requestAnimationFrame(() => {
     if (entryAnchor && navigationType !== 'reload' && navigationType !== 'back_forward')
       entryAnchor.scrollIntoView({ behavior: 'instant' });

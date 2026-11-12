@@ -1,6 +1,9 @@
+import initPreloader from './blocks/preloader.js';
 import { mount, loadBlocks } from './lib/blocks.js';
 import navigation from './blocks/site-navigation.js';
 import textRoll from './blocks/text-roll.js';
+
+initPreloader();
 
 const enhancements = [];
 const enhance = (...args) => enhancements.push(loadBlocks(...args));

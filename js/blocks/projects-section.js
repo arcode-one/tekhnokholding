@@ -6,7 +6,6 @@ export default function init(section) {
   const cards = [...group.children];
   const headings = cards.map((card) => card.querySelector('.project-card__heading'));
   const photoFirst = section.classList.contains('projects-section--photo-first');
-  const touchHome = section.closest('.home-page--touch') !== null;
   const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
   const types = [...section.querySelectorAll('[data-project-type]')];
   const count = section.querySelector('[data-projects-count]');
@@ -264,14 +263,6 @@ export default function init(section) {
   prev?.addEventListener('click', () => nudge(-1));
   next?.addEventListener('click', () => nudge(1));
   if (!catalog) {
-    if (touchHome) addEventListener('scroll', () => {
-      if (!visible || document.hidden || reduce.matches) return;
-      cancelAnimationFrame(frame);
-      frame = lastTime = speed = 0;
-      manualUntil = Math.max(manualUntil, performance.now() + 220);
-      clearTimeout(resumeTimer);
-      resumeTimer = setTimeout(wake, manualUntil - performance.now());
-    }, { passive: true });
     rail.addEventListener('pointerenter', () => {
       if (hover.matches) {
         hovered = true;
@@ -299,6 +290,7 @@ export default function init(section) {
       pointer = {
         id: e.pointerId,
         x: e.clientX,
+        y: e.clientY,
         left: rail.scrollLeft,
         mouse: e.pointerType === 'mouse',
       };
@@ -322,11 +314,12 @@ export default function init(section) {
     });
     function release(e) {
       if (!pointer || pointer.id !== e.pointerId) return;
+      const verticalSwipe = !pointer.mouse && Math.abs(e.clientY - pointer.y) > Math.abs(e.clientX - pointer.x);
       const id = pointer.id;
       pointer = null;
       if (rail.hasPointerCapture(id)) rail.releasePointerCapture(id);
       rail.classList.remove('projects-rail--dragging');
-      manualUntil = performance.now() + 2000;
+      manualUntil = verticalSwipe ? 0 : performance.now() + 2000;
       wake();
     }
     window.addEventListener('pointerup', release);

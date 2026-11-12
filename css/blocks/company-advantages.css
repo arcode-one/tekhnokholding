@@ -42,16 +42,22 @@
   .company-heading.company-advantages__intro {
     flex-direction: column;
     align-items: flex-start;
-    gap: 12px;
+    gap: 24px;
     padding-inline-end: 0;
+  }
+
+  .home-page .company-advantages__intro .home-heading__muted {
+    margin-left: 0;
   }
 
   .company-advantages__corner {
     position: static;
-    width: min(52vw, 240px);
-    height: clamp(74px, 21vw, 102px);
-    align-self: flex-end;
-    border-radius: 0 10px 10px 0;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2.8 / 1;
+    align-self: stretch;
+    border-radius: 10px;
+    clip-path: none;
   }
 }
 

@@ -47,11 +47,27 @@
   }
 
   .quality-stages {
-    --quality-number-width: 48px;
+    --quality-number-width: 36px;
     --quality-step-gap: 12px;
+    --quality-number-enlarged: none;
   }
 
-  .quality-step > summary { min-height: 64px; padding-block: 10px; }
+  .quality-step > summary {
+    grid-template-columns: var(--quality-number-width) minmax(0, 1fr) 20px;
+    min-height: 84px;
+    padding-block: 16px;
+  }
+  .quality-step__number { font-size: 32px; }
+  .quality-step__title {
+    font-size: 18px;
+    line-height: 1.35;
+    letter-spacing: -.02em;
+    overflow-wrap: break-word;
+  }
   .quality-step__icon { width: 18px; height: 18px; }
-  .quality-step__body { padding-inline-start: var(--pad); }
+  .quality-step__body {
+    padding-inline-start: calc(var(--pad) + var(--quality-number-width) + var(--quality-step-gap));
+    padding-block-end: 24px;
+  }
+  .quality-step__body p { font-size: 16px; line-height: 1.55; }
 }

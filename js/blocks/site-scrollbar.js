@@ -31,6 +31,7 @@ export default function init() {
   const clamp = (value, min, max) => Math.max(min, Math.min(max, value));
   const locked = () =>
     root.classList.contains('site--locked') ||
+    root.classList.contains('site--preloading') ||
     document.hidden;
   function render() {
     renderFrame = 0;
