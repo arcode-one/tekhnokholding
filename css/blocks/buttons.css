@@ -78,9 +78,13 @@
   box-shadow: inset 0 0 0 2px var(--button-hover-text);
 }
 
-@media (hover: none) and (pointer: coarse) {
-  .icon-btn[data-lightbox-close]:focus-visible {
-    box-shadow: none;
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+  /* Dialog autofocus can match :focus-visible on iOS. Override the shared
+     button focus ring, including its more specific enabled-state selectors. */
+  :is([data-lightbox-close], .company-map__close, .menu__close,
+      .object-cinema__bar button[aria-label^="Закрыть"]):is(:focus, :focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 

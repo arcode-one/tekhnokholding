@@ -81,15 +81,8 @@
   filter: url('#brand-strip-weight');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .home-brand-strip__track--loop {
-    animation: brand-strip-loop 20s linear infinite;
-    will-change: transform;
-  }
-}
-
-@keyframes brand-strip-loop {
-  to { transform: translate3d(var(--brand-loop-distance), 0, 0); }
+@media (hover: none) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  .home-brand-strip__track { will-change: transform; }
 }
 
 @media (prefers-reduced-motion: reduce) {

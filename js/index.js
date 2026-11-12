@@ -3,10 +3,10 @@ import { mount, loadBlocks } from './lib/blocks.js';
 import navigation from './blocks/site-navigation.js';
 import textRoll from './blocks/text-roll.js';
 
-initPreloader();
+const openingReady = Promise.resolve(initPreloader());
 
 const enhancements = [];
-const enhance = (...args) => enhancements.push(loadBlocks(...args));
+const enhance = (...args) => enhancements.push(openingReady.then(() => loadBlocks(...args)));
 const touchHome = document.body.matches('.home-page') &&
   matchMedia('(hover: none) and (pointer: coarse)').matches;
 if (touchHome) document.body.classList.add('home-page--touch');

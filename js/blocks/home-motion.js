@@ -77,20 +77,8 @@ function initBrandStrip(strip) {
   if (!strip) return;
   const track = strip.querySelector('.home-brand-strip__track');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  if (matchMedia('(hover: none) and (pointer: coarse)').matches) {
-    const measure = () => {
-      const word = track.querySelector('svg');
-      const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      track.style.setProperty('--brand-loop-distance', `${-(word.getBoundingClientRect().width + gap)}px`);
-    };
-    track.classList.add('home-brand-strip__track--loop');
-    new ResizeObserver(measure).observe(strip);
-    new IntersectionObserver(([entry]) => {
-      track.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
-    }).observe(strip);
-    measure();
-    return;
-  }
+  const touch = matchMedia('(hover: none) and (pointer: coarse)');
+  let viewportHeight = innerHeight;
   const motion = createScrollMotion();
   let visible = false;
   let frame = 0;
@@ -98,7 +86,10 @@ function initBrandStrip(strip) {
 
   function render(timestamp) {
     frame = 0;
-    const { y, height: viewport } = readMotionViewport(timestamp);
+    const { y, height: liveViewport } = readMotionViewport(timestamp);
+    // Mobile browser chrome changes innerHeight during a gesture. Keep the
+    // scroll range stable until a genuine width/orientation change.
+    const viewport = touch.matches ? viewportHeight : liveViewport;
     if (!geometry) {
       const { top, height, width } = strip.getBoundingClientRect();
       const travel = Math.max(0, Math.min(width * 0.65, track.offsetWidth - width));
@@ -130,7 +121,10 @@ function initBrandStrip(strip) {
   sizes.observe(track);
   sizes.observe(document.body);
   addEventListener('scroll', schedule, { passive: true });
-  onMotionResize(refresh);
+  onMotionResize(() => {
+    viewportHeight = innerHeight;
+    refresh();
+  });
   addEventListener('pageshow', refresh);
   document.addEventListener('visibilitychange', schedule);
   reduced.addEventListener('change', () => {

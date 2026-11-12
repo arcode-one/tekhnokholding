@@ -31,6 +31,13 @@ export default function init(scene) {
   let lastSplitProgress;
   let zeroOrbit;
 
+  // Set the properties as well as attributes before assigning a media source.
+  video.muted = true;
+  video.defaultMuted = true;
+  video.playsInline = true;
+  video.autoplay = true;
+  video.setAttribute('webkit-playsinline', '');
+
   function syncVideo() {
     if (!visible || document.hidden || reducedMotion.matches) {
       video.pause();
@@ -42,6 +49,12 @@ export default function init(scene) {
 
   video.addEventListener('playing', () => video.setAttribute('data-playing', ''));
   video.addEventListener('error', () => video.removeAttribute('data-playing'));
+  video.addEventListener('canplay', syncVideo);
+  window.addEventListener('pageshow', syncVideo);
+  // iOS power-saving/autoplay policies may require an actual user gesture.
+  const retryVideo = () => { if (video.paused) syncVideo(); };
+  document.addEventListener('touchend', retryVideo, { passive: true });
+  document.addEventListener('click', retryVideo);
 
   function update(timestamp) {
     frame = 0;

@@ -42,7 +42,14 @@
 }
 
 @media (max-width: 767px) {
+  .quality-overview {
+    --quality-row-height: 84px;
+    min-height: 100svh;
+  }
+
   .values-hero.quality-hero {
+    box-sizing: border-box;
+    min-height: calc(100svh - 4 * var(--quality-row-height));
     padding-block: calc(var(--header-h) + 58px) 28px;
   }
 
@@ -54,7 +61,7 @@
 
   .quality-step > summary {
     grid-template-columns: var(--quality-number-width) minmax(0, 1fr) 20px;
-    min-height: 84px;
+    min-height: var(--quality-row-height);
     padding-block: 16px;
   }
   .quality-step__number { font-size: 32px; }

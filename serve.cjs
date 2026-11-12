@@ -78,10 +78,26 @@ const server = http.createServer(async (request, response) => {
   }
   try {
     const bytes = await fs.readFile(file);
-    response.writeHead(200, {
+    const headers = {
       'Content-Type': types[path.extname(file).toLowerCase()] || 'application/octet-stream',
       'Cache-Control': 'no-store',
-    });
+      'Accept-Ranges': 'bytes',
+      'Content-Length': bytes.length,
+    };
+    const range = request.headers.range?.match(/^bytes=(\d*)-(\d*)$/);
+    if (range && (range[1] || range[2])) {
+      const start = range[1] ? Number(range[1]) : Math.max(0, bytes.length - Number(range[2]));
+      const end = range[1] && range[2] ? Math.min(Number(range[2]), bytes.length - 1) : bytes.length - 1;
+      if (start > end || start >= bytes.length) {
+        response.writeHead(416, { 'Content-Range': `bytes */${bytes.length}` });
+        response.end();
+        return;
+      }
+      response.writeHead(206, { ...headers, 'Content-Range': `bytes ${start}-${end}/${bytes.length}`, 'Content-Length': end - start + 1 });
+      response.end(request.method === 'HEAD' ? undefined : bytes.subarray(start, end + 1));
+      return;
+    }
+    response.writeHead(200, headers);
     response.end(request.method === 'HEAD' ? undefined : bytes);
   } catch {
     if (request.headers.accept?.includes('text/html')) {

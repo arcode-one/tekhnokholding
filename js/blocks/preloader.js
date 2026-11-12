@@ -6,6 +6,8 @@ export default function initPreloader() {
     overlay.remove();
     return;
   }
+  let resolveReady;
+  const ready = new Promise((resolve) => { resolveReady = resolve; });
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const release = () => {
     overlay.remove();
@@ -13,11 +15,12 @@ export default function initPreloader() {
     root.classList.add('site--loaded');
     clearTimeout(window.sitePreloaderTimeout);
     document.dispatchEvent(new Event('site:scroll-lock-change'));
+    resolveReady();
   };
-  const loaded = document.readyState === 'complete' ? Promise.resolve() :
-    new Promise((resolve) => window.addEventListener('load', resolve, { once: true }));
+  const fallback = setTimeout(release, 6000);
+  ready.then(() => clearTimeout(fallback));
   window.addEventListener('pagehide', release, { once: true });
-  Promise.all([loaded, document.fonts.ready, wait(3600)])
+  wait(3600)
     .then(async () => {
       if (!overlay.isConnected) return;
       overlay.querySelector('.preloader__lockup').classList.add('preloader__lockup--out');
@@ -27,4 +30,5 @@ export default function initPreloader() {
       await wait(950);
       release();
     }).catch(release);
+  return ready;
 }
