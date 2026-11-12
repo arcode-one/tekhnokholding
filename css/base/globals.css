@@ -9,7 +9,9 @@ html.site--locked {
   overflow: hidden;
 }
 
-html.site--restoring-scroll {
+/* The opaque preloader already covers scroll restoration. Never hide its
+   drawing together with the page on reload. */
+html.site--restoring-scroll:not(.site--preloading) {
   opacity: 0;
 }
 

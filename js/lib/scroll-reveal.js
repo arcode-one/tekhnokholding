@@ -49,7 +49,7 @@ export default function createScrollReveal(prefix, options = {}) {
     };
     const image = ['photo', 'cover'].includes(element.dataset[enterKey])
       ? element.querySelector('img') : null;
-    if (image) image.decode().catch(() => {}).then(begin);
+    if (image && !options.readyImages?.has(image)) image.decode().catch(() => {}).then(begin);
     else begin();
   }
 

@@ -3,6 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      html.site--preloading { overflow: hidden; background: #000; }
+      html.site--preloading::before { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }
+    </style>
+    <script>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('site--preloading');
+        document.documentElement.classList.remove('site--loaded');
+        window.sitePreloaderTimeout = setTimeout(() => {
+          document.querySelector('.preloader')?.remove();
+          document.documentElement.classList.remove('site--preloading');
+          document.documentElement.classList.add('site--loaded');
+        }, 8000);
+      }
+    </script>
     <script src="js/lib/reload-position.js"></script>
     <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
     <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
@@ -46,18 +61,6 @@
     <meta property="og:image:alt" content="Технохолдинг — плоские кровли на Урале" />
     <meta name="twitter:card" content="summary_large_image" />
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Технохолдинг","url":"https://thld.su/","logo":"https://thld.su/icons/logo-dark-compact.svg","email":"info@thld.su","telephone":"+7-351-225-30-40"}</script>
-  <style>html.site--preloading{overflow:hidden}html.site--preloading::before{content:"";position:fixed;inset:0;background:#000;z-index:9998}</style>
-<script>
-if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
- document.documentElement.classList.add('site--preloading');
- document.documentElement.classList.remove('site--loaded');
- window.sitePreloaderTimeout=setTimeout(()=>{
- document.querySelector('.preloader')?.remove();
- document.documentElement.classList.remove('site--preloading');
- document.documentElement.classList.add('site--loaded');
- },8000);
-}
-</script>
 <link rel="stylesheet" href="css/blocks/preloader.css">
 </head>
   <body class="home-page" id="top">

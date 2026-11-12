@@ -12,8 +12,17 @@
   });
 
   if (performance.getEntriesByType('navigation')[0]?.type !== 'reload') return;
-  try { saved = Number(sessionStorage.getItem(key)); } catch { return; }
-  if (!Number.isFinite(saved) || saved <= 0) return;
+  try {
+    const value = sessionStorage.getItem(key);
+    if (value === null) return;
+    saved = Number(value);
+  } catch { return; }
+  if (!Number.isFinite(saved) || saved < 0) return;
+
+  // Zero is a saved position too. Otherwise Safari can restore an older,
+  // nonzero history position behind the preloader after reloading at the top.
+  const previousRestoration = history.scrollRestoration;
+  history.scrollRestoration = 'manual';
 
   pending = true;
   root.classList.add('site--restoring-scroll');
@@ -41,6 +50,7 @@
     observer.disconnect();
     controller.abort();
     root.classList.remove('site--restoring-scroll');
+    history.scrollRestoration = previousRestoration;
   }
 
   for (const event of ['wheel', 'touchstart', 'pointerdown', 'keydown', 'pagehide'])

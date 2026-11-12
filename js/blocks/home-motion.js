@@ -156,7 +156,26 @@ export default function init(home) {
   add(values, '#home-values-title', 'heading');
   add(values, '.home-values__intro, .home-values__link', 'text', (index) => 55 + index * 65);
 
-  add(figures, '.company-figures__photo-inner', 'photo');
+  // Prepare photos one viewport ahead; reveal only once they enter the screen.
+  // Keep this separate from text, whose reveal threshold remains unchanged.
+  if (figures) {
+    const readyImages = new WeakSet();
+    const photoReveal = createScrollReveal('home', {
+      rootMargin: '0px 0px -48px 0px', readyImages,
+    });
+    photoReveal.add(figures, '.company-figures__photo-inner', 'photo');
+    const preparePhotos = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        preparePhotos.unobserve(entry.target);
+        const image = entry.target.querySelector('img');
+        image.loading = 'eager';
+        image.decode().then(() => readyImages.add(image)).catch(() => {});
+      }
+    }, { rootMargin: `${Math.max(innerHeight, 600)}px 0px` });
+    figures.querySelectorAll('.company-figures__photo-inner').forEach((photo) => preparePhotos.observe(photo));
+    photoReveal.start();
+  }
 
   add(projects, '#projects-title', 'heading');
   add(projects, '.projects-filters', 'text', 55);
