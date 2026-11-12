@@ -312,6 +312,21 @@
   }
 }
 
+@media (hover: none) and (pointer: coarse) {
+  /* Height already reveals the photo. A second moving clip repaints the same
+     large image throughout the disclosure on mobile WebKit. */
+  .values-accordion__item .values-accordion__photo-main,
+  .values-accordion__item[data-animating] .values-accordion__photo-main,
+  .values-accordion__item[data-closing] .values-accordion__photo-main {
+    clip-path: none;
+    transition: none;
+  }
+
+  [data-services-accordion] > details[data-animating] > .services-accordion__body {
+    contain: layout paint;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .values-accordion__item > summary,
   .values-accordion__icon::after {

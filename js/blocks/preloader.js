@@ -20,7 +20,14 @@ export default function initPreloader() {
   const fallback = setTimeout(release, 6000);
   ready.then(() => clearTimeout(fallback));
   window.addEventListener('pagehide', release, { once: true });
-  wait(3600)
+  const logo = overlay.querySelector('.preloader__logo');
+  Promise.race([logo.decode().catch(() => {}), wait(250)])
+    .then(() => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))))
+    .then(() => {
+      if (!overlay.isConnected) return;
+      overlay.classList.add('preloader--drawing');
+      return wait(3600);
+    })
     .then(async () => {
       if (!overlay.isConnected) return;
       overlay.querySelector('.preloader__lockup').classList.add('preloader__lockup--out');

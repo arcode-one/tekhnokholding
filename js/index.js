@@ -1,9 +1,11 @@
 import initPreloader from './blocks/preloader.js';
+import initHeroVideo from './blocks/hero-video.js';
 import { mount, loadBlocks } from './lib/blocks.js';
 import navigation from './blocks/site-navigation.js';
 import textRoll from './blocks/text-roll.js';
 
 const openingReady = Promise.resolve(initPreloader());
+initHeroVideo(openingReady);
 
 const enhancements = [];
 const enhance = (...args) => enhancements.push(openingReady.then(() => loadBlocks(...args)));

@@ -75,24 +75,17 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
               pathLength="1"
               d="M32.8613 304.567L32.7541 148.117L238.591 37.4228L444.317 148.129L444.223 304.572L393.999 304.588L394.035 175.306L238.448 91.5733L83.0264 175.23L83.0792 304.556Z"
             ></path>
-            <mask
-              id="preloader-arch-reveal"
-              maskUnits="userSpaceOnUse"
-              x="-6"
-              y="-6"
-              width="489"
-              height="430"
-            >
-              <use class="preloader__arch-outline" href="#preloader-arch"></use>
-              <rect class="preloader__arch-fill" x="-6" y="-6" width="489" height="430"></rect>
-            </mask>
+            <clipPath id="preloader-arch-clip">
+              <use href="#preloader-arch"></use>
+            </clipPath>
           </defs>
           <use class="preloader__hex-fill" href="#preloader-hex"></use>
           <use class="preloader__hex" href="#preloader-hex"></use>
+          <use class="preloader__arch-outline" href="#preloader-arch"
+            clip-path="url(#preloader-arch-clip)"></use>
           <use
-            class="preloader__arch"
+            class="preloader__arch preloader__arch-fill"
             href="#preloader-arch"
-            mask="url(#preloader-arch-reveal)"
           ></use>
           <path
             class="preloader__cube"

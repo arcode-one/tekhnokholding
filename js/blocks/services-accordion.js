@@ -1,5 +1,8 @@
+import { onMotionResize } from '../lib/scroll-motion.js';
+
 export default function init(container) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const touch = matchMedia('(hover: none) and (pointer: coarse)');
   const openDuration = Number(container.dataset.accordionOpenMs) || 460;
   const closeDuration = Number(container.dataset.accordionCloseMs) || openDuration;
   const easing = container.dataset.accordionEasing || 'cubic-bezier(0.22, 1, 0.36, 1)';
@@ -18,9 +21,11 @@ export default function init(container) {
     copyAnimation: null,
   }));
   let alignFrame = 0;
+  let pendingTouchAlign = null;
   function stopAlign() {
     cancelAnimationFrame(alignFrame);
     alignFrame = 0;
+    pendingTouchAlign = null;
   }
   function align(item, animate, expanded = true) {
     stopAlign();
@@ -88,6 +93,19 @@ export default function init(container) {
     item.element.style.removeProperty('height');
     item.element.style.removeProperty('overflow');
     item.element.style.removeProperty('--service-open-height');
+    // On touch, let the panel finish before checking whether its heading was
+    // pushed above the viewport by a previously open panel collapsing.
+    if (pendingTouchAlign && !items.some((entry) => entry.animation)) {
+      const target = pendingTouchAlign;
+      pendingTouchAlign = null;
+      alignFrame = requestAnimationFrame(() => {
+        alignFrame = 0;
+        const top = target.summary.getBoundingClientRect().top;
+        const margin = parseFloat(getComputedStyle(target.element).scrollMarginTop) || 0;
+        if (top < margin) scrollTo({ top: Math.max(0, scrollY + top - margin),
+          behavior: reduced.matches ? 'instant' : 'smooth' });
+      });
+    }
   }
   function toggle(item, expanded, animate) {
     const start = item.element.getBoundingClientRect().height;
@@ -109,10 +127,10 @@ export default function init(container) {
     item.element.style.height = `${start}px`;
     item.element.style.overflow = 'hidden';
     item.animation = item.element.animate({ height: [`${start}px`, `${end}px`] }, {
-      duration: expanded ? openDuration : closeDuration,
-      easing,
+      duration: touch.matches ? 280 : expanded ? openDuration : closeDuration,
+      easing: touch.matches ? 'cubic-bezier(0.23, 1, 0.32, 1)' : easing,
     });
-    if (expanded && animateCopy) item.copyAnimation = item.copy.animate({
+    if (expanded && animateCopy && !touch.matches) item.copyAnimation = item.copy.animate({
       opacity: [0, 1], transform: ['translateY(18px)', 'translateY(0)'],
     }, { duration: 340, easing: 'cubic-bezier(0.22, 1, 0.36, 1)' });
     item.animation.onfinish = () => settle(item);
@@ -128,7 +146,10 @@ export default function init(container) {
         if (other !== item && other.expanded) toggle(other, false, animate);
     }
     toggle(item, expanded, animate);
-    if (alignMode !== 'none' && (expanded || overview)) align(item, animate, expanded);
+    if (alignMode !== 'none' && (expanded || overview)) {
+      if (!touch.matches) align(item, animate, expanded);
+      else if (expanded && item.animation) pendingTouchAlign = item;
+    }
   }));
   for (const type of ['wheel', 'touchstart', 'pointerdown', 'keydown'])
     addEventListener(type, stopAlign, { passive: true });
@@ -137,5 +158,7 @@ export default function init(container) {
     items.forEach(settle);
   }
   reduced.addEventListener('change', resetMotion);
-  addEventListener('resize', resetMotion, { passive: true });
+  // Safari's collapsing address bar changes height during scrolling. It must
+  // not cancel an in-flight disclosure; an actual width change still resets it.
+  onMotionResize(resetMotion);
 }

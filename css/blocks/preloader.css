@@ -6,6 +6,7 @@
   align-items: center;
   justify-content: center;
   background: #000;
+  isolation: isolate;
   transition: transform 0.95s cubic-bezier(0.75, 0, 0.2, 1);
 }
 
@@ -54,7 +55,10 @@ html.site--preloading .preloader {
   height: 100%;
   width: auto;
   aspect-ratio: 489 / 430;
-  overflow: visible;
+  overflow: hidden;
+  /* Isolate the small drawing surface from the fullscreen curtain. */
+  contain: paint;
+  transform: translateZ(0);
 }
 
 .preloader__hex,
@@ -72,7 +76,7 @@ html.site--preloading .preloader {
 }
 
 .preloader__arch-outline {
-  stroke: var(--color-white);
+  stroke: var(--brand-logo-yellow);
   stroke-width: 8;
   stroke-linejoin: round;
   animation: pl-draw var(--pl-detail) var(--pl-contour) linear forwards;
@@ -90,7 +94,7 @@ html.site--preloading .preloader {
 }
 
 .preloader__arch-fill {
-  fill: var(--color-white);
+  fill: var(--brand-logo-yellow);
 }
 
 .preloader__hex-fill {
@@ -114,6 +118,14 @@ html.site--preloading .preloader {
   /* Знак остаётся тем же SVG: раскрываем только надпись, без подмены и скачка геометрии. */
   clip-path: inset(0 100% 0 calc(489 / 1292 * 100%));
   animation: pl-reveal 650ms var(--pl-wordmark-at) var(--ease-out) forwards;
+}
+
+/* Start together after the SVG wordmark has decoded and the page has painted.
+   Parsing the rest of the homepage must not consume the first drawing frames. */
+.preloader:not(.preloader--drawing) .preloader__lockup,
+.preloader:not(.preloader--drawing) .preloader__mark *,
+.preloader:not(.preloader--drawing) .preloader__logo {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
