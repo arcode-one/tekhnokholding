@@ -1,0 +1,250 @@
+.company-story--team .company-story__intro p {
+  max-width: 58ch;
+}
+
+.team-roster {
+  margin: clamp(32px, 4vw, 56px) var(--pad) 0;
+}
+
+.team-roster__content {
+  min-width: 0;
+}
+
+.team-roster__group {
+  scroll-margin-top: calc(var(--header-h) + 24px);
+}
+
+.team-roster__group + .team-roster__group {
+  margin-top: clamp(24px, 3vw, 44px);
+  padding-top: clamp(24px, 3vw, 44px);
+  border-top: 1px solid var(--color-mist);
+}
+
+.team-roster__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.team-roster__group--owners .team-roster__grid {
+  grid-template-columns: repeat(2, minmax(0, 440px));
+}
+
+.team-person {
+  --team-quote-duration: 220ms;
+  --team-quote-reveal-duration: 720ms;
+  --team-person-inset: clamp(12px, 1.25vw, 24px);
+  --team-quote-icon: url("../../icons/quote-opening.svg");
+  position: relative;
+  justify-self: start;
+  width: min(100%, 420px, 42svh);
+  min-width: 0;
+  background: var(--color-gray-light);
+  color: var(--color-ink);
+}
+
+.team-person__photo {
+  overflow: hidden;
+}
+
+.team-person__portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.team-person__panel {
+  background: var(--color-gray-light);
+  overflow-wrap: anywhere;
+}
+
+.team-person__identity {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 96px;
+  padding: clamp(20px, 3svh, 28px) var(--team-person-inset) 18px;
+}
+
+.team-person__identity h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.team-person__identity p {
+  margin: 16px 0 0;
+  color: var(--color-slate-alt);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.team-person__toggle {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-slate-alt);
+  cursor: pointer;
+}
+
+.team-person__toggle[hidden] {
+  display: none;
+}
+
+.team-person__toggle span,
+.team-person__quote::before {
+  width: 22px;
+  height: 18px;
+  background: currentColor;
+  mask: var(--team-quote-icon) center / contain no-repeat;
+}
+
+.team-person__toggle[aria-expanded="true"] {
+  color: var(--color-ink);
+}
+
+.team-person__toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+.team-person__reveal {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.team-person__reveal-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.team-person__quote {
+  margin: 0;
+  padding: clamp(20px, 3svh, 32px) var(--team-person-inset) 24px;
+  color: var(--color-slate-alt);
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.42;
+}
+
+.team-person__quote::before {
+  display: block;
+  margin-bottom: clamp(14px, 2svh, 22px);
+  content: "";
+}
+
+.team-person__quote p {
+  margin: 0;
+}
+
+.team-person__quote p + p {
+  margin-top: .65em;
+}
+
+.team-roster[data-enhanced] .team-person__reveal {
+  visibility: hidden;
+  grid-template-rows: 0fr;
+  transition:
+    grid-template-rows var(--team-quote-reveal-duration) linear,
+    visibility 0s linear var(--team-quote-reveal-duration);
+}
+
+.team-roster[data-enhanced] .team-person__reveal-inner {
+  mask-image: linear-gradient(to bottom, #000 0, #000 calc(100% - 16px), transparent 100%);
+}
+
+.team-roster[data-enhanced] .team-person[data-expanded] .team-person__reveal {
+  visibility: visible;
+  grid-template-rows: 1fr;
+  transition-delay: 0s;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .team-person__identity {
+    position: relative;
+  }
+
+  .team-person__toggle {
+    position: absolute;
+    inset: 8px 8px auto auto;
+  }
+
+  .team-person__toggle span {
+    opacity: 0;
+  }
+
+  .team-person__toggle:focus-visible span {
+    opacity: 1;
+  }
+}
+
+@media (min-width: 600px) and (hover: hover) and (pointer: fine) {
+  .team-roster[data-enhanced] .team-person {
+    background: transparent;
+  }
+
+  .team-roster[data-enhanced] .team-person:has(.team-person__quote) .team-person__identity {
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 600px) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .team-roster[data-enhanced] .team-person__panel {
+    position: relative;
+    transition: transform 280ms var(--ease-out);
+  }
+
+  .team-roster[data-enhanced] .team-person[data-expanded] .team-person__panel {
+    transform: translateY(-72px);
+  }
+
+  .team-roster[data-enhanced] .team-person__portrait {
+    scale: 1;
+    transition: scale var(--team-quote-reveal-duration) var(--ease-in-out);
+  }
+
+  .team-roster[data-enhanced] .team-person[data-expanded] .team-person__portrait {
+    scale: 1.04;
+  }
+}
+
+@media (max-width: 959px) {
+  .team-roster__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 599px) {
+  .team-roster__grid,
+  .team-roster__group--owners .team-roster__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .team-person__identity {
+    min-height: 84px;
+  }
+
+  .team-person {
+    justify-self: center;
+    width: min(100%, 330px, 39svh);
+  }
+
+  .team-person__quote {
+    padding-top: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-person {
+    --team-quote-duration: 0s;
+    --team-quote-reveal-duration: 0s;
+  }
+}

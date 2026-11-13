@@ -7,8 +7,17 @@
   position: relative;
 }
 
-.home-page :is(.home-mission__thumbnail, .home-values__media, .company-figures__photo) img {
-  filter: saturate(0.75) contrast(0.96);
+.home-page :is(
+  .home-mission__thumbnail,
+  .home-values__media,
+  .company-figures__photo,
+  .company-team__feature,
+  .department-card__photo,
+  .site-footer__visual
+) img,
+.home-page .company-advantages__corner,
+.home-page .advantage-card--quality .advantage-card__photo img {
+  filter: saturate(var(--photo-saturation));
 }
 
 @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {

@@ -65,6 +65,11 @@
   object-fit: cover;
 }
 
+.company-event__image img,
+.company-lightbox [data-lightbox-image][src^="images/company/corporate/"] {
+  filter: saturate(var(--photo-saturation));
+}
+
 .company-event:is(#event-1, #event-3) .company-event__card img {
   object-position: center 35%;
 }

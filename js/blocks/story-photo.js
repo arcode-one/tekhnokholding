@@ -34,7 +34,7 @@ function render(timestamp) {
     let travel = rect.height * photo.travel;
     let scale = 1 + photo.travel * 2 + 0.007;
     if (photo.contain) {
-      // Real certificates stay complete, moving only within their spare space.
+      // Keep the whole image within the available space.
       scale = 0.94;
       const { naturalWidth, naturalHeight } = photo.image;
       if (!naturalWidth || !naturalHeight) return;

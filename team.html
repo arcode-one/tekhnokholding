@@ -28,6 +28,7 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/team-roster.css" />
     <link rel="canonical" href="https://thld.su/team.html" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
@@ -193,16 +194,560 @@
             </a>
           </nav>
           <div>
-            <h1>Наша<br />команда</h1>
+            <h1>Наша команда</h1>
             <p>
               Опытные специалисты, слаженная работа и личная ответственность каждого — гарантия
               качества и надежности наших проектов.
             </p>
           </div>
         </header>
-        <p class="company-story__development">Страница в разработке</p>
+
+        <div class="team-roster company-story__events" data-team-roster>
+          <nav class="company-story__events-overview section-toc section-toc--cards" aria-labelledby="team-roster-title" data-section-toc>
+            <h2 id="team-roster-title">Отделы</h2>
+            <ol role="list">
+              <li><a class="section-toc__label" href="#team-owners">Собственники компании</a></li>
+              <li><a class="section-toc__label" href="#team-strategy">Стратегическое управление</a></li>
+              <li><a class="section-toc__label" href="#team-finance">Финансовый отдел</a></li>
+              <li><a class="section-toc__label" href="#team-people">Персонал и администрирование</a></li>
+              <li><a class="section-toc__label" href="#team-technical">Производственно-технический отдел</a></li>
+              <li><a class="section-toc__label" href="#team-quality">Служба качества</a></li>
+              <li><a class="section-toc__label" href="#team-supply">Отдел снабжения</a></li>
+              <li><a class="section-toc__label" href="#team-construction">Строительный отдел</a></li>
+            </ol>
+          </nav>
+          <div class="team-roster__content" data-section-toc-content>
+            <section class="team-roster__group team-roster__group--owners" id="team-owners" aria-label="Собственники компании">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/belov.webp"
+                      srcset="images/company/team/portraits/belov-320w.webp 320w, images/company/team/portraits/belov.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Александр Белов" width="640" height="960" decoding="async" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Александр Белов</h3>
+                        <p>Собственник компании. Операционное управление.</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Александр Белов" aria-controls="quote-belov" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-belov">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня бизнес — это прежде всего ответственность за будущее, за людей и за решения, которые определяют развитие компании. Важно не просто достигать поставленных целей, а создавать возможности для роста.</p>
+                          <p>Убеждён, что сильный бизнес строится на смелых решениях, профессионализме команды и умении видеть перспективу. Для меня важно не следовать за изменениями, а создавать возможности для развития и задавать собственный вектор движения.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/ryabov.webp"
+                      srcset="images/company/team/portraits/ryabov-320w.webp 320w, images/company/team/portraits/ryabov.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Андрей Рябов" width="640" height="960" decoding="async" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Андрей Рябов</h3>
+                        <p>Собственник компании. Стратегия и развитие бизнеса</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Андрей Рябов" aria-controls="quote-ryabov" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-ryabov">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Управлять бизнесом — значит видеть возможности там, где другие видят ограничения, принимать смелые решения и превращать амбициозные цели в реальные достижения. Главное - мыслить на перспективу, принимать ответственность за решения и постоянно двигаться вперёд. Верю, что основа устойчивого бизнеса — люди, доверие и стремление к развитию</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-strategy" aria-label="Стратегическое управление">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/zenkov.webp"
+                      srcset="images/company/team/portraits/zenkov-320w.webp 320w, images/company/team/portraits/zenkov.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Александр Зенков" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Александр Зенков</h3>
+                        <p>Операционное управление и координация процессов</p>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-finance" aria-label="Финансовый отдел">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/bronnikova.webp"
+                      srcset="images/company/team/portraits/bronnikova-320w.webp 320w, images/company/team/portraits/bronnikova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Марина Бронникова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Марина Бронникова</h3>
+                        <p>Финансовый контроль и бухгалтерская отчётность</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Марина Бронникова" aria-controls="quote-bronnikova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-bronnikova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Люблю порядок в цифрах, ясность в документах и задачи, требующие внимания к деталям. Уверена, что качественный учёт — это надёжная основа для принятия правильных решений.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/davydova.webp"
+                      srcset="images/company/team/portraits/davydova-320w.webp 320w, images/company/team/portraits/davydova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Юлия Давыдова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Юлия Давыдова</h3>
+                        <p>Финансовый учёт и цифровизация процессов</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Юлия Давыдова" aria-controls="quote-davydova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-davydova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Там, где заканчиваются готовые решения, начинается самое интересное. Совмещаю финансы, разработку и автоматизацию, превращая сложные задачи в работающие решения. Люблю порядок в цифрах, логику в процессах и вызовы, которые заставляют искать новые подходы. Уверена, что нерешаемых задач нет — нужно лишь найти правильный путь.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/neganova.webp"
+                      srcset="images/company/team/portraits/neganova-320w.webp 320w, images/company/team/portraits/neganova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Екатерина Неганова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Екатерина Неганова</h3>
+                        <p>Бухгалтерский учёт и документооборот</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Екатерина Неганова" aria-controls="quote-neganova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-neganova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня бухгалтерия — это сочетание точности, логики и ответственности. Нравится разбираться в деталях и делать так, чтобы за каждой операцией стоял правильный и понятный результат.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-people" aria-label="Персонал и администрирование">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/kalugina.webp"
+                      srcset="images/company/team/portraits/kalugina-320w.webp 320w, images/company/team/portraits/kalugina.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Екатерина Калугина" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Екатерина Калугина</h3>
+                        <p>Развитие команды и управление персоналом</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Екатерина Калугина" aria-controls="quote-kalugina" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-kalugina">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня результат работы HR виден в команде, где каждый знает, за что отвечает, может принимать решения и готов брать на себя больше ответствености. Я горжусь нашей командой, когда вижу, как коллеги подхватывают друг друга в сложных ситуациях, делятся опытом и вместе доводят дело до результата. В работе с людьми мы ищем свой подход к каждой задаче. Одному человеку важно дать больше самостоятельности, другому — помочь освоиться и найти наставника, а иногда достаточно собрать коллег и вместе разобраться, что мешает двигаться дальше. Я вижу силу нашей команды в том, что люди любят своё дело и вместе отвечают за общий результат.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/shmidt.webp"
+                      srcset="images/company/team/portraits/shmidt-320w.webp 320w, images/company/team/portraits/shmidt.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Светлана Шмидт" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Светлана Шмидт</h3>
+                        <p>Координация проектов и организационных процессов</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Светлана Шмидт" aria-controls="quote-shmidt" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-shmidt">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>В моей работе нет одинаковых дней,</p>
+                          <p>моя работа — это люди, проекты, документы, сроки и десятки вопросов, которые нужно решать одновременно. Мне нравится находить порядок в сложных процессах, объединять людей вокруг общей цели и видеть результат совместной работы.</p>
+                          <p>Считаю, что внимание к мелочам, настойчивость и немного креатива помогают решать даже самые непростые вопросы.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/cherepanova.webp"
+                      srcset="images/company/team/portraits/cherepanova-320w.webp 320w, images/company/team/portraits/cherepanova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Лилия Черепанова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Лилия Черепанова</h3>
+                        <p>Организация административных процессов</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Лилия Черепанова" aria-controls="quote-cherepanova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-cherepanova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня важно, чтобы рабочие процессы проходили легко и слаженно. Внимание к деталям, забота о коллегах и умение быстро находить решения — то, что делает каждый мой день интересным.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-technical" aria-label="Производственно-технический отдел">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/klepikova.webp"
+                      srcset="images/company/team/portraits/klepikova-320w.webp 320w, images/company/team/portraits/klepikova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Елена Клепикова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Елена Клепикова</h3>
+                        <p>Сметное сопровождение строительства</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Елена Клепикова" aria-controls="quote-klepikova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-klepikova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Мне нравится разбираться в деталях, находить решения там, где на первый взгляд всё сложно, и доводить начатое до результата. В работе инженера-сметчика для меня важно не просто правильно посчитать, а понять, как всё будет работать на практике. Люблю точность, порядок и нестандартные задачи, постоянно узнавать что-то новое, упрощать рабочие процессы и делать так, чтобы от моей работы была реальная польза для всей команды.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/isaeva.webp"
+                      srcset="images/company/team/portraits/isaeva-320w.webp 320w, images/company/team/portraits/isaeva.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Варвара Исаева" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Варвара Исаева</h3>
+                        <p>Инженерно-техническое сопровождение строительства</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Варвара Исаева" aria-controls="quote-isaeva" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-isaeva">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Строительство — это сфера, в которой невозможно знать абсолютно всё. Именно поэтому мне нравится моя работа: каждый новый объект приносит интересные задачи, новые знания и возможности для профессионального роста.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/zaripova.webp"
+                      srcset="images/company/team/portraits/zaripova-320w.webp 320w, images/company/team/portraits/zaripova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Мария Зарипова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Мария Зарипова</h3>
+                        <p>Инженерно-техническое сопровождение строительства</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Мария Зарипова" aria-controls="quote-zaripova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-zaripova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня работа инженера ПТО — это не просто чертежи, сметы и документация, а умение находить решения в сложных технических вопросах и превращать их в конкретный результат. Люблю разбираться в деталях, находить наиболее оптимальные решения и делать так, чтобы каждый этап работы был понятным, обоснованным и доведённым до конца.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/dolgikh.webp"
+                      srcset="images/company/team/portraits/dolgikh-320w.webp 320w, images/company/team/portraits/dolgikh.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Ольга Долгих" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Ольга Долгих</h3>
+                        <p>Инженерно-техническое сопровождение строительства</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Ольга Долгих" aria-controls="quote-dolgikh" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-dolgikh">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Для меня работа инженера ПТО — это не просто сметы, чертежи и документация, а умение находить решения, видеть детали и превращать сложные технические задачи в понятный результат. Люблю, когда всё точно рассчитано, согласовано и организовано, а за каждой цифрой стоит реальная работа на объекте.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-quality" aria-label="Служба качества">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/klepinin.webp"
+                      srcset="images/company/team/portraits/klepinin-320w.webp 320w, images/company/team/portraits/klepinin.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Павел Клепинин" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Павел Клепинин</h3>
+                        <p>Обеспечение качества и соблюдения технологий</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Павел Клепинин" aria-controls="quote-klepinin" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-klepinin">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Качество кровли — это не только надёжная гидроизоляция, но и правильное устройство каждого слоя кровельной системы. Моя задача — контролировать соблюдение технологий на всех этапах работ, своевременно выявлять недостатки и предотвращать возможные проблемы. Убеждён, что долговечность кровли начинается с внимания к деталям и ответственности за результат.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-supply" aria-label="Отдел снабжения">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/gayazova.webp"
+                      srcset="images/company/team/portraits/gayazova-320w.webp 320w, images/company/team/portraits/gayazova.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Наталья Гаязова" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Наталья Гаязова</h3>
+                        <p>Материально-техническое обеспечение объектов</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Наталья Гаязова" aria-controls="quote-gayazova" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-gayazova">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Снабжение — это умение быть на шаг впереди, находить лучшие условия и обеспечивать объекты всем необходимым вовремя. Ценю надёжных партнёров, чёткие договорённости и результат, который виден на каждом объекте.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/maltsev.webp"
+                      srcset="images/company/team/portraits/maltsev-320w.webp 320w, images/company/team/portraits/maltsev.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Андрей Мальцев" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Андрей Мальцев</h3>
+                        <p>Организация снабжения и транспортной логистики</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Андрей Мальцев" aria-controls="quote-maltsev" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-maltsev">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>В снабжении редко всё идёт строго по плану, и именно это делает работу интересной. Люблю задачи, где нужно быстро принимать решения, договариваться и находить выход даже из самых нестандартных ситуаций.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+
+            <section class="team-roster__group" id="team-construction" aria-label="Строительный отдел">
+              <div class="team-roster__grid">
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/utkin.webp"
+                      srcset="images/company/team/portraits/utkin-320w.webp 320w, images/company/team/portraits/utkin.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Александр Уткин" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Александр Уткин</h3>
+                        <p>Организация и управление строительными работами</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Александр Уткин" aria-controls="quote-utkin" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-utkin">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Кровельные работы — это не просто строительный процесс, а ответственность за качество, сроки и результат. Важно грамотно организовать работу команды, предусмотреть возможные сложности и найти эффективные решения. Люблю, когда каждый этап проходит слаженно, а результат нашей работы говорит сам за себя.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/shevchenko.webp"
+                      srcset="images/company/team/portraits/shevchenko-320w.webp 320w, images/company/team/portraits/shevchenko.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Евгений Шевченко" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Евгений Шевченко</h3>
+                        <p>Организация и управление строительными работами</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Евгений Шевченко" aria-controls="quote-shevchenko" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-shevchenko">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Каждый объект — это новые задачи, решения и опыт. Люблю видеть, как из планов и чертежей появляется реальный результат. Мне нравится динамика строительства, работа с командой и чувство удовлетворения, когда сложный проект успешно завершён.</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+                <article class="team-person">
+                  <div class="team-person__photo" data-story-photo data-story-travel="0.06">
+                    <img class="team-person__portrait" src="images/company/team/portraits/gurov.webp"
+                      srcset="images/company/team/portraits/gurov-320w.webp 320w, images/company/team/portraits/gurov.webp 640w"
+                      sizes="(max-width: 599px) min(330px, 39svh, 100vw), min(420px, 42svh)"
+                      alt="Алексей Гуров" width="640" height="960" decoding="async" loading="lazy" />
+                  </div>
+                  <div class="team-person__panel">
+                    <div class="team-person__identity">
+                      <div>
+                        <h3>Алексей Гуров</h3>
+                        <p>Организация и управление строительными работами</p>
+                      </div>
+                      <button class="team-person__toggle" type="button" aria-label="Цитата: Алексей Гуров" aria-controls="quote-gurov" aria-expanded="false" hidden>
+                        <span aria-hidden="true"></span>
+                      </button>
+                    </div>
+                    <div class="team-person__reveal" id="quote-gurov">
+                      <div class="team-person__reveal-inner">
+                        <blockquote class="team-person__quote">
+                          <p>Не боюсь сложных задач: они помогают становиться сильнее. Ошибки — тоже часть роста: разбираю их и делаю следующий шаг увереннее. Каждый день — новый навык, каждый объект — новый опыт</p>
+                        </blockquote>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              </div>
+            </section>
+          </div>
+        </div>
       </article>
     </main>
     <script type="module" src="js/index.js"></script>
+    <script type="module" src="js/blocks/team-roster.js"></script>
   </body>
 </html>

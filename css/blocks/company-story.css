@@ -52,19 +52,28 @@
   letter-spacing: -0.03em;
 }
 
-:is(.company-story--team, .company-story--services) .company-story__intro h1 {
-  font-size: 80px;
-}
-
-.company-story--corporate .company-story__intro > div {
+:is(.company-story--team, .company-story--corporate) .company-story__intro > div {
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
   justify-items: center;
   text-align: center;
 }
 
-.company-story--corporate .company-story__intro h1 {
+:is(.company-story--team, .company-story--corporate) .company-story__intro h1 {
   font-size: clamp(28px, 7vw, 80px);
+}
+
+@media (width > 700px) {
+  :is(.company-story--team, .company-story--corporate) .company-story__intro {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr) 88px;
+    gap: 16px;
+    align-items: start;
+  }
+
+  :is(.company-story--team, .company-story--corporate) .company-story__intro > div {
+    margin-top: 0;
+  }
 }
 
 .company-story--services .company-story__intro > div {

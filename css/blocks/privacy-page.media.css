@@ -11,8 +11,10 @@
     padding: 0;
   }
 
-  .privacy-page__nav ol { columns: 2; column-gap: 22px; }
-  .privacy-page__nav li { break-inside: avoid; }
+  .privacy-page__nav ol {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 12px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -21,8 +23,11 @@
   .privacy-page h1 { font-size: clamp(21px, 6.7vw, 42px); }
   .privacy-page__title-end { display: block; }
   .privacy-page__body { margin-top: 26px; }
-  .privacy-page__nav { display: none; }
   .privacy-page__text { gap: 12px; }
+}
+
+@media (max-width: 519px) {
+  .privacy-page__nav ol { grid-template-columns: minmax(0, 1fr); }
 }
 
 @media print {
