@@ -1,10 +1,10 @@
 .home-page {
   --team-layout-gap: clamp(28px, 3vw, 56px);
+  --team-quote-icon: url('../../icons/quote-opening.svg');
 }
 
 .company-team {
   --team-heading-gap: calc((clamp(16px, 3svh, 32px) + var(--home-heading-space-extra)) * var(--home-heading-gap-scale));
-  --team-photo-ratio: 1.9;
   --team-photo-gap: 20px;
 
   width: 100%;
@@ -45,20 +45,27 @@
 .company-team__feature > a {
   position: relative;
   display: block;
+  aspect-ratio: 2.05;
   color: var(--color-white);
 }
 
 .company-team__feature img {
   display: block;
   width: 100%;
-  height: auto;
-  aspect-ratio: var(--team-photo-ratio);
+  height: 100%;
   object-fit: cover;
-  object-position: center 42%;
+}
+
+.company-team__feature--0 img {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 123%;
+  height: auto;
+  translate: -10.4% -22%;
 }
 
 .company-team__feature--1 img {
-  object-position: center 90%;
+  object-position: center 86%;
 }
 
 .company-team__feature-label {
@@ -131,19 +138,265 @@
   }
 }
 
-.company-team__departments {
-  display: grid;
-  grid-template-rows: minmax(0, 1fr);
+.company-team__people {
+  --team-portrait-size: clamp(64px, 5.2vw, 100px);
+
+  container-type: inline-size;
+  align-self: start;
   min-width: 0;
-  min-height: 0;
 }
 
-.company-team__department-list { min-height: 0; }
+.company-team__people-viewport {
+  display: grid;
+  gap: 10px;
+}
 
-.company-team__department-grid {
+.site--js .company-team__people-viewport {
+  overflow: clip;
+  gap: 0;
+}
+
+.company-team__people-page {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: clamp(10px, 1vw, 18px);
+  grid-auto-rows: 1fr;
+  align-content: start;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site--js .company-team__people-page {
+  grid-area: 1 / 1;
+  grid-template-rows: repeat(4, 1fr);
+  transform: translateY(calc(var(--team-page-offset, 0) * 100%));
+}
+
+.site--js .company-team__people:not([data-enhanced]) .company-team__people-page:not(:first-child) {
+  visibility: hidden;
+}
+
+.company-team__person {
+  --team-person-gap: clamp(10px, 1vw, 16px);
+  --team-role-size: clamp(13px, .92vw, 17px);
+
+  position: relative;
+  display: flex;
+  grid-column: span 5;
+  align-items: center;
+  gap: var(--team-person-gap);
+  padding: 8px;
+  border-radius: 12px;
+  background: #f3f4f2;
+}
+
+.company-team__person:nth-child(4n + 1),
+.company-team__person:nth-child(4n + 4) {
+  grid-column: span 7;
+}
+
+.company-team__person-photo {
+  position: relative;
+  flex: 0 0 auto;
+  /* The row sets the portrait height. Its source dimensions must not enlarge the row. */
+  contain: size;
+  width: auto;
   height: 100%;
+  min-height: var(--team-portrait-size);
+  max-width: max(42px, calc(100% - var(--team-person-gap) - 15.1 * var(--team-role-size)));
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.company-team__person-photo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.company-team__person > div { min-width: 0; }
+
+@media (min-width: 600px) {
+  @container (width < 660px) {
+    .company-team__person {
+      flex-direction: column;
+      align-items: start;
+    }
+
+    .company-team__person-photo {
+      contain: none;
+      width: var(--team-portrait-size);
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.company-team__person h3,
+.company-team__person p {
+  margin: 0;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.company-team__quote-button {
+  position: absolute;
+  inset: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: var(--color-slate-alt);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.company-team__quote-button:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -2px;
+}
+
+.company-team__quote-arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-inline-start: .4em;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  color: var(--color-slate-alt);
+  vertical-align: -.13em;
+  rotate: 90deg;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .company-team__quote-button:hover {
+    box-shadow: inset 0 0 0 1px rgb(52 69 78 / 38%);
+    color: var(--color-ink);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .company-team__person[data-team-quote] .company-team__person-photo img {
+    transform-origin: center;
+    transition: transform 180ms var(--ease-out);
+  }
+
+  .company-team__person:has(.company-team__quote-button:hover) .company-team__person-photo img {
+    transform: scale(1.06);
+  }
+}
+
+.company-lightbox.company-team__quote-dialog {
+  inset: 0;
+  margin: auto;
+  box-sizing: border-box;
+  width: min(620px, calc(100% - 32px));
+  height: fit-content;
+  max-height: calc(100dvh - 32px);
+  border-radius: 16px;
+}
+
+.company-team__quote-dialog .company-lightbox__head {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: clamp(8px, 2vw, 16px);
+  padding: clamp(14px, 3vw, 24px);
+}
+
+.company-team__quote-dialog .company-lightbox__head p {
+  margin: 4px 0 0;
+  color: var(--color-slate-alt);
+  font-size: clamp(13px, 2vw, 15px);
+  line-height: 1.4;
+}
+
+.company-team__quote-portrait img {
+  width: clamp(64px, 16vw, 108px);
+  height: auto;
+  border-radius: 6px;
+}
+
+.company-team__quote-body {
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: clamp(16px, 4vw, 32px) clamp(14px, 3vw, 24px);
+  color: var(--color-slate-alt);
+  background: var(--color-gray-light);
+}
+
+.company-team__quote-body blockquote {
+  margin: 0;
+  font-size: 17px;
+  font-style: italic;
+  line-height: 1.42;
+}
+
+.company-team__quote-body blockquote::before {
+  display: block;
+  width: 22px;
+  height: 18px;
+  margin-bottom: 16px;
+  background: currentColor;
+  mask: var(--team-quote-icon) center / contain no-repeat;
+  content: '';
+}
+
+.company-team__quote-body p { margin: 0; }
+.company-team__quote-body p + p { margin-top: .65em; }
+.company-team__quote-body a { display: inline-block; margin-top: 8px; }
+
+.company-team__person h3 {
+  font-size: clamp(15px, 1.15vw, 21px);
+  font-weight: 600;
+}
+
+.company-team__person p {
+  margin-top: 4px;
+  color: var(--color-slate);
+  font-size: var(--team-role-size);
+}
+
+.company-team__people-controls { display: none; }
+
+.site--js .company-team__people-controls {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.company-team__people-count {
+  margin-right: 4px;
+  color: var(--color-slate);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+.company-team__people-controls button {
+  width: 44px;
+  height: 44px;
+  touch-action: manipulation;
+}
+
+.company-team__people-controls button[aria-disabled='true'] {
+  opacity: .35;
+  cursor: default;
+}
+
+.company-team__people-controls svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .company-team__people[data-enhanced] .company-team__people-page {
+    transition: transform 280ms var(--ease-out);
+  }
 }

@@ -30,6 +30,7 @@
   --layer-scrollbar: 10000;
   --font-body: 'Manrope', sans-serif;
   --font-display: var(--font-body);
+  --font-size-statement: clamp(25px, 2.1vw, 42px);
   --font-numbers: var(--font-body);
   --font-figures: 'Jost', sans-serif;
 }

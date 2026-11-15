@@ -182,9 +182,12 @@ export default function init(home) {
   // Reveal the rail as a unit so switching filters and rebuilding loop copies stay instant.
   add(projects, '.projects-rail', 'rail', 110);
 
-  add(team, '#company-team-title', 'heading');
-  add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
-  add(team, '.company-team__department-list', 'rail', 110);
+  // Keep the team visible if a reload or a direct link already brought it into view.
+  if (team?.getBoundingClientRect().top >= innerHeight) {
+    add(team, '#company-team-title', 'heading');
+    add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
+    add(team, '.company-team__people', 'rail', 110);
+  }
 
   add(clients, '#recommendations-title', 'heading');
   add(clients, '.company-recommendations__slider', 'rail', 55);

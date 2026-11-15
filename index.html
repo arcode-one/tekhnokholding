@@ -8,6 +8,7 @@
       html.site--preloading::before { content: ""; position: fixed; inset: 0; background: #000; z-index: 9998; }
     </style>
     <script>
+      document.documentElement.classList.add('site--js');
       if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('site--preloading');
         document.documentElement.classList.remove('site--loaded');
@@ -5661,15 +5662,15 @@
         <div class="company-team__features">
           <figure class="company-team__feature company-team__feature--0">
             <a href="team.html" aria-label="Наша команда"><img
-                src="images/company/team/team-home-group.webp"
+                src="images/company/team/team-main-office-20261002-960w.webp"
                 alt="Команда ТехноХолдинг"
                 loading="lazy"
                 decoding="async"
-                width="768"
-                height="340"
+                width="960"
+                height="540"
                 srcset="
-                  images/company/team/team-home-group-480w.webp 480w,
-                  images/company/team/team-home-group.webp      768w
+                  images/company/team/team-main-office-20261002-480w.webp 480w,
+                  images/company/team/team-main-office-20261002-960w.webp 960w
                 "
                 sizes="(max-width: 599px) 100vw, (max-width: 1199px) 50vw, 43vw" /><span class="company-team__feature-label"
                 >Наша команда<span class="icon-btn company-team__feature-arrow" aria-hidden="true"><svg
@@ -5712,178 +5713,179 @@
             ></a>
           </figure>
         </div>
-        <div class="company-team__departments">
-          <div
-            class="company-team__department-list"
-            role="region"
-            aria-label="Подразделения Технохолдинга"
-          >
-            <div class="company-team__department-grid">
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/production-technical.webp"
-                    alt="Технический отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="788"
-                    srcset="
-                      images/company/departments/production-technical-480w.webp  480w,
-                      images/company/departments/production-technical-960w.webp  960w,
-                      images/company/departments/production-technical.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+        <div class="company-team__people" data-home-team>
+          <div class="company-team__people-controls" data-home-team-controls inert>
+            <span class="company-team__people-count" data-home-team-count aria-live="polite" aria-atomic="true">1–8 из 19</span>
+            <button class="icon-btn" type="button" data-home-team-step="-1" aria-label="Предыдущие сотрудники" aria-controls="home-team-people" aria-disabled="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="icons/sprite.svg#arrow-up" /></svg>
+            </button>
+            <button class="icon-btn" type="button" data-home-team-step="1" aria-label="Следующие сотрудники" aria-controls="home-team-people">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="icons/sprite.svg#arrow-down" /></svg>
+            </button>
+          </div>
+          <div class="company-team__people-viewport" id="home-team-people" data-home-team-viewport>
+            <ul class="company-team__people-page" role="list" data-home-team-page>
+              <li class="company-team__person" data-team-quote="quote-belov" data-team-quote-hover>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/belov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Александр Белов</h3>
+                  <p>Собственник компании<br />Операционное управление</p>
                 </div>
-                <h3>Технический отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/quality-service.webp"
-                    alt="Контроль качества"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/quality-service-480w.webp  480w,
-                      images/company/departments/quality-service-960w.webp  960w,
-                      images/company/departments/quality-service.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-ryabov" data-team-quote-hover>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/ryabov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Андрей Рябов</h3>
+                  <p>Собственник компании<br />Стратегия и развитие бизнеса</p>
                 </div>
-                <h3>Контроль качества</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/finance.webp"
-                    alt="Финансовый отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/finance-480w.webp  480w,
-                      images/company/departments/finance-960w.webp  960w,
-                      images/company/departments/finance.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/zenkov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Александр Зенков</h3>
+                  <p>Операционное управление<br />и координация процессов</p>
                 </div>
-                <h3>Финансовый отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/construction.webp"
-                    alt="Строительный отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/construction-480w.webp  480w,
-                      images/company/departments/construction-960w.webp  960w,
-                      images/company/departments/construction.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-utkin">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/utkin.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Александр Уткин</h3>
+                  <p>Организация и управление<br />строительными работами</p>
                 </div>
-                <h3>Строительный отдел</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/project-management.webp"
-                    alt="Управление проектами"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/project-management-480w.webp  480w,
-                      images/company/departments/project-management-960w.webp  960w,
-                      images/company/departments/project-management.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-shevchenko">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/shevchenko.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Евгений Шевченко</h3>
+                  <p>Организация и управление<br />строительными работами</p>
                 </div>
-                <h3>Управление проектами</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/management.webp"
-                    alt="Дирекция"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/management-480w.webp  480w,
-                      images/company/departments/management-960w.webp  960w,
-                      images/company/departments/management.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-klepikova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/klepikova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Елена Клепикова</h3>
+                  <p>Сметное сопровождение<br />строительства</p>
                 </div>
-                <h3>Дирекция</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/supply-logistics.webp"
-                    alt="Отдел снабжения"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="788"
-                    srcset="
-                      images/company/departments/supply-logistics-480w.webp  480w,
-                      images/company/departments/supply-logistics-960w.webp  960w,
-                      images/company/departments/supply-logistics.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-zaripova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/zaripova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Мария Зарипова</h3>
+                  <p>Инженерно-техническое<br />сопровождение строительства</p>
                 </div>
-                <h3>Отдел снабжения</h3>
-              </article>
-              <article class="department-card">
-                <div class="department-card__photo" data-story-photo data-story-travel="0.12">
-                  <img
-                    class=""
-                    src="images/company/departments/commercial.webp"
-                    alt="Коммерческий отдел"
-                    loading="lazy"
-                    decoding="async"
-                    width="1400"
-                    height="700"
-                    srcset="
-                      images/company/departments/commercial-480w.webp  480w,
-                      images/company/departments/commercial-960w.webp  960w,
-                      images/company/departments/commercial.webp      1400w
-                    "
-                    sizes="(max-width: 599px) 72px, (max-width: 1199px) 104px, (min-width: 1936px) 120px, 6.2vw"
-                  />
+              </li>
+              <li class="company-team__person" data-team-quote="quote-shmidt">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/shmidt.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Светлана Шмидт</h3>
+                  <p>Координация проектов<br />и организационных процессов</p>
                 </div>
-                <h3>Коммерческий отдел</h3>
-              </article>
-            </div>
+              </li>
+            </ul>
+            <ul class="company-team__people-page" role="list" data-home-team-page style="--team-page-offset: 1">
+              <li class="company-team__person" data-team-quote="quote-bronnikova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/bronnikova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Марина Бронникова</h3>
+                  <p>Финансовый контроль<br />и бухгалтерская отчётность</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-davydova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/davydova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Юлия Давыдова</h3>
+                  <p>Финансовый учёт<br />и цифровизация процессов</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-neganova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/neganova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Екатерина Неганова</h3>
+                  <p>Бухгалтерский учёт<br />и документооборот</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-kalugina">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/kalugina.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Екатерина Калугина</h3>
+                  <p>Развитие команды<br />и управление персоналом</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-cherepanova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/cherepanova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Лилия Черепанова</h3>
+                  <p>Организация<br />административных процессов</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-isaeva">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/isaeva.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Варвара Исаева</h3>
+                  <p>Инженерно-техническое<br />сопровождение строительства</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-dolgikh">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/dolgikh.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Ольга Долгих</h3>
+                  <p>Инженерно-техническое<br />сопровождение строительства</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-klepinin">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/klepinin.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Павел Клепинин</h3>
+                  <p>Обеспечение качества<br />и соблюдения технологий</p>
+                </div>
+              </li>
+            </ul>
+            <ul class="company-team__people-page" role="list" data-home-team-page style="--team-page-offset: 2">
+              <li class="company-team__person" data-team-quote="quote-gayazova">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/gayazova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Наталья Гаязова</h3>
+                  <p>Материально-техническое<br />обеспечение объектов</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-maltsev">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/maltsev.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Андрей Мальцев</h3>
+                  <p>Организация снабжения<br />и транспортной логистики</p>
+                </div>
+              </li>
+              <li class="company-team__person" data-team-quote="quote-gurov">
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/gurov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <div>
+                  <h3>Алексей Гуров</h3>
+                  <p>Организация и управление<br />строительными работами</p>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
-            </div>
+        </div>
       </section>
+      <dialog class="company-lightbox company-team__quote-dialog" id="home-team-quote" aria-labelledby="home-team-quote-title" data-home-team-quote>
+        <header class="company-lightbox__head">
+          <div class="company-team__quote-portrait" data-team-quote-portrait></div>
+          <div>
+            <h2 id="home-team-quote-title" data-team-quote-name></h2>
+            <p data-team-quote-role></p>
+          </div>
+          <form method="dialog">
+            <button class="icon-btn" aria-label="Закрыть цитату" autofocus>
+              <svg class="projects-sign" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><use href="icons/sprite.svg#x" /></svg>
+            </button>
+          </form>
+        </header>
+        <div class="company-team__quote-body" tabindex="0" role="region" aria-label="Цитата сотрудника">
+          <blockquote data-team-quote-text hidden></blockquote>
+          <p data-team-quote-status role="status"></p>
+          <a href="team.html" data-team-quote-fallback hidden>Открыть страницу команды</a>
+        </div>
+      </dialog>
       <div class="home-brand-strip" aria-hidden="true">
         <div class="home-brand-strip__track">
           <svg viewBox="0 0 1458.1 118" focusable="false">

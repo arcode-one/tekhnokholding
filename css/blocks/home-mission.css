@@ -39,7 +39,7 @@
 .home-mission__aside h2,
 .home-mission__talents h3,
 .home-mission__statement {
-  font-size: clamp(25px, 2.1vw, 42px);
+  font-size: var(--font-size-statement);
   line-height: 1.24;
   letter-spacing: -0.045em;
 }

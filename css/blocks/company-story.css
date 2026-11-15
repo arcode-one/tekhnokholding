@@ -46,7 +46,7 @@
   margin-bottom: 0;
 }
 
-:is(.company-story--team, .company-story--services, .company-story--corporate) .company-story__intro h1 {
+:is(.company-story--services, .company-story--corporate) .company-story__intro h1 {
   font-weight: 900;
   line-height: 1;
   letter-spacing: -0.03em;
@@ -59,7 +59,7 @@
   text-align: center;
 }
 
-:is(.company-story--team, .company-story--corporate) .company-story__intro h1 {
+.company-story--corporate .company-story__intro h1 {
   font-size: clamp(28px, 7vw, 80px);
 }
 

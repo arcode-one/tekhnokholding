@@ -12,20 +12,26 @@ export default function init() {
     const trigger = label.closest('a, button, .section-toc__label');
     if (!trigger) continue;
     for (const node of [...label.childNodes]) {
-      if (node.nodeType !== Node.TEXT_NODE || !node.textContent.trim()) continue;
+      const isText = node.nodeType === Node.TEXT_NODE;
+      const isMarkedContent = node.nodeType === Node.ELEMENT_NODE && node.hasAttribute('data-text-roll-content');
+      if ((!isText && !isMarkedContent) || !node.textContent.trim()) continue;
       const viewport = document.createElement('span');
       viewport.className = 'text-roll';
       const track = document.createElement('span');
       track.className = 'text-roll__track';
       const original = document.createElement('span');
       original.className = 'text-roll__line';
-      original.textContent = node.textContent.trim().replace(/\s+/g, ' ');
+      node.replaceWith(viewport);
+      if (isText) {
+        original.textContent = node.textContent.trim().replace(/\s+/g, ' ');
+      } else {
+        original.append(node);
+      }
       const copy = original.cloneNode(true);
       copy.classList.add('text-roll__copy');
       copy.setAttribute('aria-hidden', 'true');
       track.append(original, copy);
       viewport.append(track);
-      node.replaceWith(viewport);
     }
     trigger.classList.add('text-roll-link');
   }
