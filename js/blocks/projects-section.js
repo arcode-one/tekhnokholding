@@ -56,9 +56,11 @@ export default function init(section) {
       section.style.removeProperty('--project-heading-height');
       section.style.removeProperty('--project-area-value-height');
       section.style.removeProperty('--project-card-height');
-      if (!photoFirst) {
+      if (!photoFirst || !catalog) {
         const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
         section.style.setProperty('--project-heading-height', `${headingHeight}px`);
+      }
+      if (!photoFirst) {
         const areaHeight = Math.ceil(Math.max(0, ...areaValues.map((value) => value.getBoundingClientRect().height)));
         section.style.setProperty('--project-area-value-height', `${areaHeight}px`);
       }

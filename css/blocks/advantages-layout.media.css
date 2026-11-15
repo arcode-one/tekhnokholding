@@ -1,10 +1,13 @@
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (768px <= width < 1280px) {
   .advantages-layout { gap: 16px; }
   .advantages-layout__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (1120px <= width < 1280px) {
   .advantages-layout__row--featured { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
-@media (max-width: 767px) {
+@media (width < 768px) {
   .advantages-layout { gap: 12px; }
   .advantages-layout__row { grid-template-columns: minmax(0, 1fr); }
 }

@@ -20,8 +20,7 @@
     font-size: clamp(12px, .94vw, 16px);
   }
 
-  .advantage-card--academy,
-  .advantage-card--authorized { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
+  .advantage-card--academy { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
 
   .advantage-card--academy .advantage-card__copy {
     padding: clamp(12px, 1.55svh, 18px) clamp(14px, 1.12vw, 22px);
@@ -38,44 +37,36 @@
 
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+@media (768px <= width < 1280px) {
   .advantage-card { min-height: 178px; }
   .advantage-card--quality,
   .advantage-card--warranty { min-height: 210px; }
-  .advantage-card--authorized { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
+  .advantage-card--academy .advantage-card__title { font-size: clamp(21px, 1.9vw, 24px); }
 }
 
-@media (min-width: 768px) and (max-width: 1179px) {
-  .advantage-card--academy {
-    grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: minmax(80px, 1fr) auto;
-  }
+@media (768px <= width < 1120px) {
+  .advantage-card--quality { grid-column: 1 / -1; }
+  .advantage-card--warranty { min-height: 178px; }
 }
 
-@media (min-width: 768px) and (max-width: 899px) {
-  .advantage-card--warranty { grid-template-columns: minmax(0, 36%) minmax(0, 1fr); }
-  .advantage-card--warranty .advantage-card__copy { padding-inline: 10px; }
+@media (width < 1280px) {
+  .advantage-card--academy .advantage-card__photo img { object-position: 68% center; }
 }
 
-@media (max-width: 767px) {
-  .advantage-card { grid-template-columns: minmax(0, 42%) minmax(0, 1fr); min-height: 154px; }
+@media (width < 768px) {
+  .advantage-card { grid-template-columns: minmax(0, min(40%, 190px)) minmax(0, 1fr); min-height: 168px; }
   .advantage-card--quality { grid-template-columns: minmax(0, 1fr); min-height: 210px; }
   .advantage-card--quality .advantage-card__photo img { object-position: 91% center; }
+  .advantage-card--academy .advantage-card__title { font-size: clamp(20px, 5.65vw, 24px); }
   .advantage-card__copy { padding: 14px; }
   .advantage-card__description { margin-top: 7px; }
   .advantage-card__arrow { width: 21px; height: 21px; }
 }
 
-@media (max-width: 359px) {
+@media (width < 360px) {
   .advantage-card:not(.advantage-card--quality) {
     grid-template-columns: minmax(0, 36%) minmax(0, 1fr);
   }
 
   .advantage-card__copy { padding: 12px; }
-}
-
-@media (max-width: 389px) {
-  .advantage-card.advantage-card--academy {
-    grid-template-columns: minmax(0, 32%) minmax(0, 1fr);
-  }
 }

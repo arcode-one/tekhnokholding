@@ -4,17 +4,21 @@
 @media (min-width: 1700px) {
   .company-recommendations { --recommendation-columns: 7; }
 }
-@media (max-width: 1199px) {
+@media (width < 1200px) {
+  .company-recommendations { --recommendation-columns: 4; }
+}
+@media (width < 1000px) {
   .company-recommendations { --recommendation-columns: 3; }
 }
-@media (max-width: 899px) {
-  .company-recommendations { --recommendation-columns: 2; }
-}
-@media (max-width: 767px) {
-  .company-recommendations { --recommendation-step: clamp(48px, 10svh, 80px); }
+@media (width < 768px) {
+  .company-recommendations {
+    --recommendation-columns: 2;
+    --recommendation-step: clamp(48px, 10svh, 80px);
+  }
+
   .company-recommendations__arrow { display: none; }
 }
-@media (max-width: 599px) {
+@media (width < 600px) {
   .company-recommendations { --recommendation-card-width: min(236px, calc(100cqw - 24px)); }
 }
 @media (max-height: 500px) {

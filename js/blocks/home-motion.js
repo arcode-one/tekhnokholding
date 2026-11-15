@@ -1,6 +1,6 @@
 import createScrollReveal from '../lib/scroll-reveal.js';
 import initMissionLineReveal from './mission-line-reveal.js';
-import { createScrollMotion, onMotionResize, readMotionViewport, sampleMotion } from '../lib/scroll-motion.js';
+import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 function initValuesOverlap(section) {
   const card = section?.querySelector('.home-values__card');
@@ -8,8 +8,7 @@ function initValuesOverlap(section) {
   if (!photo) return;
 
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
-  const narrow = matchMedia('(max-width: 767px)');
-  const motion = createScrollMotion();
+  const narrow = matchMedia('(max-width: 768px)');
   let geometry;
   let visible = false;
   let frame = 0;
@@ -26,31 +25,29 @@ function initValuesOverlap(section) {
     const top = geometry.top - y;
     const center = top + height / 2;
     const progress = Math.max(-1, Math.min(1, (viewport / 2 - center) / (viewport * 0.4)));
-    const travel = narrow.matches ? 6 : Math.min(innerWidth * 0.0225, 22);
+    const travel = Math.min(innerWidth * 0.0225, 22);
     const easedProgress = Math.sin(progress * Math.PI / 2);
     const offset = easedProgress * travel;
-    if (motion.enabled && narrow.matches) {
-      const start = geometry.top + height / 2 - viewport * .9;
-      const end = start + viewport * .8;
-      motion.set(card, sampleMotion((p) => ({ transform: `translate3d(0,${-Math.cos(p * Math.PI) * travel}px,0)` })), start, end);
-      motion.set(photo, sampleMotion((p) => ({ transform: `translate3d(0,${Math.cos(p * Math.PI) * travel * 1.65}px,0)` })), start, end);
-      return;
-    }
     // Cancel the parent's travel, then move the photo frame the other way.
     const photoOffset = -offset - offset * 0.65;
     card.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0)`;
     photo.style.transform = `translate3d(0, ${photoOffset.toFixed(2)}px, 0)`;
-    if (!narrow.matches) photo.style.setProperty('--values-photo-side', (-easedProgress).toFixed(4));
+    photo.style.setProperty('--values-photo-side', (-easedProgress).toFixed(4));
   }
 
   function schedule() {
-    if (!(motion.enabled && narrow.matches) && visible && !reduced.matches && !frame) frame = requestAnimationFrame(render);
+    if (visible && !narrow.matches && !reduced.matches && !frame) frame = requestAnimationFrame(render);
   }
 
   function refresh() {
+    cancelAnimationFrame(frame);
+    frame = 0;
     geometry = undefined;
-    motion.clear();
-    if (!reduced.matches) render();
+    if (narrow.matches || reduced.matches) {
+      card.style.removeProperty('transform');
+      photo.style.removeProperty('transform');
+      photo.style.removeProperty('--values-photo-side');
+    } else render();
   }
 
   new IntersectionObserver(([entry]) => {
@@ -62,15 +59,8 @@ function initValuesOverlap(section) {
   onMotionResize(refresh);
   new ResizeObserver(refresh).observe(section);
   addEventListener('pageshow', refresh);
-  reduced.addEventListener('change', () => {
-    cancelAnimationFrame(frame);
-    frame = 0;
-    if (reduced.matches) {
-      card.style.removeProperty('transform');
-      photo.style.removeProperty('transform');
-      photo.style.removeProperty('--values-photo-side');
-    } else refresh();
-  });
+  narrow.addEventListener('change', refresh);
+  reduced.addEventListener('change', refresh);
 }
 
 function initBrandStrip(strip) {

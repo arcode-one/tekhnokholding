@@ -45,7 +45,8 @@
 .company-team__feature > a {
   position: relative;
   display: block;
-  aspect-ratio: 2.05;
+  width: 100%;
+  aspect-ratio: 1.74;
   color: var(--color-white);
 }
 
@@ -58,14 +59,14 @@
 
 .company-team__feature--0 img {
   position: absolute;
-  inset: 0 auto auto 0;
-  width: 123%;
-  height: auto;
-  translate: -10.4% -22%;
+  inset: 0 auto 0 50%;
+  width: 126%;
+  object-position: center 88%;
+  translate: -50% 0;
 }
 
 .company-team__feature--1 img {
-  object-position: center 86%;
+  object-position: center 58%;
 }
 
 .company-team__feature-label {
@@ -180,6 +181,9 @@
 .company-team__person {
   --team-person-gap: clamp(10px, 1vw, 16px);
   --team-role-size: clamp(13px, .92vw, 17px);
+  /* Size every portrait against the five-column card, including its grid gaps. */
+  --team-card-min-width: calc(100cqi * 5 / 12 - 6px);
+  --team-portrait-limit: max(42px, calc(var(--team-card-min-width) - 16px - var(--team-person-gap) - 15.1 * var(--team-role-size)));
 
   position: relative;
   display: flex;
@@ -203,8 +207,9 @@
   contain: size;
   width: auto;
   height: 100%;
-  min-height: var(--team-portrait-size);
-  max-width: max(42px, calc(100% - var(--team-person-gap) - 15.1 * var(--team-role-size)));
+  min-height: min(var(--team-portrait-size), var(--team-portrait-limit));
+  max-height: var(--team-portrait-limit);
+  max-width: var(--team-portrait-limit);
   aspect-ratio: 1;
   overflow: hidden;
   border-radius: 6px;
@@ -223,6 +228,8 @@
 @media (min-width: 600px) {
   @container (width < 660px) {
     .company-team__person {
+      --team-portrait-limit: var(--team-portrait-size);
+
       flex-direction: column;
       align-items: start;
     }
@@ -253,6 +260,7 @@
   color: var(--color-slate-alt);
   cursor: pointer;
   touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .company-team__quote-button:focus-visible {
@@ -260,16 +268,8 @@
   outline-offset: -2px;
 }
 
-.company-team__quote-arrow {
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-  margin-inline-start: .4em;
-  border: 1px solid currentColor;
-  border-radius: 50%;
-  color: var(--color-slate-alt);
-  vertical-align: -.13em;
-  rotate: 90deg;
+.company-team__quote-button:active {
+  box-shadow: inset 0 0 0 1px rgb(52 69 78 / 38%);
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -291,64 +291,213 @@
 }
 
 .company-lightbox.company-team__quote-dialog {
+  --team-quote-padding: clamp(16px, 3.5vw, 28px);
+  --team-person-inset: 0px;
+
   inset: 0;
   margin: auto;
   box-sizing: border-box;
-  width: min(620px, calc(100% - 32px));
+  width: min(760px, calc(100% - 32px));
   height: fit-content;
   max-height: calc(100dvh - 32px);
-  border-radius: 16px;
-}
-
-.company-team__quote-dialog .company-lightbox__head {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: clamp(8px, 2vw, 16px);
-  padding: clamp(14px, 3vw, 24px);
-}
-
-.company-team__quote-dialog .company-lightbox__head p {
-  margin: 4px 0 0;
-  color: var(--color-slate-alt);
-  font-size: clamp(13px, 2vw, 15px);
-  line-height: 1.4;
-}
-
-.company-team__quote-portrait img {
-  width: clamp(64px, 16vw, 108px);
-  height: auto;
-  border-radius: 6px;
-}
-
-.company-team__quote-body {
-  min-height: 0;
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: clamp(16px, 4vw, 32px) clamp(14px, 3vw, 24px);
-  color: var(--color-slate-alt);
+  padding: var(--team-quote-padding);
+  border: 0;
+  border-radius: 12px;
   background: var(--color-gray-light);
 }
 
-.company-team__quote-body blockquote {
-  margin: 0;
-  font-size: 17px;
-  font-style: italic;
-  line-height: 1.42;
+.company-team__quote-close {
+  position: absolute;
+  z-index: 1;
+  inset: var(--team-quote-padding) var(--team-quote-padding) auto auto;
 }
 
-.company-team__quote-body blockquote::before {
-  display: block;
-  width: 22px;
-  height: 18px;
-  margin-bottom: 16px;
-  background: currentColor;
-  mask: var(--team-quote-icon) center / contain no-repeat;
-  content: '';
+.company-team__quote-close .icon-btn {
+  --button-bg: var(--color-white);
+
+  width: 44px;
+  height: 44px;
+  touch-action: manipulation;
 }
 
-.company-team__quote-body p { margin: 0; }
-.company-team__quote-body p + p { margin-top: .65em; }
-.company-team__quote-body a { display: inline-block; margin-top: 8px; }
+.company-team__quote-portrait {
+  position: relative;
+  width: min(100%, 420px);
+  aspect-ratio: 3 / 4;
+  min-height: 44px;
+  max-height: min(52dvh, 550px);
+  margin-inline: auto;
+  overflow: hidden;
+}
+
+.company-team__quote-portrait:empty {
+  background: var(--color-mist);
+}
+
+.company-team__quote-portrait img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.company-team__quote-body {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+}
+
+.company-team__quote-body .team-person__panel { flex: none; }
+
+.company-team__quote-body .team-person__identity {
+  min-height: 0;
+  padding-block-end: 0;
+}
+
+.company-team__quote-body .team-person__quote {
+  /* Keep italic descenders inside the final line's scroll bounds. */
+  padding-block-end: 2px;
+}
+
+@media (max-width: 359px) {
+  .company-team__quote-body .team-person__identity p { font-size: 15px; }
+}
+
+@media (max-width: 479px) {
+  .company-lightbox.company-team__quote-dialog { width: calc(100vw - 16px); }
+}
+
+.company-team__quote-status:has(p:not(:empty)) {
+  padding-top: 16px;
+  color: var(--color-slate-alt);
+}
+
+.company-team__quote-status p { margin: 0; }
+.company-team__quote-status a { display: inline-block; margin-top: 8px; }
+
+@media (max-height: 560px) {
+  .company-team__quote-portrait { max-height: 46dvh; }
+  .company-lightbox.company-team__quote-dialog { --team-quote-padding: 16px; }
+
+  .company-team__quote-body :is(.team-person__identity, .team-person__quote) {
+    padding-block-start: 10px;
+  }
+
+  .company-team__quote-body .team-person__identity p {
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .company-team__quote-body .team-person__quote {
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
+  .company-team__quote-body .team-person__quote::before { margin-bottom: 7px; }
+}
+
+@media (max-width: 479px) and (max-height: 700px) {
+  .company-team__quote-body :is(.team-person__identity, .team-person__quote) {
+    padding-block-start: 10px;
+  }
+
+  .company-team__quote-body .team-person__identity p {
+    margin-top: 6px;
+    line-height: 1.3;
+  }
+
+  .company-team__quote-body .team-person__quote {
+    font-size: clamp(14px, 3.85vw, 16px);
+    line-height: 1.3;
+  }
+
+  .company-team__quote-body .team-person__quote::before { margin-bottom: 7px; }
+}
+
+@media (max-height: 420px), (max-width: 479px) and (max-height: 560px), (max-width: 359px) and (max-height: 650px) {
+  .company-team__quote-body {
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr);
+    align-content: start;
+    align-items: start;
+    column-gap: 8px;
+  }
+
+  .company-team__quote-body .team-person__panel { display: contents; }
+
+  .company-team__quote-portrait {
+    grid-area: 1 / 1;
+    width: 52px;
+    height: 64px;
+    min-height: 0;
+    max-height: none;
+    margin: 0;
+  }
+
+  .company-team__quote-body .team-person__identity {
+    grid-area: 1 / 2;
+    padding-block-start: 0;
+  }
+
+  .company-team__quote-body .team-person__identity h2 {
+    padding-inline-end: 44px;
+    font-size: 16px;
+    line-height: 1.3;
+  }
+
+  .company-team__quote-body .team-person__identity p {
+    font-size: 14px;
+    line-height: 1.25;
+  }
+
+  .company-team__quote-body .team-person__quote {
+    grid-column: 1 / -1;
+    padding-block-start: 8px;
+    font-size: clamp(13px, calc(2dvh + 6px), 15px);
+    line-height: 1.3;
+  }
+
+  .company-team__quote-body .team-person__quote::before {
+    height: 14px;
+    margin-bottom: 6px;
+  }
+
+  .company-team__quote-status { grid-column: 1 / -1; }
+}
+
+@media (max-width: 359px) and (max-height: 500px) {
+  .company-team__quote-body .team-person__quote { font-size: 13px; }
+}
+
+@media (max-width: 479px) and (max-height: 560px), (max-width: 359px) and (max-height: 650px) {
+  .company-team__quote-close .icon-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  .company-team__quote-body .team-person__identity p { margin-top: 17px; }
+}
+
+@media (max-height: 420px) {
+  .company-lightbox.company-team__quote-dialog { max-height: calc(100dvh - 24px); }
+}
+
+@media (max-width: 359px) and (max-height: 420px) {
+  .company-lightbox.company-team__quote-dialog {
+    --team-quote-padding: 12px;
+
+    width: calc(100vw - 12px);
+    max-height: calc(100dvh - 16px);
+  }
+
+  .company-team__quote-body .team-person__quote { line-height: 1.25; }
+  .company-team__quote-body .team-person__quote::before { display: none; }
+}
 
 .company-team__person h3 {
   font-size: clamp(15px, 1.15vw, 21px);

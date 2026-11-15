@@ -8,7 +8,9 @@
 
 .projects-filters .projects-types__button {
   position: relative;
+  display: inline-flex;
   flex: none;
+  align-items: center;
   min-height: 44px;
   padding: 10px 0;
   border: 0;

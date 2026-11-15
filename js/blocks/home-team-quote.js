@@ -1,5 +1,4 @@
 let quotes;
-const HOVER_DELAY = 450;
 
 function loadQuotes() {
   quotes ??= fetch(new URL('../../team.html', import.meta.url))
@@ -10,10 +9,11 @@ function loadQuotes() {
     .then((html) => {
       const source = document.createElement('template');
       source.innerHTML = html;
-      return new Map([...source.content.querySelectorAll('.team-person__reveal[id]')].map((quote) => [
-        quote.id,
-        [...quote.querySelectorAll('blockquote p')].map((paragraph) => paragraph.textContent.trim()),
-      ]));
+      return new Map([...source.content.querySelectorAll('.team-person__reveal[id]')].map((quote) => {
+        const photo = quote.closest('.team-person').querySelector('.team-person__portrait');
+        const paragraphs = [...quote.querySelectorAll('blockquote p')].map((paragraph) => paragraph.textContent.trim());
+        return [quote.id, { photo, paragraphs }];
+      }));
     })
     .catch((error) => {
       quotes = undefined;
@@ -27,49 +27,44 @@ export default function initQuotes(people) {
   if (typeof dialog?.showModal !== 'function') return;
 
   const portrait = dialog.querySelector('[data-team-quote-portrait]');
+  const body = dialog.querySelector('.company-team__quote-body');
   const title = dialog.querySelector('[data-team-quote-name]');
   const role = dialog.querySelector('[data-team-quote-role]');
   const quote = dialog.querySelector('[data-team-quote-text]');
   const status = dialog.querySelector('[data-team-quote-status]');
   const fallback = dialog.querySelector('[data-team-quote-fallback]');
-  const mouseHover = matchMedia('(hover: hover) and (pointer: fine)');
   let opener;
   let ownsLock = false;
   let request = 0;
-  let hoverTimer = 0;
-  let blockedHover;
-
-  function cancelHover() {
-    clearTimeout(hoverTimer);
-    hoverTimer = 0;
-  }
 
   async function open(card, button) {
     if (dialog.open) return;
-    cancelHover();
     const current = ++request;
     opener = button;
-    blockedHover = card.hasAttribute('data-team-quote-hover') ? button : undefined;
-    const photo = card.querySelector('img').cloneNode();
-    photo.loading = 'eager';
-    portrait.replaceChildren(photo);
+    portrait.replaceChildren();
+    portrait.hidden = false;
     title.textContent = card.querySelector('h3').textContent;
     role.replaceChildren(...card.querySelector('p').cloneNode(true).childNodes);
     quote.hidden = true;
     fallback.hidden = true;
     status.textContent = 'Загружаем цитату…';
     dialog.showModal();
-    quote.parentElement.scrollTop = 0;
+    body.scrollTop = 0;
     if (!document.documentElement.classList.contains('site--locked')) {
       document.documentElement.classList.add('site--locked');
       ownsLock = true;
     }
 
     try {
-      const paragraphs = (await loadQuotes()).get(card.dataset.teamQuote);
+      const entry = (await loadQuotes()).get(card.dataset.teamQuote);
       if (!dialog.open || current !== request) return;
-      if (!paragraphs?.length) throw new Error('Quote is missing');
-      quote.replaceChildren(...paragraphs.map((text) => {
+      if (!entry?.paragraphs.length) throw new Error('Quote is missing');
+      const photo = entry.photo.cloneNode();
+      photo.loading = 'eager';
+      photo.alt = '';
+      photo.sizes = '(max-width: 451px) calc(100vw - 32px), 420px';
+      portrait.replaceChildren(photo);
+      quote.replaceChildren(...entry.paragraphs.map((text) => {
         const paragraph = document.createElement('p');
         paragraph.textContent = text;
         return paragraph;
@@ -78,44 +73,31 @@ export default function initQuotes(people) {
       status.textContent = '';
     } catch {
       if (!dialog.open || current !== request) return;
+      portrait.hidden = true;
       status.textContent = 'Не удалось загрузить цитату';
       fallback.hidden = false;
     }
   }
 
   for (const card of people.querySelectorAll('[data-team-quote]')) {
-    const heading = card.querySelector('h3');
     const button = document.createElement('button');
     button.className = 'company-team__quote-button';
     button.type = 'button';
-    button.setAttribute('aria-label', `Читать цитату: ${heading.textContent}`);
+    button.setAttribute('aria-label', `Читать цитату: ${card.querySelector('h3').textContent}`);
     button.setAttribute('aria-haspopup', 'dialog');
     button.setAttribute('aria-controls', dialog.id);
     button.addEventListener('click', () => open(card, button));
-    if (card.hasAttribute('data-team-quote-hover')) {
-      button.addEventListener('pointermove', (event) => {
-        if (event.pointerType !== 'mouse' || !mouseHover.matches || dialog.open || hoverTimer || blockedHover === button) return;
-        hoverTimer = setTimeout(() => {
-          hoverTimer = 0;
-          if (button.matches(':hover') && !card.closest('[inert]')) open(card, button);
-        }, HOVER_DELAY);
-      });
-      button.addEventListener('pointerleave', cancelHover);
-    }
     card.append(button);
-    heading.insertAdjacentHTML('beforeend', '<svg class="company-team__quote-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="icons/sprite.svg#arrow-up" /></svg>');
   }
 
-  // Wait for the mouse to leave the opener after dismissal, even if the dialog sat over it.
-  document.addEventListener('pointermove', (event) => {
-    if (!blockedHover || dialog.open || event.pointerType !== 'mouse') return;
-    const { left, right, top, bottom } = blockedHover.getBoundingClientRect();
-    if (event.clientX < left || event.clientX > right || event.clientY < top || event.clientY > bottom) {
-      blockedHover = undefined;
-    }
-  });
-  window.addEventListener('scroll', cancelHover, { passive: true });
-  mouseHover.addEventListener('change', cancelHover);
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) return;
+      observer.disconnect();
+      loadQuotes().catch(() => {});
+    }, { rootMargin: '240px 0px' });
+    observer.observe(people);
+  }
 
   dialog.addEventListener('click', (event) => {
     if (event.target !== dialog) return;

@@ -51,6 +51,7 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/team-roster.css" />
     <link rel="canonical" href="https://thld.su/" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
@@ -463,7 +464,7 @@
                 <img
                   src="images/mission/values-parkovy-roof-960w.webp"
                   srcset="images/mission/values-parkovy-roof-480w.webp 480w, images/mission/values-parkovy-roof-960w.webp 960w"
-                  sizes="(max-width: 767px) min(80vw, 380px), (max-width: 1252px) 180px, (max-width: 1910px) 14.3vw, 274px"
+                  sizes="(max-width: 1252px) 180px, (max-width: 1910px) 14.3vw, 274px"
                   width="960"
                   height="720"
                   alt="Мембранная кровля с вентиляционными выходами в микрорайоне Парковый"
@@ -5579,7 +5580,7 @@
         <div class="advantages-layout">
           <div class="advantages-layout__row advantages-layout__row--featured">
             <a class="advantage-card advantage-card--quality" href="quality.html" data-company-reveal>
-              <span class="advantage-card__photo"><img src="images/company/trust/quality-wide-v1.webp" srcset="images/company/trust/quality-wide-v1-640w.webp 640w, images/company/trust/quality-wide-v1.webp 1280w" sizes="(max-width: 767px) 100vw, (max-width: 1279px) 50vw, 37vw" alt="" width="1280" height="474" loading="lazy" decoding="async"></span>
+              <span class="advantage-card__photo"><img src="images/company/trust/quality-wide-v1.webp" srcset="images/company/trust/quality-wide-v1-640w.webp 640w, images/company/trust/quality-wide-v1.webp 1280w" sizes="(width < 1120px) 100vw, (width < 1280px) 33vw, 37vw" alt="" width="1280" height="474" loading="lazy" decoding="async"></span>
               <span class="advantage-card__copy">
                 <span class="advantage-card__title">Собственная<br>служба качества</span>
                 <span class="advantage-card__description">Контроль на всех<br>этапах работ</span>
@@ -5725,14 +5726,14 @@
           </div>
           <div class="company-team__people-viewport" id="home-team-people" data-home-team-viewport>
             <ul class="company-team__people-page" role="list" data-home-team-page>
-              <li class="company-team__person" data-team-quote="quote-belov" data-team-quote-hover>
+              <li class="company-team__person" data-team-quote="quote-belov">
                 <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/belov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Александр Белов</h3>
                   <p>Собственник компании<br />Операционное управление</p>
                 </div>
               </li>
-              <li class="company-team__person" data-team-quote="quote-ryabov" data-team-quote-hover>
+              <li class="company-team__person" data-team-quote="quote-ryabov">
                 <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/ryabov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Андрей Рябов</h3>
@@ -5868,22 +5869,26 @@
         </div>
       </section>
       <dialog class="company-lightbox company-team__quote-dialog" id="home-team-quote" aria-labelledby="home-team-quote-title" data-home-team-quote>
-        <header class="company-lightbox__head">
+        <form class="company-team__quote-close" method="dialog">
+          <button class="icon-btn" aria-label="Закрыть цитату" autofocus>
+            <svg class="projects-sign" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><use href="icons/sprite.svg#x" /></svg>
+          </button>
+        </form>
+        <div class="company-team__quote-body" tabindex="0" role="region" aria-label="Карточка сотрудника">
           <div class="company-team__quote-portrait" data-team-quote-portrait></div>
-          <div>
-            <h2 id="home-team-quote-title" data-team-quote-name></h2>
-            <p data-team-quote-role></p>
+          <div class="team-person__panel">
+            <header class="team-person__identity">
+              <div>
+                <h2 id="home-team-quote-title" data-team-quote-name></h2>
+                <p data-team-quote-role></p>
+              </div>
+            </header>
+            <blockquote class="team-person__quote" data-team-quote-text hidden></blockquote>
+            <div class="company-team__quote-status">
+              <p data-team-quote-status role="status"></p>
+              <a href="team.html" data-team-quote-fallback hidden>Открыть страницу команды</a>
+            </div>
           </div>
-          <form method="dialog">
-            <button class="icon-btn" aria-label="Закрыть цитату" autofocus>
-              <svg class="projects-sign" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><use href="icons/sprite.svg#x" /></svg>
-            </button>
-          </form>
-        </header>
-        <div class="company-team__quote-body" tabindex="0" role="region" aria-label="Цитата сотрудника">
-          <blockquote data-team-quote-text hidden></blockquote>
-          <p data-team-quote-status role="status"></p>
-          <a href="team.html" data-team-quote-fallback hidden>Открыть страницу команды</a>
         </div>
       </dialog>
       <div class="home-brand-strip" aria-hidden="true">
