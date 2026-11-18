@@ -27,7 +27,7 @@ enhancements.push(loadBlocks('[data-home-team]', 'home-team', () => import('./bl
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
 enhance('[data-customer-request]', 'customer-request', () => import('./blocks/customer-request.js'));
 enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
-enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
+enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js?v=20261118-2'));
 enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
 enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('./blocks/architecture-parallax.js'));
 

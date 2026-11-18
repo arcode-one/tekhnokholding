@@ -1,4 +1,4 @@
-import createScrollReveal from '../lib/scroll-reveal.js';
+import createScrollReveal from '../lib/scroll-reveal.js?v=20261118-2';
 import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 function initValuesOverlap(section) {
@@ -208,7 +208,8 @@ export default function init(home) {
   add(advantages, '.advantages-rating', 'trust-rating', 100);
 
   // Keep the team visible if a reload or a direct link already brought it into view.
-  if (team?.getBoundingClientRect().top >= innerHeight) {
+  const teamBounds = team?.getBoundingClientRect();
+  if (teamBounds && (teamBounds.top >= innerHeight || teamBounds.bottom <= 0)) {
     add(team, '#company-team-title', 'slide-heading');
     add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
     team.querySelectorAll('[data-home-team-page]').forEach((page) => {

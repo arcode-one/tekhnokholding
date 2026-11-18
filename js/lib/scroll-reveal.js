@@ -8,7 +8,6 @@ export default function createScrollReveal(prefix, options = {}) {
   const stateKey = `${prefix}State`;
   const delayProperty = `--${prefix}-delay`;
   const threshold = options.threshold ?? 0;
-  let lastScrollY = scrollY;
 
   function add(scope, selector, kind, delay = 0, trigger = null) {
     scope?.querySelectorAll(selector).forEach((element, index) => {
@@ -32,18 +31,17 @@ export default function createScrollReveal(prefix, options = {}) {
     if (!pending.size) cleanup();
   }
 
-  function reveal(element, animate) {
+  function reveal(element) {
     observer.unobserve(element);
-    if (!animate || reduced.matches) {
+    if (reduced.matches) {
       finish(element);
       return;
     }
-    const enteredAt = scrollY;
     const begin = () => {
       if (!pending.has(element)) return;
       // A late-loading image must not replay after the reader has passed it.
       const rect = element.getBoundingClientRect();
-      if (reduced.matches || scrollY < enteredAt || rect.bottom <= 0 || rect.top >= innerHeight)
+      if (reduced.matches || rect.bottom <= 0 || rect.top >= innerHeight)
         finish(element);
       else {
         options.beforeEnter?.(element, rect);
@@ -57,14 +55,12 @@ export default function createScrollReveal(prefix, options = {}) {
   }
 
   const observer = new IntersectionObserver((entries) => {
-    const movingBack = scrollY < lastScrollY;
-    lastScrollY = scrollY;
     for (const entry of entries) {
       if (!entry.isIntersecting || entry.intersectionRatio < threshold) continue;
       observer.unobserve(entry.target);
       for (const element of groups.get(entry.target) || []) {
         if (pending.has(element))
-          reveal(element, !movingBack && entry.boundingClientRect.top >= 0);
+          reveal(element);
       }
     }
   }, { rootMargin: options.rootMargin ?? '0px 0px -64px 0px', threshold });
@@ -77,8 +73,9 @@ export default function createScrollReveal(prefix, options = {}) {
   function onInteraction(event) {
     // Reveal a control and its contents immediately when it is focused or pressed.
     if (!(event.target instanceof Element)) return;
-    for (const element of [...pending])
-      if (element.contains(event.target) || event.target.contains(element)) finish(element);
+    const control = event.target.closest('a[href], button, [role="button"]');
+    for (const element of pending)
+      if (element.contains(event.target) || control?.contains(element)) finish(element);
   }
 
   function finishAll() {
