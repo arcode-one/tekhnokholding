@@ -1,5 +1,4 @@
 import createScrollReveal from '../lib/scroll-reveal.js';
-import initMissionLineReveal from './mission-line-reveal.js';
 import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 function initValuesOverlap(section) {
@@ -125,23 +124,53 @@ function initBrandStrip(strip) {
   });
 }
 
+function initLetterDeal(section) {
+  const rail = section?.querySelector('[data-carousel-rail]');
+  if (!rail) return;
+
+  let openingScroll;
+  const reveal = createScrollReveal('home', {
+    rootMargin: '0px 0px -48px 0px',
+    threshold: 0.12,
+    beforeEnter(card, rect) {
+      openingScroll ??= rail.scrollLeft;
+      const left = rail.getBoundingClientRect().left + parseFloat(getComputedStyle(rail).paddingLeft);
+      const distance = Math.max(0, rect.left - left);
+      const openingHand = Math.abs(rail.scrollLeft - openingScroll) < 1;
+      const travel = openingHand ? distance + 18 : rect.width * 0.36;
+      card.style.setProperty('--letter-deal-x', `-${travel}px`);
+      if (openingHand) {
+        const gap = parseFloat(getComputedStyle(rail.firstElementChild).columnGap);
+        const slot = Math.round(distance / (rect.width + gap));
+        card.style.setProperty('--home-delay', `${slot * 100}ms`);
+      }
+    },
+  });
+  reveal.add(rail, '[data-carousel-item]', 'letter-deal');
+  reveal.start();
+}
+
 export default function init(home) {
   if (!('IntersectionObserver' in window)) return;
-  const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
   const mission = home.querySelector('#mission');
   const values = home.querySelector('#values');
   const figures = home.querySelector('#figures');
   const map = home.querySelector('#map-objects');
   const projects = home.querySelector('#objects');
+  const advantages = home.querySelector('#advantages');
   const team = home.querySelector('#team');
   const clients = home.querySelector('#clients');
   const { add, start } = createScrollReveal('home', { rootMargin: '0px 0px -48px 0px' });
 
-  add(mission, '#home-mission-title', 'heading');
-  add(mission, '.home-mission__thumbnail', 'photo', 80);
-  if (touch) add(mission, '.home-mission__statement p', 'text', (index) => index * 65);
-  add(mission, '#home-mission-talents-title', 'heading');
-  add(mission, '.home-mission__talent', 'talent', (index) => 80 + index * 80);
+  if (mission) {
+    const missionReveal = createScrollReveal('home', { rootMargin: '0px 0px -96px 0px' });
+    missionReveal.add(mission, '#home-mission-title', 'mission-title');
+    missionReveal.add(mission, '.home-mission__photo', 'photo', 70);
+    missionReveal.add(mission, '.home-mission__statement p', 'mission-statement', (index) => 70 + index * 75);
+    missionReveal.add(mission, '#home-mission-talents-title', 'mission-title');
+    missionReveal.add(mission, '.home-mission__talent', 'talent', (index) => 65 + index * 75);
+    missionReveal.start();
+  }
 
   add(values, '#home-values-title', 'heading');
   add(values, '.home-values__intro, .home-values__link', 'text', (index) => 55 + index * 65);
@@ -167,20 +196,28 @@ export default function init(home) {
     photoReveal.start();
   }
 
-  add(projects, '#projects-title', 'heading');
+  add(projects, '#projects-title', 'slide-heading');
   add(projects, '.projects-filters', 'text', 55);
-  // Reveal the rail as a unit so switching filters and rebuilding loop copies stay instant.
-  add(projects, '.projects-rail', 'rail', 110);
+  add(projects, '.projects-rail', 'project-wave');
+
+  add(advantages, '#advantages-title', 'slide-heading');
+  add(advantages, '.company-advantages__corner', 'trust-panorama', 70);
+  advantages?.querySelectorAll('.advantages-layout__row').forEach((row) => {
+    add(row, '.advantage-card', 'rise-card', (index) => index * 75);
+  });
+  add(advantages, '.advantages-rating', 'trust-rating', 100);
 
   // Keep the team visible if a reload or a direct link already brought it into view.
   if (team?.getBoundingClientRect().top >= innerHeight) {
-    add(team, '#company-team-title', 'heading');
+    add(team, '#company-team-title', 'slide-heading');
     add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
-    add(team, '.company-team__people', 'rail', 110);
+    team.querySelectorAll('[data-home-team-page]').forEach((page) => {
+      add(page, '.company-team__person', 'team-person', (index) => 100 + Math.floor(index / 2) * 90);
+    });
   }
 
-  add(clients, '#recommendations-title', 'heading');
-  add(clients, '.company-recommendations__slider', 'rail', 55);
+  add(clients, '#recommendations-title', 'slide-heading');
+  initLetterDeal(clients);
 
   start();
   if (map) {
@@ -188,7 +225,6 @@ export default function init(home) {
     mapReveal.add(map, '.company-map__stage', 'map');
     mapReveal.start();
   }
-  if (!touch) initMissionLineReveal(mission);
   initValuesOverlap(values);
   initBrandStrip(home.querySelector('.home-brand-strip'));
 }

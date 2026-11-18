@@ -1,14 +1,19 @@
 .home-mission,
 .home-values {
-  --mission-surface: var(--color-reading-bg);
-
   color: var(--color-ink);
 }
 
 .home-mission {
+  --mission-corner-height: clamp(80px, 16svh, 160px);
+
+  position: relative;
   padding: var(--home-section-space) var(--pad);
   padding-block-end: calc(var(--home-section-space) * 0.25);
-  background: var(--mission-surface);
+  background: var(--color-white);
+}
+
+.home-mission:has(> .projects-transition:not([hidden])) {
+  padding-block-start: max(var(--home-section-space), calc(var(--mission-corner-height) + var(--space-2)));
 }
 
 .home-mission__intro {
@@ -32,8 +37,17 @@
 
 .home-mission__thumbnail {
   width: clamp(150px, 13vw, 240px);
-  aspect-ratio: 4 / 5;
   margin-top: clamp(8px, 1.4vw, 26px);
+}
+
+.home-mission__photo {
+  overflow: hidden;
+  background: var(--color-mist);
+}
+
+.home-mission__photo img {
+  width: 100%;
+  height: auto;
 }
 
 .home-mission__aside h2,
@@ -75,6 +89,7 @@
 
 .home-mission__talents h3 {
   grid-column: 1 / -1;
+  justify-self: start;
 }
 
 .home-mission__talent {
@@ -97,8 +112,15 @@
 }
 
 .home-values {
-  padding: var(--home-section-space) var(--pad);
-  background: linear-gradient(var(--mission-surface) 65%, var(--color-white) 65%);
+  --values-bottom-space: var(--space-6);
+  /* Align the background boundary with 70% of the card, excluding block padding. */
+  --values-background-split: calc(70% + var(--home-section-space) * 0.3 - var(--values-bottom-space) * 0.7);
+
+  padding: var(--home-section-space) var(--pad) var(--values-bottom-space);
+  background: linear-gradient(
+    var(--color-white) var(--values-background-split),
+    var(--color-gray-light) var(--values-background-split)
+  );
 }
 
 .home-values__card {
@@ -148,6 +170,11 @@
 }
 
 @media (width > 768px) {
+  .home-values {
+    --values-photo-offset-y: clamp(32px, 2.5vw, 48px);
+    --values-bottom-space: calc(var(--values-photo-offset-y) + var(--space-4));
+  }
+
   .home-values__card {
     --values-photo-offset-x: clamp(20px, 1.55vw, 30px);
   }
@@ -169,46 +196,31 @@
   }
 
   .home-values__media {
-    --values-photo-offset-y: clamp(32px, 2.5vw, 48px);
     translate: var(--values-photo-offset-x)
       calc(var(--values-photo-offset-y) * var(--values-photo-side, 1));
   }
 }
 
-.home-mission__thumbnail,
 .home-values__media {
   position: relative;
   overflow: hidden;
   background: var(--color-mist);
 }
 
-.home-mission__thumbnail img,
 .home-values__media img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.home-values__media img {
   object-position: 52% 54%;
 }
 
-.home-mission__thumbnail img {
-  object-position: right center;
-}
-
-.home-mission__thumbnail .home-photo-zoom {
-  transform-origin: right center;
-}
-
-.home-mission__thumbnail[data-parallax-active] img {
-  top: -16px;
-  height: calc(100% + 32px);
-}
-
 @media (max-width: 767px) {
+  .home-mission {
+    --mission-corner-height: clamp(48px, 10svh, 80px);
+  }
+
   .home-mission__intro,
   .home-mission__talents {
     grid-template-columns: minmax(0, 1fr);

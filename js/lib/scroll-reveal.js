@@ -45,7 +45,10 @@ export default function createScrollReveal(prefix, options = {}) {
       const rect = element.getBoundingClientRect();
       if (reduced.matches || scrollY < enteredAt || rect.bottom <= 0 || rect.top >= innerHeight)
         finish(element);
-      else element.dataset[stateKey] = 'running';
+      else {
+        options.beforeEnter?.(element, rect);
+        element.dataset[stateKey] = 'running';
+      }
     };
     const image = ['photo', 'cover'].includes(element.dataset[enterKey])
       ? element.querySelector('img') : null;

@@ -1,6 +1,7 @@
 import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 export default function initProjectPhotoParallax(section) {
+  const photoScale = section.classList.contains('projects-section--catalog') ? 1.03 : 1.08;
   const motion = createScrollMotion();
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
   const photos = new Map();
@@ -10,16 +11,15 @@ export default function initProjectPhotoParallax(section) {
   let viewport = window.innerHeight;
 
   function paint(photo, y = scrollY) {
-    const travel = photo.height * .16;
+    const travel = Math.max(0, photo.height * (photoScale - 1) / 2 - 1);
     if (motion.set(photo.image, { transform: [
-      `translate3d(0,${-travel}px,0) scale(1.34)`, `translate3d(0,${travel}px,0) scale(1.34)`,
+      `translate3d(0,${-travel}px,0) scale(${photoScale})`, `translate3d(0,${travel}px,0) scale(${photoScale})`,
     ] }, photo.top - viewport, photo.top + photo.height)) return;
     const progress = Math.max(0, Math.min(
       1, (viewport - photo.top + y) / (viewport + photo.height),
     ));
-    // Тот же внутренний ход и запас изображения, что в company-figures.
-    const offset = (progress - 0.5) * photo.height * 0.32;
-    photo.image.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0) scale(1.34)`;
+    const offset = (2 * progress - 1) * travel;
+    photo.image.style.transform = `translate3d(0, ${offset.toFixed(2)}px, 0) scale(${photoScale})`;
   }
 
   function update(timestamp) {

@@ -15,6 +15,10 @@ html.site--restoring-scroll:not(.site--preloading) {
   opacity: 0;
 }
 
+html.site--restoring-scroll :is(.header, .dock) {
+  transition: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

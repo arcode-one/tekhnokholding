@@ -8,8 +8,8 @@
   right: var(--pad);
   z-index: 30;
 
-  --burger: 48px;
-  --dock-height: 64px;
+  --dock-height: 80px;
+  --dock-gap: clamp(var(--space-2), calc(8px + (100vw - 1100px) / 8), var(--space-8));
 
   height: var(--dock-height);
   left: var(--pad);
@@ -31,9 +31,12 @@ html.site--scrolled .dock {
 }
 
 .dock__burger {
-  width: var(--burger);
-  height: var(--burger);
-  margin-right: 8px;
+  width: var(--dock-height);
+  height: var(--dock-height);
+}
+
+.dock__burger:focus-visible {
+  outline-offset: -5px;
 }
 
 .dock__burger svg {
@@ -49,11 +52,11 @@ html.site--scrolled .dock {
   inset: 0 var(--dock-height) 0 0;
   min-width: 0;
   height: var(--dock-height);
-  padding: 0 8px 0 28px;
+  padding: 0 8px 0 clamp(16px, var(--dock-gap), 28px);
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: var(--space-8);
+  gap: var(--dock-gap);
 }
 
 .dock__logo {
@@ -61,13 +64,13 @@ html.site--scrolled .dock {
 }
 
 .dock__logo img {
-  height: 40px;
+  height: 60px;
   width: auto;
 }
 
 .dock__nav {
   display: flex;
-  gap: 28px;
+  gap: clamp(12px, var(--dock-gap), 28px);
   font-size: 18px;
   font-weight: 500;
   white-space: nowrap;

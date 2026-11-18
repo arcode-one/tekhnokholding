@@ -31,9 +31,14 @@ html.site--scrolled .header {
   gap: var(--space-8);
 }
 
+.header__logo {
+  min-width: 0;
+}
+
 .header__logo img {
-  height: 56px;
-  width: auto;
+  width: calc(84px * 1292 / 430);
+  max-width: 100%;
+  height: auto;
 }
 
 .header__right {

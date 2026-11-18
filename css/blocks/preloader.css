@@ -7,7 +7,7 @@
   justify-content: center;
   background: #000;
   isolation: isolate;
-  transition: transform 0.95s cubic-bezier(0.75, 0, 0.2, 1);
+  transition: transform 650ms cubic-bezier(0.75, 0, 0.2, 1);
 }
 
 html.site--preloading .preloader {
@@ -20,14 +20,14 @@ html.site--preloading .preloader {
 
 .preloader__lockup {
   --h: 150px;
-  --pl-contour: 800ms;
-  --pl-detail: 400ms;
-  --pl-fill-at: calc(var(--pl-contour) + var(--pl-detail) + 120ms);
-  --pl-fill: 600ms;
-  --pl-gray-at: calc(var(--pl-fill-at) + var(--pl-fill) + 100ms);
-  --pl-gray: 450ms;
+  --pl-contour: 600ms;
+  --pl-detail: 280ms;
+  --pl-fill-at: calc(var(--pl-contour) + var(--pl-detail) + 80ms);
+  --pl-fill: 420ms;
+  --pl-gray-at: calc(var(--pl-fill-at) + var(--pl-fill) + 70ms);
+  --pl-gray: 320ms;
   --pl-cube-at: var(--pl-gray-at);
-  --pl-wordmark-at: calc(var(--pl-cube-at) + 300ms);
+  --pl-wordmark-at: calc(var(--pl-cube-at) + 200ms);
 
   position: relative;
   height: var(--h);
@@ -36,11 +36,11 @@ html.site--preloading .preloader {
   /* Пока надписи нет, по центру экрана стоит сам знак (его центр 244.5 из 1292).
      Вместе с раскрытием надписи блок съезжает влево и встаёт по центру целиком. */
   translate: calc((646 - 244.5) / 1292 * 100%) 0;
-  animation: pl-center 800ms calc(var(--pl-wordmark-at) - 100ms) cubic-bezier(0.65, 0, 0.35, 1)
+  animation: pl-center 550ms calc(var(--pl-wordmark-at) - 70ms) cubic-bezier(0.65, 0, 0.35, 1)
     forwards;
   transition:
-    opacity 0.45s cubic-bezier(0.5, 0, 0.75, 0),
-    transform 0.45s cubic-bezier(0.5, 0, 0.75, 0);
+    opacity 250ms cubic-bezier(0.5, 0, 0.75, 0),
+    transform 250ms cubic-bezier(0.5, 0, 0.75, 0);
 }
 
 .preloader__lockup.preloader__lockup--out {
@@ -105,7 +105,7 @@ html.site--preloading .preloader {
 
 .preloader__cube {
   fill: var(--light);
-  animation-duration: 450ms;
+  animation-duration: var(--pl-gray);
   animation-delay: var(--pl-cube-at);
 }
 
@@ -117,7 +117,7 @@ html.site--preloading .preloader {
 
   /* Знак остаётся тем же SVG: раскрываем только надпись, без подмены и скачка геометрии. */
   clip-path: inset(0 100% 0 calc(489 / 1292 * 100%));
-  animation: pl-reveal 650ms var(--pl-wordmark-at) var(--ease-out) forwards;
+  animation: pl-reveal 450ms var(--pl-wordmark-at) var(--ease-out) forwards;
 }
 
 /* Start together after the SVG wordmark has decoded and the page has painted.

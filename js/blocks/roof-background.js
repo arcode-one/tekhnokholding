@@ -10,8 +10,6 @@ export default function init(scene) {
     right: scene.querySelector('[data-hero-split="right"]'),
     divider: scene.querySelector('[data-hero-split="divider"]'),
     ring: scene.querySelector('[data-hero-split="ring"]'),
-    buttonLeft: scene.querySelector('[data-hero-split="button-left"]'),
-    buttonRight: scene.querySelector('[data-hero-split="button-right"]'),
   };
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const touch = window.matchMedia('(hover: none) and (pointer: coarse)');
@@ -49,12 +47,8 @@ export default function init(scene) {
     const left = `${Math.round(leftShift * p)}px`;
     const right = `${Math.round(rightShift * p)}px`;
     const property = useTransform ? 'transform' : 'left';
-    [split.left, split.buttonLeft].forEach((el) => {
-      if (el) el.style[property] = useTransform ? `translate3d(${left},0,0)` : left;
-    });
-    [split.right, split.buttonRight].forEach((el) => {
-      if (el) el.style[property] = useTransform ? `translate3d(${right},0,0)` : right;
-    });
+    if (split.left) split.left.style[property] = useTransform ? `translate3d(${left},0,0)` : left;
+    if (split.right) split.right.style[property] = useTransform ? `translate3d(${right},0,0)` : right;
     if (oneSpark)
       oneSpark.style.transform = `translate3d(0,${(-geometry.oneSparkTravel * progress).toFixed(2)}px,0)`;
     if (zeroSpark && zeroOrbit.length) {
@@ -135,26 +129,18 @@ export default function init(scene) {
       const box = copy.getBoundingClientRect();
       const left = split.left.getBoundingClientRect();
       const right = split.right.getBoundingClientRect();
-      const buttonLeft = split.buttonLeft?.getBoundingClientRect();
-      const buttonRight = split.buttonRight?.getBoundingClientRect();
       const mobileInset = window.innerWidth <= 767 ? Math.min(8, box.left / 2) : 0;
-      geometry.leftShift = Math.min(
-        0,
-        box.left - mobileInset - Math.min(left.left, buttonLeft?.left ?? left.left),
-      );
-      geometry.rightShift = Math.max(
-        0,
-        box.right + mobileInset - Math.max(right.right, buttonRight?.right ?? right.right),
-      );
+      geometry.leftShift = Math.min(0, box.left - mobileInset - left.left);
+      geometry.rightShift = Math.max(0, box.right + mobileInset - right.right);
     }
     if (motion.enabled) {
       const { top, viewport, imageHeight, leftShift, rightShift } = geometry;
       const end = top + viewport * SPLIT_DISTANCE;
       motion.set(visual, { transform: ['translate3d(0,0,0)', `translate3d(0,${imageHeight * .3}px,0)`] }, top, top + imageHeight);
-      [split.left, split.buttonLeft].forEach((el) => motion.set(el,
-        sampleMotion((p) => ({ transform: `translate3d(${leftShift * sineInOut(p)}px,0,0)` })), top, end));
-      [split.right, split.buttonRight].forEach((el) => motion.set(el,
-        sampleMotion((p) => ({ transform: `translate3d(${rightShift * sineInOut(p)}px,0,0)` })), top, end));
+      motion.set(split.left,
+        sampleMotion((p) => ({ transform: `translate3d(${leftShift * sineInOut(p)}px,0,0)` })), top, end);
+      motion.set(split.right,
+        sampleMotion((p) => ({ transform: `translate3d(${rightShift * sineInOut(p)}px,0,0)` })), top, end);
       motion.set(split.divider, sampleMotion((p) => ({ opacity: 1 - sineInOut(p) })), top, end);
       motion.set(split.ring, sampleMotion((p) => ({
         transform: `scale(${1 + sineInOut(p) * .35},${1 + sineInOut(p) * .1})`,

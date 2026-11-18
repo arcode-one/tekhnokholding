@@ -8,7 +8,7 @@
   --brand-logo-yellow: #fec72a;
   --logo-dark: #444344;
   --pad: 56px;
-  --header-h: 88px;
+  --header-h: 112px;
   --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
   --ease-in-out: cubic-bezier(0.65, 0, 0.25, 1);
   --ease-header: cubic-bezier(0.76, 0, 0.24, 1);
@@ -38,6 +38,6 @@
 @media (max-width: 767px) {
   :root {
     --pad: 16px;
-    --header-h: 68px;
+    --header-h: 84px;
   }
 }

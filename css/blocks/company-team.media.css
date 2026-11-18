@@ -30,14 +30,9 @@
   }
 
   .site--js .company-team__people {
-    position: relative;
     display: grid;
+    grid-template-rows: auto 1fr;
     align-self: stretch;
-  }
-
-  .company-team__people-controls {
-    position: absolute;
-    inset: auto 0 100% auto;
   }
 
   .company-team__people {
@@ -55,18 +50,13 @@
   .company-team__features { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .company-team__feature-label { padding: 30px 18px 12px; font-size: 19px; }
 
-  .site--js .company-team__people-viewport { position: relative; }
-
-  .site--js .company-team__people-page {
-    grid-template-rows: none;
-    transform: translateY(calc(clamp(-1, var(--team-page-offset, 0), 1) * 16px));
+  .company-team__people[data-enhanced] .company-team__people-viewport {
+    block-size: min(68svh, 560px);
   }
 
-  .site--js .company-team__people-page[inert],
-  .site--js .company-team__people:not([data-enhanced]) .company-team__people-page:not(:first-child) {
-    position: absolute;
-    inset: 0 0 auto;
-    visibility: hidden;
+  .company-team__people[data-enhanced] .company-team__people-page {
+    grid-template-rows: none;
+    grid-auto-rows: max-content;
   }
 
   .company-team__person-photo {

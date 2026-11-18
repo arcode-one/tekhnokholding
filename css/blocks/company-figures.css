@@ -6,7 +6,7 @@
   isolation: isolate;
   padding: var(--home-section-space) var(--pad);
   overflow: clip;
-  background: var(--color-white);
+  background: var(--color-reading-bg);
   color: var(--figures-ink);
 }
 
@@ -70,9 +70,12 @@
 }
 
 .company-figures__item--cities {
+  --cities-top-space: clamp(12px, 1.25vw, 24px);
+
   left: 32.3%;
   top: 82%;
   align-items: flex-end;
+  padding-block-start: var(--cities-top-space);
 }
 
 .company-figures__item dt {
@@ -114,6 +117,10 @@
 .company-figures__num {
   display: inline-block;
   text-align: right;
+}
+
+.company-figures__item [data-figures-pending] {
+  visibility: hidden;
 }
 
 .company-figures__photo {
@@ -164,7 +171,8 @@
   .company-figures__item dd { font-size: clamp(56px, 8.92cqw, 160px); }
   .company-figures__item--area dd { font-size: clamp(48px, 9.35cqw, 168px); }
 
-  .company-figures__item--cities { inset-block: auto 0; }
+  /* Сохраняем верхнюю границу, по которой параллакс ограничивает ход фото. */
+  .company-figures__item--cities { inset-block: auto calc(-1 * var(--cities-top-space)); }
   .company-figures__photo--office { top: 0; }
 }
 

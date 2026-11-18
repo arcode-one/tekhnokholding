@@ -9,14 +9,15 @@
     </style>
     <script>
       document.documentElement.classList.add('site--js');
-      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const navigationType = performance.getEntriesByType('navigation')[0]?.type;
+      if (navigationType === 'reload' && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
         document.documentElement.classList.add('site--preloading');
         document.documentElement.classList.remove('site--loaded');
         window.sitePreloaderTimeout = setTimeout(() => {
           document.querySelector('.preloader')?.remove();
           document.documentElement.classList.remove('site--preloading');
           document.documentElement.classList.add('site--loaded');
-        }, 8000);
+        }, 5000);
       }
     </script>
     <script src="js/lib/reload-position.js"></script>
@@ -124,7 +125,7 @@
             <a href="services.html">Услуги</a>
             <a href="objects.html">Объекты</a>
             <a href="#contacts">Контакты</a>
-            <a href="account.html">Личный кабинет</a>
+            <a href="customer-service.html">Сервис для заказчика</a>
           </nav>
           <span class="header__divider" aria-hidden="true"></span>
           <div class="header__contacts">
@@ -195,7 +196,7 @@
           <a href="services.html">Услуги</a>
           <a href="objects.html">Объекты</a>
           <a href="#contacts">Контакты</a>
-          <a href="account.html">Личный кабинет</a>
+          <a href="customer-service.html">Сервис для заказчика</a>
         </nav>
         <span class="dock__divider" aria-hidden="true"></span>
         <div class="dock__contacts">
@@ -239,7 +240,7 @@
         <a href="services.html">Услуги</a>
         <a href="objects.html">Объекты</a>
         <a href="#contacts">Контакты</a>
-        <a href="account.html">Личный кабинет</a>
+        <a href="customer-service.html">Сервис для заказчика</a>
       </nav>
       <div class="menu__contacts">
         <a href="tel:+73512253040">8 (351) 225-30-40</a>
@@ -344,11 +345,6 @@
                 <span class="hero-gold__caption">лет<br />на рынке</span>
               </p>
             </div>
-            <div class="hero__row">
-              <a class="pill" href="quality.html" data-hero-split="button-right"
-                ><span class="pill__label">Служба качества</span></a
-              >
-            </div>
           </div>
 
           <div class="wordmark" aria-hidden="true" data-ui="wordmark">
@@ -413,16 +409,114 @@
           </div>
         </section>
 
+        <section
+          class="company-figures"
+          id="figures"
+          aria-label="Технохолдинг в цифрах"
+          data-ui="company-figures"
+        >
+          <div class="company-figures__grid" data-ui="company-figures__grid">
+            <dl
+              class="company-figures__item company-figures__item--area"
+              data-ui="company-figures__item"
+            >
+              <dt><span>м² кровель</span></dt>
+              <dd data-figures-reveal>
+                <span class="company-figures__value"
+                  >2 000 000<span class="company-figures__accent">+</span></span
+                >
+              </dd>
+            </dl>
+            <dl
+              class="company-figures__item company-figures__item--projects"
+              data-ui="company-figures__item"
+            >
+              <dt><span>объектов</span></dt>
+              <dd data-figures-reveal>
+                <span class="company-figures__value"
+                  >1000<span class="company-figures__accent">+</span></span
+                >
+              </dd>
+            </dl>
+            <figure
+              class="company-figures__photo company-figures__photo--roof"
+              data-figures-image=""
+            >
+              <div class="company-figures__photo-inner">
+                <div class="home-photo-zoom">
+                  <img
+                    src="images/figures-roof-warehouse.webp"
+                    alt="Вид с высоты на плоскую кровлю здания с синими полосами на фасаде"
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                    decoding="async"
+                    srcset="
+                      images/figures-roof-warehouse-480w.webp  480w,
+                      images/figures-roof-warehouse-960w.webp  960w,
+                      images/figures-roof-warehouse.webp      1448w
+                    "
+                    sizes="(max-width: 767px) min(58vw, 280px), 36vw"
+                  />
+                </div>
+              </div>
+            </figure>
+            <figure
+              class="company-figures__photo company-figures__photo--office"
+              data-figures-image=""
+            >
+              <div class="company-figures__photo-inner">
+                <div class="home-photo-zoom home-photo-zoom--overlay">
+                  <img
+                    src="images/figures-office-v2.webp"
+                    alt="Угол современного коммерческого здания со стеклянным фасадом"
+                    width="1122"
+                    height="1402"
+                    loading="lazy"
+                    decoding="async"
+                    srcset="
+                      images/figures-office-v2-480w.webp  480w,
+                      images/figures-office-v2-960w.webp  960w,
+                      images/figures-office-v2.webp      1122w
+                    "
+                    sizes="(max-width: 767px) 100vw, 100vw"
+                  />
+                </div>
+              </div>
+            </figure>
+            <dl
+              class="company-figures__item company-figures__item--clients"
+              data-ui="company-figures__item"
+            >
+              <dt>
+                <span>постоянных<br />клиентов</span>
+              </dt>
+              <dd data-figures-reveal>
+                <span class="company-figures__value"
+                  >90<span class="company-figures__unit">%</span></span
+                >
+              </dd>
+            </dl>
+            <dl
+              class="company-figures__item company-figures__item--cities"
+              data-ui="company-figures__item"
+            >
+              <dt><span>городов</span></dt>
+              <dd data-figures-reveal><span class="company-figures__value">48</span></dd>
+            </dl>
+          </div>
+        </section>
+
         <section class="home-mission" id="mission" aria-labelledby="home-mission-title">
           <div class="home-mission__intro">
             <div class="home-mission__aside">
               <h2 id="home-mission-title">Миссия<br />компании</h2>
-              <div class="home-mission__thumbnail" data-architecture-parallax data-parallax-travel="16">
-                <div class="home-photo-zoom">
+              <div class="home-mission__thumbnail" data-architecture-parallax data-parallax-travel="24">
+                <div class="home-mission__photo" data-parallax-frame>
                   <img
-                    src="images/mission/mission-parkovy-43-front-640w.webp"
+                    src="images/mission/mission-flat-roof-640w.webp"
                     width="640"
-                    height="800"
+                    height="640"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -460,7 +554,7 @@
               </a>
             </div>
             <div class="home-values__media" data-architecture-parallax="figures">
-              <div class="home-photo-zoom">
+              <div class="home-photo-zoom home-photo-zoom--overlay">
                 <img
                   src="images/mission/values-parkovy-roof-960w.webp"
                   srcset="images/mission/values-parkovy-roof-480w.webp 480w, images/mission/values-parkovy-roof-960w.webp 960w"
@@ -473,102 +567,6 @@
                 />
               </div>
             </div>
-          </div>
-        </section>
-
-        <section
-          class="company-figures"
-          id="figures"
-          aria-label="Технохолдинг в цифрах"
-          data-ui="company-figures"
-        >
-          <div class="company-figures__grid" data-ui="company-figures__grid">
-            <dl
-              class="company-figures__item company-figures__item--area"
-              data-ui="company-figures__item"
-            >
-              <dt><span>м² кровель</span></dt>
-              <dd data-figures-reveal="200">
-                <span class="company-figures__value"
-                  >2 000 000<span class="company-figures__accent">+</span></span
-                >
-              </dd>
-            </dl>
-            <dl
-              class="company-figures__item company-figures__item--projects"
-              data-ui="company-figures__item"
-            >
-              <dt><span>объектов</span></dt>
-              <dd data-figures-reveal="60">
-                <span class="company-figures__value"
-                  >1000<span class="company-figures__accent">+</span></span
-                >
-              </dd>
-            </dl>
-            <figure
-              class="company-figures__photo company-figures__photo--roof"
-              data-figures-image=""
-            >
-              <div class="company-figures__photo-inner">
-                <img
-                  src="images/figures-roof-metran.webp"
-                  alt="Вид с высоты на кровлю и синий фасад здания «Метран»"
-                  width="1486"
-                  height="940"
-                  loading="lazy"
-                  decoding="async"
-                  srcset="
-                    images/figures-roof-metran-480w.webp  480w,
-                    images/figures-roof-metran-960w.webp  960w,
-                    images/figures-roof-metran.webp      1486w
-                  "
-                  sizes="(max-width: 767px) min(58vw, 280px), 36vw"
-                />
-              </div>
-            </figure>
-            <figure
-              class="company-figures__photo company-figures__photo--office"
-              data-figures-image=""
-            >
-              <div class="company-figures__photo-inner">
-                <div class="home-photo-zoom">
-                  <img
-                    src="images/figures-office-v2.webp"
-                    alt="Угол современного коммерческого здания со стеклянным фасадом"
-                    width="1122"
-                    height="1402"
-                    loading="lazy"
-                    decoding="async"
-                    srcset="
-                      images/figures-office-v2-480w.webp  480w,
-                      images/figures-office-v2-960w.webp  960w,
-                      images/figures-office-v2.webp      1122w
-                    "
-                    sizes="(max-width: 767px) 100vw, 100vw"
-                  />
-                </div>
-              </div>
-            </figure>
-            <dl
-              class="company-figures__item company-figures__item--clients"
-              data-ui="company-figures__item"
-            >
-              <dt>
-                <span>постоянных<br />клиентов</span>
-              </dt>
-              <dd data-figures-reveal="60">
-                <span class="company-figures__value"
-                  >90<span class="company-figures__unit">%</span></span
-                >
-              </dd>
-            </dl>
-            <dl
-              class="company-figures__item company-figures__item--cities"
-              data-ui="company-figures__item"
-            >
-              <dt><span>городов</span></dt>
-              <dd data-figures-reveal="120"><span class="company-figures__value">48</span></dd>
-            </dl>
           </div>
         </section>
       </div>
@@ -850,13 +848,13 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/terema-43-roof-ventilation-960w.webp"
+                        src="images/projects/f5e4bdc47d57134b3fba-960w.webp"
                         alt="Многоквартирный жилой дом № 43, пос. Терема."
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="431"
-                        srcset="images/projects/terema-43-roof-ventilation-480w.webp 480w, images/projects/terema-43-roof-ventilation-960w.webp 960w"
+                        height="540"
+                        srcset="images/projects/f5e4bdc47d57134b3fba-480w.webp 480w, images/projects/f5e4bdc47d57134b3fba-960w.webp 960w"
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
                     </div>
@@ -887,15 +885,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-1bfa84981c36ccdbfd9f.webp"
+                        src="images/projects/ea3a7e646c505b788f58-960w.webp"
                         alt="«Административно-складское здание», г. Челябинск, ул. Линейная"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="1280"
+                        height="720"
                         srcset="
-                          images/projects/thumb-1bfa84981c36ccdbfd9f-480w.webp 480w,
-                          images/projects/thumb-1bfa84981c36ccdbfd9f.webp      960w
+                          images/projects/ea3a7e646c505b788f58-480w.webp 480w,
+                          images/projects/ea3a7e646c505b788f58-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -964,15 +962,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/obj-04-admin-snezhinsk.webp"
+                        src="images/projects/admin-snezhinsk-roof-parapet-960w.webp"
                         alt="Административно-бытовой комплекс"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="1113"
+                        height="1158"
                         srcset="
-                          images/projects/thumb-obj-04-admin-snezhinsk-480w.webp 480w,
-                          images/projects/obj-04-admin-snezhinsk.webp      960w
+                          images/projects/admin-snezhinsk-roof-parapet-480w.webp 480w,
+                          images/projects/admin-snezhinsk-roof-parapet-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -1004,16 +1002,16 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/obj-06-kindergarten-220.webp"
+                        src="images/projects/kindergarten-220-winter-panorama-960w.webp"
                         alt="Детский сад на 220 мест, клубный поселок Твоя Привилегия"
                         loading="lazy"
                         decoding="async"
-                        width="1224"
-                        height="742"
+                        width="960"
+                        height="432"
                         srcset="
-                          images/projects/thumb-obj-06-kindergarten-220-480w.webp  480w,
-                          images/projects/thumb-obj-06-kindergarten-220-960w.webp  960w,
-                          images/projects/obj-06-kindergarten-220.webp      1224w
+                          images/projects/kindergarten-220-winter-panorama-480w.webp 480w,
+                          images/projects/kindergarten-220-winter-panorama-960w.webp 960w,
+                          images/projects/kindergarten-220-winter-panorama-1600w.webp 1600w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -1123,13 +1121,13 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/filtration-roof-overview-960w.webp"
+                        src="images/projects/filtration-roof-workers-960w.webp"
                         alt="Корпус фильтрации"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="667"
-                        srcset="images/projects/filtration-roof-overview-480w.webp 480w, images/projects/filtration-roof-overview-960w.webp 960w"
+                        height="578"
+                        srcset="images/projects/filtration-roof-workers-480w.webp 480w, images/projects/filtration-roof-workers-960w.webp 960w"
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
                     </div>
@@ -1312,13 +1310,13 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/rectification-line-roof-960w.webp"
+                        src="images/projects/5f4ba17f0410701997a6-960w.webp"
                         alt="Пристрой линии ректификации"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="513"
-                        srcset="images/projects/rectification-line-roof-480w.webp 480w, images/projects/rectification-line-roof-960w.webp 960w"
+                        height="686"
+                        srcset="images/projects/5f4ba17f0410701997a6-480w.webp 480w, images/projects/5f4ba17f0410701997a6-960w.webp 960w"
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
                     </div>
@@ -1349,13 +1347,13 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/reduktorny-zavod-roof-overview-960w.webp"
+                        src="images/projects/reduktorny-zavod-roof-aerial-960w.webp"
                         alt="Редукторный завод"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="501"
-                        srcset="images/projects/reduktorny-zavod-roof-overview-480w.webp 480w, images/projects/reduktorny-zavod-roof-overview-960w.webp 960w"
+                        height="499"
+                        srcset="images/projects/reduktorny-zavod-roof-aerial-480w.webp 480w, images/projects/reduktorny-zavod-roof-aerial-960w.webp 960w"
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
                     </div>
@@ -1463,13 +1461,13 @@
                     href="objects/obj-18.html"
                     target="_blank"
                     rel="noopener"
-                    data-type="Коммерческие"
+                    data-type="Производственные"
                   >
                     <div class="project-card__photo">
                       <img
                         class=""
                         src="images/projects/roshino-logistics-roof-overview-960w.webp"
-                        alt="Логистический центр, 1-й этап строительства. Устройство кровли."
+                        alt="Логистический центр АО «Макфа»"
                         loading="lazy"
                         decoding="async"
                         width="960"
@@ -1480,7 +1478,7 @@
                     </div>
                     <div class="project-card__info">
                       <div class="project-card__heading">
-                        <h3>Логистический центр, 1-й этап</h3>
+                        <h3>Логистический центр АО «Макфа»</h3>
                         <p class="project-card__meta">
                           <span class="project-card__location">Рощино</span>
                           <span class="project-card__period">2021</span>
@@ -1542,13 +1540,13 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/cargo-complex-winter-tower-roof-960w.webp"
+                        src="images/projects/cargo-complex-winter-city-roof-960w.webp"
                         alt="ООО ГРУЗОВОЙ КОМПЛЕКС"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
-                        srcset="images/projects/cargo-complex-winter-tower-roof-480w.webp 480w, images/projects/cargo-complex-winter-tower-roof-960w.webp 960w"
+                        srcset="images/projects/cargo-complex-winter-city-roof-480w.webp 480w, images/projects/cargo-complex-winter-city-roof-960w.webp 960w"
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
                     </div>
@@ -1620,15 +1618,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-1e5c7d73393512d91828.webp"
+                        src="images/projects/484bef877b190317d9f5-960w.webp"
                         alt="Ремонт кровли 17 и 18 комплекса, завода Уралнефтемаш"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-1e5c7d73393512d91828-480w.webp 480w,
-                          images/projects/thumb-1e5c7d73393512d91828.webp      960w
+                          images/projects/484bef877b190317d9f5-480w.webp 480w,
+                          images/projects/484bef877b190317d9f5-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -1862,15 +1860,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-9485cd373153d88ac8ce.webp"
+                        src="images/projects/51324a8b8749048ad9f7-960w.webp"
                         alt="Реконструкция склада продовольственных товаров Мавт"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="540"
+                        height="719"
                         srcset="
-                          images/projects/thumb-9485cd373153d88ac8ce-480w.webp 480w,
-                          images/projects/thumb-9485cd373153d88ac8ce.webp      960w
+                          images/projects/51324a8b8749048ad9f7-480w.webp 480w,
+                          images/projects/51324a8b8749048ad9f7-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -1982,15 +1980,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-2d1fc7f6df58664409d2.webp"
+                        src="images/projects/3b54cb642c0c218367cb-960w.webp"
                         alt="Кровля Склада Перлита г. Коркино"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="477"
+                        height="720"
                         srcset="
-                          images/projects/thumb-2d1fc7f6df58664409d2-480w.webp 480w,
-                          images/projects/thumb-2d1fc7f6df58664409d2.webp      960w
+                          images/projects/3b54cb642c0c218367cb-480w.webp 480w,
+                          images/projects/3b54cb642c0c218367cb-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -2182,15 +2180,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-ac84d7450c49b6240dfb.webp"
+                        src="images/projects/22247289c2679a76acaa-960w.webp"
                         alt="Автоцентр KIA на Копейском шоссе"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-ac84d7450c49b6240dfb-480w.webp 480w,
-                          images/projects/thumb-ac84d7450c49b6240dfb.webp      960w
+                          images/projects/22247289c2679a76acaa-480w.webp 480w,
+                          images/projects/22247289c2679a76acaa-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -2765,15 +2763,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-96b7fe70fe861f71845f.webp"
+                        src="images/projects/2a0082fa8abb2fb30e9a-960w.webp"
                         alt="Жилой дом по ул.Пирогова г. Челябинск"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="720"
+                        height="717"
                         srcset="
-                          images/projects/thumb-96b7fe70fe861f71845f-480w.webp 480w,
-                          images/projects/thumb-96b7fe70fe861f71845f.webp      960w
+                          images/projects/2a0082fa8abb2fb30e9a-480w.webp 480w,
+                          images/projects/2a0082fa8abb2fb30e9a-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -3424,15 +3422,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-fc918d34aa358f7c33ed.webp"
+                        src="images/projects/b26d11be4c9243153f50-960w.webp"
                         alt="Кровля коттеджа п. Смолино"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="644"
+                        height="720"
                         srcset="
-                          images/projects/thumb-fc918d34aa358f7c33ed-480w.webp 480w,
-                          images/projects/thumb-fc918d34aa358f7c33ed.webp      960w
+                          images/projects/b26d11be4c9243153f50-480w.webp 480w,
+                          images/projects/b26d11be4c9243153f50-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -3463,15 +3461,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-8f151c2c0c7fef433ed6.webp"
+                        src="images/projects/85eeca32e43755c4a6c3-960w.webp"
                         alt='Кровля молочного комбината "Шадринский"'
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-8f151c2c0c7fef433ed6-480w.webp 480w,
-                          images/projects/thumb-8f151c2c0c7fef433ed6.webp      960w
+                          images/projects/85eeca32e43755c4a6c3-480w.webp 480w,
+                          images/projects/85eeca32e43755c4a6c3-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -3580,15 +3578,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-cb9069fdf46414df3ed9.webp"
+                        src="images/projects/f2dc617178892ff10a43-960w.webp"
                         alt="Кровля производственного цеха ООО «Факториал» по пр.Ленина"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-cb9069fdf46414df3ed9-480w.webp 480w,
-                          images/projects/thumb-cb9069fdf46414df3ed9.webp      960w
+                          images/projects/f2dc617178892ff10a43-480w.webp 480w,
+                          images/projects/f2dc617178892ff10a43-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -3853,15 +3851,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-29b9187acd2023a976ed.webp"
+                        src="images/projects/ebebed356edfbd7438c3-960w.webp"
                         alt="Кровля частного жилого дома в п. Газовик Сосновского р-на"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-29b9187acd2023a976ed-480w.webp 480w,
-                          images/projects/thumb-29b9187acd2023a976ed.webp      960w
+                          images/projects/ebebed356edfbd7438c3-480w.webp 480w,
+                          images/projects/ebebed356edfbd7438c3-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -3970,15 +3968,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-016d4a7cd8f1a10cb3bf.webp"
+                        src="images/projects/039006af5ff013b913df.webp"
                         alt='Монтаж панелей стенового ограждения корпус №97 ОАО "Златмаш"'
                         loading="lazy"
                         decoding="async"
-                        width="960"
-                        height="720"
+                        width="768"
+                        height="1024"
                         srcset="
-                          images/projects/thumb-016d4a7cd8f1a10cb3bf-480w.webp 480w,
-                          images/projects/thumb-016d4a7cd8f1a10cb3bf.webp      960w
+                          images/projects/039006af5ff013b913df-480w.webp 480w,
+                          images/projects/039006af5ff013b913df.webp 768w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4165,15 +4163,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-719796bd4c5eaaa3ee43.webp"
+                        src="images/projects/c0028da2e3f2e7f9bdca.webp"
                         alt="Офисное здание и склад компании ПЕПЛОС"
                         loading="lazy"
                         decoding="async"
-                        width="960"
-                        height="663"
+                        width="925"
+                        height="695"
                         srcset="
-                          images/projects/thumb-719796bd4c5eaaa3ee43-480w.webp 480w,
-                          images/projects/thumb-719796bd4c5eaaa3ee43.webp      960w
+                          images/projects/c0028da2e3f2e7f9bdca-480w.webp 480w,
+                          images/projects/c0028da2e3f2e7f9bdca.webp 925w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4282,15 +4280,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-7700953b1bc04f408134.webp"
+                        src="images/projects/d8a8bfb8ce0796b8d749.webp"
                         alt="Производственный комплекс ООО «Егоза»"
                         loading="lazy"
                         decoding="async"
-                        width="762"
-                        height="1024"
+                        width="960"
+                        height="720"
                         srcset="
-                          images/projects/thumb-7700953b1bc04f408134-480w.webp 480w,
-                          images/projects/thumb-7700953b1bc04f408134.webp      762w
+                          images/projects/d8a8bfb8ce0796b8d749-480w.webp 480w,
+                          images/projects/d8a8bfb8ce0796b8d749.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4516,15 +4514,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-64bfa8843ff1d5776c50.webp"
+                        src="images/projects/eb9d4ef30f635c427206-960w.webp"
                         alt='Реконструкция производственного цеха №97 ОАО "Златоустовский машиностроительный завод"'
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-64bfa8843ff1d5776c50-480w.webp 480w,
-                          images/projects/thumb-64bfa8843ff1d5776c50.webp      960w
+                          images/projects/eb9d4ef30f635c427206-480w.webp 480w,
+                          images/projects/eb9d4ef30f635c427206-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4555,15 +4553,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-9062dcd0a41dae504b6e.webp"
+                        src="images/projects/6375c9f874868a42f64a-960w.webp"
                         alt='Реконструкция скатной кровли корпуса №33 ОАО "Агрегат" г. Сим'
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="720"
+                        height="717"
                         srcset="
-                          images/projects/thumb-9062dcd0a41dae504b6e-480w.webp 480w,
-                          images/projects/thumb-9062dcd0a41dae504b6e.webp      960w
+                          images/projects/6375c9f874868a42f64a-480w.webp 480w,
+                          images/projects/6375c9f874868a42f64a-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4633,15 +4631,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-107896ea9ee530200261.webp"
+                        src="images/projects/70db8ef0a378ce2e95ff-960w.webp"
                         alt='Склад заготовок НВК "НИАГАРА"'
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-107896ea9ee530200261-480w.webp 480w,
-                          images/projects/thumb-107896ea9ee530200261.webp      960w
+                          images/projects/70db8ef0a378ce2e95ff-480w.webp 480w,
+                          images/projects/70db8ef0a378ce2e95ff-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4750,15 +4748,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-c2af588392fb2aba1461.webp"
+                        src="images/projects/e5d17d9053d35589f59a-960w.webp"
                         alt="СКЛАД МЕТАЛЛА С АБК ООО «МЕТАЛЛЭКСПОРТПРОМ»"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-c2af588392fb2aba1461-480w.webp 480w,
-                          images/projects/thumb-c2af588392fb2aba1461.webp      960w
+                          images/projects/e5d17d9053d35589f59a-480w.webp 480w,
+                          images/projects/e5d17d9053d35589f59a-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4789,15 +4787,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-53d2e6f5a9257b42fe8d.webp"
+                        src="images/projects/6729a284de54faa610f7-960w.webp"
                         alt="Супермаркет SPAR по ул. Чичерина"
                         loading="lazy"
                         decoding="async"
                         width="960"
                         height="720"
                         srcset="
-                          images/projects/thumb-53d2e6f5a9257b42fe8d-480w.webp 480w,
-                          images/projects/thumb-53d2e6f5a9257b42fe8d.webp      960w
+                          images/projects/6729a284de54faa610f7-480w.webp 480w,
+                          images/projects/6729a284de54faa610f7-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -4867,15 +4865,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-8e68e07266ae740b113a.webp"
+                        src="images/projects/f7f6f1cb5cac26223504-960w.webp"
                         alt="ТК Мебельный по ул. Чичерина"
                         loading="lazy"
                         decoding="async"
-                        width="800"
-                        height="401"
+                        width="960"
+                        height="720"
                         srcset="
-                          images/projects/thumb-8e68e07266ae740b113a-480w.webp 480w,
-                          images/projects/thumb-8e68e07266ae740b113a.webp      800w
+                          images/projects/f7f6f1cb5cac26223504-480w.webp 480w,
+                          images/projects/f7f6f1cb5cac26223504-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -5023,15 +5021,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-99187b2a04ca1ddce8f5.webp"
+                        src="images/projects/2e154efaebc1c29af1fc-960w.webp"
                         alt="Торгово-технический центр по Троицкому тракту"
                         loading="lazy"
                         decoding="async"
                         width="960"
-                        height="722"
+                        height="540"
                         srcset="
-                          images/projects/thumb-99187b2a04ca1ddce8f5-480w.webp 480w,
-                          images/projects/thumb-99187b2a04ca1ddce8f5.webp      960w
+                          images/projects/2e154efaebc1c29af1fc-480w.webp 480w,
+                          images/projects/2e154efaebc1c29af1fc-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -5374,15 +5372,15 @@
                     <div class="project-card__photo">
                       <img
                         class=""
-                        src="images/projects/thumb-db9af3d30e4f86b9a992.webp"
+                        src="images/projects/b26d11be4c9243153f50-960w.webp"
                         alt="Фасад коттеджа п. Смолино"
                         loading="lazy"
                         decoding="async"
-                        width="707"
-                        height="474"
+                        width="960"
+                        height="720"
                         srcset="
-                          images/projects/thumb-db9af3d30e4f86b9a992-480w.webp 480w,
-                          images/projects/thumb-db9af3d30e4f86b9a992.webp      707w
+                          images/projects/b26d11be4c9243153f50-480w.webp 480w,
+                          images/projects/b26d11be4c9243153f50-960w.webp 960w
                         "
                         sizes="(max-width: 767px) 100vw, 100vw"
                       />
@@ -5717,147 +5715,149 @@
         <div class="company-team__people" data-home-team>
           <div class="company-team__people-controls" data-home-team-controls inert>
             <span class="company-team__people-count" data-home-team-count aria-live="polite" aria-atomic="true">1–8 из 19</span>
-            <button class="icon-btn" type="button" data-home-team-step="-1" aria-label="Предыдущие сотрудники" aria-controls="home-team-people" aria-disabled="true">
+            <button class="pill" type="button" data-home-team-step="-1" aria-label="Назад, предыдущие сотрудники" aria-controls="home-team-people" aria-disabled="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="icons/sprite.svg#arrow-up" /></svg>
+              Назад
             </button>
-            <button class="icon-btn" type="button" data-home-team-step="1" aria-label="Следующие сотрудники" aria-controls="home-team-people">
+            <button class="pill" type="button" data-home-team-step="1" aria-label="Дальше, следующие сотрудники" aria-controls="home-team-people">
+              Дальше
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="icons/sprite.svg#arrow-down" /></svg>
             </button>
           </div>
-          <div class="company-team__people-viewport" id="home-team-people" data-home-team-viewport>
+          <div class="company-team__people-viewport" id="home-team-people" role="region" aria-label="Карточки сотрудников" data-home-team-viewport>
             <ul class="company-team__people-page" role="list" data-home-team-page>
               <li class="company-team__person" data-team-quote="quote-belov">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/belov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/belov-320w.webp" alt="" width="320" height="480" style="width: 122.2%; left: -16.0%; top: -19.9%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Александр Белов</h3>
                   <p>Собственник компании<br />Операционное управление</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-ryabov">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/ryabov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/ryabov-320w.webp" alt="" width="320" height="480" style="width: 151.2%; left: -18.9%; top: -5.7%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Андрей Рябов</h3>
                   <p>Собственник компании<br />Стратегия и развитие бизнеса</p>
                 </div>
               </li>
               <li class="company-team__person">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/zenkov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/zenkov-320w.webp" alt="" width="320" height="480" style="width: 153.1%; left: -24.2%; top: -1.1%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Александр Зенков</h3>
                   <p>Операционное управление<br />и координация процессов</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-utkin">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/utkin.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/utkin-320w.webp" alt="" width="320" height="480" style="width: 137.4%; left: -7.5%; top: -0.2%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Александр Уткин</h3>
                   <p>Организация и управление<br />строительными работами</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-shevchenko">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/shevchenko.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/shevchenko-320w.webp" alt="" width="320" height="480" style="width: 157.1%; left: -20.2%; top: -22.9%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Евгений Шевченко</h3>
                   <p>Организация и управление<br />строительными работами</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-klepikova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/klepikova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/klepikova-320w.webp" alt="" width="320" height="480" style="width: 121.0%; left: -0.7%; top: -15.9%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Елена Клепикова</h3>
                   <p>Сметное сопровождение<br />строительства</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-zaripova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/zaripova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/zaripova-320w.webp" alt="" width="320" height="480" style="width: 137.4%; left: -6.7%; top: -29.4%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Мария Зарипова</h3>
                   <p>Инженерно-техническое<br />сопровождение строительства</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-shmidt">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/shmidt.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/shmidt-320w.webp" alt="" width="320" height="480" style="width: 142.3%; left: -23.4%; top: -47.6%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Светлана Шмидт</h3>
                   <p>Координация проектов<br />и организационных процессов</p>
                 </div>
               </li>
             </ul>
-            <ul class="company-team__people-page" role="list" data-home-team-page style="--team-page-offset: 1">
+            <ul class="company-team__people-page" role="list" data-home-team-page>
               <li class="company-team__person" data-team-quote="quote-bronnikova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/bronnikova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/bronnikova-320w.webp" alt="" width="320" height="480" style="width: 130.1%; left: -8.2%; top: -34.0%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Марина Бронникова</h3>
                   <p>Финансовый контроль<br />и бухгалтерская отчётность</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-davydova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/davydova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/davydova-320w.webp" alt="" width="320" height="480" style="width: 137.4%; left: -21.3%; top: -30.2%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Юлия Давыдова</h3>
                   <p>Финансовый учёт<br />и цифровизация процессов</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-neganova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/neganova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/neganova-320w.webp" alt="" width="320" height="480" style="width: 140.7%; left: -16.8%; top: -7.4%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Екатерина Неганова</h3>
                   <p>Бухгалтерский учёт<br />и документооборот</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-kalugina">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/kalugina.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/kalugina-320w.webp" alt="" width="320" height="480" style="width: 135.9%; left: -19.2%; top: -23.9%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Екатерина Калугина</h3>
                   <p>Развитие команды<br />и управление персоналом</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-cherepanova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/cherepanova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/cherepanova-320w.webp" alt="" width="320" height="480" style="width: 137.4%; left: -16.1%; top: -24.2%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Лилия Черепанова</h3>
                   <p>Организация<br />административных процессов</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-isaeva">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/isaeva.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/isaeva-320w.webp" alt="" width="320" height="480" style="width: 137.4%; left: -36.7%; top: -43.1%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Варвара Исаева</h3>
                   <p>Инженерно-техническое<br />сопровождение строительства</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-dolgikh">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/dolgikh.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/dolgikh-320w.webp" alt="" width="320" height="480" style="width: 140.7%; left: -24.7%; top: -27.7%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Ольга Долгих</h3>
                   <p>Инженерно-техническое<br />сопровождение строительства</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-klepinin">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/klepinin.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/klepinin-320w.webp" alt="" width="320" height="480" style="width: 151.2%; left: -24.7%; top: -0.0%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Павел Клепинин</h3>
                   <p>Обеспечение качества<br />и соблюдения технологий</p>
                 </div>
               </li>
             </ul>
-            <ul class="company-team__people-page" role="list" data-home-team-page style="--team-page-offset: 2">
+            <ul class="company-team__people-page" role="list" data-home-team-page>
               <li class="company-team__person" data-team-quote="quote-gayazova">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/gayazova.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/gayazova-320w.webp" alt="" width="320" height="480" style="width: 139.1%; left: -9.5%; top: 0.0%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Наталья Гаязова</h3>
                   <p>Материально-техническое<br />обеспечение объектов</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-maltsev">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/maltsev.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/maltsev-320w.webp" alt="" width="320" height="480" style="width: 145.7%; left: -21.5%; top: -9.7%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Андрей Мальцев</h3>
                   <p>Организация снабжения<br />и транспортной логистики</p>
                 </div>
               </li>
               <li class="company-team__person" data-team-quote="quote-gurov">
-                <span class="company-team__person-photo"><img src="images/company/team/portraits/headshots/gurov.webp" alt="" width="224" height="224" loading="lazy" decoding="async" /></span>
+                <span class="company-team__person-photo"><img src="images/company/team/portraits/gurov-320w.webp" alt="" width="320" height="480" style="width: 139.1%; left: -22.6%; top: -17.7%;" loading="lazy" decoding="async" /></span>
                 <div>
                   <h3>Алексей Гуров</h3>
                   <p>Организация и управление<br />строительными работами</p>
@@ -7323,9 +7323,9 @@
             </nav>
             <a class="site-footer__brand" href="index.html" aria-label="Технохолдинг, на главную"
               ><img
-                src="icons/logo-footer.svg"
+                src="icons/logo-light-compact.svg"
                 alt="Технохолдинг"
-                width="1353"
+                width="1292"
                 height="430"
                 loading="lazy"
             /></a>

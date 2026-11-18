@@ -1,10 +1,10 @@
 export default function init(hero) {
-  const image = hero.querySelector('.values-hero__image, .services-comparison__cover');
-  if (!image) return;
-  const title = hero.querySelector('.values-hero__title, :scope > h2');
+  const image = hero.querySelector('.values-hero__image');
+  const title = hero.querySelector('.values-hero__title');
+  if (!image || !title) return;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const touch = matchMedia('(hover: none) and (pointer: coarse)');
-  const stableTouchHero = hero.matches('.services-hero, .services-comparison__hero, [aria-labelledby="values-title"]');
+  const stableTouchHero = hero.matches('.services-hero, [aria-labelledby="values-title"]');
   // Native touch scrolling is asynchronous; keep these covers stable on phones.
   const motionDisabled = () => reduced.matches || (stableTouchHero && touch.matches);
   let top = 0;

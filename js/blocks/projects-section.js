@@ -4,6 +4,18 @@ export default function init(section) {
   const rail = section.querySelector('[data-projects-rail]');
   const group = section.querySelector('[data-projects-group]');
   const cards = [...group.children];
+  const catalog = section.classList.contains('projects-section--catalog');
+  if (catalog) {
+    const completionYear = (card) => {
+      const period = card.querySelector('.project-card__period')?.textContent ?? '';
+      return Number(period.match(/\b\d{4}\b/g)?.at(-1) ?? 0);
+    };
+    cards.sort((a, b) => completionYear(b) - completionYear(a));
+    cards.forEach((card, index) => {
+      const current = group.children[index];
+      if (current !== card) group.insertBefore(card, current);
+    });
+  }
   const headings = cards.map((card) => card.querySelector('.project-card__heading'));
   const photoFirst = section.classList.contains('projects-section--photo-first');
   const areaValues = cards.map((card) => card.querySelector('.project-card__area dd'));
@@ -15,7 +27,6 @@ export default function init(section) {
   const prev = section.querySelector('[data-projects-prev]');
   const next = section.querySelector('[data-projects-next]');
   const controls = section.querySelector('[data-projects-controls]');
-  const catalog = section.classList.contains('projects-section--catalog');
   const more = section.querySelector('[data-projects-more]');
   const moreWrap = section.querySelector('[data-projects-more-wrap]');
   const pageSize = 8;
@@ -56,10 +67,8 @@ export default function init(section) {
       section.style.removeProperty('--project-heading-height');
       section.style.removeProperty('--project-area-value-height');
       section.style.removeProperty('--project-card-height');
-      if (!photoFirst || !catalog) {
-        const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
-        section.style.setProperty('--project-heading-height', `${headingHeight}px`);
-      }
+      const headingHeight = Math.ceil(Math.max(0, ...headings.map((heading) => heading.getBoundingClientRect().height)));
+      section.style.setProperty('--project-heading-height', `${headingHeight}px`);
       if (!photoFirst) {
         const areaHeight = Math.ceil(Math.max(0, ...areaValues.map((value) => value.getBoundingClientRect().height)));
         section.style.setProperty('--project-area-value-height', `${areaHeight}px`);

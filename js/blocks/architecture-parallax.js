@@ -1,10 +1,12 @@
-import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
+import setFiguresPhotoParallax, { setFiguresPhotoTimeline } from '../lib/figures-photo-parallax.js';
 import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 export default function init(container) {
   const image = container.querySelector('img');
   if (!image) return;
 
+  const photoFrame = container.querySelector('[data-parallax-frame]');
+  const target = photoFrame ?? image;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const narrow = matchMedia('(max-width: 767px)');
   const motion = createScrollMotion();
@@ -25,23 +27,23 @@ export default function init(container) {
       geometry = { top: top + y, height };
     }
     const { top, height } = geometry;
-    if (motion.enabled) {
-      const travel = figuresMotion ? height * .16 * .35 : narrow.matches ? Math.min(desktopTravel, 36) : desktopTravel;
-      const scale = figuresMotion ? ' scale(1.119)' : '';
-      const from = figuresMotion ? -travel : travel;
-      if (motion.set(image, { transform: [`translate3d(0,${from}px,0)${scale}`, `translate3d(0,${-from}px,0)${scale}`] }, top - viewport, top + height)) return;
-    }
     if (figuresMotion) {
-      setFiguresPhotoParallax(image, top - y, height, viewport, 0.35);
+      const strength = 0.35;
+      if (motion.enabled && setFiguresPhotoTimeline(motion, image, top, height, viewport, strength)) return;
+      setFiguresPhotoParallax(image, top - y, height, viewport, strength);
       return;
     }
+
+    const travel = narrow.matches ? Math.min(desktopTravel, 36) : desktopTravel;
+    const from = photoFrame ? -travel : travel;
+    if (motion.enabled && motion.set(target, { transform: [
+      `translate3d(0, ${from}px, 0)`, `translate3d(0, ${-from}px, 0)`,
+    ] }, top - viewport, top + height)) return;
 
     const progress = Math.max(-1, Math.min(1,
       (top - y + height / 2 - viewport / 2) / ((viewport + height) / 2),
     ));
-    // Each frame provides enough CSS overscan for its configured travel.
-    const travel = narrow.matches ? Math.min(desktopTravel, 36) : desktopTravel;
-    image.style.transform = `translate3d(0, ${(progress * travel).toFixed(2)}px, 0)`;
+    target.style.transform = `translate3d(0, ${(progress * from).toFixed(2)}px, 0)`;
   }
 
   function schedule() {
@@ -55,7 +57,7 @@ export default function init(container) {
     motion.clear();
     geometry = undefined;
     container.toggleAttribute('data-parallax-active', !reduced.matches);
-    image.style.removeProperty('transform');
+    target.style.removeProperty('transform');
     if (!reduced.matches) render();
   }
 

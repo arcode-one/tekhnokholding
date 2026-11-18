@@ -1,8 +1,4 @@
 @media (max-width: 1100px) {
-  .hero__row {
-    flex-wrap: wrap;
-  }
-
   .hero__content--leadership {
     column-gap: var(--space-6);
   }
@@ -63,12 +59,6 @@
     font-size: clamp(18px, 5.6vw, 22px);
     line-height: 1.17;
     letter-spacing: -0.01em;
-  }
-
-  .hero__row {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--space-2);
   }
 
   .hero__experience strong {
@@ -141,8 +131,6 @@
     bottom: 8%;
     height: max-content;
     margin-block: auto;
-    gap: 28px;
-
     --one: clamp(108px, 30vw, 160px);
     --gold-gap: 8px;
   }

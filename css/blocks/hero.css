@@ -88,21 +88,6 @@
   letter-spacing: -0.02em;
 }
 
-.hero__row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero__row .pill {
-  --button-bg: transparent;
-  --button-text: var(--color-white);
-  --button-border: var(--color-white);
-  --button-hover-bg: var(--color-white);
-  --button-hover-text: var(--color-ink);
-  --button-hover-border: var(--color-white);
-}
-
 .hero__experience {
   margin: 0;
   display: flex;
@@ -202,10 +187,6 @@
   text-transform: uppercase;
 }
 
-.hero__content--leadership .hero__row {
-  grid-column: 1 / -1;
-}
-
 .hero__content--gold {
   /* --one: кегль единицы, от него считаются все пропорции композиции, как в референсе */
   --one: clamp(164px, 16.5vw, 250px);
@@ -218,29 +199,9 @@
   top: 0;
   bottom: 8%;
   align-items: center;
-  gap: clamp(24px, 3vh, 32px);
 
   /* Металлическое золото: светлый блик сверху, насыщенная середина, тёмно-медный низ */
   --gold: linear-gradient(155deg, #fff2bd, #f8d782 35%, #efb952 70%, #d89d3b);
-}
-
-.hero__content--gold .hero__row {
-  display: grid;
-  width: var(--gold-width);
-  grid-template-columns: minmax(0, 1fr) 1px minmax(0, 1fr);
-  column-gap: var(--gold-gap);
-}
-
-.hero__content--gold .hero__row > a {
-  justify-self: center;
-}
-
-.hero__content--gold .hero__row > a:first-child {
-  grid-column: 1;
-}
-
-.hero__content--gold .hero__row > a:last-child {
-  grid-column: 3;
 }
 
 .hero__sep {

@@ -1,4 +1,18 @@
+@media (1100px < width <= 1280px) {
+  .dock {
+    --dock-gap: clamp(var(--space-2), calc(8px + (100vw - 1100px) / 8), var(--space-4));
+  }
+
+  .dock__nav {
+    font-size: 16px;
+  }
+}
+
 @media (max-width: 1100px) {
+  .dock {
+    --dock-height: 64px;
+  }
+
   .dock__panel {
     display: none;
   }
@@ -8,12 +22,7 @@
   .dock {
     top: 12px;
 
-    --burger: 44px;
     --dock-height: 44px;
-  }
-
-  .dock__burger {
-    margin-right: 0;
   }
 
   .dock__burger svg {

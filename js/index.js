@@ -25,6 +25,7 @@ enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js'));
 enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-carousel.js'));
 enhancements.push(loadBlocks('[data-home-team]', 'home-team', () => import('./blocks/home-team.js')));
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));
+enhance('[data-customer-request]', 'customer-request', () => import('./blocks/customer-request.js'));
 enhance('[data-company-reveal]', 'reveal', () => import('./blocks/company-reveal.js'));
 enhance('.home-page', 'home-motion', () => import('./blocks/home-motion.js'));
 enhance('[data-story-photo]', 'story-photo', () => import('./blocks/story-photo.js'));
@@ -32,7 +33,7 @@ enhance('[data-architecture-parallax]', 'architecture-parallax', () => import('.
 
 enhance('[data-section-corner]', 'section-corner', () => import('./blocks/section-corner.js'));
 enhance('[data-services-accordion]', 'services-accordion', () => import('./blocks/services-accordion.js'));
-enhance('.values-hero, .services-comparison__hero', 'values-hero', () => import('./blocks/values-hero.js'));
+enhance('.values-hero', 'values-hero', () => import('./blocks/values-hero.js'));
 enhance('[data-footer-motion]', 'footer', () => import('./blocks/site-footer.js'));
 enhance('[data-not-found-redirect]', 'not-found', () => import('./blocks/not-found.js'));
 

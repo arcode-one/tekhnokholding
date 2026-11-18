@@ -80,12 +80,21 @@
   background: #adb0b5;
 }
 
+.advantage-card--warranty .advantage-card__photo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url('../../images/company/trust/warranty-certificate-angled.webp') left center / max(265%, 178cqh) auto no-repeat;
+}
+
 .advantage-card--warranty .advantage-card__photo img {
-  inset: 0 auto auto 50%;
-  width: clamp(178cqh, 400cqw, 330cqh);
+  inset: 42% auto auto 50%;
+  width: min(258cqw, 250cqh);
   height: auto;
   max-width: none;
-  transform: translateX(-63.5%);
+  /* Lift the sheet while keeping the lower edge outside the frame. */
+  transform: translate(-72%, max(-22%, calc(58cqh - 79%)));
+  mask-image: linear-gradient(transparent, #000 2%);
 }
 
 .advantage-card--quality,

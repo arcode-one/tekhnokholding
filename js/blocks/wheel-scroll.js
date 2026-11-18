@@ -2,14 +2,17 @@
 const WHEEL_SCALE = 0.4;
 const DURATION_MS = 320;
 const MAX_PENDING_VIEWPORTS = 0.5;
+const TEAM_WHEEL_PAUSE_MS = 350;
 
 export default function init() {
   // Local A/B check: compare browser scrolling without changing the site default.
-  if (['localhost', '127.0.0.1'].includes(location.hostname) &&
-      new URLSearchParams(location.search).get('scroll') === 'native') return;
+  const nativeWheel = ['localhost', '127.0.0.1'].includes(location.hostname) &&
+    new URLSearchParams(location.search).get('scroll') === 'native';
   const root = document.documentElement;
   const desktop = matchMedia('(hover: hover) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  const teamViewport = document.querySelector('[data-home-team-viewport]');
+  let lastPageWheel = -Infinity;
   let frame = 0;
   let current = scrollY;
   let target = current;
@@ -57,11 +60,12 @@ export default function init() {
     frame = settled ? 0 : requestAnimationFrame(tick);
   }
 
-  function usesNativeScroll(event, delta) {
+  function usesNativeScroll(event, delta, continuePage) {
     for (const element of event.composedPath()) {
       if (element === document.body || element === root) break;
       if (!(element instanceof HTMLElement)) continue;
       if (element.matches('input, textarea, select') || element.isContentEditable) return true;
+      if (continuePage && element === teamViewport) continue;
       if (element.scrollHeight <= element.clientHeight + 1) continue;
       const style = getComputedStyle(element);
       if (!/^(auto|scroll|overlay)$/.test(style.overflowY)) continue;
@@ -81,14 +85,27 @@ export default function init() {
     }
     const unit = event.deltaMode === WheelEvent.DOM_DELTA_LINE ? lineHeight
       : event.deltaMode === WheelEvent.DOM_DELTA_PAGE ? innerHeight : 1;
-    const delta = event.deltaY * unit * WHEEL_SCALE;
-    if (!delta) return;
-    if (usesNativeScroll(event, delta)) {
+    const distance = event.deltaY * unit;
+    if (!distance) return;
+    const now = performance.now();
+    const continuePage = now - lastPageWheel < TEAM_WHEEL_PAUSE_MS &&
+      teamViewport?.contains(event.target);
+    if (usesNativeScroll(event, distance, continuePage)) {
+      lastPageWheel = -Infinity;
       stop();
+      return;
+    }
+    lastPageWheel = now;
+    if (nativeWheel || reduced.matches) {
+      if (continuePage) {
+        event.preventDefault();
+        scrollBy({ top: distance, behavior: 'instant' });
+      }
       return;
     }
 
     // A new gesture starts at the actual position, including after anchors or dragging.
+    const delta = distance * WHEEL_SCALE;
     if (!frame) current = target = scrollY;
     const pending = innerHeight * MAX_PENDING_VIEWPORTS;
     const reversing = (target - current) * delta < 0;
@@ -112,8 +129,9 @@ export default function init() {
 
   function configure() {
     stop();
+    lastPageWheel = -Infinity;
     removeEventListener('wheel', onWheel);
-    if (desktop.matches && !reduced.matches)
+    if (desktop.matches && (teamViewport || (!nativeWheel && !reduced.matches)))
       addEventListener('wheel', onWheel, { passive: false });
   }
 

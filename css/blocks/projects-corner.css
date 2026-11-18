@@ -1,5 +1,5 @@
 .projects-transition {
-  --section-overlap: clamp(80px, 16svh, 160px);
+  --section-overlap: var(--mission-corner-height);
   position: absolute;
   z-index: 2;
   top: 0;
@@ -22,7 +22,7 @@
   left: 0;
   width: 50%;
   height: 24px;
-  background: var(--color-white);
+  background: var(--color-reading-bg);
 }
 
 .projects-corner {
@@ -31,14 +31,8 @@
   right: 0;
   width: 50%;
   height: var(--section-overlap);
-  background: var(--color-white);
+  background: var(--color-reading-bg);
   pointer-events: none;
   transition: none;
   will-change: transform;
-}
-
-@media (max-width: 767px) {
-  .projects-transition {
-    --section-overlap: var(--map-corner-height);
-  }
 }

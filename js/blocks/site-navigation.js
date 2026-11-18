@@ -1,4 +1,5 @@
 import initDock from './dock.js';
+import initReturnNavigation from '../lib/return-navigation.js';
 
 export default function init() {
   const root = document.documentElement;
@@ -15,21 +16,16 @@ export default function init() {
   const navigationType = performance.getEntriesByType('navigation')[0]?.type;
 
   // Let the browser restore the reading position on reload and history navigation.
-  if ('scrollRestoration' in history) history.scrollRestoration = 'auto';
-
-  const returnLink = document.querySelector('[data-return-to-source]');
-  const source = new URL(document.referrer || location.href);
-  if (returnLink && history.length > 1 && source.origin === location.origin && source.pathname !== location.pathname) {
-    returnLink.addEventListener('click', (event) => {
-      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-      event.preventDefault();
-      history.back();
-    });
+  if ('scrollRestoration' in history && !root.classList.contains('site--restoring-scroll')) {
+    history.scrollRestoration = 'auto';
   }
+
+  initReturnNavigation();
 
   if (!root.classList.contains('site--preloading')) root.classList.add('site--loaded');
   requestAnimationFrame(() => {
-    if (entryAnchor && navigationType !== 'reload' && navigationType !== 'back_forward')
+    if (entryAnchor && navigationType !== 'reload' && navigationType !== 'back_forward' &&
+      !root.dataset.returnedToSource)
       entryAnchor.scrollIntoView({ behavior: 'instant' });
     updateScrollState();
   });
@@ -100,7 +96,6 @@ export default function init() {
   // Буквы и шапка имеют независимые пороги. Ориентируемся на реальный
   // сглаженный скролл, а не на первый импульс колёсика.
   function updateScrollState(position) {
-    if (!root.classList.contains('site--loaded')) return;
     const y = typeof position === 'number' ? position : window.scrollY;
     updateWordmark(y);
     let isScrolled = scrolled;
@@ -125,6 +120,7 @@ export default function init() {
   }
 
   if (!touchHero) window.addEventListener('scroll', updateScrollState, { passive: true });
+  document.addEventListener('site:scroll-restored', updateScrollState);
 
   dockBurger.addEventListener('click', () => {
     if (!dockMenu.isDesktop()) setMenu(!menuOpen, { opener: dockBurger });

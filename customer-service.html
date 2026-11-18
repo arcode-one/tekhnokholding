@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru" class="site site--loaded customer-service-document">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="js/lib/reload-position.js"></script>
+    <link rel="icon" type="image/x-icon" href="icons/favicon.ico" sizes="16x16 32x32 48x48" />
+    <link rel="icon" type="image/svg+xml" href="icons/favicon.svg" sizes="any" />
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png" sizes="180x180" />
+    <title>Сервис для заказчика | Технохолдинг</title>
+    <meta
+      name="description"
+      content="Все ключевые сервисы для действующих и будущих заказчиков — в одном месте."
+    />
+    <meta name="theme-color" content="#34454e" />
+    <link
+      rel="preload"
+      href="fonts/manrope/manrope-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link
+      rel="preload"
+      href="fonts/manrope/manrope-cyrillic-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin=""
+    />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/blocks/customer-service.css" />
+    <link rel="canonical" href="https://thld.su/customer-service.html" />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Технохолдинг" />
+    <meta property="og:title" content="Сервис для заказчика | Технохолдинг" />
+    <meta property="og:description" content="Все ключевые сервисы для действующих и будущих заказчиков — в одном месте." />
+    <meta property="og:url" content="https://thld.su/customer-service.html" />
+    <meta property="og:image" content="https://thld.su/images/customer-service-svoboda-roof.webp" />
+    <meta property="og:image:alt" content="Светлая кровля цеха «Конар» под грозовым небом" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body id="top" class="customer-service-page" data-site-footer="off">
+    <header class="header">
+      <div class="header__inner">
+        <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+
+        <div class="header__right">
+          <nav class="nav" aria-label="Основное меню">
+            <a href="services.html">Услуги</a>
+            <a href="objects.html">Объекты</a>
+            <a href="index.html#contacts">Контакты</a>
+            <a href="customer-service.html" aria-current="page">Сервис для заказчика</a>
+          </nav>
+          <span class="header__divider" aria-hidden="true"></span>
+          <div class="header__contacts">
+            <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+            <span class="header__mail contact-email">info@thld.su</span>
+          </div>
+          <div class="header__messengers">
+            <a
+              class="icon-btn"
+              href="https://t.me/Thld74"
+              aria-label="Написать в Telegram"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+              </svg>
+            </a>
+            <a class="icon-btn" href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E" aria-label="Написать в MAX">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+              </svg>
+            </a>
+            <button
+              class="icon-btn burger-btn header__burger"
+              type="button"
+              data-menu-toggle=""
+              aria-label="Открыть меню"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
+              data-ui="header__burger"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path class="burger-btn__line burger-btn__line--hide" d="M4 8h16"></path>
+                <path class="burger-btn__line burger-btn__line--keep" d="M4 16h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- После первого скролла шапка сворачивается в бургер. На десктопе панель раскрывается при наведении справа налево -->
+    <div class="dock" data-ui="dock">
+      <button
+        class="icon-btn dock__burger burger-btn"
+        type="button"
+        data-menu-toggle=""
+        aria-label="Открыть меню"
+        aria-expanded="false"
+        aria-controls="dock-panel"
+        data-ui="dock__burger"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="burger-btn__line burger-btn__line--hide" d="M4 8h16"></path>
+          <path class="burger-btn__line burger-btn__line--keep" d="M4 16h16"></path>
+        </svg>
+      </button>
+      <div class="dock__panel" id="dock-panel" inert aria-hidden="true">
+        <a
+          class="dock__logo"
+          href="index.html"
+          aria-label="Технохолдинг, на главную"
+        >
+          <img
+            src="icons/logo-light-compact.svg"
+            alt="Технохолдинг"
+            width="1292"
+            height="430"
+            loading="lazy"
+          />
+        </a>
+        <nav class="dock__nav" aria-label="Меню">
+          <a href="services.html">Услуги</a>
+          <a href="objects.html">Объекты</a>
+          <a href="index.html#contacts">Контакты</a>
+          <a href="customer-service.html" aria-current="page">Сервис для заказчика</a>
+        </nav>
+        <span class="dock__divider" aria-hidden="true"></span>
+        <div class="dock__contacts">
+          <a class="header__phone" href="tel:+73512253040">8 (351) 225-30-40</a>
+          <span class="header__mail contact-email">info@thld.su</span>
+        </div>
+        <div class="dock__icons">
+          <a
+            class="icon-btn"
+            href="https://t.me/Thld74"
+            aria-label="Написать в Telegram"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-de910d2ed695"></use>
+            </svg>
+          </a>
+          <a
+            class="icon-btn"
+            href="https://max.ru/u/f9LHodD0cOKMHUMxHLhcBptV6VHCiFSUkouctiJxSrs9--v82r210_hLk9E"
+            aria-label="Написать в MAX"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <use href="icons/sprite.svg#custom-5cf53abd5ed3"></use>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div
+      class="menu"
+      id="mobile-menu"
+      hidden=""
+      data-ui="menu"
+      data-mobile-menu=""
+      role="dialog"
+      aria-modal="true"
+      aria-label="Меню сайта"
+    >
+      <nav class="menu__nav" aria-label="Мобильное меню">
+        <a href="services.html">Услуги</a>
+        <a href="objects.html">Объекты</a>
+        <a href="index.html#contacts">Контакты</a>
+        <a href="customer-service.html" aria-current="page">Сервис для заказчика</a>
+      </nav>
+      <div class="menu__contacts">
+        <a href="tel:+73512253040">8 (351) 225-30-40</a>
+        <span class="contact-email">info@thld.su</span>
+      </div>
+    </div>
+
+    <main aria-label="Сервис для заказчика">
+      <div class="customer-service__hero">
+        <img
+          src="images/customer-service-svoboda-roof.webp"
+          width="1774"
+          height="887"
+          alt="Вид сверху на светлую кровлю и фасад с муралом на улице Свободы, 2, в Челябинске"
+          fetchpriority="high"
+        />
+        <nav class="page-back page-back--inverse" aria-label="Навигация">
+          <a class="pill page-back__button" href="index.html" aria-label="На главную">
+            <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+          </a>
+        </nav>
+      </div>
+
+      <div class="customer-service" data-control-theme="light">
+        <ul class="customer-service__links" role="list">
+          <li>
+            <a class="customer-service__link" href="mailto:pto@thld.su" data-customer-request-open>
+              <img class="customer-service__photo" src="images/customer-service-request-form.webp" width="480" height="480" alt="" />
+              <div>
+                <h2>Подать заявку</h2>
+                <p>Оставить обращение и получить обратную связь</p>
+              </div>
+              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">Заполнить</span></span>
+            </a>
+          </li>
+          <li>
+            <a class="customer-service__link" href="quality.html">
+              <img class="customer-service__photo" src="images/customer-service-quality-inspection.webp" width="480" height="480" alt="" />
+              <div>
+                <h2>Служба качества</h2>
+                <p>Контроль на всех этапах работ</p>
+              </div>
+              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">Подробнее</span></span>
+            </a>
+          </li>
+          <li>
+            <a class="customer-service__link" href="account.html">
+              <img class="customer-service__photo" src="images/customer-service-project-tablet.webp" width="480" height="480" alt="" />
+              <div>
+                <h2>Личный кабинет заказчика</h2>
+                <p>Контроль проекта, документы и статус работ</p>
+              </div>
+              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">В кабинет</span></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <dialog class="customer-request" id="customer-request" aria-labelledby="customer-request-title"
+        data-customer-request>
+        <header class="customer-request__header">
+          <h2 id="customer-request-title" tabindex="-1" autofocus>Подать заявку</h2>
+          <button class="icon-btn" type="button" aria-label="Закрыть форму" data-customer-request-close>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><use href="icons/sprite.svg#x"></use></svg>
+          </button>
+        </header>
+
+        <form class="customer-request__form" action="api/customer-request.php" method="post">
+          <label>
+            <span>Имя</span>
+            <input type="text" name="name" autocomplete="name" maxlength="80" required />
+          </label>
+
+          <div class="customer-request__contact-fields" role="group" aria-label="Контакт для ответа">
+            <label>
+              <span>Телефон</span>
+              <input type="tel" name="phone" autocomplete="tel" maxlength="32" />
+            </label>
+            <label>
+              <span>Электронная почта</span>
+              <input type="email" name="email" autocomplete="email" maxlength="254" />
+            </label>
+          </div>
+
+          <label>
+            <span>Объект или город <span class="customer-request__optional">(необязательно)</span></span>
+            <input type="text" name="project" maxlength="160" />
+          </label>
+
+          <label>
+            <span>Что нужно сделать</span>
+            <textarea name="message" rows="3" maxlength="1500" placeholder="Например, отремонтировать кровлю склада площадью 2 000 м²"
+              required></textarea>
+          </label>
+
+          <div hidden>
+            <label>Сайт <input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+          </div>
+
+          <div class="customer-request__consent">
+            <input type="checkbox" id="customer-request-consent" name="consent" required />
+            <div>
+              <label for="customer-request-consent">Согласен на обработку персональных данных</label>
+              <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
+            </div>
+          </div>
+
+          <button class="pill customer-request__submit" type="submit">
+            <span class="pill__label">Отправить заявку</span>
+          </button>
+          <p class="customer-request__status" data-customer-request-status role="status"></p>
+          <a class="customer-request__fallback" href="mailto:pto@thld.su" data-customer-request-fallback hidden>
+            Открыть черновик письма
+          </a>
+        </form>
+
+        <div class="customer-request__success" data-customer-request-success hidden>
+          <p tabindex="-1">Заявка отправлена. Мы свяжемся с вами по указанным контактам.</p>
+          <button class="pill" type="button" data-customer-request-close><span class="pill__label">Закрыть</span></button>
+        </div>
+      </dialog>
+    </main>
+    <script type="module" src="js/index.js"></script>
+  </body>
+</html>

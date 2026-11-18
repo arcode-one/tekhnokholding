@@ -37,14 +37,14 @@
 .projects-section--photo-first .project-card__info {
   display: grid;
   grid-template-columns: minmax(0, 1fr) fit-content(44%);
-  grid-template-rows: 1fr auto;
+  grid-template-rows: minmax(var(--project-heading-height, 0px), max-content) 1fr;
   gap: 10px 8px;
   padding: 10px 12px 12px;
 }
-.home-page #objects .project-card__info {
-  grid-template-rows: minmax(var(--project-heading-height, 0px), max-content) 1fr;
-}
 .projects-section--photo-first .project-card__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   grid-column: 1 / -1;
   min-height: var(--project-heading-height, 0px);
   padding-bottom: 8px;
@@ -54,22 +54,26 @@
   font-size: clamp(18px, 1.3vw, 24px);
   line-height: 1.25;
 }
-.projects-section--photo-first .project-card__meta { align-items: baseline; gap: 10px; margin-top: 8px; font-size: clamp(12px, .8vw, 14px); }
-.projects-section--photo-first .project-card__location + .project-card__period {
+.projects-section--photo-first .project-card__meta {
+  align-items: last baseline;
+  gap: 10px;
+  margin: auto 0 0;
+  font-size: clamp(12px, .8vw, 14px);
+}
+.projects-section--photo-first .project-card__period {
   margin-inline-start: auto;
   padding-inline-start: 0;
   border: 0;
+  line-height: inherit;
 }
 .projects-section--photo-first .project-card__work {
+  display: grid;
+  align-content: center;
   margin: 0;
   font-size: clamp(12px, .77vw, 14px);
   line-height: 1.5;
   overflow-wrap: anywhere;
   hyphens: auto;
-}
-.home-page #objects .project-card__work {
-  display: grid;
-  align-content: center;
 }
 .projects-section--photo-first .project-card__details {
   display: flex;
@@ -113,14 +117,10 @@
 @container (max-width: 229px) {
   .projects-section--photo-first .project-card__info {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: 1fr auto auto;
-  }
-
-  .home-page #objects .project-card__info {
     grid-template-rows: minmax(var(--project-heading-height, 0px), max-content) 1fr auto;
   }
 
-  .home-page #objects .project-card__work { align-content: start; }
+  .projects-section--photo-first .project-card__work { align-content: start; }
 
   .projects-section--photo-first .project-card__details {
     padding-inline-start: 0;

@@ -1,11 +1,11 @@
-import setFiguresPhotoParallax from '../lib/figures-photo-parallax.js';
+import setFiguresPhotoParallax, { setFiguresPhotoTimeline } from '../lib/figures-photo-parallax.js';
 import { createScrollMotion, onMotionResize, readMotionViewport } from '../lib/scroll-motion.js';
 
 export default function init(section) {
   const motion = createScrollMotion();
   const grid = section.querySelector('[data-ui~=company-figures__grid]');
-  const nextSection = section.closest('[data-ui~=roof-background]')?.nextElementSibling;
-  const coverSection = nextSection?.matches('[data-company-map]') ? nextSection : null;
+  const nextSection = section.nextElementSibling;
+  const coverSection = nextSection?.matches('.home-mission') ? nextSection : null;
   const transition = coverSection ? document.createElement('span') : null;
   const corner = transition ? document.createElement('span') : null;
   if (transition) {
@@ -21,10 +21,11 @@ export default function init(section) {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const touchHome = section.closest('.home-page--touch') !== null;
   const COUNT_DURATION = 2000;
+  const COUNT_VISIBLE_FRACTION = 0.85;
   const easeOutCubic = (t) => 1 - Math.pow(1 - t, 3);
 
   // Число выносится в отдельный span: под него резервируется финальная ширина,
-  // поэтому «+» и «%» не прыгают, пока цифры набегают от нуля
+  // поэтому «+» и «%» не прыгают, пока цифры набегают.
   function createCounter(value) {
     const textNode = Array.from(value.childNodes).find(
       (n) => n.nodeType === Node.TEXT_NODE && n.textContent.trim(),
@@ -54,38 +55,69 @@ export default function init(section) {
     if (!counter || counter.started) return;
     counter.started = true;
     const start = performance.now();
+    const firstValue = Math.min(1, counter.target);
     let lastPaint = -Infinity;
     const tick = (now) => {
       const t = Math.min(1, (now - start) / COUNT_DURATION);
       if (t === 1 || !touchHome || now - lastPaint >= 32) {
-        const value = counter.format(Math.round(counter.target * easeOutCubic(t)));
+        const value = counter.format(Math.max(firstValue, Math.round(counter.target * easeOutCubic(t))));
         if (counter.num.textContent !== value) counter.num.textContent = value;
         lastPaint = now;
       }
       counter.frame = t < 1 ? requestAnimationFrame(tick) : 0;
     };
-    counter.frame = requestAnimationFrame(tick);
+    tick(start);
+  }
+
+  function revealCount(item, animate) {
+    item.revealed = true;
+    const { counter, outer } = item;
+    if (!counter) return;
+    counterVisibility.unobserve(outer);
+    if (animate) {
+      startCount(counter);
+    } else {
+      cancelAnimationFrame(counter.frame);
+      counter.frame = 0;
+      counter.num.textContent = counter.format(counter.target);
+    }
+    outer.removeAttribute('data-figures-pending');
   }
 
   const reveals = Array.from(section.querySelectorAll('[data-figures-reveal]'), (outer) => {
     const counter = createCounter(outer.firstElementChild);
-    if (counter && !reducedMotion.matches) counter.num.textContent = counter.format(0);
+    if (counter && !reducedMotion.matches) outer.setAttribute('data-figures-pending', '');
     return {
       outer,
       counter,
-      revealInset: Number(outer.dataset.figuresReveal || 0),
-      revealed: !outer.hasAttribute('data-figures-reveal'),
+      revealed: !counter,
     };
+  });
+  const counterVisibility = new IntersectionObserver((entries) => {
+    if (reducedMotion.matches) return;
+    for (const entry of entries) {
+      if (entry.intersectionRatio < COUNT_VISIBLE_FRACTION) continue;
+      const item = reveals.find(({ outer }) => outer === entry.target);
+      if (!item.revealed) revealCount(item, true);
+    }
+  }, { threshold: COUNT_VISIBLE_FRACTION });
+  reveals.forEach((item) => {
+    if (!item.revealed && !reducedMotion.matches) counterVisibility.observe(item.outer);
   });
   const title = section.querySelector('[data-ui~=company-figures__title]');
   const groups = [
     title,
     ...section.querySelectorAll('[data-ui~=company-figures__item]'),
   ].filter(Boolean).map((outer) => ({ outer }));
-  const photos = Array.from(section.querySelectorAll('[data-figures-image]'), (outer) => ({
-    outer,
-    parallaxImage: outer.querySelector('.home-photo-zoom img'),
-  }));
+  const photos = Array.from(section.querySelectorAll('[data-figures-image]'), (outer) => {
+    const isRoof = outer.classList.contains('company-figures__photo--roof');
+    return {
+      outer,
+      isRoof,
+      parallaxImage: outer.querySelector('.home-photo-zoom img'),
+      imageStrength: isRoof ? 0.7 : 1,
+    };
+  });
   let frame = 0;
   let measureFrame = 0;
   const visibleSections = new Set();
@@ -112,22 +144,6 @@ export default function init(section) {
     frame = 0;
     if (reducedMotion.matches) return;
     const { y } = readMotionViewport(timestamp);
-    reveals.forEach((item) => {
-      const top = item.top - y;
-      if (!item.revealed) {
-        // Последние показатели должны раскрыться и без следующего экрана.
-        const reachableLine = Math.min(viewport - 24, item.top - maxScroll + 1);
-        const triggerLine = Math.max(viewport - item.revealInset, reachableLine);
-        if (top < triggerLine) {
-          item.revealed = true;
-          if (touchHome && item.counter && top + item.height <= 0) {
-            item.counter.num.textContent = item.counter.format(item.counter.target);
-          } else {
-            startCount(item.counter);
-          }
-        }
-      }
-    });
     // Смещение рамок привязано к прокрутке.
     if (motion.enabled) return;
     photos.forEach((photo) => {
@@ -139,14 +155,14 @@ export default function init(section) {
       const frameOffset = photo.startOffset + frameProgress * (photo.endOffset - photo.startOffset);
       photo.outer.style.transform = `translate3d(0, ${frameOffset.toFixed(2)}px, 0)`;
       if (photo.parallaxImage) {
-        setFiguresPhotoParallax(photo.parallaxImage, photo.top - y, photo.height, viewport);
+        setFiguresPhotoParallax(photo.parallaxImage, photo.top - y, photo.height, viewport, photo.imageStrength);
       }
     });
     updateCorner(y);
   }
 
   function schedule() {
-    if (motion.enabled && reveals.every((item) => item.revealed)) return;
+    if (motion.enabled) return;
     if (!frame && visibleSections.size && !document.hidden && !reducedMotion.matches)
       frame = requestAnimationFrame(update);
   }
@@ -168,18 +184,8 @@ export default function init(section) {
     coverTop = coverSection ? coverSection.getBoundingClientRect().top + window.scrollY : 0;
     coverDistance = overlapEnabled ? corner.offsetHeight : 0;
     reveals.forEach((item) => {
-      const rect = item.outer.getBoundingClientRect();
-      item.top = rect.top + window.scrollY;
-      item.height = rect.height;
       if (item.counter) reserveWidth(item.counter);
-      if (reducedMotion.matches) {
-        item.revealed = true;
-        if (item.counter) {
-          cancelAnimationFrame(item.counter.frame);
-          item.counter.frame = 0;
-          item.counter.num.textContent = item.counter.format(item.counter.target);
-        }
-      }
+      if (reducedMotion.matches) revealCount(item, false);
     });
     photos.forEach((photo) => {
       // Измеряем исходную рамку: повторный resize не накапливает сдвиг.
@@ -203,9 +209,9 @@ export default function init(section) {
       group.right = rect.right;
     });
     photos.forEach((photo) => {
-      const roof = photo.outer.classList.contains('company-figures__photo--roof');
+      const roof = photo.isRoof;
       const travel = mobile ? 56 : 140;
-      const clearance = mobile ? 20 : 24;
+      const clearance = mobile ? 20 : roof ? 12 : 24;
       const upwardTravel = roof ? travel : mobile ? 24 : 64;
       // Кадр кровли отстаёт от прокрутки целиком, в пределах свободного места.
       photo.startOffset = Math.max(-upwardTravel, sectionTop + clearance - photo.top);
@@ -246,10 +252,7 @@ export default function init(section) {
           `translate3d(0,${photo.startOffset}px,0)`, `translate3d(0,${photo.endOffset}px,0)`,
         ] }, photo.scrollStart, photo.scrollEnd);
         if (photo.parallaxImage) {
-          motion.set(photo.parallaxImage, { transform: [
-            `translate3d(0,${-photo.height * .16}px,0) scale(1.34)`,
-            `translate3d(0,${photo.height * .16}px,0) scale(1.34)`,
-          ] }, photo.top - viewport, photo.top + photo.height);
+          setFiguresPhotoTimeline(motion, photo.parallaxImage, photo.top, photo.height, viewport, photo.imageStrength);
         }
       });
       if (coverDistance) motion.set(corner, { transform: ['translate3d(0,0,0)', `translate3d(0,${-coverDistance}px,0)`] },
