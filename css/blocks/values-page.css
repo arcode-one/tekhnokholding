@@ -228,6 +228,12 @@
   inset: 0;
 }
 
+#belief .values-accordion__photo img {
+  height: 109%;
+  top: auto;
+  object-position: center bottom;
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .values-accordion__number {
     transition: transform 400ms ease;

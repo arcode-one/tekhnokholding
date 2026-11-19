@@ -124,30 +124,48 @@ function initBrandStrip(strip) {
   });
 }
 
-function initLetterDeal(section) {
-  const rail = section?.querySelector('[data-carousel-rail]');
-  if (!rail) return;
+function typeMissionStatement(element) {
+  if (!('highlights' in CSS) || typeof Highlight === 'undefined') return;
 
-  let openingScroll;
-  const reveal = createScrollReveal('home', {
-    rootMargin: '0px 0px -48px 0px',
-    threshold: 0.12,
-    beforeEnter(card, rect) {
-      openingScroll ??= rail.scrollLeft;
-      const left = rail.getBoundingClientRect().left + parseFloat(getComputedStyle(rail).paddingLeft);
-      const distance = Math.max(0, rect.left - left);
-      const openingHand = Math.abs(rail.scrollLeft - openingScroll) < 1;
-      const travel = openingHand ? distance + 18 : rect.width * 0.36;
-      card.style.setProperty('--letter-deal-x', `-${travel}px`);
-      if (openingHand) {
-        const gap = parseFloat(getComputedStyle(rail.firstElementChild).columnGap);
-        const slot = Math.round(distance / (rect.width + gap));
-        card.style.setProperty('--home-delay', `${slot * 100}ms`);
-      }
-    },
-  });
-  reveal.add(rail, '[data-carousel-item]', 'letter-deal');
-  reveal.start();
+  // Mask the unread suffix in place so bold text, wrapping and selection stay native.
+  const letters = [];
+  for (const paragraph of element.querySelectorAll('p')) {
+    const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+    while (walker.nextNode()) {
+      const node = walker.currentNode;
+      for (const match of node.data.matchAll(/\S/gu))
+        letters.push({ node, start: match.index, end: match.index + match[0].length, delay: 24 });
+    }
+    if (letters.length) letters[letters.length - 1].delay = 160;
+  }
+  if (!letters.length) return;
+
+  const unread = document.createRange();
+  unread.selectNodeContents(element);
+  CSS.highlights.set('mission-unread', new Highlight(unread));
+  const current = document.createRange();
+  CSS.highlights.set('mission-current', new Highlight(current));
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  let index = 0;
+  let nextLetterAt = performance.now();
+
+  function advance(now) {
+    if (index === letters.length || document.hidden || reduced.matches) {
+      CSS.highlights.delete('mission-unread');
+      CSS.highlights.delete('mission-current');
+      return;
+    }
+    if (now >= nextLetterAt) {
+      const { node, start, end, delay } = letters[index++];
+      unread.setStart(node, end);
+      current.setStart(node, start);
+      current.setEnd(node, end);
+      // Keep the cadence steady, but never reveal a batch after a slow frame.
+      nextLetterAt = Math.max(nextLetterAt + delay, now);
+    }
+    requestAnimationFrame(advance);
+  }
+  requestAnimationFrame(advance);
 }
 
 export default function init(home) {
@@ -163,10 +181,15 @@ export default function init(home) {
   const { add, start } = createScrollReveal('home', { rootMargin: '0px 0px -48px 0px' });
 
   if (mission) {
-    const missionReveal = createScrollReveal('home', { rootMargin: '0px 0px -96px 0px' });
+    const missionReveal = createScrollReveal('home', {
+      rootMargin: '0px 0px -96px 0px',
+      beforeEnter(element) {
+        if (element.dataset.homeEnter === 'mission-statement') typeMissionStatement(element);
+      },
+    });
     missionReveal.add(mission, '#home-mission-title', 'mission-title');
     missionReveal.add(mission, '.home-mission__photo', 'photo', 70);
-    missionReveal.add(mission, '.home-mission__statement p', 'mission-statement', (index) => 70 + index * 75);
+    missionReveal.add(mission, '.home-mission__statement', 'mission-statement');
     missionReveal.add(mission, '#home-mission-talents-title', 'mission-title');
     missionReveal.add(mission, '.home-mission__talent', 'talent', (index) => 65 + index * 75);
     missionReveal.start();
@@ -196,29 +219,16 @@ export default function init(home) {
     photoReveal.start();
   }
 
-  add(projects, '#projects-title', 'slide-heading');
-  add(projects, '.projects-filters', 'text', 55);
-  add(projects, '.projects-rail', 'project-wave');
-
-  add(advantages, '#advantages-title', 'slide-heading');
-  add(advantages, '.company-advantages__corner', 'trust-panorama', 70);
-  advantages?.querySelectorAll('.advantages-layout__row').forEach((row) => {
-    add(row, '.advantage-card', 'rise-card', (index) => index * 75);
-  });
-  add(advantages, '.advantages-rating', 'trust-rating', 100);
+  add(projects, '#projects-title, .projects-filters, .projects-rail', 'fade');
+  add(advantages, '.company-advantages__intro, .advantage-card, .advantages-rating', 'fade');
 
   // Keep the team visible if a reload or a direct link already brought it into view.
   const teamBounds = team?.getBoundingClientRect();
   if (teamBounds && (teamBounds.top >= innerHeight || teamBounds.bottom <= 0)) {
-    add(team, '#company-team-title', 'slide-heading');
-    add(team, '.company-team__feature', 'photo', (index) => 55 + index * 55);
-    team.querySelectorAll('[data-home-team-page]').forEach((page) => {
-      add(page, '.company-team__person', 'team-person', (index) => 100 + Math.floor(index / 2) * 90);
-    });
+    add(team, '#company-team-title, .company-team__feature, .company-team__people', 'fade');
   }
 
-  add(clients, '#recommendations-title', 'slide-heading');
-  initLetterDeal(clients);
+  add(clients, '#recommendations-title, .company-recommendations__slider', 'fade');
 
   start();
   if (map) {

@@ -11,6 +11,7 @@ export default function init(container) {
   const narrow = matchMedia('(max-width: 767px)');
   const motion = createScrollMotion();
   const figuresMotion = container.dataset.architectureParallax === 'figures';
+  const strength = Number(container.dataset.parallaxStrength ?? 0.35);
   const cacheFrame = container.closest('.home-page--touch') !== null;
   const desktopTravel = Number(container.dataset.parallaxTravel) || 78;
   let visible = false;
@@ -28,7 +29,6 @@ export default function init(container) {
     }
     const { top, height } = geometry;
     if (figuresMotion) {
-      const strength = 0.35;
       if (motion.enabled && setFiguresPhotoTimeline(motion, image, top, height, viewport, strength)) return;
       setFiguresPhotoParallax(image, top - y, height, viewport, strength);
       return;
