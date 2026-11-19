@@ -17,10 +17,7 @@ export default function init(section) {
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const compact = matchMedia('(max-width: 1099px)');
   const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
-  const defaultCity = 'Челябинск';
-  const defaultCenter = [61.4026, 55.18];
-  const overviewZoom = () => (view.clientWidth < 600 ? 9.2 : view.clientWidth < 900 ? 10 : 10.4);
-  const overviewPadding = { top: 126, right: 70, bottom: 70, left: 70 };
+  const defaultCenter = [61.40645, 55.16246];
   const placeholder = 'icons/image-placeholder.svg';
   const precisionNotes = {
     address: '',
@@ -259,6 +256,38 @@ export default function init(section) {
     });
   }
 
+  function initWheelZoom() {
+    const stage = view.parentElement;
+    const canvas = map.getCanvas();
+    const hint = 'Нажмите на карту, чтобы менять масштаб колёсиком';
+    canvas.title = hint;
+
+    function release() {
+      if (!map.scrollZoom.isEnabled()) return;
+      map.scrollZoom.disable();
+      map.cooperativeGestures.enable();
+      canvas.title = hint;
+    }
+    stage.addEventListener('click', (event) => {
+      if (event.pointerType === 'touch' || event.detail === 0 ||
+          !event.target.closest('[data-map-view], .company-map__tools')) return;
+      map.cooperativeGestures.disable();
+      map.scrollZoom.enable();
+      canvas.title = 'Колёсико меняет масштаб. Esc возвращает прокрутку страницы';
+    }, true);
+    stage.addEventListener('pointerleave', release);
+    stage.addEventListener('focusout', (event) => {
+      if (!stage.contains(event.relatedTarget)) release();
+    });
+    document.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'touch' || !stage.contains(event.target)) release();
+    }, true);
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') release();
+    });
+    window.addEventListener('blur', release);
+  }
+
   listItems.addEventListener('click', (event) => {
     const button = event.target.closest('[data-map-list-project]');
     if (button)
@@ -333,34 +362,31 @@ export default function init(section) {
         load(section.dataset.mapScript, 'js'),
       ]);
       if (touch) await new Promise(whenScrollRests);
-      const initialBounds = boundsFor(records.filter((record) => record.city === defaultCity));
+      // Match the city overview at 1792px; keep Chelyabinsk legible on narrow screens.
+      const openingZoom = Math.max(10.2, 10.87 + Math.log2(view.clientWidth / 1792));
       map = new maplibregl.Map({
         container: view,
-        style: 'https://tiles.openfreemap.org/styles/positron',
+        style: 'data/company-map-style.json?v=20261119-6',
         center: defaultCenter,
-        zoom: overviewZoom(),
-        ...(initialBounds && {
-          bounds: initialBounds,
-          fitBoundsOptions: {
-            padding: overviewPadding,
-            maxZoom: overviewZoom(),
-            pitch: cameraPitch(),
-          },
-        }),
+        zoom: openingZoom,
         pitch: cameraPitch(),
         bearing: 0,
         antialias: true,
-        attributionControl: true,
-        scrollZoom: true,
-        // Колесо без модификатора прокручивает страницу, Ctrl/⌘ меняет масштаб карты.
+        attributionControl: { compact: false },
+        scrollZoom: false,
         cooperativeGestures: true,
         locale: {
           'AttributionControl.ToggleAttribution': 'Источники карты',
           'NavigationControl.ResetBearing': 'Ориентировать на север',
-          'CooperativeGesturesHandler.WindowsHelpText': 'Масштаб карты: Ctrl + колесо',
-          'CooperativeGesturesHandler.MacHelpText': 'Масштаб карты: ⌘ + колесо',
+          'CooperativeGesturesHandler.WindowsHelpText': 'Нажмите на карту, чтобы менять масштаб колёсиком',
+          'CooperativeGesturesHandler.MacHelpText': 'Нажмите на карту, чтобы менять масштаб колёсиком',
           'CooperativeGesturesHandler.MobileHelpText': 'Перемещайте карту двумя пальцами',
         },
+      });
+      initWheelZoom();
+      map.once('style.load', () => {
+        if (pitchButton.getAttribute('aria-pressed') !== 'true')
+          map.setLayoutProperty('thld-buildings-3d', 'visibility', 'none');
       });
       map.addControl(
         new maplibregl.NavigationControl({ showZoom: false, visualizePitch: true }),
@@ -382,60 +408,9 @@ export default function init(section) {
           status.hidden = false;
           status.textContent = 'Не удалось загрузить часть карты. Выберите объект в списке.';
         }
-        if (event.error?.message) console.warn('Map resource:', event.error.message);
+        console.warn('Map resource unavailable', event.error?.status || '');
       });
       map.on('load', () => whenScrollRests(() => {
-        const layers = map.getStyle().layers;
-        layers
-          .filter(
-            (layer) =>
-              layer.type === 'symbol' &&
-              JSON.stringify(layer.layout?.['text-field'] || '').includes('name'),
-          )
-          .forEach((layer) => {
-            map.setLayoutProperty(layer.id, 'text-field', [
-              'coalesce',
-              ['get', 'name:ru'],
-              ['get', 'name'],
-              ['get', 'name:nonlatin'],
-              ['get', 'name:latin'],
-            ]);
-          });
-        ['highway_major_casing', 'highway_motorway_casing', 'highway_motorway_bridge_casing']
-          .filter((id) => map.getLayer(id))
-          .forEach((id) => map.setPaintProperty(id, 'line-color', '#a0a3ad'));
-        [
-          ['water', '#e1eef5'],
-          ['park', '#e9efea'],
-          ['landcover_wood', '#e6ece6'],
-        ]
-          .filter(([id]) => map.getLayer(id))
-          .forEach(([id, color]) => map.setPaintProperty(id, 'fill-color', color));
-        const symbol = layers.find((layer) => layer.type === 'symbol')?.id;
-        map.addSource('thld-buildings', {
-          type: 'vector',
-          url: 'https://tiles.openfreemap.org/planet',
-        });
-        map.addLayer(
-          {
-            id: 'thld-buildings-3d',
-            source: 'thld-buildings',
-            'source-layer': 'building',
-            type: 'fill-extrusion',
-            minzoom: 14,
-            layout: {
-              visibility: pitchButton.getAttribute('aria-pressed') === 'true' ? 'visible' : 'none',
-            },
-            filter: ['!=', ['get', 'hide_3d'], true],
-            paint: {
-              'fill-extrusion-color': '#a0a3ad',
-              'fill-extrusion-height': ['coalesce', ['get', 'render_height'], 6],
-              'fill-extrusion-base': ['coalesce', ['get', 'render_min_height'], 0],
-              'fill-extrusion-opacity': 0.95,
-            },
-          },
-          symbol,
-        );
         status.hidden = true;
         section.dataset.mapReady = 'true';
         section.dataset.mapState = 'ready';

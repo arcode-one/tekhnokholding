@@ -12,7 +12,7 @@
       name="description"
       content="Все ключевые сервисы для действующих и будущих заказчиков — в одном месте."
     />
-    <meta name="theme-color" content="#34454e" />
+    <meta name="theme-color" content="#f2f2f2" />
     <link
       rel="preload"
       href="fonts/manrope/manrope-latin-wght-normal.woff2"
@@ -28,7 +28,7 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/blocks/customer-service.css" />
+    <link rel="stylesheet" href="css/blocks/customer-service.css?v=20261120-1" />
     <link rel="canonical" href="https://thld.su/customer-service.html" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
@@ -37,15 +37,15 @@
     <meta property="og:description" content="Все ключевые сервисы для действующих и будущих заказчиков — в одном месте." />
     <meta property="og:url" content="https://thld.su/customer-service.html" />
     <meta property="og:image" content="https://thld.su/images/customer-service-svoboda-roof.webp" />
-    <meta property="og:image:alt" content="Светлая кровля цеха «Конар» под грозовым небом" />
+    <meta property="og:image:alt" content="Кровля здания на улице Свободы, 2, в Челябинске" />
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body id="top" class="customer-service-page" data-site-footer="off">
-    <header class="header">
+    <header class="header" data-control-theme="light">
       <div class="header__inner">
         <a class="header__logo" href="index.html" aria-label="Технохолдинг, на главную">
           <img
-            src="icons/logo-light-compact.svg"
+            src="icons/logo-dark-compact.svg"
             alt="Технохолдинг"
             width="1292"
             height="430"
@@ -186,51 +186,42 @@
     </div>
 
     <main aria-label="Сервис для заказчика">
-      <div class="customer-service__hero">
-        <img
-          src="images/customer-service-svoboda-roof.webp"
-          width="1774"
-          height="887"
-          alt="Вид сверху на светлую кровлю и фасад с муралом на улице Свободы, 2, в Челябинске"
-          fetchpriority="high"
-        />
-        <nav class="page-back page-back--inverse" aria-label="Навигация">
-          <a class="pill page-back__button" href="index.html" aria-label="На главную">
-            <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
-          </a>
-        </nav>
-      </div>
+      <nav class="page-back" aria-label="Навигация">
+        <a class="pill page-back__button" href="index.html" aria-label="На главную">
+          <svg width="44" height="12" viewBox="0 0 44 12" fill="none" aria-hidden="true"><path d="M43 6H1m5-5L1 6l5 5" /></svg>
+        </a>
+      </nav>
 
       <div class="customer-service" data-control-theme="light">
         <ul class="customer-service__links" role="list">
           <li>
             <a class="customer-service__link" href="mailto:pto@thld.su" data-customer-request-open>
-              <img class="customer-service__photo" src="images/customer-service-request-form.webp" width="480" height="480" alt="" />
+              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#files"></use></svg></span>
               <div>
                 <h2>Подать заявку</h2>
                 <p>Оставить обращение и получить обратную связь</p>
               </div>
-              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">Заполнить</span></span>
+              <span class="pill customer-service__action"><span class="pill__label">Заполнить заявку</span></span>
             </a>
           </li>
           <li>
             <a class="customer-service__link" href="quality.html">
-              <img class="customer-service__photo" src="images/customer-service-quality-inspection.webp" width="480" height="480" alt="" />
+              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#shield-check"></use></svg></span>
               <div>
                 <h2>Служба качества</h2>
                 <p>Контроль на всех этапах работ</p>
               </div>
-              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">Подробнее</span></span>
+              <span class="pill customer-service__action"><span class="pill__label">О службе качества</span></span>
             </a>
           </li>
           <li>
             <a class="customer-service__link" href="account.html">
-              <img class="customer-service__photo" src="images/customer-service-project-tablet.webp" width="480" height="480" alt="" />
+              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span>
               <div>
                 <h2>Личный кабинет заказчика</h2>
                 <p>Контроль проекта, документы и статус работ</p>
               </div>
-              <span class="pill customer-service__action" aria-hidden="true"><span class="pill__label">В кабинет</span></span>
+              <span class="pill customer-service__action"><span class="pill__label">В кабинет</span></span>
             </a>
           </li>
         </ul>

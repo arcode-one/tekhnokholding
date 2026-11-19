@@ -427,8 +427,21 @@
   outline-offset: -3px;
 }
 
+.company-map__provider {
+  position: absolute;
+  bottom: 6px;
+  left: 8px;
+}
+
+.company-map__provider img {
+  display: block;
+  width: auto;
+  height: 30px;
+}
+
 .company-map__canvas .maplibregl-ctrl-attrib {
   font: 10px var(--font-body);
+  max-width: calc(100vw - 2 * var(--pad) - 132px);
 }
 
 .company-map .maplibregl-ctrl-group {

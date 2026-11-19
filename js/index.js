@@ -21,7 +21,7 @@ if (!touchHome) {
 enhance('[data-ui~="roof-background"]', 'roof', () => import('./blocks/roof-background.js'));
 enhance('[data-ui~="company-figures"]', 'figures', () => import('./blocks/company-figures.js'));
 enhance('[data-projects]', 'projects', () => import('./blocks/projects-section.js'));
-enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js'));
+enhance('[data-company-map]', 'map', () => import('./blocks/company-map.js?v=20261119-6'));
 enhance('[data-company-carousel]', 'carousel', () => import('./blocks/company-carousel.js'));
 enhancements.push(loadBlocks('[data-home-team]', 'home-team', () => import('./blocks/home-team.js')));
 enhance('[data-company-lightbox]', 'lightbox', () => import('./blocks/company-lightbox.js'));

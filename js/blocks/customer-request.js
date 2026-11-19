@@ -39,6 +39,21 @@ export default function init(dialog) {
     button.addEventListener('click', () => dialog.close());
   });
 
+  function isBackdrop(event) {
+    if (event.target !== dialog) return false;
+    const { left, right, top, bottom } = dialog.getBoundingClientRect();
+    return event.clientX < left || event.clientX >= right || event.clientY < top || event.clientY >= bottom;
+  }
+
+  let pressedBackdrop = false;
+  dialog.addEventListener('pointerdown', (event) => {
+    pressedBackdrop = isBackdrop(event);
+  });
+  dialog.addEventListener('click', (event) => {
+    if (pressedBackdrop && isBackdrop(event)) dialog.close();
+    pressedBackdrop = false;
+  });
+
   dialog.addEventListener('close', () => {
     if (dialog.open) return;
     if (ownsLock) root.classList.remove('site--locked');

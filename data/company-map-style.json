@@ -1,0 +1,44 @@
+{
+  "version": 8,
+  "light": { "anchor": "map", "position": [1.4, 220, 36], "intensity": 0.47 },
+  "sources": {
+    "openmaptiles": {
+      "type": "vector",
+      "url": "https://tiles.openfreemap.org/planet"
+    },
+    "satellite": {
+      "type": "raster",
+      "tiles": ["https://api.mapy.com/v1/maptiles/aerial/256/{z}/{x}/{y}?apikey=usDdRvtF7Tnq2GiS9YRIBLMvD1zTNI9hFL3SojxvjuA"],
+      "tileSize": 256,
+      "maxzoom": 13,
+      "attribution": "<a href=\"https://api.mapy.com/copyright\" target=\"_blank\" rel=\"noopener\">© Seznam.cz a.s. and others</a>"
+    }
+  },
+  "layers": [
+    { "id": "background", "type": "background", "paint": { "background-color": "#444d46" } },
+    { "id": "imagery", "type": "raster", "source": "satellite" },
+    {
+      "id": "street-detail", "type": "line", "source": "openmaptiles", "source-layer": "transportation",
+      "minzoom": 13,
+      "filter": ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary", "tertiary", "minor", "service"]]],
+      "layout": { "line-cap": "round", "line-join": "round" },
+      "paint": {
+        "line-color": "#ded4bb",
+        "line-width": ["interpolate", ["exponential", 2], ["zoom"], 13, 0.6, 17, 8],
+        "line-opacity": ["interpolate", ["linear"], ["zoom"], 13, 0, 15, 0.45]
+      }
+    },
+    {
+      "id": "thld-buildings-3d", "type": "fill-extrusion", "source": "openmaptiles", "source-layer": "building",
+      "minzoom": 13,
+      "filter": ["!=", ["get", "hide_3d"], true],
+      "paint": {
+        "fill-extrusion-color": ["to-color", ["get", "colour"], ["step", ["coalesce", ["get", "render_height"], 6], "#afa594", 15, "#c4b6a5", 35, "#c4c6be"]],
+        "fill-extrusion-height": ["coalesce", ["get", "render_height"], 6],
+        "fill-extrusion-base": ["coalesce", ["get", "render_min_height"], 0],
+        "fill-extrusion-opacity": ["interpolate", ["linear"], ["zoom"], 13, 0.52, 14.5, 0.94],
+        "fill-extrusion-vertical-gradient": true
+      }
+    }
+  ]
+}
