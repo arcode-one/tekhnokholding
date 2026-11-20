@@ -19,7 +19,6 @@
 
 @media (max-width: 767px) {
   .privacy-page { padding-bottom: 64px; }
-  .privacy-page .page-back__button { height: 44px; }
   .privacy-page h1 { font-size: clamp(21px, 6.7vw, 42px); }
   .privacy-page__title-end { display: block; }
   .privacy-page__body { margin-top: 26px; }

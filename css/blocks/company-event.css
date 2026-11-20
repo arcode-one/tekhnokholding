@@ -70,7 +70,7 @@
   filter: saturate(var(--photo-saturation));
 }
 
-.company-event:is(#event-1, #event-3) .company-event__card img {
+.company-event#event-1 .company-event__card img {
   object-position: center 35%;
 }
 

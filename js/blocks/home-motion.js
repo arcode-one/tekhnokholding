@@ -134,7 +134,7 @@ function typeMissionStatement(element) {
     while (walker.nextNode()) {
       const node = walker.currentNode;
       for (const match of node.data.matchAll(/\S/gu))
-        letters.push({ node, start: match.index, end: match.index + match[0].length, delay: 24 });
+        letters.push({ node, start: match.index, end: match.index + match[0].length, delay: 17 });
     }
     if (letters.length) letters[letters.length - 1].delay = 160;
   }

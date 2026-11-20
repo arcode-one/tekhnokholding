@@ -28,7 +28,7 @@
       crossorigin=""
     />
     <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="css/blocks/customer-service.css?v=20261120-1" />
+    <link rel="stylesheet" href="css/blocks/customer-service.css?v=20261120-4" />
     <link rel="canonical" href="https://thld.su/customer-service.html" />
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:type" content="website" />
@@ -194,35 +194,29 @@
 
       <div class="customer-service" data-control-theme="light">
         <ul class="customer-service__links" role="list">
-          <li>
-            <a class="customer-service__link" href="mailto:pto@thld.su" data-customer-request-open>
-              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#files"></use></svg></span>
-              <div>
-                <h2>Подать заявку</h2>
-                <p>Оставить обращение и получить обратную связь</p>
-              </div>
-              <span class="pill customer-service__action"><span class="pill__label">Заполнить заявку</span></span>
-            </a>
+          <li class="customer-service__card">
+            <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#files"></use></svg></span>
+            <div>
+              <h2>Подать заявку</h2>
+              <p>Оставить обращение и получить обратную связь</p>
+            </div>
+            <a class="pill customer-service__action" href="mailto:pto@thld.su" data-customer-request-open><span class="pill__label">Заполнить заявку</span></a>
           </li>
-          <li>
-            <a class="customer-service__link" href="quality.html">
-              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#shield-check"></use></svg></span>
-              <div>
-                <h2>Служба качества</h2>
-                <p>Контроль на всех этапах работ</p>
-              </div>
-              <span class="pill customer-service__action"><span class="pill__label">О службе качества</span></span>
-            </a>
+          <li class="customer-service__card">
+            <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="icons/sprite.svg#shield-check"></use></svg></span>
+            <div>
+              <h2>Служба качества</h2>
+              <p>Контроль на всех этапах работ</p>
+            </div>
+            <a class="pill customer-service__action" href="quality.html"><span class="pill__label">О службе качества</span></a>
           </li>
-          <li>
-            <a class="customer-service__link" href="account.html">
-              <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span>
-              <div>
-                <h2>Личный кабинет заказчика</h2>
-                <p>Контроль проекта, документы и статус работ</p>
-              </div>
-              <span class="pill customer-service__action"><span class="pill__label">В кабинет</span></span>
-            </a>
+          <li class="customer-service__card">
+            <span class="customer-service__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span>
+            <div>
+              <h2>Личный кабинет заказчика</h2>
+              <p>Контроль проекта, документы и статус работ</p>
+            </div>
+            <a class="pill customer-service__action" href="account.html"><span class="pill__label">В кабинет</span></a>
           </li>
         </ul>
       </div>
@@ -272,6 +266,18 @@
             <input type="checkbox" id="customer-request-consent" name="consent" required />
             <div>
               <label for="customer-request-consent">Согласен на обработку персональных данных</label>
+              <details class="customer-request__consent-text">
+                <summary>Текст согласия</summary>
+                <p>Я даю ООО «ТехноХОЛДИНГ» (ИНН 7453304352) согласие обработать мою заявку:
+                  рассмотреть задачу, уточнить детали и связаться со мной по указанным контактам.</p>
+                <p>Согласие охватывает моё имя, указанные телефон и электронную почту, описание задачи,
+                  а также объект или город, если я их укажу. Компания может собирать, записывать,
+                  хранить, уточнять и использовать эти данные, направлять заявку на свою рабочую
+                  почту, а затем удалять и уничтожать данные.</p>
+                <p>Согласие действует до завершения работы с заявкой или до его отзыва.
+                  Я могу отозвать согласие письмом на info@thld.su или по адресу:
+                  454080, г. Челябинск, ул. Труда, д. 174, вход С, 2 этаж, помещение 91Т.</p>
+              </details>
               <a href="privacy.html" target="_blank" rel="noopener">Политика конфиденциальности</a>
             </div>
           </div>

@@ -198,6 +198,20 @@
   margin: 0;
 }
 
+.values-page .values-accordion__copy > p:first-child {
+  text-align: start;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.values-accordion__sentence {
+  display: block;
+}
+
+.values-accordion__sentence + .values-accordion__sentence {
+  margin-block-start: .45em;
+}
+
 .values-accordion__copy .values-accordion__principle {
   --values-principle-padding: clamp(14px, 1.25vw, 24px);
   max-width: calc(52ch + 2 * var(--values-principle-padding));

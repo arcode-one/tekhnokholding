@@ -137,6 +137,12 @@
   color: var(--color-ink);
 }
 
+.team-person__toggle[aria-expanded="true"] span {
+  width: 16px;
+  height: 2px;
+  mask: none;
+}
+
 .team-person__toggle:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;

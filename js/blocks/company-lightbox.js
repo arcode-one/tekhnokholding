@@ -5,7 +5,9 @@ export default function init(dialog) {
       : document.querySelector('[data-company-lightbox]') === dialog;
   const triggers = [...document.querySelectorAll('[data-company-image], [data-company-pages]')].filter(matchesDialog);
   let opener;
-  const image = dialog.querySelector('[data-lightbox-image]');
+  const imageTemplate = dialog.querySelector('[data-lightbox-image]');
+  imageTemplate.removeAttribute('src');
+  let image = imageTemplate;
   const title = dialog.querySelector('h2');
   const gallery = dialog.querySelector('[data-lightbox-gallery]');
   const view = dialog.querySelector('[data-lightbox-view]');
@@ -29,7 +31,6 @@ export default function init(dialog) {
     swipe = null;
     const fromGallery = gallery && !gallery.hidden;
     const documentPages = button.dataset.companyPages?.split(' ').filter(Boolean);
-    image.hidden = !!documentPages;
     if (pages) {
       pages.hidden = !documentPages;
       pages.replaceChildren(...(documentPages || []).map((src, pageIndex) => {
@@ -41,9 +42,16 @@ export default function init(dialog) {
         return page;
       }));
     }
-    if (!documentPages) {
-      image.src = button.dataset.companyImage;
-      image.alt = button.dataset.imageTitle;
+    if (documentPages) {
+      image.hidden = true;
+    } else {
+      // A reused img can keep painting the last photo while its new src loads.
+      const nextImage = imageTemplate.cloneNode(false);
+      nextImage.hidden = false;
+      nextImage.alt = button.dataset.imageTitle;
+      nextImage.src = button.dataset.companyImage;
+      image.replaceWith(nextImage);
+      image = nextImage;
     }
     title.textContent = button.dataset.imageTitle;
     if (gallery) gallery.hidden = true;

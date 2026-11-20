@@ -81,8 +81,8 @@
 @media (max-width: 767px), (hover: none) and (pointer: coarse) {
   /* Dialog autofocus can match :focus-visible on iOS. Override the shared
      button focus ring, including its more specific enabled-state selectors. */
-  :is([data-lightbox-close], .company-map__close, .menu__close,
-      .object-cinema__bar button[aria-label^="Закрыть"]):is(:focus, :focus-visible) {
+  :is(button[aria-label^="Закрыть"], [data-lightbox-close], .company-map__close, .menu__close) {
+    -webkit-tap-highlight-color: transparent;
     outline: none !important;
     box-shadow: none !important;
   }

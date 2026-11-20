@@ -34,6 +34,8 @@ export default function init(section) {
   let activeGroup = null;
   let opener = null;
   let cardOpener = null;
+  let previewGroup = null;
+  let previewCloseTimer;
   let gestureHintTimer = 0;
   section.dataset.mapState = 'waiting';
 
@@ -65,7 +67,20 @@ export default function init(section) {
     list.hidden = !activeGroup || (compact.matches && !card.hidden);
   }
 
+  function endPreview() {
+    clearTimeout(previewCloseTimer);
+    previewGroup = null;
+  }
+
+  function schedulePreviewClose() {
+    if (!previewGroup) return;
+    clearTimeout(previewCloseTimer);
+    // Allow the pointer to cross the map from the marker to the list.
+    previewCloseTimer = setTimeout(closePanels, 450);
+  }
+
   function closePanels(restoreFocus = false) {
+    endPreview();
     selected = '';
     activeGroup = null;
     card.hidden = true;
@@ -100,6 +115,7 @@ export default function init(section) {
   function showProject(id, { fromList = false, trigger = null, focus = false } = {}) {
     const record = records.find((item) => item.id === id);
     if (!record) return;
+    endPreview();
     if (!fromList) {
       activeGroup = null;
       opener = trigger;
@@ -192,7 +208,7 @@ export default function init(section) {
       button.type = 'button';
       button.className = 'company-map-marker';
       button.setAttribute('aria-expanded', 'false');
-      button.setAttribute('aria-controls', items.length > 1 ? list.id : card.id);
+      button.setAttribute('aria-controls', items.length > 1 ? list.id : `${list.id} ${card.id}`);
       const place =
         new Set(items.map((record) => record.city)).size === 1 ? items[0].city : 'Карта';
       button.setAttribute(
@@ -215,8 +231,19 @@ export default function init(section) {
         button.append(count);
       }
       const group = { key, button, records: items };
+      button.addEventListener('pointerenter', (event) => {
+        if (event.pointerType !== 'mouse' || event.buttons) return;
+        clearTimeout(previewCloseTimer);
+        previewGroup = group;
+        showGroup(group);
+      });
+      button.addEventListener('pointerleave', () => {
+        if (previewGroup === group) schedulePreviewClose();
+      });
       button.addEventListener('click', (event) => {
         event.stopPropagation();
+        if (event.detail && previewGroup === group && event.pointerType === 'mouse') return;
+        endPreview();
         openMarker(group, event.detail === 0);
       });
       group.marker = new maplibregl.Marker({ element: button, anchor: 'bottom' })
@@ -224,6 +251,7 @@ export default function init(section) {
         .addTo(map);
       next.push(group);
     });
+    if (previewGroup && previous.has(previewGroup.key)) closePanels();
     previous.forEach((group) => group.marker.remove());
     markers = next;
     if (opener && !opener.isConnected) {
@@ -288,6 +316,9 @@ export default function init(section) {
     window.addEventListener('blur', release);
   }
 
+  list.addEventListener('pointerenter', () => clearTimeout(previewCloseTimer));
+  list.addEventListener('pointerleave', schedulePreviewClose);
+  list.addEventListener('focusin', endPreview);
   listItems.addEventListener('click', (event) => {
     const button = event.target.closest('[data-map-list-project]');
     if (button)
