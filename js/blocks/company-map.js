@@ -1,5 +1,6 @@
 import { loadAsset as load } from '../lib/assets.js';
 import initMapLayout from './company-map-layout.js';
+import satelliteStyle from './company-satellite-style.js';
 
 export default function init(section) {
   initMapLayout(section);
@@ -11,7 +12,13 @@ export default function init(section) {
   const itemTemplate = section.querySelector('[data-map-list-template]');
   const pitchButton = section.querySelector('[data-map-pitch]');
   const fitButton = section.querySelector('[data-map-fit]');
-  const perspectivePitch = 58;
+  const mapboxToken = section.dataset.mapboxToken?.trim() || '';
+  const useMapbox = mapboxToken.startsWith('pk.');
+  const mapboxCdn = 'https://api.mapbox.com/mapbox-gl-js/v3.35.0';
+  const scriptUrl = useMapbox ? mapboxCdn + '/mapbox-gl.js' : section.dataset.mapScript;
+  const cssUrl = useMapbox ? mapboxCdn + '/mapbox-gl.css' : section.dataset.mapStyle;
+  section.querySelector('.company-map__provider').hidden = useMapbox;
+  const perspectivePitch = useMapbox ? 52 : 45;
   const cameraPitch = () =>
     pitchButton.getAttribute('aria-pressed') === 'true' ? perspectivePitch : 0;
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -19,15 +26,8 @@ export default function init(section) {
   const touch = matchMedia('(hover: none) and (pointer: coarse)').matches;
   const defaultCenter = [61.40645, 55.16246];
   const placeholder = 'icons/image-placeholder.svg';
-  const precisionNotes = {
-    address: '',
-    street: 'Примерное расположение по указанной улице.',
-    area: 'Примерное расположение в указанном районе или на территории объекта.',
-    city: 'На карте указан населённый пункт. Расположение объекта примерное.',
-    region: 'На карте указан регион. Расположение объекта примерное.',
-    unknown: 'Расположение объекта не указано.',
-  };
   let map;
+  let mapSdk;
   let records = [];
   let markers = [];
   let selected = '';
@@ -35,13 +35,15 @@ export default function init(section) {
   let opener = null;
   let cardOpener = null;
   let previewGroup = null;
+  let pendingPreview = null;
+  let previewSwitchTimer;
   let previewCloseTimer;
   let gestureHintTimer = 0;
   section.dataset.mapState = 'waiting';
 
   const preload = () => {
-    load(section.dataset.mapStyle, 'css').catch(() => {});
-    load(section.dataset.mapScript, 'js').catch(() => {});
+    load(cssUrl, 'css').catch(() => {});
+    load(scriptUrl, 'js').catch(() => {});
   };
   const preloadObserver = new IntersectionObserver(([entry]) => {
     if (!entry.isIntersecting) return;
@@ -67,7 +69,29 @@ export default function init(section) {
     list.hidden = !activeGroup || (compact.matches && !card.hidden);
   }
 
+  function cancelPreviewSwitch() {
+    clearTimeout(previewSwitchTimer);
+    pendingPreview = null;
+  }
+
+  function previewMarker(group) {
+    cancelPreviewSwitch();
+    clearTimeout(previewCloseTimer);
+    previewGroup = group;
+    showGroup(group);
+  }
+
+  function waitForHover(group) {
+    pendingPreview = group;
+    clearTimeout(previewSwitchTimer);
+    previewSwitchTimer = setTimeout(() => {
+      if (group.button.isConnected && group.button.matches(':hover')) previewMarker(group);
+      else cancelPreviewSwitch();
+    }, 450);
+  }
+
   function endPreview() {
+    cancelPreviewSwitch();
     clearTimeout(previewCloseTimer);
     previewGroup = null;
   }
@@ -76,7 +100,7 @@ export default function init(section) {
     if (!previewGroup) return;
     clearTimeout(previewCloseTimer);
     // Allow the pointer to cross the map from the marker to the list.
-    previewCloseTimer = setTimeout(closePanels, 450);
+    previewCloseTimer = setTimeout(closePanels, 2000);
   }
 
   function closePanels(restoreFocus = false) {
@@ -126,9 +150,6 @@ export default function init(section) {
     card.querySelector('[data-map-card-title]').textContent = record.title;
     card.querySelector('[data-map-card-address]').textContent =
       record.mapAddress || record.address || record.city || 'Адрес не указан';
-    const note = card.querySelector('[data-map-card-precision]');
-    note.textContent = precisionNotes[record.precision] || '';
-    note.hidden = !note.textContent;
     setFact('area', record.area);
     setFact('year', record.year);
     setFact('roof', record.roof);
@@ -179,10 +200,10 @@ export default function init(section) {
     const previous = new Map(markers.map((group) => [group.key, group]));
     const next = [];
     const groups = new Map();
+    const zoom = map.getZoom();
     records
       .filter((record) => record.coordinates)
       .forEach((record) => {
-        // Одна координата = одна метка. Не раздвигаем объекты с неизвестным адресом.
         const key = record.coordinates.map((value) => value.toFixed(6)).join(',');
         if (!groups.has(key)) groups.set(key, []);
         groups.get(key).push(record);
@@ -192,11 +213,21 @@ export default function init(section) {
     const clusters = [];
     groups.forEach((items) => {
       const point = map.project(items[0].coordinates);
-      const nearby = clusters.find((cluster) => point.dist(cluster.point) < 58);
+      if (zoom >= 16 && items.length > 1) {
+        // Экранные смещения раскрывают общую точку, сохраняя координаты из каталога.
+        const radius = Math.max(42, 34 / Math.sin(Math.PI / items.length));
+        items.forEach((record, index) => {
+          const angle = 2 * Math.PI * index / items.length - Math.PI / 2;
+          const offset = [Math.cos(angle) * radius, Math.sin(angle) * radius];
+          clusters.push({ records: [record], offset });
+        });
+        return;
+      }
+      const nearby = zoom < 16 && clusters.find((cluster) => point.dist(cluster.point) < 58);
       if (nearby) nearby.records.push(...items);
       else clusters.push({ point, records: [...items] });
     });
-    clusters.forEach(({ records: items }) => {
+    clusters.forEach(({ records: items, offset }) => {
       const key = items.map((record) => record.id).join('|');
       const existing = previous.get(key);
       if (existing) {
@@ -206,7 +237,9 @@ export default function init(section) {
       }
       const button = document.createElement('button');
       button.type = 'button';
+      button.setAttribute('role', 'button'); // Prevent the map SDK's default marker role of img.
       button.className = 'company-map-marker';
+      if (offset) button.classList.add('company-map-marker--spread');
       button.setAttribute('aria-expanded', 'false');
       button.setAttribute('aria-controls', items.length > 1 ? list.id : `${list.id} ${card.id}`);
       const place =
@@ -232,26 +265,30 @@ export default function init(section) {
       }
       const group = { key, button, records: items };
       button.addEventListener('pointerenter', (event) => {
-        if (event.pointerType !== 'mouse' || event.buttons) return;
+        if (event.pointerType !== 'mouse' || event.buttons || compact.matches) return;
         clearTimeout(previewCloseTimer);
-        previewGroup = group;
-        showGroup(group);
+        if ((!activeGroup && !selected) || previewGroup === group) previewMarker(group);
+        else waitForHover(group);
       });
       button.addEventListener('pointerleave', () => {
-        if (previewGroup === group) schedulePreviewClose();
+        if (pendingPreview === group) cancelPreviewSwitch();
+        schedulePreviewClose();
       });
       button.addEventListener('click', (event) => {
         event.stopPropagation();
-        if (event.detail && previewGroup === group && event.pointerType === 'mouse') return;
+        if (items.length > 1 && event.detail && previewGroup === group && event.pointerType === 'mouse') return;
         endPreview();
         openMarker(group, event.detail === 0);
       });
-      group.marker = new maplibregl.Marker({ element: button, anchor: 'bottom' })
+      group.marker = new mapSdk.Marker({ element: button, anchor: offset ? 'center' : 'bottom', offset })
         .setLngLat(items[0].coordinates)
         .addTo(map);
       next.push(group);
     });
-    if (previewGroup && previous.has(previewGroup.key)) closePanels();
+    if (activeGroup && previous.has(activeGroup.key)) {
+      if (selected) activeGroup = null;
+      else closePanels();
+    }
     previous.forEach((group) => group.marker.remove());
     markers = next;
     if (opener && !opener.isConnected) {
@@ -266,7 +303,7 @@ export default function init(section) {
   function boundsFor(items) {
     const points = items.filter((record) => record.coordinates);
     if (!points.length) return null;
-    const bounds = new maplibregl.LngLatBounds();
+    const bounds = new mapSdk.LngLatBounds();
     points.forEach((record) => bounds.extend(record.coordinates));
     return bounds;
   }
@@ -286,26 +323,37 @@ export default function init(section) {
 
   function initWheelZoom() {
     const stage = view.parentElement;
-    const canvas = map.getCanvas();
     const hint = 'Нажмите на карту, чтобы менять масштаб колёсиком';
-    canvas.title = hint;
+    const activeHint = 'Колёсико меняет масштаб. Esc возвращает прокрутку страницы';
+    let active = false;
+
+    function sync() {
+      if (!map) return;
+      if (active) {
+        map.cooperativeGestures?.disable();
+        map.scrollZoom.enable();
+      } else {
+        map.scrollZoom.disable();
+        map.cooperativeGestures?.enable();
+      }
+      map.getCanvas().title = active ? activeHint : hint;
+    }
 
     function release() {
-      if (!map.scrollZoom.isEnabled()) return;
-      map.scrollZoom.disable();
-      map.cooperativeGestures.enable();
-      canvas.title = hint;
+      if (!active) return;
+      active = false;
+      sync();
     }
-    stage.addEventListener('click', (event) => {
-      if (event.pointerType === 'touch' || event.detail === 0 ||
-          !event.target.closest('[data-map-view], .company-map__tools')) return;
-      map.cooperativeGestures.disable();
-      map.scrollZoom.enable();
-      canvas.title = 'Колёсико меняет масштаб. Esc возвращает прокрутку страницы';
+    stage.addEventListener('pointerdown', (event) => {
+      if (event.pointerType === 'touch' || event.button !== 0 || active) return;
+      if (event.target !== stage &&
+          !event.target.closest('[data-map-view], .company-map__tools, [data-map-status]')) return;
+      active = true;
+      sync();
     }, true);
     stage.addEventListener('pointerleave', release);
-    stage.addEventListener('focusout', (event) => {
-      if (!stage.contains(event.relatedTarget)) release();
+    document.addEventListener('focusin', (event) => {
+      if (!stage.contains(event.target)) release();
     });
     document.addEventListener('pointerdown', (event) => {
       if (event.pointerType === 'touch' || !stage.contains(event.target)) release();
@@ -314,9 +362,23 @@ export default function init(section) {
       if (event.key === 'Escape') release();
     });
     window.addEventListener('blur', release);
+    return sync;
   }
 
-  list.addEventListener('pointerenter', () => clearTimeout(previewCloseTimer));
+  const syncWheelZoom = initWheelZoom();
+
+  view.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse' || event.buttons) return;
+    if (pendingPreview) waitForHover(pendingPreview);
+    // Keep the current list reachable even on a slow trip across a wide map.
+    if (previewGroup && event.movementX < 0 && !previewGroup.button.contains(event.target)) {
+      schedulePreviewClose();
+    }
+  });
+  list.addEventListener('pointerenter', () => {
+    cancelPreviewSwitch();
+    clearTimeout(previewCloseTimer);
+  });
   list.addEventListener('pointerleave', schedulePreviewClose);
   list.addEventListener('focusin', endPreview);
   listItems.addEventListener('click', (event) => {
@@ -348,7 +410,7 @@ export default function init(section) {
     if (!map) return;
     const active = pitchButton.getAttribute('aria-pressed') !== 'true';
     pitchButton.setAttribute('aria-pressed', String(active));
-    if (map.getLayer('thld-buildings-3d'))
+    if (!useMapbox && map.getLayer('thld-buildings-3d'))
       map.setLayoutProperty('thld-buildings-3d', 'visibility', active ? 'visible' : 'none');
     map.easeTo({ pitch: cameraPitch(), bearing: 0, duration: reduced.matches ? 0 : 500 });
   });
@@ -373,6 +435,9 @@ export default function init(section) {
         const dates = String(project.yearLabel || project.technicalSpecs?.['Дата сдачи'] || '');
         return {
           ...location,
+          coordinates: location.precision === 'city' && location.displayCoordinates
+            ? location.displayCoordinates
+            : location.coordinates,
           cover: project.cover,
           area: project.area,
           roof: project.roof,
@@ -383,29 +448,33 @@ export default function init(section) {
       if (touch) {
         // Download first, execute only after a pause. Otherwise a slow response
         // can parse MapLibre in the middle of the next swipe.
-        const script = await fetch(section.dataset.mapScript, { cache: 'force-cache' });
+        const script = await fetch(scriptUrl, { cache: 'force-cache' });
         if (!script.ok) throw new Error('Map library unavailable');
         await script.arrayBuffer();
         await new Promise(whenScrollRests);
       }
       await Promise.all([
-        load(section.dataset.mapStyle, 'css'),
-        load(section.dataset.mapScript, 'js'),
+        load(cssUrl, 'css'),
+        load(scriptUrl, 'js'),
       ]);
       if (touch) await new Promise(whenScrollRests);
       // Match the city overview at 1792px; keep Chelyabinsk legible on narrow screens.
       const openingZoom = Math.max(10.2, 10.87 + Math.log2(view.clientWidth / 1792));
-      map = new maplibregl.Map({
+      mapSdk = useMapbox ? window.mapboxgl : window.maplibregl;
+      map = new mapSdk.Map({
         container: view,
-        style: 'data/company-map-style.json?v=20261119-6',
+        ...(useMapbox ? {
+          accessToken: mapboxToken,
+          style: satelliteStyle(mapboxToken),
+        } : { style: 'data/company-map-style.json?v=20261122-1' }),
         center: defaultCenter,
         zoom: openingZoom,
         pitch: cameraPitch(),
         bearing: 0,
         antialias: true,
-        attributionControl: { compact: false },
+        attributionControl: useMapbox ? true : { compact: false },
         scrollZoom: false,
-        cooperativeGestures: true,
+        cooperativeGestures: useMapbox ? touch : true,
         locale: {
           'AttributionControl.ToggleAttribution': 'Источники карты',
           'NavigationControl.ResetBearing': 'Ориентировать на север',
@@ -414,16 +483,16 @@ export default function init(section) {
           'CooperativeGesturesHandler.MobileHelpText': 'Перемещайте карту двумя пальцами',
         },
       });
-      initWheelZoom();
+      syncWheelZoom();
       map.once('style.load', () => {
-        if (pitchButton.getAttribute('aria-pressed') !== 'true')
+        if (!useMapbox && pitchButton.getAttribute('aria-pressed') !== 'true')
           map.setLayoutProperty('thld-buildings-3d', 'visibility', 'none');
       });
       map.addControl(
-        new maplibregl.NavigationControl({ showZoom: false, visualizePitch: true }),
+        new mapSdk.NavigationControl({ showZoom: false, visualizePitch: true }),
         'bottom-right',
       );
-      view.querySelector('.maplibregl-ctrl-compass')?.classList.add('icon-btn');
+      view.querySelector('.maplibregl-ctrl-compass, .mapboxgl-ctrl-compass')?.classList.add('icon-btn');
       map.on('cooperativegestureprevented', () => {
         clearTimeout(gestureHintTimer);
         view.classList.add('company-map__canvas--gesture-hint');

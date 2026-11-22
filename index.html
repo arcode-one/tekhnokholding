@@ -51,7 +51,7 @@
       type="font/woff2"
       crossorigin=""
     />
-    <link rel="stylesheet" href="css/index.css?v=20261119-4" />
+    <link rel="stylesheet" href="css/index.css?v=20261122-2" />
     <link rel="stylesheet" href="css/blocks/team-roster.css" />
     <link rel="canonical" href="https://thld.su/" />
     <meta property="og:locale" content="ru_RU" />
@@ -567,7 +567,8 @@
         id="map-objects"
         aria-labelledby="company-map-title"
         data-company-map=""
-        data-locations="data/project-locations.json"
+        data-mapbox-token="pk.eyJ1IjoibnRjb2Rlci0xIiwiYSI6ImNtd3Jma2VtNzBrMnIzMHIyamo1Z3A5d2oifQ.P54YfG87EGstu77UtfDRDw"
+        data-locations="data/project-locations.json?v=20261122-3"
         data-projects-source="data/projects.json"
         data-map-script="js/vendor/maplibre-gl-5.24.0.js"
         data-map-style="css/vendor/maplibre-gl-5.24.0.css"
@@ -705,7 +706,6 @@
                   <dd></dd>
                 </div>
               </dl>
-              <p class="company-map__precision" data-map-card-precision="" hidden></p>
               <a class="pill company-map__card-link" data-map-card-link="" href="objects.html"
                 target="_blank"
                 rel="noopener"
@@ -7415,6 +7415,6 @@
     </footer>
     <!-- FOOTER:END -->
 
-    <script type="module" src="js/index.js?v=20261119-10"></script>
+    <script type="module" src="js/index.js?v=20261122-10"></script>
   </body>
 </html>

@@ -18,15 +18,37 @@ body.customer-service-page {
 
 .customer-service {
   align-self: center;
-  width: min(calc(100% - 2 * var(--pad)), 1068px);
+  width: min(calc(100% - 2 * var(--pad)), 1440px);
   margin-inline: auto;
   padding-block: 24px 54px;
+}
+
+.customer-service__intro {
+  display: grid;
+  grid-template-columns: 1fr 36%;
+  align-items: end;
+  gap: 24px;
+  margin-bottom: clamp(24px, 2vw, 32px);
+}
+
+.customer-service__intro h1 {
+  margin: 0;
+  font-size: clamp(48px, 5.25vw, 80px);
+  font-weight: 480;
+  line-height: 1.04;
+  letter-spacing: -.055em;
+}
+
+.customer-service__intro p {
+  margin: 0;
+  font-size: clamp(17px, 1.33vw, 20px);
+  line-height: 1.45;
 }
 
 .customer-service__links {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: clamp(24px, 2.9vw, 44px);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -40,7 +62,7 @@ body.customer-service-page {
   align-items: flex-start;
   gap: 28px;
   box-sizing: border-box;
-  min-height: 492px;
+  min-height: clamp(360px, 32.4vw, 492px);
   height: 100%;
   padding: 32px 28px;
   overflow: hidden;
@@ -67,10 +89,11 @@ body.customer-service-page {
 .customer-service__icon {
   position: absolute;
   z-index: -1;
-  right: -16px;
+  right: 12px;
   bottom: 78px;
-  width: 170px;
-  height: 170px;
+  width: clamp(110px, 9.5vw, 144px);
+  height: auto;
+  aspect-ratio: 1;
   pointer-events: none;
   opacity: .09;
   transform: rotate(-9deg);
@@ -97,8 +120,8 @@ body.customer-service-page {
 }
 
 .customer-service__card p {
-  max-width: 25ch;
-  margin: 16px 0 0;
+  max-width: 32ch;
+  margin: 12px 0 0;
   font-size: 17px;
   font-weight: 430;
   line-height: 1.45;
@@ -135,6 +158,9 @@ body.customer-service-page {
 
 @media (max-width: 959px) {
   .customer-service { padding-block: 28px; }
+  .customer-service__intro { grid-template-columns: 1fr; gap: 12px; }
+  .customer-service__intro h1 { font-size: clamp(38px, 6vw, 56px); }
+  .customer-service__intro p { max-width: 46ch; }
   .customer-service__links { grid-template-columns: 1fr; gap: 14px; }
   .customer-service__card {
     min-height: 204px;

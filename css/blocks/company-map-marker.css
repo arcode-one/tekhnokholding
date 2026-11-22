@@ -33,6 +33,10 @@
   pointer-events: none;
 }
 
+.company-map-marker--spread { margin-top: 0; }
+
+.company-map-marker--spread::after { content: none; }
+
 .company-map-marker__count {
   position: absolute;
   top: -5px;

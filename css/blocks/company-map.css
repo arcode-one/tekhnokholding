@@ -42,7 +42,7 @@
   height: 100%;
 }
 
-.company-map__canvas.maplibregl-map {
+.company-map__canvas:is(.maplibregl-map, .mapboxgl-map) {
   font-family: var(--font-body);
 }
 
@@ -365,13 +365,6 @@
   font-weight: 400;
 }
 
-.company-map__precision {
-  margin: 0 0 20px;
-  color: var(--map-muted);
-  font-size: 12px;
-  line-height: 1.5;
-}
-
 .company-map__card-link {
   display: flex;
   align-items: center;
@@ -439,18 +432,18 @@
   height: 30px;
 }
 
-.company-map__canvas .maplibregl-ctrl-attrib {
+.company-map__canvas :is(.maplibregl-ctrl-attrib, .mapboxgl-ctrl-attrib) {
   font: 10px var(--font-body);
   max-width: calc(100vw - 2 * var(--pad) - 132px);
 }
 
-.company-map .maplibregl-ctrl-group {
+.company-map :is(.maplibregl-ctrl-group, .mapboxgl-ctrl-group) {
   border-radius: 50%;
   background: transparent;
   box-shadow: none;
 }
 
-.company-map .maplibregl-ctrl-group .maplibregl-ctrl-compass {
+.company-map :is(.maplibregl-ctrl-group, .mapboxgl-ctrl-group) :is(.maplibregl-ctrl-compass, .mapboxgl-ctrl-compass) {
   width: 44px;
   height: 44px;
   border-radius: 50%;
